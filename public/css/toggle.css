@@ -1,0 +1,36 @@
+.toggle-checkbox:checked {
+    right: 0;
+    border-color: #68d391;
+    background-color: #ffffff;
+    transition: right 0.2s, border-color 0.2s, background-color 0.2s;
+}
+
+.toggle-checkbox:checked + .toggle-label {
+    background-color: #68d391;
+    transition: background-color 0.2s;
+}
+
+.toggle-checkbox:focus + .toggle-label,
+.toggle-checkbox:active + .toggle-label {
+    box-shadow: 0 0 1px #68d391;
+}
+
+.toggle-checkbox:checked:focus + .toggle-label,
+.toggle-checkbox:checked:active + .toggle-label {
+    box-shadow: 0 0 1px #68d391;
+}
+
+.toggle-checkbox:checked:hover + .toggle-label,
+.toggle-checkbox:checked:focus + .toggle-label,
+.toggle-checkbox:checked:active + .toggle-label {
+    background-color: #68d391;
+}
+
+.toggle-checkbox:checked:hover:focus + .toggle-label,
+.toggle-checkbox:checked:hover:active + .toggle-label {
+    box-shadow: 0 0 1px #68d391;
+}
+
+.toggle-checkbox:checked:hover:focus:active + .toggle-label {
+    box-shadow: 0 0 1px #68d391;
+}
