@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\cabangs;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CabangsController extends Controller
 {
@@ -37,7 +38,11 @@ class CabangsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = Validator::make($request->all(), [
+            'nama_cabang' => 'required | max:100',
+            'deskripsi' => 'required',
+            'status' => 'required | not_in:#',
+        ]);
     }
 
     /**
