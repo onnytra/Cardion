@@ -14,7 +14,9 @@ class CabangsController extends Controller
      */
     public function index()
     {
-        //
+        $cabangs = cabangs::all();
+        return view('admin/olimpiade/cabang/cabang', compact('cabangs'));
+
     }
 
     /**
@@ -24,7 +26,7 @@ class CabangsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin/olimpiade/cabang/add-cabang');
     }
 
     /**
