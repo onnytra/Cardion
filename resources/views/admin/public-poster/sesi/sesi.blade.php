@@ -4,15 +4,15 @@
 
     <div class="card mt-6">
         <div class="card-header flex flex-row justify-between items-center">
-            <h1 class="h6">Daftar User</h1>
+            <h1 class="h6">Sesi Lomba</h1>
             <button>
-                <a href="/admin/main/user/add" class="btn-bs-dark">
+                <a href="/admin/publicposter/sesi/add" class="btn-bs-dark">
                     <i class="fad fa-plus mr-2 leading-none"></i>
-                    User Baru</a>
+                    Sesi Baru</a>
             </button>
         </div>
 
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <div class="relative overflow-x-auto sm:rounded-lg">
             <div class="flex justify-end items-center my-4">
                 <label for="search" class="text-sm mr-2">Search :</label>
                 <input type="search" name="search" id="search"
@@ -28,7 +28,16 @@
                             Nama
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Type
+                            Harga
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Mulai
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Selesai
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Tipe
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Aksi
@@ -41,14 +50,23 @@
                         <td class="px-6 py-4">
                             1
                         </td>
-                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            SALMA MUTI HAFIZHA
+                        <td scope="row" class="px-6 py-4 text-gray-900">
+                            Gelombang 1
                         </td>
                         <td class="px-6 py-4">
-                            Admin
+                            Rp 170.000
                         </td>
                         <td class="px-6 py-4">
-                            <a href="/admin/main/user/edit"
+                            2023-12-04
+                        </td>
+                        <td class="px-6 py-4">
+                            2024-01-25
+                        </td>
+                        <td class="px-6 py-4">
+                            Offline
+                        </td>
+                        <td class="px-6 py-4">
+                            <a href="/admin/publicposter/sesi/edit"
                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                             <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
                         </td>
@@ -58,14 +76,23 @@
                         <td class="px-6 py-4">
                             2
                         </td>
-                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            NANDA RIZKY AULIA
+                        <td scope="row" class="px-6 py-4 text-gray-900">
+                            Gelombang 2
                         </td>
                         <td class="px-6 py-4">
-                            Admin
+                            Rp 170.000
                         </td>
                         <td class="px-6 py-4">
-                            <a href="/admin/main/user/edit"
+                            2023-12-04
+                        </td>
+                        <td class="px-6 py-4">
+                            2024-01-25
+                        </td>
+                        <td class="px-6 py-4">
+                            Offline
+                        </td>
+                        <td class="px-6 py-4">
+                            <a href="/admin/publicposter/sesi/edit"
                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                             <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
                         </td>
@@ -75,14 +102,23 @@
                         <td class="px-6 py-4">
                             3
                         </td>
-                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            DODI KURNIAWAN
+                        <td scope="row" class="px-6 py-4 text-gray-900">
+                            Gelombang 3
                         </td>
                         <td class="px-6 py-4">
-                            Admin
+                            Rp 170.000
                         </td>
                         <td class="px-6 py-4">
-                            <a href="/admin/main/user/edit"
+                            2023-12-04
+                        </td>
+                        <td class="px-6 py-4">
+                            2024-01-25
+                        </td>
+                        <td class="px-6 py-4">
+                            Offline
+                        </td>
+                        <td class="px-6 py-4">
+                            <a href="/admin/publicposter/sesi/edit"
                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                             <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
                         </td>
@@ -111,5 +147,6 @@
             </div>
         </div>
     </div>
+
 
 </x-layout>

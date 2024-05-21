@@ -247,21 +247,21 @@
             </div>
         </div>
 
-        <div id="contact" class="min-h-screen px-6 pt-5 lg:px-8 bg-contact bg-right-top bg-cover">
+        <div id="contact" class="min-h-screen px-6 lg:px-8 bg-contact bg-top lg:bg-right-top bg-cover">
             <div class="max-w-6xl py-10 mx-auto lg:py-20">
-                <h1 class="text-[3rem] text-gray-900 font-asian-ninja text-center leading-tight sm:text-[4.2rem]">
-                    Get in Touch
-                </h1>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-10">
-                    <div class="">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10">
+                    <div class="order-2 md:order-1">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3951.7440030850285!2d112.547667!3d-7.921786!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e78815e17df316d%3A0xbd3a2df8b4512d3c!2sFakultas%20Kedokteran%20dan%20Ilmu%20Kesehatan%20%22FKIK%22%20-%20UIN%20Malang!5e0!3m2!1sid!2sus!4v1715771631309!5m2!1sid!2sus"
-                            class="w-full h-96 md:h-[30rem] rounded-3xl" allowfullscreen="" loading="lazy"
+                            class="w-full h-96 md:h-[34rem] rounded-3xl" allowfullscreen="" loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
-                    <div class="text-center text-gray-900 lg:text-left">
-                        <div class="flex flex-col items-center lg:items-start ">
+                    <div class="order-1 text-center text-gray-900 md:text-left md:order-2">
+                        <h1 class="text-[3rem] text-gray-900 font-asian-ninja sm:text-[4rem]">
+                            Get in Touch
+                        </h1>
+                        <div class="flex flex-col items-center md:items-start ">
                             <p class="text-2xl font-osaka font-bold mb-2">
                                 Lokasi
                             </p>

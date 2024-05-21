@@ -12,30 +12,18 @@
 </head>
 
 <body class="bg-gray-100">
-    <x-navbar>{{ $slug }}</x-navbar>
-    <!-- strat wrapper -->
-    <div class="h-screen flex flex-row">
-        <x-sidebar>{{ $title }}</x-sidebar>
-        <!-- start content -->
-        <div class="bg-gray-100 flex-1 md:mt-16">
+    <x-navbar-u>{{ $slug }}</x-navbar-u>
+    <div class="h-screen flex flex-row flex-wrap">
+        <div class="bg-gray-100 flex-1 md:mt-20">
             <div class="p-6 ">
-                <x-header>
-                    <x-slot:title>{{ $title }}</x-slot:title>
-                    <x-slot:slug>{{ $slug }}</x-slot:slug>
-                </x-header>
                 {{ $slot }}
             </div>
             <x-footer></x-footer>
         </div>
-        <!-- end content -->
     </div>
-    <!-- end wrapper -->
 
-    <!-- script -->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="../../../js/scripts.js"></script>
-    <!-- end script -->
-
 </body>
 
 </html>
