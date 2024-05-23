@@ -12,13 +12,8 @@
             </button>
         </div>
 
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <div class="flex justify-end items-center my-4">
-                <label for="search" class="text-sm mr-2">Search :</label>
-                <input type="search" name="search" id="search"
-                    class="mr-5 p-1 border border-gray w-56 shadow-sm text-sm rounded-md">
-            </div>
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg text-sm p-10">
+            <table id="datatable" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
@@ -27,9 +22,9 @@
                         <th scope="col" class="px-6 py-3">
                             Cabang
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        {{-- <th scope="col" class="px-6 py-3">
                             Status
-                        </th>
+                        </th> --}}
                         <th scope="col" class="px-6 py-3">
                             Aksi
                         </th>
@@ -44,7 +39,7 @@
                         <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             Online
                         </td>
-                        <td class="px-6 py-4">
+                        {{-- <td class="px-6 py-4">
                             <div
                                 class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
                                 <input type="checkbox" name="toggle" id="toggle"
@@ -52,10 +47,12 @@
                                 <label for="toggle"
                                     class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer transition-colors duration-500"></label>
                             </div>
-                        </td>
+                        </td> --}}
                         <td class="px-6 py-4">
+                            <a href="/admin/public-poster/cabang/rayon"
+                                class="font-medium text-green-600 dark:text-green-500 hover:underline">Edit Rayon</a>
                             <a href="/admin/public-poster/cabang/edit"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit Cabang</a>
                             <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
                         </td>
                     </tr>
@@ -67,7 +64,7 @@
                         <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                             Offline
                         </td>
-                        <td class="px-6 py-4">
+                        {{-- <td class="px-6 py-4">
                             <div
                                 class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
                                 <input type="checkbox" name="toggle" id="toggle"
@@ -75,37 +72,20 @@
                                 <label for="toggle"
                                     class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer transition-colors duration-500"></label>
                             </div>
-                        </td>
+                        </td> --}}
                         <td class="px-6 py-4">
                             <div>
+                                <a href="/admin/public-poster/cabang/rayon"
+                                    class="font-medium text-green-600 dark:text-green-500 hover:underline">Edit
+                                    Rayon</a>
                                 <a href="/admin/public-poster/cabang/edit"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit Cabang</a>
                                 <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
                             </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
-
-            <div class="flex justify-end my-6 mr-5">
-                <div class="flex flex-col items-center">
-                    <span class="text-sm text-gray-700 dark:text-gray-400">
-                        Showing <span class="font-semibold text-gray-900 dark:text-white">1</span> to <span
-                            class="font-semibold text-gray-900 dark:text-white">10</span> of <span
-                            class="font-semibold text-gray-900 dark:text-white">100</span> Entries
-                    </span>
-                    <div class="inline-flex mt-2 gap-1 xs:mt-0">
-                        <button class="btn-bs-dark">
-                            <i class="fad fa-angle-left mr-2 leading-none"></i>
-                            Prev
-                        </button>
-                        <button class="btn-bs-dark">
-                            Next
-                            <i class="fad fa-angle-right ml-2 leading-none"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 

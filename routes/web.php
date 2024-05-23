@@ -14,7 +14,111 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index', ['title' => 'Cardion - Universitas Islam Negeri Maulana Malik ibrahim Malang', 'slug' => '/']);
+});
+
+Route::get('/olympiad', function () {
+    return view('olimpiade', ['title' => 'Science & Primary Medical Olimpiad - Cardion UIN Malang', 'slug' => 'olympiad']);
+});
+
+Route::get('/olympiad/login', function () {
+    return view('olimpiade/login', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'login']);
+});
+
+Route::get('/olympiad/logout', function () {
+    return view('olimpiade/login', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'login']);
+});
+
+Route::get('/olympiad/register', function () {
+    return view('olimpiade/register', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'register']);
+});
+
+Route::get('/olympiad/account', function () {
+    return view('olimpiade/account', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'account']);
+});
+
+Route::get('/olympiad/dashboard', function () {
+    return view('olimpiade/dashboard', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'dashboard']);
+});
+
+Route::get('/olympiad/cetak-kartu', function () {
+    return view('olimpiade/cetak-kartu', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'cetak-kartu']);
+});
+
+Route::get('/olympiad/sertifikat', function () {
+    return view('olimpiade/sertifikat', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'sertifikat']);
+});
+
+Route::get('/olympiad/ujian', function () {
+    return view('olimpiade/ujian', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'ujian']);
+});
+
+Route::get('/olympiad/ujian/detail', function () {
+    return view('olimpiade/detail-ujian', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'detail']);
+});
+
+Route::get('/olympiad/ujian/history', function () {
+    return view('olimpiade/history-ujian', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'history']);
+});
+
+Route::get('/olympiad/pengumuman', function () {
+    return view('olimpiade/pengumuman', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'pengumuman']);
+});
+
+Route::get('/olympiad/pengumuman/detail', function () {
+    return view('olimpiade/detail-pengumuman', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'detail']);
+});
+
+Route::get('/public-poster', function () {
+    return view('public-poster', ['title' => 'Public Poster - Cardion UIN Malang', 'slug' => 'public-poster']);
+});
+
+Route::get('/public-poster/login', function () {
+    return view('publicposter/login', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'login']);
+});
+
+Route::get('/public-poster/logout', function () {
+    return view('publicposter/login', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'login']);
+});
+
+Route::get('/public-poster/register', function () {
+    return view('publicposter/register', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'register']);
+});
+
+Route::get('/public-poster/account', function () {
+    return view('publicposter/account', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'account']);
+});
+
+Route::get('/public-poster/dashboard', function () {
+    return view('publicposter/dashboard', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'dashboard']);
+});
+
+Route::get('/public-poster/cetak-kartu', function () {
+    return view('publicposter/cetak-kartu', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'cetak-kartu']);
+});
+
+Route::get('/public-poster/sertifikat', function () {
+    return view('publicposter/sertifikat', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'sertifikat']);
+});
+
+Route::get('/public-poster/ujian', function () {
+    return view('publicposter/ujian', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'ujian']);
+});
+
+Route::get('/public-poster/ujian/detail', function () {
+    return view('publicposter/detail-ujian', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'detail']);
+});
+
+Route::get('/public-poster/ujian/history', function () {
+    return view('publicposter/history-ujian', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'history']);
+});
+
+Route::get('/public-poster/pengumuman', function () {
+    return view('publicposter/pengumuman', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'pengumuman']);
+});
+
+Route::get('/public-poster/pengumuman/detail', function () {
+    return view('publicposter/detail-pengumuman', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'detail']);
 });
 
 Route::get('/admin/login', function () {
@@ -62,10 +166,6 @@ Route::get('/admin/main/user-type/edit', function () {
     return view('admin/main/user-type/edit-user-type', ['title' => 'Edit User Type', 'slug' => 'edit']);
 });
 
-Route::get('/admin/main/hak-akses', function () {
-    return view('admin/main/hak-akses', ['title' => 'Hak Akses', 'slug' => 'hak-akses']);
-});
-
 Route::get('/admin/main/sertifikat', function () {
     return view('admin/main/sertifikat', ['title' => 'Sertifikat', 'slug' => 'sertifikat']);
 });
@@ -89,6 +189,18 @@ Route::get('/admin/olimpiade/cabang/add', function () {
 
 Route::get('/admin/olimpiade/cabang/edit', function () {
     return view('admin/olimpiade/cabang/edit-cabang', ['title' => 'Edit Cabang', 'slug' => 'edit']);
+});
+
+Route::get('/admin/olimpiade/cabang/rayon', function () {
+    return view('admin/olimpiade/cabang/rayon', ['title' => 'Rayon', 'slug' => 'rayon']);
+});
+
+Route::get('/admin/olimpiade/cabang/rayon/add', function () {
+    return view('admin/olimpiade/cabang/add-rayon', ['title' => 'Tambah Rayon', 'slug' => 'add']);
+});
+
+Route::get('/admin/olimpiade/cabang/rayon/edit', function () {
+    return view('admin/olimpiade/cabang/edit-rayon', ['title' => 'Edit Rayon', 'slug' => 'edit']);
 });
 
 Route::get('/admin/olimpiade/peserta', function () {
@@ -152,7 +264,7 @@ Route::get('/admin/olimpiade/assign-test/detail', function () {
 });
 
 Route::get('/admin/olimpiade/sesi', function () {
-    return view('admin/olimpiade/sesi', ['title' => 'Sesi', 'slug' => 'sesi']);
+    return view('admin/olimpiade/sesi/sesi', ['title' => 'Sesi', 'slug' => 'sesi']);
 });
 
 Route::get('/admin/olimpiade/pembayaran', function () {
@@ -186,6 +298,18 @@ Route::get('/admin/public-poster/cabang/add', function () {
 
 Route::get('/admin/public-poster/cabang/edit', function () {
     return view('admin/public-poster/cabang/edit-cabang', ['title' => 'Edit Cabang', 'slug' => 'edit']);
+});
+
+Route::get('/admin/public-poster/cabang/rayon', function () {
+    return view('admin/public-poster/cabang/rayon', ['title' => 'Rayon', 'slug' => 'rayon']);
+});
+
+Route::get('/admin/public-poster/cabang/rayon/add', function () {
+    return view('admin/public-poster/cabang/add-rayon', ['title' => 'Tambah Rayon', 'slug' => 'add']);
+});
+
+Route::get('/admin/public-poster/cabang/rayon/edit', function () {
+    return view('admin/public-poster/cabang/edit-rayon', ['title' => 'Edit Rayon', 'slug' => 'edit']);
 });
 
 Route::get('/admin/public-poster/peserta', function () {
@@ -229,11 +353,11 @@ Route::get('/admin/public-poster/assign-test/detail', function () {
 });
 
 Route::get('/admin/public-poster/sesi', function () {
-    return view('admin/public-poster/sesi', ['title' => 'sesi', 'slug' => 'sesi']);
+    return view('admin/public-poster/sesi/sesi', ['title' => 'Sesi', 'slug' => 'sesi']);
 });
 
 Route::get('/admin/public-poster/pembayaran', function () {
-    return view('admin/public-poster/pembayaran', ['title' => 'pembayaran', 'slug' => 'pembayaran']);
+    return view('admin/public-poster/pembayaran', ['title' => 'Pembayaran', 'slug' => 'pembayaran']);
 });
 
 Route::get('/admin/public-poster/gelombang-pembayaran', function () {
