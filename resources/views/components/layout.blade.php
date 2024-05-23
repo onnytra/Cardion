@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/toggle.css">
+    <link href="https://cdn.datatables.net/2.0.7/css/dataTables.tailwindcss.css" rel="stylesheet">
     <title>{{ $title }} | Cardion</title>
 </head>
 
@@ -32,6 +33,15 @@
     <!-- end wrapper -->
 
     <!-- script -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.7/js/dataTables.tailwindcss.js"></script>
+    <script>
+        new DataTable('#datatable');
+        new DataTable('#datatable2');
+        new DataTable('#datatable3');
+        new DataTable('#datatable4');
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="../../../js/scripts.js"></script>
     <!-- end script -->

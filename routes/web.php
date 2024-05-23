@@ -191,6 +191,18 @@ Route::get('/admin/olimpiade/cabang/edit', function () {
     return view('admin/olimpiade/cabang/edit-cabang', ['title' => 'Edit Cabang', 'slug' => 'edit']);
 });
 
+Route::get('/admin/olimpiade/cabang/rayon', function () {
+    return view('admin/olimpiade/cabang/rayon', ['title' => 'Rayon', 'slug' => 'rayon']);
+});
+
+Route::get('/admin/olimpiade/cabang/rayon/add', function () {
+    return view('admin/olimpiade/cabang/add-rayon', ['title' => 'Tambah Rayon', 'slug' => 'add']);
+});
+
+Route::get('/admin/olimpiade/cabang/rayon/edit', function () {
+    return view('admin/olimpiade/cabang/edit-rayon', ['title' => 'Edit Rayon', 'slug' => 'edit']);
+});
+
 Route::get('/admin/olimpiade/peserta', function () {
     return view('admin/olimpiade/peserta/peserta', ['title' => 'Peserta', 'slug' => 'peserta']);
 });
@@ -286,6 +298,18 @@ Route::get('/admin/public-poster/cabang/add', function () {
 
 Route::get('/admin/public-poster/cabang/edit', function () {
     return view('admin/public-poster/cabang/edit-cabang', ['title' => 'Edit Cabang', 'slug' => 'edit']);
+});
+
+Route::get('/admin/public-poster/cabang/rayon', function () {
+    return view('admin/public-poster/cabang/rayon', ['title' => 'Rayon', 'slug' => 'rayon']);
+});
+
+Route::get('/admin/public-poster/cabang/rayon/add', function () {
+    return view('admin/public-poster/cabang/add-rayon', ['title' => 'Tambah Rayon', 'slug' => 'add']);
+});
+
+Route::get('/admin/public-poster/cabang/rayon/edit', function () {
+    return view('admin/public-poster/cabang/edit-rayon', ['title' => 'Edit Rayon', 'slug' => 'edit']);
 });
 
 Route::get('/admin/public-poster/peserta', function () {

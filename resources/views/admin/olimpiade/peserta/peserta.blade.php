@@ -24,42 +24,40 @@
                     </li>
                 </ul>
             </div>
-            <div class="flex gap-6 py-6 border-b">
-                <div class="dropdown relative md:static block" id="dropdown-export">
-                    <button class="btn-gray focus:outline-none focus:shadow-outline flex flex-wrap items-center">
-                        <div class="my-1 capitalize flex items-center">
-                            <i class="fad fa-file-export mr-2 text-sm leading-none"></i>
-                            <h1 class="text-sm text-gray-800 font-semibold m-0 p-0 leading-none">Export tiap cabang</h1>
-                            <i class="fad fa-chevron-down ml-2 text-xs leading-none"></i>
-                        </div>
-                    </button>
-                    <div
-                        class="text-gray-500 menu hidden md:mt-10 md:w-full rounded bg-white shadow-md absolute z-20 left-0 w-40 mt-2 py-2">
-                        <p class="px-4 py-2 block capitalize font-medium text-xs text-black tracking-wide">Pilih Cabang
-                        </p>
-                        <hr>
-                        <a class="px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out"
-                            href="#">
-                            Online
-                        </a>
-                        <a class="px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out"
-                            href="#">
-                            Offline
-                        </a>
-                    </div>
-                </div>
-                <button>
-                    <a href="#" class="btn">Export as Excel</a>
-                </button>
-            </div>
 
-            <div class="relative overflow-x-auto sm:rounded-lg" id="tab-1">
-                <div class="flex justify-end items-center my-4">
-                    <label for="search" class="text-sm mr-2">Search :</label>
-                    <input type="search" name="search" id="search"
-                        class="mr-5 p-1 border border-gray w-56 shadow-sm text-sm rounded-md">
+
+            <div class="relative overflow-x-auto sm:rounded-lg text-sm p-10" id="tab-1">
+                <div class="flex gap-6 pb-6 mb-6 border-b">
+                    <div class="dropdown relative md:static block" id="dropdown-export">
+                        <button class="btn-gray focus:outline-none focus:shadow-outline flex flex-wrap items-center">
+                            <div class="my-1 capitalize flex items-center">
+                                <i class="fad fa-file-export mr-2 text-sm leading-none"></i>
+                                <h1 class="text-sm text-gray-800 font-semibold m-0 p-0 leading-none">Export tiap cabang
+                                </h1>
+                                <i class="fad fa-chevron-down ml-2 text-xs leading-none"></i>
+                            </div>
+                        </button>
+                        <div
+                            class="text-gray-500 menu hidden md:mt-10 md:w-full rounded bg-white shadow-md absolute z-20 left-0 w-40 mt-2 py-2">
+                            <p class="px-4 py-2 block capitalize font-medium text-xs text-black tracking-wide">Pilih
+                                Cabang
+                            </p>
+                            <hr>
+                            <a class="px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out"
+                                href="#">
+                                Online
+                            </a>
+                            <a class="px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out"
+                                href="#">
+                                Offline
+                            </a>
+                        </div>
+                    </div>
+                    <button>
+                        <a href="#" class="btn">Export as Excel</a>
+                    </button>
                 </div>
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <table id="datatable" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
@@ -221,35 +219,15 @@
 
                     </tbody>
                 </table>
-
-                <div class="flex justify-end my-6 mr-5">
-                    <div class="flex flex-col items-center">
-                        <span class="text-sm text-gray-700 dark:text-gray-400">
-                            Showing <span class="font-semibold text-gray-900 dark:text-white">1</span> to <span
-                                class="font-semibold text-gray-900 dark:text-white">10</span> of <span
-                                class="font-semibold text-gray-900 dark:text-white">100</span> Entries
-                        </span>
-                        <div class="inline-flex mt-2 gap-1 xs:mt-0">
-                            <button class="btn-bs-dark">
-                                <i class="fad fa-angle-left mr-2 leading-none"></i>
-                                Prev
-                            </button>
-                            <button class="btn-bs-dark">
-                                Next
-                                <i class="fad fa-angle-right ml-2 leading-none"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
             </div>
 
-            <div class="relative overflow-x-auto hidden sm:rounded-lg" id="tab-2">
-                <div class="flex justify-end items-center my-4">
-                    <label for="search" class="text-sm mr-2">Search :</label>
-                    <input type="search" name="search" id="search"
-                        class="mr-5 p-1 border border-gray w-56 shadow-sm text-sm rounded-md">
+            <div class="relative overflow-x-auto hidden sm:rounded-lg text-sm p-10" id="tab-2">
+                <div class="flex gap-6 pb-6 mb-6 border-b">
+                    <button>
+                        <a href="#" class="btn">Export as Excel</a>
+                    </button>
                 </div>
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <table id="datatable2" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" class="px-6 py-3">
@@ -383,26 +361,6 @@
                         </tr>
                     </tbody>
                 </table>
-
-                <div class="flex justify-end my-6 mr-5">
-                    <div class="flex flex-col items-center">
-                        <span class="text-sm text-gray-700 dark:text-gray-400">
-                            Showing <span class="font-semibold text-gray-900 dark:text-white">1</span> to <span
-                                class="font-semibold text-gray-900 dark:text-white">10</span> of <span
-                                class="font-semibold text-gray-900 dark:text-white">100</span> Entries
-                        </span>
-                        <div class="inline-flex mt-2 gap-1 xs:mt-0">
-                            <button class="btn-bs-dark">
-                                <i class="fad fa-angle-left mr-2 leading-none"></i>
-                                Prev
-                            </button>
-                            <button class="btn-bs-dark">
-                                Next
-                                <i class="fad fa-angle-right ml-2 leading-none"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
