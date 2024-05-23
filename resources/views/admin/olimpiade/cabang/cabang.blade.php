@@ -31,24 +31,26 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($cabangs as $data)
                     <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td class="px-6 py-4">
-                            1
+                            {{ $loop->iteration }}
                         </td>
                         <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Online
+                            {{ $data->cabang }}
                         </td>
                         {{-- <td class="px-6 py-4">
                             <div
                                 class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                                <input type="checkbox" name="toggle" id="toggle"
+                                <input type="checkbox" name="status_cabang" id="toggle" {{$data->status_cabang == 1 ? 'checked' : ''}}
                                     class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer transition-colors duration-500" />
                                 <label for="toggle"
                                     class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer transition-colors duration-500"></label>
                             </div>
                         </td> --}}
                         <td class="px-6 py-4">
+
                             <a href="/admin/olimpiade/cabang/rayon"
                                 class="font-medium text-green-600 dark:text-green-500 hover:underline">Edit Rayon</a>
                             <a href="/admin/olimpiade/cabang/edit"
@@ -82,8 +84,17 @@
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit Cabang</a>
                                 <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
                             </div>
+
+
+                            <a href="{{route('olimpiade.cabang.edit', $data->id_cabang)}}"
+                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit
+                            </a>
+                            <a href="{{route('olimpiade.cabang.delete', $data->id_cabang)}}" class="font-medium text-red-600 dark:text-red-500 hover:underline" data-confirm-delete="true">Hapus</a>
+
+
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

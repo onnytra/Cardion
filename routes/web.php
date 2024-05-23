@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CabangsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -175,21 +176,32 @@ Route::get('/admin/main/settings', function () {
 });
 
 // Olimpiade
+Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' =>'olimpiade'], function () {
+    Route::group(['as' => 'cabang.', 'prefix' => '/cabang'], function () {
+        Route::get('/data', [CabangsController::class, 'index'])->name('index');
+        Route::get('/add', [CabangsController::class, 'create'])->name('create');
+        Route::post('/store', [CabangsController::class, 'store'])->name('store');
+        Route::get('/edit/{cabangs}', [CabangsController::class, 'edit'])->name('edit');
+        Route::put('/update/{cabangs}', [CabangsController::class, 'update'])->name('update');
+        Route::delete('/delete/{cabangs}', [CabangsController::class, 'destroy'])->name('delete');
+    });
+});
+
 Route::get('/admin/olimpiade', function () {
     return view('admin/olimpiade/dashboard', ['title' => 'Dashboard Olimpiade', 'slug' => 'olimpiade']);
 });
 
-Route::get('/admin/olimpiade/cabang', function () {
-    return view('admin/olimpiade/cabang/cabang', ['title' => 'Cabang', 'slug' => 'cabang']);
-});
+// Route::get('/admin/olimpiade/cabang', function () {
+//     return view('admin/olimpiade/cabang/cabang', ['title' => 'Cabang', 'slug' => 'cabang']);
+// });
 
-Route::get('/admin/olimpiade/cabang/add', function () {
-    return view('admin/olimpiade/cabang/add-cabang', ['title' => 'Tambah Cabang', 'slug' => 'add']);
-});
+// Route::get('/admin/olimpiade/cabang/add', function () {
+//     return view('admin/olimpiade/cabang/add-cabang', ['title' => 'Tambah Cabang', 'slug' => 'add']);
+// });
 
-Route::get('/admin/olimpiade/cabang/edit', function () {
-    return view('admin/olimpiade/cabang/edit-cabang', ['title' => 'Edit Cabang', 'slug' => 'edit']);
-});
+// Route::get('/admin/olimpiade/cabang/edit', function () {
+//     return view('admin/olimpiade/cabang/edit-cabang', ['title' => 'Edit Cabang', 'slug' => 'edit']);
+// });
 
 Route::get('/admin/olimpiade/cabang/rayon', function () {
     return view('admin/olimpiade/cabang/rayon', ['title' => 'Rayon', 'slug' => 'rayon']);

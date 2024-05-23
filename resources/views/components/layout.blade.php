@@ -9,6 +9,9 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/toggle.css">
     <link href="https://cdn.datatables.net/2.0.7/css/dataTables.tailwindcss.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- // take from public/js/sweetalert.js  --}}
+    <script src="{{asset('js/sweetalert.js')}}"></script>
     <title>{{ $title }} | Cardion</title>
 </head>
 

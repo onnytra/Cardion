@@ -1,10 +1,10 @@
 <header class="bg-gray-900 p-4 mb-4 text-white rounded">
+    @include('sweetalert::alert')
     <div class="container mx-auto">
         <div class="flex items-center justify-between">
             <h1 class="text-lg font-bold">{{ $title }}</h1>
             <nav class="text-sm">
                 <ul class="flex items-center space-x-2">
-
                     <!-- Breadcrumb -->
                     @if(request()->is('admin'))
                     <li><a class="text-gray-300">Dashboard</a></li>
