@@ -1,10 +1,10 @@
 <div id="sideBar"
-    class="relative flex flex-col flex-wrap bg-white border-r border-gray-300 p-6 flex-none w-64 md:-ml-64 md:fixed md:top-0 md:z-30 md:h-screen md:shadow-xl animated faster">
+    class="relative flex flex-col flex-wrap bg-white border-r border-gray-300 p-6 flex-none w-64 lg:-ml-64 lg:fixed lg:top-0 lg:z-30 lg:h-screen lg:shadow-xl animated faster">
 
     @if(request()->is('admin') | request()->is('admin/account') | request()->is('admin/main/' . $slot) |
     Str::of(url()->current())->contains('main'))
     <div class="flex flex-col">
-        <div class="text-right hidden md:block mb-4">
+        <div class="text-right hidden lg:block mb-4">
             <button id="sideBarHideBtn">
                 <i class="fad fa-times-circle"></i>
             </button>
@@ -26,11 +26,6 @@
             <i class="fad fa-user-tag text-xs mr-2"></i>
             user type
         </a>
-        <a href="/admin/main/hak-akses"
-            class="{{ request()->is('admin/main/hak-akses') | Str::of(url()->current())->contains('hak-akses/') ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
-            <i class="fad fa-shield-check text-xs mr-2"></i>
-            hak akses
-        </a>
         <a href="/admin/main/sertifikat"
             class="{{ request()->is('admin/main/sertifikat') | Str::of(url()->current())->contains('sertifikat/') ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-file text-xs mr-2"></i>
@@ -46,7 +41,7 @@
     @elseif(request()->is('admin/olimpiade') | request()->is('admin/olimpiade/' . $slot) |
     Str::of(url()->current())->contains('olimpiade'))
     <div class="flex flex-col">
-        <div class="text-right hidden md:block mb-4">
+        <div class="text-right hidden lg:block mb-4">
             <button id="sideBarHideBtn">
                 <i class="fad fa-times-circle"></i>
             </button>
@@ -118,7 +113,7 @@
     @elseif(request()->is('admin/public-poster') | request()->is('admin/public-poster/' . $slot) |
     Str::of(url()->current())->contains('public-poster'))
     <div class="flex flex-col">
-        <div class="text-right hidden md:block mb-4">
+        <div class="text-right hidden lg:block mb-4">
             <button id="sideBarHideBtn">
                 <i class="fad fa-times-circle"></i>
             </button>

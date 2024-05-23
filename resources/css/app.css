@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: "Andalus";
+        src: url("../../public/fonts/andalus.ttf") format("truetype");
+    }
+    @font-face {
+        font-family: "aAsianNinja";
+        src: url("../../public/fonts/aAsianNinja.ttf") format("truetype");
+    }
+    @font-face {
+        font-family: "Osaka";
+        src: url("../../public/fonts/osaka-re.ttf") format("truetype");
+    }
+    @font-face {
+        font-family: "Abhaya";
+        src: url("../../public/fonts/AbhayaLibre-SemiBold.ttf")
+            format("truetype");
+    }
+    @font-face {
+        font-family: "Harukaze";
+        src: url("../../public/fonts/Harukaze.ttf") format("truetype");
+    }
+}

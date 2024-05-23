@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/toggle.css">
+    <link href="https://cdn.datatables.net/2.0.7/css/dataTables.tailwindcss.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {{-- // take from public/js/sweetalert.js  --}}
     <script src="{{asset('js/sweetalert.js')}}"></script>
@@ -17,7 +18,7 @@
 <body class="bg-gray-100">
     <x-navbar>{{ $slug }}</x-navbar>
     <!-- strat wrapper -->
-    <div class="h-screen flex flex-row flex-wrap">
+    <div class="h-screen flex flex-row">
         <x-sidebar>{{ $title }}</x-sidebar>
         <!-- start content -->
         <div class="bg-gray-100 flex-1 md:mt-16">
@@ -35,6 +36,15 @@
     <!-- end wrapper -->
 
     <!-- script -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.7/js/dataTables.tailwindcss.js"></script>
+    <script>
+        new DataTable('#datatable');
+        new DataTable('#datatable2');
+        new DataTable('#datatable3');
+        new DataTable('#datatable4');
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="../../../js/scripts.js"></script>
     <!-- end script -->
