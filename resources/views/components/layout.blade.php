@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/toggle.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- // take from public/js/sweetalert.js  --}}
+    <script src="{{asset('js/sweetalert.js')}}"></script>
     <title>{{ $title }} | Cardion</title>
 </head>
 

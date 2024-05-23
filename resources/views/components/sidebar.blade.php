@@ -58,8 +58,8 @@
             dashboard
         </a>
         <p class="uppercase text-xs text-gray-600 mb-4 mt-4 tracking-wider">navigation</p>
-        <a href="/admin/olimpiade/cabang"
-            class="{{ request()->is('admin/olimpiade/cabang') | Str::of(url()->current())->contains('olimpiade/cabang/') ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <a href="/admin/olimpiade/cabang/data"
+            class="{{ request()->is('admin/olimpiade/cabang/data') | Str::of(url()->current())->contains('olimpiade/cabang/') ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-project-diagram text-xs mr-2"></i>
             cabang
         </a>
