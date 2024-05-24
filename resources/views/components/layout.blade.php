@@ -11,7 +11,9 @@
     <link href="https://cdn.datatables.net/2.0.7/css/dataTables.tailwindcss.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     {{-- // take from public/js/sweetalert.js  --}}
-    <script src="{{asset('js/sweetalert.js')}}"></script>
+    <script src="{{asset('js/alert.js')}}"></script>
+
+
     <title>{{ $title }} | Cardion</title>
 </head>
 
@@ -27,6 +29,16 @@
                     <x-slot:title>{{ $title }}</x-slot:title>
                     <x-slot:slug>{{ $slug }}</x-slot:slug>
                 </x-header>
+                @if ($errors->any())
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                        <strong class="font-bold">Ups! Ada yang salah.</strong>
+                        <ul class="list-disc pl-5">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 {{ $slot }}
             </div>
             <x-footer></x-footer>

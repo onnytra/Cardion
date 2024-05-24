@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('id_assign_test');
             $table->foreignId('id_ujian')->references('id_ujian')->on('ujians')->onDelete('restrict')->onUpdate('cascade');
             $table->foreignId('id_pengumpulan')->references('id_pengumpulan')->on('pengumpulan_karyas')->onDelete('restrict')->onUpdate('cascade');
-            $table->string('id_user',30)->references('nomor')->on('pesertas')->onDelete('restrict')->onUpdate('cascade');
+            $table->foreignId('id_peserta')->references('id_peserta')->on('pesertas')->onDelete('restrict')->onUpdate('cascade');
             $table->string('status_test',20);
             $table->timestamps();
         });
