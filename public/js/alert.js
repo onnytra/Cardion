@@ -29,18 +29,18 @@ function confirmEdit(event){
     event.preventDefault();
     Swal.fire({
         title: 'Apakah Anda Yakin?',
-        text: "Anda Akan Mengedit Data Ini",
+        text: "Anda Akan Memperbarui Data Ini",
         icon: 'question',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Ya, Edit',
+        confirmButtonText: 'Ya, Perbarui',
         cancelButtonText: 'Tidak, Batalkan',
     }).then((result) => {
         if (result.isConfirmed) {
             const reason = result.value;
             Swal.fire(
-                'Edit',
+                'Perbaruan',
                 'Data Akan Diproses!',
                 'success'
             ).then(() => {

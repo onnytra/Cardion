@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('status_pembayaran',10);
             $table->string('bukti',50);
             $table->foreignId('id_gelombang')->references('id_gelombang')->on('gelombang_pembayarans')->onDelete('restrict')->onUpdate('cascade');
-            $table->string('id_user',30)->references('nomor')->on('pesertas')->onDelete('restrict')->onUpdate('cascade');
+            $table->foreignId('id_peserta')->references('id_peserta')->on('pesertas')->onDelete('restrict')->onUpdate('cascade');
             $table->string('event',15);
             $table->timestamps();
         });

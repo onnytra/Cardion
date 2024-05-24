@@ -4,9 +4,9 @@
 
     <div class="card mt-6">
         <div class="card-header flex flex-row justify-between items-center">
-            <h1 class="h6">Daftar Rayon (Online/Offline)</h1>
+            <h1 class="h6">Daftar Rayon {{$cabangs->cabang}}</h1>
             <button>
-                <a href="/admin/olimpiade/cabang/rayon/add" class="btn-bs-dark">
+                <a href="{{route('olimpiade.rayon.create', $cabangs->id_cabang)}}" class="btn-bs-dark">
                     <i class="fad fa-plus mr-2 leading-none"></i>
                     Rayon Baru</a>
             </button>
@@ -23,10 +23,10 @@
                             Rayon
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Harga
+                            Kuota
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Kuota
+                            Status
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Aksi
@@ -34,26 +34,33 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($rayons as $data)
                     <tr
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td class="px-6 py-4">
-                            1
+                            {{ $loop->iteration }}
                         </td>
                         <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Online
+                            {{ $data->rayon }}
                         </td>
                         <td scope="row" class="px-6 py-4 font-medium whitespace-nowrap dark:text-white">
-                            125000
-                        </td>
-                        <td scope="row" class="px-6 py-4 font-medium whitespace-nowrap dark:text-white">
-                            500
+                            {{ $data->kuota }}
                         </td>
                         <td class="px-6 py-4">
-                            <a href="/admin/olimpiade/cabang/rayon/edit"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
+                            @if($data->status_rayon)
+                            <span
+                                class="inline-flex items-center rounded-md bg-green-200 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Aktif</span>
+                            @else
+                            <span
+                                class="inline-flex items-center rounded-md bg-red-200 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20">Tidak Aktif</span>
+                            @endif
+                        <td class="px-6 py-4">
+                            <a href="{{route('olimpiade.rayon.edit', $data->id_rayon)}}"
+                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit Rayon</a>
+                            <a href="{{route('olimpiade.rayon.delete', $data->id_rayon)}}" class="font-medium text-red-600 dark:text-red-500 hover:underline" data-confirm-delete="true">Hapus</a>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

@@ -56,16 +56,16 @@ class CabangsController extends Controller
     public function store(Request $request)
     {
         $validate = Validator::make($request->all(), [
-            'name' => 'required | max:20',
+            'nama' => 'required | max:20',
         ], [
-            'name.required' => 'Nama cabang harus diisi',
-            'name.max' => 'Nama cabang maksimal 20 karakter',
+            'nama.required' => 'Nama cabang harus diisi',
+            'nama.max' => 'Nama cabang maksimal 20 karakter',
         ]);
         if ($validate->fails()) {
             return redirect()->back()->withErrors($validate->errors())->withInput();
         }
         $cabang = new cabangs();
-        $cabang->cabang = $request->name;
+        $cabang->cabang = $request->nama;
         $cabang->status_cabang = $request->status_cabang ? 1 : 0;
         $cabang->event = $this->event;
         $cabang->save();
@@ -93,34 +93,32 @@ class CabangsController extends Controller
     public function update(Request $request, cabangs $cabangs)
     {
         $validate = Validator::make($request->all(), [
-            'name' => 'required | max:20',
+            'nama' => 'required | max:20',
         ], [
-            'name.required' => 'Nama cabang harus diisi',
-            'name.max' => 'Nama cabang maksimal 20 karakter',
+            'nama.required' => 'Nama cabang harus diisi',
+            'nama.max' => 'Nama cabang maksimal 20 karakter',
         ]);
         if ($validate->fails()) {
             return redirect()->back()->withErrors($validate->errors())->withInput();
         }
-        $cabang = cabangs::find($cabangs->id_cabang);
-        $cabang->cabang = $request->name;
-        $cabang->status_cabang = $request->status_cabang ? 1 : 0;
-        $cabang->event = $this->event;
-        $cabang->save();
+        $cabangs->cabang = $request->nama;
+        $cabangs->status_cabang = $request->status_cabang ? 1 : 0;
+        $cabangs->event = $this->event;
+        $cabang = $cabangs->save();
 
         if ($cabang) {
-            toast('Cabang Berhasil Diubah','success');
+            toast('Cabang Berhasil Diperbarui','success');
             return redirect()->route($this->event.'.cabang.index');
         } else {
-            toast('Cabang Gagal Diubah','error');
+            toast('Cabang Gagal Diperbarui','error');
             return redirect()->route($this->event.'.cabang.index');
         }
     }
 
     public function destroy(cabangs $cabangs)
     {
-        $cabang = cabangs::find($cabangs->id_cabang);
-        $cabang->delete();
-        if ($cabang) {
+        $cabangs->delete();
+        if ($cabangs) {
             toast('Cabang Berhasil Dihapus','success');
             return redirect()->route($this->event.'.cabang.index');
         } else {
