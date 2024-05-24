@@ -9,7 +9,7 @@
                 <strong class="capitalize ml-1 flex-1">cardion</strong>
             </a>
 
-            <button id="sliderBtn" class="ml-4 flex-none text-right text-gray-900 hidden md:block">
+            <button id="sliderBtn" class="ml-4 flex-none text-right text-gray-900 hidden lg:block">
                 <i class="fad fa-list-ul"></i>
             </button>
         </div>
