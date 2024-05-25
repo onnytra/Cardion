@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('id_rayon');
             $table->string('rayon',50);
             $table->integer('kuota');
-            $table->string('contact_person',15);
+            $table->string('contact_person',15)->nullable();
             $table->boolean('status_rayon');
             $table->foreignId('id_cabang')->references('id_cabang')->on('cabangs')->onDelete('restrict')->onUpdate('cascade');
             $table->timestamps();

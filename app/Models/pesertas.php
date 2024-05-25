@@ -9,5 +9,15 @@ class pesertas extends Model
 {
     use HasFactory;
     public $incrementing = false;
-    public $primaryKey = 'nomor';
+    protected $guarded = [];
+    protected $primaryKey = 'id_peserta';
+
+    public function cabangs()
+    {
+        return $this->belongsTo(cabangs::class, 'id_cabang', 'id_cabang');
+    }
+    public function rayons()
+    {
+        return $this->belongsTo(rayons::class, 'id_rayon', 'id_rayon');
+    }
 }

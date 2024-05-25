@@ -17,7 +17,7 @@
                             <label for="nama" class="block text-sm text-right font-medium text-gray-600">Nama
                                 Cabang*</label>
                         </div>
-                        <input type="text" name="name" id="nama" value="{{$cabangs->cabang}}"
+                        <input type="text" name="nama" id="nama" value="{{$cabangs->cabang}}"
                             class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
                     </div>
                     <div class="flex items-center gap-4">
