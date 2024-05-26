@@ -9,10 +9,11 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/toggle.css">
     <link href="https://cdn.datatables.net/2.0.7/css/dataTables.tailwindcss.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     {{-- // take from public/js/sweetalert.js  --}}
     <script src="{{asset('js/alert.js')}}"></script>
-
+    <script src="{{asset('js/custom.js')}}"></script>
 
     <title>{{ $title }} | Cardion</title>
 </head>
@@ -58,7 +59,7 @@
         new DataTable('#datatable4');
     </script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script src="../../../js/scripts.js"></script>
+    <script src="{{asset('js/scripts.js')}}"></script>
     <!-- end script -->
 
 </body>
