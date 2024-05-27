@@ -81,142 +81,58 @@
                             <th scope="col" class="px-6 py-3">
                                 Keterangan
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            {{-- <th scope="col" class="px-6 py-3">
                                 Gelombang Pendaftaran
-                            </th>
+                            </th> --}}
                             <th scope="col" class="px-6 py-3">
                                 Aksi
                             </th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($pesertas_sudah as $data)
                         <tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td class="px-6 py-4">
-                                1
+                                {{ $loop->iteration }}
                             </td>
                             <td scope="row" class="px-6 py-4">
                                 <p class="text-gray-900">
-                                    SALMA MUTI HAFIZHA
+                                    {{ $data->nama }}
                                 </p>
                                 <p class="text-xs">
-                                    Nama Tim
+                                    {{ $data->nama_team }}
                                 </p>
                             </td>
                             <td class="px-6 py-4">
-                                SMAN 9 Malang
+                                {{ $data->sekolah }}
                             </td>
                             <td class="px-6 py-4">
                                 <p class="text-gray-900">
-                                    Malang
+                                    {{ $data->cabangs->cabang }}
                                 </p>
                                 <p class="text-xs">
-                                    Online
+                                    {{ $data->rayons->rayon }}
                                 </p>
                             </td>
                             <td class="px-6 py-4">
-                                salma@gmail.com
+                                {{ $data->email }}
                             </td>
                             <td class="px-6 py-4">
-                                081234567890
+                                {{ $data->telepon }}
                             </td>
                             <td class="px-6 py-4">
-                                Aktif
+                                {{ $data->keterangan }}
                             </td>
-                            <td class="px-6 py-4">
+                            {{-- <td class="px-6 py-4">
                                 -
-                            </td>
+                            </td> --}}
                             <td class="px-6 py-4">
-                                <a href="/admin/olimpiade/edit"
+                                <a href="{{route('olimpiade.peserta.edit', $data->id_peserta)}}"
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
+                                <a href="{{route('olimpiade.peserta.delete', $data->id_peserta)}}" class="font-medium text-red-600 dark:text-red-500 hover:underline" data-confirm-delete="true">Hapus</a>
                             </td>
-                        </tr>
-                        <tr
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="px-6 py-4">
-                                1
-                            </td>
-                            <td scope="row" class="px-6 py-4">
-                                <p class="text-gray-900">
-                                    SALMA MUTI HAFIZHA
-                                </p>
-                                <p class="text-xs">
-                                    Nama Tim
-                                </p>
-                            </td>
-                            <td class="px-6 py-4">
-                                SMAN 9 Malang
-                            </td>
-                            <td class="px-6 py-4">
-                                <p class="text-gray-900">
-                                    Malang
-                                </p>
-                                <p class="text-xs">
-                                    Online
-                                </p>
-                            </td>
-                            <td class="px-6 py-4">
-                                salma@gmail.com
-                            </td>
-                            <td class="px-6 py-4">
-                                081234567890
-                            </td>
-                            <td class="px-6 py-4">
-                                Aktif
-                            </td>
-                            <td class="px-6 py-4">
-                                -
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="/admin/olimpiade/edit"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
-                            </td>
-                        </tr>
-                        <tr
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="px-6 py-4">
-                                1
-                            </td>
-                            <td scope="row" class="px-6 py-4">
-                                <p class="text-gray-900">
-                                    SALMA MUTI HAFIZHA
-                                </p>
-                                <p class="text-xs">
-                                    Nama Tim
-                                </p>
-                            </td>
-                            <td class="px-6 py-4">
-                                SMAN 9 Malang
-                            </td>
-                            <td class="px-6 py-4">
-                                <p class="text-gray-900">
-                                    Malang
-                                </p>
-                                <p class="text-xs">
-                                    Online
-                                </p>
-                            </td>
-                            <td class="px-6 py-4">
-                                salma@gmail.com
-                            </td>
-                            <td class="px-6 py-4">
-                                081234567890
-                            </td>
-                            <td class="px-6 py-4">
-                                Aktif
-                            </td>
-                            <td class="px-6 py-4">
-                                -
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="/admin/olimpiade/edit"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
-                            </td>
-                        </tr>
-
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -251,118 +167,61 @@
                             <th scope="col" class="px-6 py-3">
                                 Keterangan
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            {{-- <th scope="col" class="px-6 py-3">
                                 Gelombang Pendaftaran
-                            </th>
+                            </th> --}}
                             <th scope="col" class="px-6 py-3">
                                 Aksi
                             </th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($pesertas_belum as $data)
                         <tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td class="px-6 py-4">
-                                1
+                                {{ $loop->iteration }}
                             </td>
-                            <td scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                ADI NUGRAHA
-                            </td>
-                            <td class="px-6 py-4">
-                                SMAN 9 Malang
-                            </td>
-                            <td class="px-6 py-4">
-                                Online
+                            <td scope="row" class="px-6 py-4">
+                                <p class="text-gray-900">
+                                    {{ $data->nama }}
+                                </p>
+                                <p class="text-xs">
+                                    {{ $data->nama_team }}
+                                </p>
                             </td>
                             <td class="px-6 py-4">
-                                adi@gmail.com
+                                {{ $data->sekolah }}
                             </td>
                             <td class="px-6 py-4">
-                                081234567890
+                                <p class="text-gray-900">
+                                    {{ $data->cabangs->cabang }}
+                                </p>
+                                <p class="text-xs">
+                                    {{ $data->rayons->rayon }}
+                                </p>
                             </td>
                             <td class="px-6 py-4">
-                                Aktif
+                                {{ $data->email }}
                             </td>
                             <td class="px-6 py-4">
+                                {{ $data->telepon }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $data->keterangan }}
+                            </td>
+                            {{-- <td class="px-6 py-4">
                                 -
-                            </td>
+                            </td> --}}
                             <td class="px-6 py-4">
-                                <a href="/admin/olimpiade/edit"
+                                <a href="{{route('olimpiade.peserta.edit', $data->id_peserta)}}"
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
+                                <a href="{{route('olimpiade.peserta.delete', $data->id_peserta)}}" class="font-medium text-red-600 dark:text-red-500 hover:underline" data-confirm-delete="true">Hapus</a>
                             </td>
-                        </tr>
-                        <tr
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="px-6 py-4">
-                                2
-                            </td>
-                            <td scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                BAGAS DWI SAPUTRA
-                            </td>
-                            <td class="px-6 py-4">
-                                SMAN 9 Malang
-                            </td>
-                            <td class="px-6 py-4">
-                                Online
-                            </td>
-                            <td class="px-6 py-4">
-                                bagas@gmail.com
-                            </td>
-                            <td class="px-6 py-4">
-                                081234567890
-                            </td>
-                            <td class="px-6 py-4">
-                                Aktif
-                            </td>
-                            <td class="px-6 py-4">
-                                -
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="/admin/olimpiade/edit"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
-                            </td>
-                        </tr>
-                        <tr
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="px-6 py-4">
-                                3
-                            </td>
-                            <td scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                AHMAD FAUZI
-                            </td>
-                            <td class="px-6 py-4">
-                                SMAN 9 Malang
-                            </td>
-                            <td class="px-6 py-4">
-                                Online
-                            </td>
-                            <td class="px-6 py-4">
-                                fauzi@gmail.com
-                            </td>
-                            <td class="px-6 py-4">
-                                081234567890
-                            </td>
-                            <td class="px-6 py-4">
-                                Aktif
-                            </td>
-                            <td class="px-6 py-4">
-                                -
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="/admin/olimpiade/edit"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
-                            </td>
-                        </tr>
+                        @endforeach
+                        
                     </tbody>
                 </table>
             </div>
         </div>
-
-
 </x-layout>

@@ -12,17 +12,22 @@ class RayonsController extends Controller
     public $event;
 
     public function __construct()
-{
-    $route = request()->route();
+    {
+        $route = request()->route();
 
-    if ($route) {
-        $action = $route->getAction();
-        $this->event = $action['event'] ?? null;
-    } else {
-        $this->event = null;
+        if ($route) {
+            $action = $route->getAction();
+            $this->event = $action['event'] ?? null;
+        } else {
+            $this->event = null;
+        }
     }
-}
 
+    public function getRayons(Request $request)
+    {
+        $rayons = rayons::where('id_cabang', $request->id_cabang)->get();
+        return response()->json($rayons);
+    }
     public function index(cabangs $cabangs)
     {
         $title = 'Rayon';

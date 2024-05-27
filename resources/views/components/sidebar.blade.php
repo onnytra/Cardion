@@ -58,13 +58,13 @@
             <i class="fad fa-project-diagram text-xs mr-2"></i>
             cabang
         </a>
-        <a href="/admin/olimpiade/peserta"
-            class=" {{ request()->is('admin/olimpiade/peserta') | Str::of(url()->current())->contains('olimpiade/peserta/')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <a href="/admin/olimpiade/peserta/data"
+            class=" {{ request()->is('admin/olimpiade/peserta/data') | Str::of(url()->current())->contains('olimpiade/peserta/data')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-user text-xs mr-2"></i>
             peserta
         </a>
-        <a href="/admin/olimpiade/tambah-peserta-offline"
-            class=" {{ request()->is('admin/olimpiade/tambah-peserta-offline') | Str::of(url()->current())->contains('olimpiade/tambah-peserta-online/')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <a href="/admin/olimpiade/peserta/add"
+            class=" {{ request()->is('admin/olimpiade/peserta/add') | Str::of(url()->current())->contains('olimpiade/peserta/add')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-user-plus text-xs mr-2"></i>
             tambah peserta offline
         </a>
