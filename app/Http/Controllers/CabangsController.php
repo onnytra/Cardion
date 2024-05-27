@@ -13,16 +13,16 @@ class CabangsController extends Controller
     public $event;
 
     public function __construct()
-{
-    $route = request()->route();
+    {
+        $route = request()->route();
 
-    if ($route) {
-        $action = $route->getAction();
-        $this->event = $action['event'] ?? null;
-    } else {
-        $this->event = null;
+        if ($route) {
+            $action = $route->getAction();
+            $this->event = $action['event'] ?? null;
+        } else {
+            $this->event = null;
+        }
     }
-}
 
     public function index()
     {

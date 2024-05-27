@@ -73,8 +73,8 @@
             <i class="fad fa-user-friends text-xs mr-2"></i>
             tambah peserta (panitia)
         </a>
-        <a href="/admin/olimpiade/ujian"
-            class="{{ request()->is('admin/olimpiade/ujian') | Str::of(url()->current())->contains('olimpiade/ujian/')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <a href="/admin/olimpiade/ujian/data"
+            class="{{ request()->is('admin/olimpiade/ujian/data') | Str::of(url()->current())->contains('olimpiade/ujian/')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-file-alt text-xs mr-2"></i>
             ujian
         </a>
