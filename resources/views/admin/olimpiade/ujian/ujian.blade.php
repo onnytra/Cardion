@@ -31,9 +31,9 @@
                         <th scope="col" class="px-6 py-3">
                             Durasi
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        {{-- <th scope="col" class="px-6 py-3">
                             Jenis
-                        </th>
+                        </th> --}}
                         {{-- <th scope="col" class="px-6 py-3">
                             Status
                         </th> --}}
@@ -53,17 +53,17 @@
                             {{ $data->judul }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $data->mulai }}
+                            {{ $data->mulai ?? '--'}}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $data->berakhir }}
+                            {{ $data->berakhir ?? '--'}}
                         </td>
                         <td class="px-6 py-4">
                             {{ $data->durasi }}
                         </td>
-                        <td class="px-6 py-4">
+                        {{-- <td class="px-6 py-4">
                             <span class="bg-green-500 text-white px-2 py-1 rounded">{{ $data->jenis }}</span>
-                        </td>
+                        </td> --}}
                         {{-- <td class="px-6 py-4">
                             <div
                                 class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
@@ -76,6 +76,10 @@
                         <td class="px-6 py-4">
                             <a href="{{route('olimpiade.ujian.edit', $data->id_ujian)}}"
                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit Ujian</a>
+                            <a href="{{route('olimpiade.ujian.edit', $data->id_ujian)}}"
+                                    class="font-medium text-green-600 dark:text-green-500 hover:underline">Edit Soal</a>
+                            <a href="{{route('olimpiade.ujian.edit', $data->id_ujian)}}"
+                                        class="font-medium text-yellow-600 dark:text-yellow-500 hover:underline">Edit Sesi</a>
                             <a href="{{route('olimpiade.ujian.delete', $data->id_ujian)}}" class="font-medium text-red-600 dark:text-red-500 hover:underline" data-confirm-delete="true">Hapus</a>
                         </td>
                     @endforeach

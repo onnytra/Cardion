@@ -16,4 +16,9 @@ class ujians extends Model
     {
         return $this->hasMany(soals::class, 'id_ujian', 'id_ujian');
     }
+
+    public function sesi()
+    {
+        return $this->hasMany(sesis::class, 'id_ujian', 'id_ujian');
+    }
 }
