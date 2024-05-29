@@ -211,7 +211,7 @@ Route::get('/admin/main/settings', function () {
 });
 
 // Olimpiade
-Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' =>'olimpiade'], function () {
+Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' => 'olimpiade'], function () {
     Route::group(['as' => 'cabang.', 'prefix' => '/cabang'], function () {
         Route::get('/data', [CabangsController::class, 'index'])->name('index');
         Route::get('/add', [CabangsController::class, 'create'])->name('create');
@@ -272,6 +272,34 @@ Route::get('/admin/olimpiade/ujian/add', function () {
 
 Route::get('/admin/olimpiade/ujian/edit', function () {
     return view('admin/olimpiade/ujian/edit-ujian', ['title' => 'Edit Ujian', 'slug' => 'edit']);
+});
+
+Route::get('/admin/olimpiade/ujian/soal', function () {
+    return view('admin/olimpiade/ujian/soal/soal-ujian', ['title' => 'Daftar Soal', 'slug' => 'soal']);
+});
+
+Route::get('/admin/olimpiade/ujian/soal/add', function () {
+    return view('admin/olimpiade/ujian/soal/add-soal', ['title' => 'Tambah Soal', 'slug' => 'tambah']);
+});
+
+Route::get('/admin/olimpiade/ujian/soal/edit', function () {
+    return view('admin/olimpiade/ujian/soal/edit-soal', ['title' => 'Edit Soal', 'slug' => 'edit']);
+});
+
+Route::get('/admin/olimpiade/ujian/soal/preview', function () {
+    return view('admin/olimpiade/ujian/soal/preview-soal', ['title' => 'Preview Soal', 'slug' => 'preview']);
+});
+
+Route::get('/admin/olimpiade/ujian/soal/subyek', function () {
+    return view('admin/olimpiade/ujian/subyek/subyek-ujian', ['title' => 'Daftar Subyek', 'slug' => 'subyek']);
+});
+
+Route::get('/admin/olimpiade/ujian/soal/subyek/add', function () {
+    return view('admin/olimpiade/ujian/subyek/add-subyek', ['title' => 'Tambah Subyek', 'slug' => 'tambah']);
+});
+
+Route::get('/admin/olimpiade/ujian/soal/subyek/edit', function () {
+    return view('admin/olimpiade/ujian/subyek/edit-subyek', ['title' => 'Edit Subyek', 'slug' => 'edit']);
 });
 
 Route::get('/admin/olimpiade/monitoring-ujian', function () {

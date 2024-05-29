@@ -74,7 +74,9 @@
                         </td> --}}
                         <td class="px-6 py-4">
                             <a href="/admin/olimpiade/ujian/edit"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit Ujian</a>
+                            <a href="/admin/olimpiade/ujian/soal"
+                                class="font-medium text-green-600 dark:text-blue-500 hover:underline">Edit Soal</a>
                             <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
                         </td>
                     </tr>
@@ -109,7 +111,9 @@
                         </td> --}}
                         <td class="px-6 py-4">
                             <a href="/admin/olimpiade/ujian/edit"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit Ujian</a>
+                            <a href="/admin/olimpiade/ujian/soal"
+                                class="font-medium text-green-600 dark:text-blue-500 hover:underline">Edit Soal</a>
                             <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
                         </td>
                     </tr>
@@ -144,7 +148,9 @@
                         </td> --}}
                         <td class="px-6 py-4">
                             <a href="/admin/olimpiade/ujian/edit"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit Ujian</a>
+                            <a href="/admin/olimpiade/ujian/soal"
+                                class="font-medium text-green-600 dark:text-blue-500 hover:underline">Edit Soal</a>
                             <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
                         </td>
                     </tr>
