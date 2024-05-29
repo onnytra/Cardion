@@ -42,8 +42,9 @@ class UjiansController extends Controller
 
         if ($this->event == 'olimpiade') {
             return view('admin/olimpiade/ujian/add-ujian', compact('title', 'slug'));
-        } elseif ($this->event == 'poster'){
-            return view('admin/poster/ujian/add-ujian', compact('title', 'slug'));
+        } else{
+            toast('Ada Kesalahan, Tanyakan Kepada Admin');
+            return redirect()->back();
         }
     }
 
@@ -99,16 +100,62 @@ class UjiansController extends Controller
 
     public function edit(ujians $ujians)
     {
-        //
+        $title = 'Edit Ujian';
+        $slug = 'edit';
+
+        if ($this->event == 'olimpiade') {
+            return view('admin/olimpiade/ujian/edit-ujian', compact('ujians', 'title', 'slug'));
+        } else{
+            toast('Ada Kesalahan, Tanyakan Kepada Admin');
+            return redirect()->back();
+        }
     }
 
     public function update(Request $request, ujians $ujians)
     {
-        //
+        $validate = Validator::make($request->all(), [
+            'judul' => 'required|max:30',
+            'group_wa' => 'max:100',
+            'durasi' => 'required | numeric | min:1 | max:999',
+            'total_soal' => 'required | numeric | min:1 | max:999',
+        ], [
+            'judul.required' => 'Judul harus diisi',
+            'judul.max' => 'Judul maksimal 30 karakter',
+            'group_wa.max' => 'Group WA maksimal 100 karakter',
+            'durasi.required' => 'Durasi harus diisi',
+            'durasi.numeric' => 'Durasi harus berupa angka',
+            'durasi.min' => 'Durasi minimal 1 menit',
+            'durasi.max' => 'Durasi maksimal 999 menit',
+            'total_soal.required' => 'Total soal harus diisi',
+            'total_soal.numeric' => 'Total soal harus berupa angka',
+            'total_soal.min' => 'Total soal minimal 1 soal',
+            'total_soal.max' => 'Total soal maksimal 999 soal',
+        ]);
+        if ($validate->fails()) {
+            return back()->withErrors($validate)->withInput();
+        }
+        $ujians->judul = $request->judul;
+        $ujians->deskripsi = $request->deskripsi;
+        $ujians->peraturan = $request->peraturan;
+        $ujians->group_wa = $request->group_wa;
+        $ujians->durasi = $request->durasi;
+        $ujians->total_soal = $request->total_soal;
+        $ujians->benar = $request->benar;
+        $ujians->salah = $request->salah;
+        $ujians->kosong = $request->kosong;
+        $ujians->soal_acak = $request->soal_acak ? 1 : 0;
+        $ujians->status_ujian = $request->status_ujian ? 1 : 0;
+        $ujians->tampilkan_jawaban = $request->tampilkan_jawaban;
+        $ujians->tampilkan_nilai = $request->tampilkan_nilai;
+        $ujians->save();
+        toast('Ujian Berhasil Diperbarui','success');
+        return redirect()->route($this->event.'.ujian.index');
     }
 
     public function destroy(ujians $ujians)
     {
-        //
+        $ujians->delete();
+        toast('Ujian Berhasil Dihapus','success');
+        return redirect()->route($this->event.'.ujian.index');
     }
 }

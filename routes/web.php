@@ -5,6 +5,7 @@ use App\Http\Controllers\CabangsController;
 use App\Http\Controllers\RayonsController;
 use App\Http\Controllers\PesertasController;
 use App\Http\Controllers\UjiansController;
+use App\Http\Controllers\SesisController;
 
 
 /*
@@ -215,6 +216,15 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' =>'o
         Route::get('/edit/{ujians}', [UjiansController::class, 'edit'])->name('edit');
         Route::put('/update/{ujians}', [UjiansController::class, 'update'])->name('update');
         Route::delete('/delete/{ujians}', [UjiansController::class, 'destroy'])->name('delete');
+    });
+
+    Route::group(['as' => 'sesi.', 'prefix' => '/sesi'], function () {
+        Route::get('/data/{ujians}', [SesisController::class, 'index'])->name('index');
+        Route::get('/add/{ujians}', [SesisController::class, 'create'])->name('create');
+        Route::post('/store/{ujians}', [SesisController::class, 'store'])->name('store');
+        Route::get('/edit/{sesis}', [SesisController::class, 'edit'])->name('edit');
+        Route::put('/update/{sesis}', [SesisController::class, 'update'])->name('update');
+        Route::delete('/delete/{sesis}', [SesisController::class, 'destroy'])->name('delete');
     });
 });
 

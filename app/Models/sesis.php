@@ -11,6 +11,7 @@ class sesis extends Model
 
     protected $guarded = [];
     protected $primaryKey = 'id_sesi';
+    protected $table = 'sesis';
 
     public function ujian()
     {

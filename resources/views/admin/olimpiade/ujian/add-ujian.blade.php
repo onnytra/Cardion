@@ -100,7 +100,7 @@
                         <div class="w-full">
                             <div
                                 class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                                <input type="checkbox" name="soal_acak" id="toggle" value="1" {{ old('soal_acak') ? 'checked' : '' }}
+                                <input type="checkbox" name="soal_acak" id="toggle" value="1" {{ old('soal_acak') == 1 ? 'checked' : '' }}
                                     class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer transition-colors duration-500" />
                                 <label for="toggle"
                                     class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer transition-colors duration-500"></label>
@@ -125,10 +125,9 @@
                                 Nilai/Poin</label>
                         </div>
                         <select id="tampilkan_nilai" name="tampilkan_nilai"
-                            class="btn-gray w-full lg:w-full shadow-sm text-sm text-left focus:outline-none focus:shadow-outline">
-                            <option class="font-medium text-sm">Tidak</option>
-                            <option class="font-medium text-sm">Ya</option>
-                            <option class="font-medium text-sm">Setelah Ujian</option>
+                            class="btn-gray w-full lg:w-full shadow-sm text-sm text-left focus:outline-none focus:shadow-outline"><option class="font-medium text-sm" value="tidak" {{ old('tampilkan_nilai') == 'tidak' ? 'selected' : '' }}>Tidak</option>
+                            <option class="font-medium text-sm" value="ya" {{ old('tampilkan_nilai') == 'ya' ? 'selected' : '' }}>Ya</option>
+                            <option class="font-medium text-sm" value="setelah_ujian" {{ old('tampilkan_nilai') == 'setelah_ujian' ? 'selected' : '' }}>Setelah Ujian</option>
                         </select>
                     </div>
                     <hr>
@@ -139,7 +138,7 @@
                         <div class="w-full">
                             <div
                                 class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                                <input type="checkbox" name="status_ujian" id="toggle" value="1" {{ old('status_ujian') ? 'checked' : '' }}
+                                <input type="checkbox" name="status_ujian" id="toggle" value="1" {{ old('status_ujian') == 1 ? 'checked' : '' }}
                                     class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer transition-colors duration-500" />
                                 <label for="toggle"
                                     class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer transition-colors duration-500"></label>

@@ -78,7 +78,7 @@
                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit Ujian</a>
                             <a href="{{route('olimpiade.ujian.edit', $data->id_ujian)}}"
                                     class="font-medium text-green-600 dark:text-green-500 hover:underline">Edit Soal</a>
-                            <a href="{{route('olimpiade.ujian.edit', $data->id_ujian)}}"
+                            <a href="{{route('olimpiade.sesi.index', $data->id_ujian)}}"
                                         class="font-medium text-yellow-600 dark:text-yellow-500 hover:underline">Edit Sesi</a>
                             <a href="{{route('olimpiade.ujian.delete', $data->id_ujian)}}" class="font-medium text-red-600 dark:text-red-500 hover:underline" data-confirm-delete="true">Hapus</a>
                         </td>
