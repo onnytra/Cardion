@@ -12,6 +12,13 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.0.1/dist/css/multi-select-tag.css">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    {{-- // take from public/js/sweetalert.js --}}
+    <script src="{{asset('js/alert.js')}}"></script>
+    <script src="{{asset('js/custom.js')}}"></script>
+
     <title>{{ $title }} | Cardion</title>
 </head>
 
@@ -27,6 +34,16 @@
                     <x-slot:title>{{ $title }}</x-slot:title>
                     <x-slot:slug>{{ $slug }}</x-slot:slug>
                 </x-header>
+                @if ($errors->any())
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                    <strong class="font-bold">Ups! Ada yang salah.</strong>
+                    <ul class="list-disc pl-5">
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
                 {{ $slot }}
             </div>
             <x-footer></x-footer>
@@ -48,8 +65,12 @@
         new MultiSelectTag('listPeserta')
     </script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script src="../../../../js/scripts.js"></script>
-    <!-- end script -->
+    <<<<<<< HEAD <script src="../../../../js/scripts.js">
+        </script>
+        =======
+        <script src="{{asset('js/scripts.js')}}"></script>
+        >>>>>>> 7c0d274a4c2139fab99835308824d4a41fea994a
+        <!-- end script -->
 
 </body>
 

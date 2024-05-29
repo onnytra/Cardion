@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CabangsController;
+use App\Http\Controllers\RayonsController;
+use App\Http\Controllers\PesertasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -208,32 +211,39 @@ Route::get('/admin/main/settings', function () {
 });
 
 // Olimpiade
+Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' =>'olimpiade'], function () {
+    Route::group(['as' => 'cabang.', 'prefix' => '/cabang'], function () {
+        Route::get('/data', [CabangsController::class, 'index'])->name('index');
+        Route::get('/add', [CabangsController::class, 'create'])->name('create');
+        Route::post('/store', [CabangsController::class, 'store'])->name('store');
+        Route::get('/edit/{cabangs}', [CabangsController::class, 'edit'])->name('edit');
+        Route::put('/update/{cabangs}', [CabangsController::class, 'update'])->name('update');
+        Route::delete('/delete/{cabangs}', [CabangsController::class, 'destroy'])->name('delete');
+    });
+
+    Route::group(['as' => 'rayon.', 'prefix' => '/rayon'], function () {
+        Route::get('/data/{cabangs}', [RayonsController::class, 'index'])->name('index');
+        Route::get('/add/{cabangs}', [RayonsController::class, 'create'])->name('create');
+        Route::post('/store/{cabangs}', [RayonsController::class, 'store'])->name('store');
+        Route::get('/edit/{rayons}', [RayonsController::class, 'edit'])->name('edit');
+        Route::put('/update/{rayons}', [RayonsController::class, 'update'])->name('update');
+        Route::delete('/delete/{rayons}', [RayonsController::class, 'destroy'])->name('delete');
+    });
+
+    Route::group(['as' => 'peserta.', 'prefix' => '/peserta'], function () {
+        Route::get('/data', [PesertasController::class, 'index'])->name('index');
+        Route::get('/add', [PesertasController::class, 'create'])->name('create');
+        Route::post('/store', [PesertasController::class, 'store'])->name('store');
+        Route::get('/edit/{pesertas}', [PesertasController::class, 'edit'])->name('edit');
+        Route::put('/update/{pesertas}', [PesertasController::class, 'update'])->name('update');
+        Route::delete('/delete/{pesertas}', [PesertasController::class, 'destroy'])->name('delete');
+    });
+});
+
+Route::get('/get-rayons', [RayonsController::class, 'getRayons']);
+
 Route::get('/admin/olimpiade', function () {
     return view('admin/olimpiade/dashboard', ['title' => 'Dashboard Olimpiade', 'slug' => 'olimpiade']);
-});
-
-Route::get('/admin/olimpiade/cabang', function () {
-    return view('admin/olimpiade/cabang/cabang', ['title' => 'Cabang', 'slug' => 'cabang']);
-});
-
-Route::get('/admin/olimpiade/cabang/add', function () {
-    return view('admin/olimpiade/cabang/add-cabang', ['title' => 'Tambah Cabang', 'slug' => 'add']);
-});
-
-Route::get('/admin/olimpiade/cabang/edit', function () {
-    return view('admin/olimpiade/cabang/edit-cabang', ['title' => 'Edit Cabang', 'slug' => 'edit']);
-});
-
-Route::get('/admin/olimpiade/cabang/rayon', function () {
-    return view('admin/olimpiade/cabang/rayon', ['title' => 'Rayon', 'slug' => 'rayon']);
-});
-
-Route::get('/admin/olimpiade/cabang/rayon/add', function () {
-    return view('admin/olimpiade/cabang/add-rayon', ['title' => 'Tambah Rayon', 'slug' => 'add']);
-});
-
-Route::get('/admin/olimpiade/cabang/rayon/edit', function () {
-    return view('admin/olimpiade/cabang/edit-rayon', ['title' => 'Edit Rayon', 'slug' => 'edit']);
 });
 
 Route::get('/admin/olimpiade/peserta', function () {

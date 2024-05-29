@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('jawaban_users', function (Blueprint $table) {
             $table->id('id_jawaban_user');
-            $table->string('id_user', 30)->references('nomor')->on('pesertas')->onDelete('restrict')->onUpdate('cascade');
+            $table->foreignId('id_peserta')->references('id_peserta')->on('pesertas')->onDelete('restrict')->onUpdate('cascade');
             $table->foreignId('id_jawaban')->references('id_jawaban')->on('jawabans')->onDelete('restrict')->onUpdate('cascade');
             $table->foreignId('id_ujian')->references('id_ujian')->on('ujians')->onDelete('restrict')->onUpdate('cascade');
             $table->foreignId('id_soal')->references('id_soal')->on('soals')->onDelete('restrict')->onUpdate('cascade');
