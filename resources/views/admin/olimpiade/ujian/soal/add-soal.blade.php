@@ -8,16 +8,16 @@
         </div>
 
         <form>
+            @csrf
             <div class="card-body relative overflow-x-auto sm:rounded-lg">
                 <div class="grid gap-6">
-                    <div class="flex items-center gap-4">
-                        <div class="w-56 ">
-                            <label for="soal" class="block text-sm font-medium text-gray-600">Soal</label>
+                    <div>
+                        <div class="w-48 mb-4">
+                            <label for="classic-editor" class="block text-sm font-medium text-gray-600">Soal*</label>
                         </div>
-                        <textarea type="text" name="soal" id="soal"
-                            class="p-2 border border-gray w-full lg:w-full shadow-sm text-sm rounded-md"></textarea>
+                        <textarea type="text" name="soal" id="classic-editor"
+                            class="flex-grow w-full shadow-sm text-sm rounded-md" required></textarea>
                     </div>
-
                     <div class="flex items-center gap-4">
                         <div class="w-56 ">
                             <label for="tipe_soal" class="block text-sm font-medium text-gray-600">Tipe
@@ -65,5 +65,4 @@
             </div>
         </form>
     </div>
-
 </x-layout>

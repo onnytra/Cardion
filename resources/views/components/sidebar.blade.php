@@ -40,7 +40,7 @@
 
     @elseif(request()->is('admin/olimpiade') | request()->is('admin/olimpiade/' . $slot) |
     Str::of(url()->current())->contains('olimpiade'))
-    <div class="flex flex-col">
+    <div class="flex flex-col pt-20">
         <div class="text-right hidden lg:block mb-4">
             <button id="sideBarHideBtn">
                 <i class="fad fa-times-circle"></i>
@@ -54,7 +54,7 @@
         </a>
         <p class="uppercase text-xs text-gray-600 mb-4 mt-4 tracking-wider">navigation</p>
         <a href="/admin/olimpiade/cabang/data"
-            class="{{ request()->is('admin/olimpiade/cabang/data') | Str::of(url()->current())->contains('olimpiade/cabang/') ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+            class="{{ request()->is('admin/olimpiade/cabang/data') | Str::of(url()->current())->contains('olimpiade/cabang/') | Str::of(url()->current())->contains('olimpiade/rayon/') ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-project-diagram text-xs mr-2"></i>
             cabang
         </a>
@@ -112,7 +112,7 @@
 
     @elseif(request()->is('admin/public-poster') | request()->is('admin/public-poster/' . $slot) |
     Str::of(url()->current())->contains('public-poster'))
-    <div class="flex flex-col">
+    <div class="flex flex-col pt-20">
         <div class="text-right hidden lg:block mb-4">
             <button id="sideBarHideBtn">
                 <i class="fad fa-times-circle"></i>

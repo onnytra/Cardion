@@ -73,11 +73,43 @@
                             </div>
                         </td> --}}
                         <td class="px-6 py-4">
-                            <a href="/admin/olimpiade/ujian/edit"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit Ujian</a>
-                            <a href="/admin/olimpiade/ujian/soal"
-                                class="font-medium text-green-600 dark:text-blue-500 hover:underline">Edit Soal</a>
-                            <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
+                            <a href="#" id="modal-box" class="font-medium text-gray-900">
+                                <i class="fad fa-ellipsis-h mr-2 leading-none"></i>
+                            </a>
+                            <div id="modal" class="absolute hidden" aria-labelledby="modal-title" role="dialog"
+                                aria-modal="true">
+                                <div class="flex items-end justify-center text-center">
+                                    <div id="bg-modal" class="fixed inset-0" aria-hidden="true"></div>
+                                    <div
+                                        class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all">
+                                        <div class="bg-white">
+                                            <div class="sm:flex sm:items-start">
+                                                <div class="cart mt-1 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                                    <div class="card-body relative overflow-x-visible sm:rounded-lg">
+                                                        <button class="w-full">
+                                                            <a href="/admin/olimpiade/ujian/edit"
+                                                                class="btn-bs-primary">
+                                                                <i class="fad fa-edit mr-2 leading-none"></i>
+                                                                Edit Ujian</a>
+                                                        </button>
+                                                        <button class="w-full mt-2">
+                                                            <a href="/admin/olimpiade/ujian/soal"
+                                                                class="btn-bs-success">
+                                                                <i class="fad fa-edit mr-2 leading-none"></i>
+                                                                Edit Soal</a>
+                                                        </button>
+                                                        <button class="w-full mt-2">
+                                                            <a href="" class="btn-bs-danger">
+                                                                <i class="fad fa-trash mr-2 leading-none"></i>
+                                                                Hapus Ujian</a>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     <tr
@@ -110,11 +142,43 @@
                             </div>
                         </td> --}}
                         <td class="px-6 py-4">
-                            <a href="/admin/olimpiade/ujian/edit"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit Ujian</a>
-                            <a href="/admin/olimpiade/ujian/soal"
-                                class="font-medium text-green-600 dark:text-blue-500 hover:underline">Edit Soal</a>
-                            <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
+                            <a href="#" id="modal-box" class="font-medium text-gray-900">
+                                <i class="fad fa-ellipsis-h mr-2 leading-none"></i>
+                            </a>
+                            <div id="modal" class="absolute hidden" aria-labelledby="modal-title" role="dialog"
+                                aria-modal="true">
+                                <div class="flex items-end justify-center text-center">
+                                    <div id="bg-modal" class="fixed inset-0" aria-hidden="true"></div>
+                                    <div
+                                        class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all">
+                                        <div class="bg-white">
+                                            <div class="sm:flex sm:items-start">
+                                                <div class="cart mt-1 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                                    <div class="card-body relative overflow-x-visible sm:rounded-lg">
+                                                        <button class="w-full">
+                                                            <a href="/admin/olimpiade/ujian/edit"
+                                                                class="btn-bs-primary">
+                                                                <i class="fad fa-edit mr-2 leading-none"></i>
+                                                                Edit Ujian</a>
+                                                        </button>
+                                                        <button class="w-full mt-2">
+                                                            <a href="/admin/olimpiade/ujian/soal"
+                                                                class="btn-bs-success">
+                                                                <i class="fad fa-edit mr-2 leading-none"></i>
+                                                                Edit Soal</a>
+                                                        </button>
+                                                        <button class="w-full mt-2">
+                                                            <a href="" class="btn-bs-danger">
+                                                                <i class="fad fa-trash mr-2 leading-none"></i>
+                                                                Hapus Ujian</a>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     <tr
@@ -147,11 +211,43 @@
                             </div>
                         </td> --}}
                         <td class="px-6 py-4">
-                            <a href="/admin/olimpiade/ujian/edit"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit Ujian</a>
-                            <a href="/admin/olimpiade/ujian/soal"
-                                class="font-medium text-green-600 dark:text-blue-500 hover:underline">Edit Soal</a>
-                            <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
+                            <a href="#" id="modal-box" class="font-medium text-gray-900">
+                                <i class="fad fa-ellipsis-h mr-2 leading-none"></i>
+                            </a>
+                            <div id="modal" class="absolute hidden" aria-labelledby="modal-title" role="dialog"
+                                aria-modal="true">
+                                <div class="flex items-end justify-center text-center">
+                                    <div id="bg-modal" class="fixed inset-0" aria-hidden="true"></div>
+                                    <div
+                                        class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all">
+                                        <div class="bg-white">
+                                            <div class="sm:flex sm:items-start">
+                                                <div class="cart mt-1 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                                    <div class="card-body relative overflow-x-visible sm:rounded-lg">
+                                                        <button class="w-full">
+                                                            <a href="/admin/olimpiade/ujian/edit"
+                                                                class="btn-bs-primary">
+                                                                <i class="fad fa-edit mr-2 leading-none"></i>
+                                                                Edit Ujian</a>
+                                                        </button>
+                                                        <button class="w-full mt-2">
+                                                            <a href="/admin/olimpiade/ujian/soal"
+                                                                class="btn-bs-success">
+                                                                <i class="fad fa-edit mr-2 leading-none"></i>
+                                                                Edit Soal</a>
+                                                        </button>
+                                                        <button class="w-full mt-2">
+                                                            <a href="" class="btn-bs-danger">
+                                                                <i class="fad fa-trash mr-2 leading-none"></i>
+                                                                Hapus Ujian</a>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 </tbody>

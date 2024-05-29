@@ -12,6 +12,7 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.0.1/dist/css/multi-select-tag.css">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -23,6 +24,7 @@
 </head>
 
 <body class="bg-gray-100">
+
     <x-navbar>{{ $slug }}</x-navbar>
     <!-- strat wrapper -->
     <div class="h-screen flex flex-row">
@@ -58,11 +60,28 @@
     <script src="https://cdn.datatables.net/2.0.7/js/dataTables.tailwindcss.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.0.1/dist/js/multi-select-tag.js"></script>
     <script>
+        ClassicEditor
+            .create(document.querySelector('#classic-editor'))
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#classic-editor2'))
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#classic-editor3'))
+            .catch(error => {
+                console.error(error);
+            });
+
         new DataTable('#datatable');
         new DataTable('#datatable2');
         new DataTable('#datatable3');
         new DataTable('#datatable4');
-        new MultiSelectTag('listPeserta')
+        new MultiSelectTag('listPeserta');
+
     </script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="{{asset('js/scripts.js')}}"></script>

@@ -4,19 +4,12 @@
 
     <div class="card mt-6">
         <div class="card-header">
-            <h1 class="h6">Form Tambah Soal</h1>
+            <h1 class="h6">Form Tambah Subyek</h1>
         </div>
 
         <form>
             <div class="card-body relative overflow-x-auto sm:rounded-lg">
                 <div class="grid gap-6">
-                    <div class="flex items-center gap-4">
-                        <div class="w-56 ">
-                            <label for="judul" class="block text-sm font-medium text-gray-600">Judul*</label>
-                        </div>
-                        <input type="text" name="judul" id="judul"
-                            class="p-2 border border-gray w-full lg:w-full shadow-sm text-sm rounded-md" required>
-                    </div>
                     <div class="flex items-center gap-4">
                         <div class="w-56 ">
                             <label for="label" class="block text-sm font-medium text-gray-600">Label*</label>
