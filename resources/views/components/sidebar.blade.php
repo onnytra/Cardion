@@ -3,7 +3,7 @@
 
     @if(request()->is('admin') | request()->is('admin/account') | request()->is('admin/main/' . $slot) |
     Str::of(url()->current())->contains('main'))
-    <div class="flex flex-col">
+    <div class="flex flex-col pt-20">
         <div class="text-right hidden lg:block mb-4">
             <button id="sideBarHideBtn">
                 <i class="fad fa-times-circle"></i>

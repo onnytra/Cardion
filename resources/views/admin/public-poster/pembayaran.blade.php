@@ -97,10 +97,9 @@
                             <td class="px-6 py-4">
                                 <a href="" id="modal-box" class="text-blue-600 hover:underline">Lihat Konfirmasi
                                     Pembayaran</a>
-                                <div id="modal" class="fixed z-10 inset-0 overflow-y-auto hidden"
+                                <div id="modal" class="fixed z-10 inset-0 top-20 overflow-y-auto hidden"
                                     aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                                    <div
-                                        class="flex items-end justify-center pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                                    <div class="flex items-end justify-center pt-24 px-4 pb-20 text-center">
                                         <div class="fixed inset-0 bg-gray-200 bg-opacity-75 transition-opacity"
                                             aria-hidden="true"></div>
                                         <span class="hidden sm:inline-block sm:align-middle sm:h-screen"
@@ -189,10 +188,9 @@
                             <td class="px-6 py-4">
                                 <a href="" id="modal-box" class="text-blue-600 hover:underline">Lihat Konfirmasi
                                     Pembayaran</a>
-                                <div id="modal" class="fixed z-10 inset-0 overflow-y-auto hidden"
+                                <div id="modal" class="fixed z-10 inset-0 top-20 overflow-y-auto hidden"
                                     aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                                    <div
-                                        class="flex items-end justify-center pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                                    <div class="flex items-end justify-center pt-24 px-4 pb-20 text-center">
                                         <div class="fixed inset-0 bg-gray-200 bg-opacity-75 transition-opacity"
                                             aria-hidden="true"></div>
                                         <span class="hidden sm:inline-block sm:align-middle sm:h-screen"
@@ -281,10 +279,9 @@
                             <td class="px-6 py-4">
                                 <a href="" id="modal-box" class="text-blue-600 hover:underline">Lihat Konfirmasi
                                     Pembayaran</a>
-                                <div id="modal" class="fixed z-10 inset-0 overflow-y-auto hidden"
+                                <div id="modal" class="fixed z-10 inset-0 top-20 overflow-y-auto hidden"
                                     aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                                    <div
-                                        class="flex items-end justify-center pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                                    <div class="flex items-end justify-center pt-24 px-4 pb-20 text-center">
                                         <div class="fixed inset-0 bg-gray-200 bg-opacity-75 transition-opacity"
                                             aria-hidden="true"></div>
                                         <span class="hidden sm:inline-block sm:align-middle sm:h-screen"
@@ -405,10 +402,9 @@
                             <td class="px-6 py-4">
                                 <a href="" id="modal-box" class="text-blue-600 hover:underline">Lihat Konfirmasi
                                     Pembayaran</a>
-                                <div id="modal" class="fixed z-10 inset-0 overflow-y-auto hidden"
+                                <div id="modal" class="fixed z-10 inset-0 top-20 overflow-y-auto hidden"
                                     aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                                    <div
-                                        class="flex items-end justify-center pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                                    <div class="flex items-end justify-center pt-24 px-4 pb-20 text-center">
                                         <div class="fixed inset-0 bg-gray-200 bg-opacity-75 transition-opacity"
                                             aria-hidden="true"></div>
                                         <span class="hidden sm:inline-block sm:align-middle sm:h-screen"
@@ -531,10 +527,9 @@
                             <td class="px-6 py-4">
                                 <a href="" id="modal-box" class="text-blue-600 hover:underline">Lihat Konfirmasi
                                     Pembayaran</a>
-                                <div id="modal" class="fixed z-10 inset-0 overflow-y-auto hidden"
+                                <div id="modal" class="fixed z-10 inset-0 top-20 overflow-y-auto hidden"
                                     aria-labelledby="modal-title" role="dialog" aria-modal="true">
-                                    <div
-                                        class="flex items-end justify-center pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                                    <div class="flex items-end justify-center pt-24 px-4 pb-20 text-center">
                                         <div class="fixed inset-0 bg-gray-200 bg-opacity-75 transition-opacity"
                                             aria-hidden="true"></div>
                                         <span class="hidden sm:inline-block sm:align-middle sm:h-screen"

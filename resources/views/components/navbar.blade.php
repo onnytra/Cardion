@@ -1,11 +1,10 @@
-<div
-    class="md:fixed md:w-full md:top-0 md:z-20 flex flex-row flex-wrap items-center bg-white p-6 border-b border-gray-300">
+<div class="fixed w-full top-0 z-20 flex flex-row flex-wrap items-center bg-white p-6 border-b border-gray-300">
 
     <!-- logo -->
     <div>
         <div class="flex-none w-56 flex flex-row items-center">
             <a href="/admin" class="flex-none flex flex-row items-center">
-                <img src="../../../img/logo.png" class="w-10 flex-none">
+                <img src="../../../../img/logo.png" class="w-10 flex-none">
                 <strong class="capitalize ml-1 flex-1">cardion</strong>
             </a>
 
@@ -46,7 +45,7 @@
             <div class="dropdown relative md:static">
                 <button class="menu-btn focus:outline-none focus:shadow-outline flex flex-wrap items-center">
                     <div class="w-8 h-8 overflow-hidden rounded-full">
-                        <img class="w-full h-full object-cover" src="../../../img/user.svg">
+                        <img class="w-full h-full object-cover" src="../../../../img/user.svg">
                     </div>
                     <div class="ml-2 capitalize flex ">
                         <h1 class="text-sm text-gray-800 font-semibold m-0 p-0 leading-none">Admin</h1>

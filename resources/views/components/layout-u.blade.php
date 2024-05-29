@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/toggle.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <title>{{ $title }} | Cardion</title>
 </head>
 
@@ -15,7 +16,7 @@
     <x-navbar-u>{{ $slug }}</x-navbar-u>
     <div class="h-screen flex flex-row flex-wrap">
         <div class="bg-gray-100 flex-1 md:mt-20">
-            <div class="p-6 ">
+            <div class="p-6 mt-20">
                 {{ $slot }}
             </div>
             <x-footer></x-footer>

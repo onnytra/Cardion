@@ -127,8 +127,92 @@
                                 </div>
                             </td>
                             <td class="px-6 py-4">
-                                <a href="/admin/public-poster/penilaian/edit"
+                                <a href="" id="modal-box"
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                <div id="modal" class="fixed z-10 inset-0 top-20 overflow-y-auto hidden"
+                                    aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                                    <div class="flex items-end justify-center pt-24 px-4 pb-20 text-center">
+                                        <div class="fixed inset-0 bg-gray-200 bg-opacity-75 transition-opacity"
+                                            aria-hidden="true"></div>
+                                        <span class="hidden sm:inline-block sm:align-middle sm:h-screen"
+                                            aria-hidden="true">&#8203;</span>
+                                        <div
+                                            class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                                            <form action="">
+                                                <div class="bg-white px-4 pt-2">
+                                                    <div class="sm:flex sm:items-start">
+                                                        <div class="cart mt-1 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                                            <div class="card-header">
+                                                                <h1 class="h6">Penilaian Hasil Karya</h1>
+                                                            </div>
+                                                            <div
+                                                                class="card-body relative overflow-x-auto sm:rounded-lg">
+                                                                <table class="w-full text-sm text-left rtl:text-right">
+                                                                    <tr>
+                                                                        <td class="px-6 py-3">Nomor Peserta</td>
+                                                                        <td class="px-6 py-3 text-gray-600">
+                                                                            02-01-008-0108
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="px-6 py-3">Nama Peserta</td>
+                                                                        <td class="px-6 py-3 text-gray-600">
+                                                                            <p class="text-gray-900">
+                                                                                Najwa Kharirotuz Zahwa
+                                                                            </p>
+                                                                            <p class="text-xs">
+                                                                                Nama Tim
+                                                                            </p>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="px-6 py-3">Tanggal Upload</td>
+                                                                        <td class="px-6 py-3 text-gray-600">2024-05-22
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="px-6 py-3">Event</td>
+                                                                        <td class="px-6 py-3 text-gray-600">Tes</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="px-6 py-3">
+                                                                            <label for="nilai"
+                                                                                class="block text-sm">Nilai</label>
+                                                                        </td>
+                                                                        <td class="px-6 py-3 text-gray-600">
+                                                                            <input type="number" name="nilai" id="nilai"
+                                                                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md">
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="px-6 py-3">
+                                                                            <label for="keterangan"
+                                                                                class="block text-sm">Keterangan
+                                                                                Nilai</label>
+                                                                        </td>
+                                                                        <td class="px-6 py-3 text-gray-600">
+                                                                            <textarea type="text" name="keterangan"
+                                                                                id="keterangan"
+                                                                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md"></textarea>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="bg-gray-50 px-4 py-3 flex flex-row-reverse gap-2">
+                                                    <button type="button" class="btn-bs-dark" id="close-modal">
+                                                        batal
+                                                    </button>
+                                                    <button>
+                                                        <a href="#" type="submit" class="btn-indigo">simpan</a>
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                                 <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
                             </td>
                         </tr>
@@ -168,8 +252,64 @@
                                 </div>
                             </td>
                             <td class="px-6 py-4">
-                                <a href="/admin/public-poster/penilaian/edit"
+                                <a id="modal-box" href=""
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                <div id="modal" class="fixed z-10 inset-0 top-20 overflow-y-auto hidden"
+                                    aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                                    <div class="flex items-end justify-center pt-24 px-4 pb-20 text-center">
+                                        <div class="fixed inset-0 bg-gray-200 bg-opacity-75 transition-opacity"
+                                            aria-hidden="true"></div>
+                                        <span class="hidden sm:inline-block sm:align-middle sm:h-screen"
+                                            aria-hidden="true">&#8203;</span>
+                                        <div
+                                            class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                                            <div class="bg-white px-4 pt-2 pb-2 sm:p-6 sm:pb-4">
+                                                <div class="sm:flex sm:items-start">
+                                                    <div class="cart mt-1 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                                        <div class="card-header">
+                                                            <h1 class="h6">Data Konfirmasi Pembayaran</h1>
+                                                        </div>
+                                                        <div class="card-body relative overflow-x-auto sm:rounded-lg">
+                                                            <table class="w-full text-sm text-left rtl:text-right">
+                                                                <tr>
+                                                                    <td class="px-6 py-3">Nama</td>
+                                                                    <td class="px-6 py-3 text-gray-600">A.n Desi
+                                                                        Rahmadani</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="px-6 py-3">Bank</td>
+                                                                    <td class="px-6 py-3 text-gray-600">BRI</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="px-6 py-3">Tanggal Pembayaran</td>
+                                                                    <td class="px-6 py-3 text-gray-600">2024-01-25
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="px-6 py-3">Status Pembayaran</td>
+                                                                    <td class="px-6 py-3 text-gray-600">Diterima</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="px-6 py-3">Bukti Pembayaran</td>
+                                                                    <td class="px-6 py-3 text-gray-600">
+                                                                        <a href="#" class="btn-gray">
+                                                                            View
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                                                <button type="button" class="btn-bs-dark w-full" id="close-modal">
+                                                    Close
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
                             </td>
                         </tr>
