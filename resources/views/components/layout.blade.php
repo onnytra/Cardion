@@ -65,13 +65,7 @@
         new MultiSelectTag('listPeserta')
     </script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <<<<<<< HEAD <script src="../../../../js/scripts.js">
-        </script>
-        =======
-        <script src="{{asset('js/scripts.js')}}"></script>
-        >>>>>>> 7c0d274a4c2139fab99835308824d4a41fea994a
-        <!-- end script -->
-
+    <script src="{{asset('js/scripts.js')}}"></script>
 </body>
 
 </html>
