@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CabangsController;
 use App\Http\Controllers\RayonsController;
 use App\Http\Controllers\PesertasController;
+use App\Http\Controllers\GelombangPembayaransController;
+use App\Http\Controllers\PembayaransController;
 
 /*
 |--------------------------------------------------------------------------
@@ -205,6 +207,24 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' =>'o
         Route::put('/update/{pesertas}', [PesertasController::class, 'update'])->name('update');
         Route::delete('/delete/{pesertas}', [PesertasController::class, 'destroy'])->name('delete');
     });
+
+    Route::group(['as' => 'gelombang_pembayaran.', 'prefix' => '/gelombang-pembayaran'], function () {
+        Route::get('/data', [GelombangPembayaransController::class, 'index'])->name('index');
+        Route::get('/add', [GelombangPembayaransController::class, 'create'])->name('create');
+        Route::post('/store', [GelombangPembayaransController::class, 'store'])->name('store');
+        Route::get('/edit/{gelombang_pembayarans}', [GelombangPembayaransController::class, 'edit'])->name('edit');
+        Route::put('/update/{gelombang_pembayarans}', [GelombangPembayaransController::class, 'update'])->name('update');
+        Route::delete('/delete/{gelombang_pembayarans}', [GelombangPembayaransController::class, 'destroy'])->name('delete');
+    });
+
+    Route::group(['as' => 'pembayaran.', 'prefix' => '/pembayaran'], function () {
+        Route::get('/data', [PembayaransController::class, 'index'])->name('index');
+        Route::get('/add', [PembayaransController::class, 'create'])->name('create');
+        Route::post('/store', [PembayaransController::class, 'store'])->name('store');
+        Route::get('/edit/{pembayarans}', [PembayaransController::class, 'edit'])->name('edit');
+        Route::put('/update/{pembayarans}', [PembayaransController::class, 'update'])->name('update');
+        Route::delete('/delete/{pembayarans}', [PembayaransController::class, 'destroy'])->name('delete');
+    });
 });
 
 Route::get('/get-rayons', [RayonsController::class, 'getRayons']);
@@ -279,18 +299,6 @@ Route::get('/admin/olimpiade/sesi', function () {
 
 Route::get('/admin/olimpiade/pembayaran', function () {
     return view('admin/olimpiade/pembayaran', ['title' => 'Pembayaran', 'slug' => 'pembayaran']);
-});
-
-Route::get('/admin/olimpiade/gelombang-pembayaran', function () {
-    return view('admin/olimpiade/gelombang-pembayaran/gelombang-pembayaran', ['title' => 'Gelombang Pembayaran', 'slug' => 'gelombang-pembayaran']);
-});
-
-Route::get('/admin/olimpiade/gelombang-pembayaran/add', function () {
-    return view('admin/olimpiade/gelombang-pembayaran/add-gelombang', ['title' => 'Tambah Gelombang Pembayaran', 'slug' => 'add']);
-});
-
-Route::get('/admin/olimpiade/gelombang-pembayaran/edit', function () {
-    return view('admin/olimpiade/gelombang-pembayaran/edit-gelombang', ['title' => 'Edit Gelombang Pembayaran', 'slug' => 'edit']);
 });
 
 // Public Poster
