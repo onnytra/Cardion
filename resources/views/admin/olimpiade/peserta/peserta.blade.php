@@ -132,7 +132,7 @@
                                     class="font-medium text-gray-900 cursor-pointer">
                                     <i class="fad fa-ellipsis-h mr-2 leading-none"></i>
                                 </a>
-                                <div id="modal{{ $data->id_peserta }}" class="absolute hidden z-10"
+                                <div id="modal{{ $data->id_peserta }}" class="absolute right-0 hidden z-10"
                                     aria-labelledby="modal-title" role="dialog" aria-modal="true">
                                     <div class="flex items-end justify-center text-center">
                                         <div id="bg-modal{{  $data->id_peserta }}"
@@ -251,7 +251,7 @@
                                     class="font-medium text-gray-900 cursor-pointer">
                                     <i class="fad fa-ellipsis-h mr-2 leading-none"></i>
                                 </a>
-                                <div id="modal{{ $data->id_peserta }}" class="absolute hidden z-10"
+                                <div id="modal{{ $data->id_peserta }}" class="absolute right-0 hidden z-10"
                                     aria-labelledby="modal-title" role="dialog" aria-modal="true">
                                     <div class="flex items-end justify-center text-center">
                                         <div id="bg-modal{{  $data->id_peserta }}"
