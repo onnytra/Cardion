@@ -6,7 +6,7 @@
         <div class="card-header flex flex-row justify-between items-center">
             <h1 class="h6">Daftar Gelombang Pembayaran</h1>
             <button>
-                <a href="/admin/olimpiade/gelombang-pembayaran/add" class="btn-bs-dark">
+                <a href="{{ route('olimpiade.gelombang_pembayaran.create')}}" class="btn-bs-dark">
                     <i class="fad fa-plus mr-2 leading-none"></i>
                     Gelombang Baru</a>
             </button>
@@ -32,7 +32,7 @@
                             Selesai
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Tipe
+                            Status
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Aksi
@@ -40,25 +40,30 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($gelombang_pembayarans as $item)
                     @for($i = 1; $i <= 3; $i++) <tr
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td class="px-6 py-4">
-                            1
+                            {{ $loop->iteration }}
                         </td>
                         <td scope="row" class="px-6 py-4 text-gray-900">
-                            Gelombang 1
+                            {{ $item->gelombang }}
                         </td>
                         <td class="px-6 py-4">
-                            Rp 170.000
+                            Rp {{ number_format($item->harga, 0, ',', '.') }}
                         </td>
                         <td class="px-6 py-4">
-                            2023-12-04
+                            {{ $item->mulai }}
                         </td>
                         <td class="px-6 py-4">
-                            2024-01-25
+                            {{ $item->selesai }}
                         </td>
                         <td class="px-6 py-4">
-                            Offline
+                            @if ($item->status_gelombang_pembayaran == 1)
+                            <span class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">Aktif</span>
+                            @else
+                            <span class="bg-red-200 text-red-600 py-1 px-3 rounded-full text-xs">Tidak Aktif</span>
+                            @endif
                         </td>
                         <td class="px-6 py-4">
                             <a id="modal-box{{ $i }}" onclick="showModal({{ $i }})"
