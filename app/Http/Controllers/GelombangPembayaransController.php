@@ -21,7 +21,6 @@ class GelombangPembayaransController extends Controller
             $this->event = null;
         }
     }
-
     public function index()
     {
         $title = 'Gelombang Pembayaran';

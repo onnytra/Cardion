@@ -73,8 +73,8 @@
             <i class="fad fa-user-friends text-xs mr-2"></i>
             tambah peserta (panitia)
         </a>
-        <a href="/admin/olimpiade/ujian"
-            class="{{ request()->is('admin/olimpiade/ujian') | Str::of(url()->current())->contains('olimpiade/ujian/')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <a href="/admin/olimpiade/ujian/data"
+            class="{{ request()->is('admin/olimpiade/ujian/data') | Str::of(url()->current())->contains('olimpiade/ujian/')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-file-alt text-xs mr-2"></i>
             ujian
         </a>
@@ -92,11 +92,6 @@
             class="{{ request()->is('admin/olimpiade/assign-test') | Str::of(url()->current())->contains('olimpiade/assign-test/')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-book-reader text-xs mr-2"></i>
             assign test
-        </a>
-        <a href="/admin/olimpiade/sesi"
-            class="{{ request()->is('admin/olimpiade/sesi') | Str::of(url()->current())->contains('olimpiade/sesi/')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
-            <i class="fad fa-calendar-alt text-xs mr-2"></i>
-            sesi
         </a>
         <a href="/admin/olimpiade/pembayaran"
             class="{{ request()->is('admin/olimpiade/pembayaran') | Str::of(url()->current())->contains('olimpiade/pembayaran/')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
@@ -159,11 +154,6 @@
             class="{{ request()->is('admin/public-poster/assign-test') | Str::of(url()->current())->contains('public-poster/assign-test/')   ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-book-reader text-xs mr-2"></i>
             assign test
-        </a>
-        <a href="/admin/public-poster/sesi"
-            class="{{ request()->is('admin/public-poster/sesi') | Str::of(url()->current())->contains('public-poster/sesi/')   ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
-            <i class="fad fa-calendar-alt text-xs mr-2"></i>
-            sesi
         </a>
         <a href="/admin/public-poster/pembayaran"
             class="{{ request()->is('admin/public-poster/pembayaran') | Str::of(url()->current())->contains('public-poster/pembayaran/')   ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">

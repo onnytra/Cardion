@@ -4,9 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CabangsController;
 use App\Http\Controllers\RayonsController;
 use App\Http\Controllers\PesertasController;
+use App\Http\Controllers\UjiansController;
+use App\Http\Controllers\SesisController;
 use App\Http\Controllers\GelombangPembayaransController;
 use App\Http\Controllers\PembayaransController;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -208,6 +209,23 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' =>'o
         Route::delete('/delete/{pesertas}', [PesertasController::class, 'destroy'])->name('delete');
     });
 
+    Route::group(['as' => 'ujian.', 'prefix' => '/ujian'], function () {
+        Route::get('/data', [UjiansController::class, 'index'])->name('index');
+        Route::get('/add', [UjiansController::class, 'create'])->name('create');
+        Route::post('/store', [UjiansController::class, 'store'])->name('store');
+        Route::get('/edit/{ujians}', [UjiansController::class, 'edit'])->name('edit');
+        Route::put('/update/{ujians}', [UjiansController::class, 'update'])->name('update');
+        Route::delete('/delete/{ujians}', [UjiansController::class, 'destroy'])->name('delete');
+    });
+
+    Route::group(['as' => 'sesi.', 'prefix' => '/sesi'], function () {
+        Route::get('/data/{ujians}', [SesisController::class, 'index'])->name('index');
+        Route::get('/add/{ujians}', [SesisController::class, 'create'])->name('create');
+        Route::post('/store/{ujians}', [SesisController::class, 'store'])->name('store');
+        Route::get('/edit/{sesis}', [SesisController::class, 'edit'])->name('edit');
+        Route::put('/update/{sesis}', [SesisController::class, 'update'])->name('update');
+        Route::delete('/delete/{sesis}', [SesisController::class, 'destroy'])->name('delete');
+
     Route::group(['as' => 'gelombang_pembayaran.', 'prefix' => '/gelombang-pembayaran'], function () {
         Route::get('/data', [GelombangPembayaransController::class, 'index'])->name('index');
         Route::get('/add', [GelombangPembayaransController::class, 'create'])->name('create');
@@ -247,18 +265,6 @@ Route::get('/admin/olimpiade/edit', function () {
 
 Route::get('/admin/olimpiade/tambah-peserta-panitia', function () {
     return view('admin/olimpiade/peserta/tambah-peserta-panitia', ['title' => 'Tambah Peserta Panitia', 'slug' => 'tambah-peserta-panitia']);
-});
-
-Route::get('/admin/olimpiade/ujian', function () {
-    return view('admin/olimpiade/ujian/ujian', ['title' => 'Ujian', 'slug' => 'ujian']);
-});
-
-Route::get('/admin/olimpiade/ujian/add', function () {
-    return view('admin/olimpiade/ujian/add-ujian', ['title' => 'Tambah Ujian', 'slug' => 'add']);
-});
-
-Route::get('/admin/olimpiade/ujian/edit', function () {
-    return view('admin/olimpiade/ujian/edit-ujian', ['title' => 'Edit Ujian', 'slug' => 'edit']);
 });
 
 Route::get('/admin/olimpiade/monitoring-ujian', function () {
