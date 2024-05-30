@@ -103,7 +103,7 @@
             <i class="fad fa-coins text-xs mr-2"></i>
             pembayaran
         </a>
-        <a href="/admin/olimpiade/gelombang-pembayaran"
+        <a href="/admin/olimpiade/gelombang-pembayaran/data"
             class="{{ request()->is('admin/olimpiade/gelombang-pembayaran') | Str::of(url()->current())->contains('olimpiade/gelombang-pembayaran/')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-money-bill-wave text-xs mr-2"></i>
             gelombang pembayaran

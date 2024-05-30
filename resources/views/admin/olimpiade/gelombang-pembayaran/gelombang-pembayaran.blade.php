@@ -6,7 +6,7 @@
         <div class="card-header flex flex-row justify-between items-center">
             <h1 class="h6">Daftar Gelombang Pembayaran</h1>
             <button>
-                <a href="/admin/olimpiade/gelombang-pembayaran/add" class="btn-bs-dark">
+                <a href="{{ route('olimpiade.gelombang_pembayaran.create')}}" class="btn-bs-dark">
                     <i class="fad fa-plus mr-2 leading-none"></i>
                     Gelombang Baru</a>
             </button>
@@ -32,7 +32,7 @@
                             Selesai
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Tipe
+                            Status
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Aksi
@@ -40,84 +40,37 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($gelombang_pembayarans as $item)
                     <tr
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td class="px-6 py-4">
-                            1
+                            {{ $loop->iteration }}
                         </td>
                         <td scope="row" class="px-6 py-4 text-gray-900">
-                            Gelombang 1
+                            {{ $item->gelombang }}
                         </td>
                         <td class="px-6 py-4">
-                            Rp 170.000
+                            Rp {{ number_format($item->harga, 0, ',', '.') }}
                         </td>
                         <td class="px-6 py-4">
-                            2023-12-04
+                            {{ $item->mulai }}
                         </td>
                         <td class="px-6 py-4">
-                            2024-01-25
+                            {{ $item->selesai }}
                         </td>
                         <td class="px-6 py-4">
-                            Offline
+                            @if ($item->status_gelombang_pembayaran == 1)
+                            <span class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">Aktif</span>
+                            @else
+                            <span class="bg-red-200 text-red-600 py-1 px-3 rounded-full text-xs">Tidak Aktif</span>
+                            @endif
                         </td>
                         <td class="px-6 py-4">
-                            <a href="/admin/olimpiade/gelombang-pembayaran/edit"
+                            <a href="{{ route('olimpiade.gelombang_pembayaran.edit', $item->id_gelombang) }}"
                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
+                            <a href=" {{ route('olimpiade.gelombang_pembayaran.delete', $item->id_gelombang) }}" class="font-medium text-red-600 dark:text-red-500 hover:underline" data-confirm-delete="true">Hapus</a>
                         </td>
-                    </tr>
-                    <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <td class="px-6 py-4">
-                            2
-                        </td>
-                        <td scope="row" class="px-6 py-4 text-gray-900">
-                            Gelombang 2
-                        </td>
-                        <td class="px-6 py-4">
-                            Rp 170.000
-                        </td>
-                        <td class="px-6 py-4">
-                            2023-12-04
-                        </td>
-                        <td class="px-6 py-4">
-                            2024-01-25
-                        </td>
-                        <td class="px-6 py-4">
-                            Offline
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="/admin/olimpiade/gelombang-pembayaran/edit"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
-                        </td>
-                    </tr>
-                    <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <td class="px-6 py-4">
-                            3
-                        </td>
-                        <td scope="row" class="px-6 py-4 text-gray-900">
-                            Gelombang 3
-                        </td>
-                        <td class="px-6 py-4">
-                            Rp 170.000
-                        </td>
-                        <td class="px-6 py-4">
-                            2023-12-04
-                        </td>
-                        <td class="px-6 py-4">
-                            2024-01-25
-                        </td>
-                        <td class="px-6 py-4">
-                            Offline
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="/admin/olimpiade/gelombang-pembayaran/edit"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                            <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
