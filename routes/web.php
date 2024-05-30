@@ -181,7 +181,7 @@ Route::get('/admin/main/settings', function () {
 });
 
 // Olimpiade
-Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' =>'olimpiade'], function () {
+Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' => 'olimpiade'], function () {
     Route::group(['as' => 'cabang.', 'prefix' => '/cabang'], function () {
         Route::get('/data', [CabangsController::class, 'index'])->name('index');
         Route::get('/add', [CabangsController::class, 'create'])->name('create');
@@ -225,6 +225,7 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' =>'o
         Route::get('/edit/{sesis}', [SesisController::class, 'edit'])->name('edit');
         Route::put('/update/{sesis}', [SesisController::class, 'update'])->name('update');
         Route::delete('/delete/{sesis}', [SesisController::class, 'destroy'])->name('delete');
+    });
 
     Route::group(['as' => 'gelombang_pembayaran.', 'prefix' => '/gelombang-pembayaran'], function () {
         Route::get('/data', [GelombangPembayaransController::class, 'index'])->name('index');
