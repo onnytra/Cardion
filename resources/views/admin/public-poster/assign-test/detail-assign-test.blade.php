@@ -34,19 +34,58 @@
         <div class="card-header flex flex-row justify-between items-center">
             <h1 class="h6">Daftar Peserta Public Poster</h1>
             <button>
-                <a href="/admin/public-poster/ujian/tambah-peserta" class="btn-bs-dark">
+                <a href="" id="modal-box" class="btn-bs-dark">
                     <i class="fad fa-plus mr-2 leading-none"></i>
                     Tambah Peserta Public Poster</a>
             </button>
+            <div id="modal" class="fixed z-10 inset-0 top-20 overflow-y-auto hidden" aria-labelledby="modal-title"
+                role="dialog" aria-modal="true">
+                <div class="flex items-end justify-center pt-24 px-4 pb-20 text-center">
+                    <div class="fixed inset-0 bg-gray-200 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+                    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                    <div
+                        class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                        <form action="">
+                            <div class="bg-white px-4 pt-2">
+                                <div class="sm:flex sm:items-start">
+                                    <div class="cart mt-1 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                        <div class="card-header">
+                                            <h1 class="h6">Tambah Peserta</h1>
+                                        </div>
+                                        <div class="card-body relative overflow-x-visible sm:rounded-lg">
+                                            <div class="w-96 h-56 text-sm text-left text-gray-600">
+                                                <select id="listPeserta" name="peserta" multiple>
+                                                    <option class="font-medium text-sm">Select all</option>
+                                                    <option class="font-medium text-sm">Adi</option>
+                                                    <option class="font-medium text-sm">Bagas</option>
+                                                    <option class="font-medium text-sm">Bagas</option>
+                                                    <option class="font-medium text-sm">Bagas</option>
+                                                    <option class="font-medium text-sm">Bagas</option>
+                                                    <option class="font-medium text-sm">Bagas</option>
+                                                    <option class="font-medium text-sm">Bagas</option>
+                                                    <option class="font-medium text-sm">Bagas</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-gray-50 px-4 py-3 flex flex-row-reverse gap-2">
+                                <button type="button" class="btn-bs-dark" id="close-modal">
+                                    batal
+                                </button>
+                                <button>
+                                    <a href="#" type="submit" class="btn-indigo">simpan</a>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="relative overflow-x-auto sm:rounded-lg" id="tab-1">
-            <div class="flex justify-end items-center my-4">
-                <label for="search" class="text-sm mr-2">Search :</label>
-                <input type="search" name="search" id="search"
-                    class="mr-5 p-1 border border-gray w-56 shadow-sm text-sm rounded-md">
-            </div>
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <div class="relative overflow-x-auto sm:rounded-lg text-sm p-10" id="tab-1">
+            <table id="datatable" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
@@ -163,26 +202,6 @@
 
                 </tbody>
             </table>
-
-            <div class="flex justify-end my-6 mr-5">
-                <div class="flex flex-col items-center">
-                    <span class="text-sm text-gray-700 dark:text-gray-400">
-                        Showing <span class="font-semibold text-gray-900 dark:text-white">1</span> to <span
-                            class="font-semibold text-gray-900 dark:text-white">10</span> of <span
-                            class="font-semibold text-gray-900 dark:text-white">100</span> Entries
-                    </span>
-                    <div class="inline-flex mt-2 gap-1 xs:mt-0">
-                        <button class="btn-bs-dark">
-                            <i class="fad fa-angle-left mr-2 leading-none"></i>
-                            Prev
-                        </button>
-                        <button class="btn-bs-dark">
-                            Next
-                            <i class="fad fa-angle-right ml-2 leading-none"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
         </div>
 
     </div>

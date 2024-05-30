@@ -1,5 +1,4 @@
-<div
-    class="md:fixed md:w-full md:top-0 md:z-20 flex flex-row flex-wrap items-center bg-white p-6 border-b border-gray-300">
+<div class="fixed w-full top-0 z-20 flex flex-row flex-wrap items-center bg-white p-6 border-b border-gray-300">
 
     <!-- logo -->
     <div>

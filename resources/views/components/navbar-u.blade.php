@@ -1,5 +1,5 @@
-<div
-    class="md:fixed md:w-full md:top-0 md:z-20 flex flex-row flex-wrap items-center bg-white p-6 border-b border-gray-300">
+<div id="navbar-u"
+    class="fixed w-full top-0 z-20 flex flex-row flex-wrap items-center bg-white p-6 border-b border-gray-300">
 
     <!-- logo -->
     <div>
@@ -27,10 +27,10 @@
                 class="{{ Str::of(url()->current())->contains('dashboard') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ Str::of(url()->current())->contains('dashboard') ? 'page' : false }}">Dashboard</a>
             <a href="{{ Str::of(url()->current())->contains('olympiad') ? '/olympiad/pembayaran' : '/public-poster/pembayaran' }}"
-                class="{{ Str::of(url()->current())->contains('pembayaran') ? 'bg-gray-900 text-white' : 'text-gray-400 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium pointer-events-none"
+                class="{{ Str::of(url()->current())->contains('pembayaran') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ Str::of(url()->current())->contains('pembayaran') ? 'page' : false }}">Pembayaran</a>
             <a href="{{ Str::of(url()->current())->contains('olympiad') ? '/olympiad/registrasi' : '/public-poster/registrasi' }}"
-                class="{{ Str::of(url()->current())->contains('registrasi') ? 'bg-gray-900 text-white' : 'text-gray-400 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium pointer-events-none"
+                class="{{ Str::of(url()->current())->contains('registrasi') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ Str::of(url()->current())->contains('registrasi') ? 'page' : false }}">Registrasi</a>
             <a href="{{ Str::of(url()->current())->contains('olympiad') ? '/olympiad/cetak-kartu' : '/public-poster/cetak-kartu' }}"
                 class="{{ Str::of(url()->current())->contains('cetak-kartu') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
@@ -38,15 +38,22 @@
             <a href="{{ Str::of(url()->current())->contains('olympiad') ? '/olympiad/sertifikat' : '/public-poster/sertifikat' }}"
                 class="{{ Str::of(url()->current())->contains('sertifikat') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ Str::of(url()->current())->contains('sertifikat') ? 'page' : false }}">Sertifikat</a>
-            <a href="{{ Str::of(url()->current())->contains('olympiad') ? '/olympiad/ujian' : '/public-poster/ujian' }}"
+            @if(Str::of(url()->current())->contains('olympiad'))
+            <a href="/olympiad/ujian"
                 class="{{ Str::of(url()->current())->contains('ujian') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ Str::of(url()->current())->contains('ujian') ? 'page' : false }}">Ujian</a>
-            <a href="{{ Str::of(url()->current())->contains('olympiad') ? '/olympiad/pengumuman' : '/public-poster/pengumuman' }}"
+            <a href="/olympiad/pengumuman"
                 class="{{ Str::of(url()->current())->contains('pengumuman') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ Str::of(url()->current())->contains('pengumuman') ? 'page' : false }}">Pengumuman</a>
             <a href="https://instagram.com/cardion.2024?igshid=MWZjMTM2ODFkZg==" target="_blank"
                 class="text-gray-600 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Berita
                 Terbaru</a>
+            @elseif(Str::of(url()->current())->contains('public-poster'))
+            <a href="/public-poster/pengumpulan-karya"
+                class="{{ Str::of(url()->current())->contains('pengumpulan-karya') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
+                aria-current="{{ Str::of(url()->current())->contains('pengumpulan-karya') ? 'page' : false }}">Pengumpulan
+                Karya</a>
+            @endif
         </div>
         <!-- end left -->
 

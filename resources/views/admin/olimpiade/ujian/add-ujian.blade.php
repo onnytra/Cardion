@@ -18,29 +18,32 @@
                         <input type="text" name="judul" id="judul" value="{{ old('judul') }}"
                             class="p-2 border border-gray w-full lg:w-full shadow-sm text-sm rounded-md" required>
                     </div>
-                    <hr>
-                    <div class="flex items-center gap-4">
-                        <div class="w-56 ">
-                            <label for="deskripsi" class="block text-sm font-medium text-gray-600">Deskripsi</label>
+
+                    <div>
+                        <div class="w-48 mb-4">
+                            <label for="classic-editor"
+                                class="block text-sm font-medium text-gray-600">Deskripsi*</label>
                         </div>
-                        <textarea type="text" name="deskripsi" id="deskripsi"
-                            class="p-2 border border-gray w-full lg:w-full shadow-sm text-sm rounded-md">{{ old('deskripsi') }}</textarea>
+                        <textarea type="text" name="deskripsi" id="classic-editor"
+                            class="flex-grow w-full shadow-sm text-sm rounded-md" required></textarea>
                     </div>
-                    <hr>
-                    <div class="flex items-center gap-4">
-                        <div class="w-56 ">
-                            <label for="peraturan" class="block text-sm font-medium text-gray-600">Peraturan</label>
+
+                    <div>
+                        <div class="w-48 mb-4">
+                            <label for="classic-editor2"
+                                class="block text-sm font-medium text-gray-600">Pengaturan*</label>
                         </div>
-                        <textarea type="text" name="peraturan" id="peraturan"
-                            class="p-2 border border-gray w-full lg:w-full shadow-sm text-sm rounded-md">{{ old('peraturan') }}</textarea>
+                        <textarea type="text" name="pengaturan" id="classic-editor2"
+                            class="flex-grow w-full shadow-sm text-sm rounded-md" required></textarea>
                     </div>
-                    <hr>
-                    <div class="flex items-center gap-4">
-                        <div class="w-56 ">
-                            <label for="group_wa" class="block text-sm font-medium text-gray-600">Group WA</label>
+
+                    <div>
+                        <div class="w-48 mb-4">
+                            <label for="classic-editor3" class="block text-sm font-medium text-gray-600">Group
+                                WA*</label>
                         </div>
-                        <textarea type="text" name="group_wa" id="group_wa"
-                            class="p-2 border border-gray w-full lg:w-full shadow-sm text-sm rounded-md">{{ old('group_wa') }}</textarea>
+                        <textarea type="text" name="group_wa" id="classic-editor3"
+                            class="flex-grow w-full shadow-sm text-sm rounded-md" required></textarea>
                     </div>
                     <hr>
                     <div class="flex items-center gap-4">

@@ -17,67 +17,32 @@
                         <input type="text" name="judul" id="judul"
                             class="p-2 border border-gray w-full lg:w-full shadow-sm text-sm rounded-md" required>
                     </div>
-                    <div class="flex items-center gap-4">
-                        <div class="w-56 ">
-                            <label for="judul_inggris" class="block text-sm font-medium text-gray-600">Judul
-                                (Inggris)</label>
+
+                    <div>
+                        <div class="w-48 mb-4">
+                            <label for="classic-editor"
+                                class="block text-sm font-medium text-gray-600">Deskripsi*</label>
                         </div>
-                        <input type="text" name="judul_inggris" id="judul_inggris"
-                            class="p-2 border border-gray w-full lg:w-full shadow-sm text-sm rounded-md">
+                        <textarea type="text" name="deskripsi" id="classic-editor"
+                            class="flex-grow w-full shadow-sm text-sm rounded-md" required></textarea>
                     </div>
 
-                    <hr>
-
-                    <div class="flex items-center gap-4">
-                        <div class="w-56 ">
-                            <label for="deskripsi" class="block text-sm font-medium text-gray-600">Deskripsi</label>
+                    <div>
+                        <div class="w-48 mb-4">
+                            <label for="classic-editor2"
+                                class="block text-sm font-medium text-gray-600">Pengaturan*</label>
                         </div>
-                        <textarea type="text" name="deskripsi" id="deskripsi"
-                            class="p-2 border border-gray w-full lg:w-full shadow-sm text-sm rounded-md"></textarea>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <div class="w-56 ">
-                            <label for="deskripsi_inggris" class="block text-sm font-medium text-gray-600">Deskripsi
-                                (Inggris)</label>
-                        </div>
-                        <textarea type="text" name="deskripsi_inggris" id="deskripsi_inggris"
-                            class="p-2 border border-gray w-full lg:w-full shadow-sm text-sm rounded-md"></textarea>
+                        <textarea type="text" name="pengaturan" id="classic-editor2"
+                            class="flex-grow w-full shadow-sm text-sm rounded-md" required></textarea>
                     </div>
 
-                    <hr>
-
-                    <div class="flex items-center gap-4">
-                        <div class="w-56 ">
-                            <label for="peraturan" class="block text-sm font-medium text-gray-600">Peraturan</label>
+                    <div>
+                        <div class="w-48 mb-4">
+                            <label for="classic-editor3" class="block text-sm font-medium text-gray-600">Group
+                                WA*</label>
                         </div>
-                        <textarea type="text" name="peraturan" id="peraturan"
-                            class="p-2 border border-gray w-full lg:w-full shadow-sm text-sm rounded-md"></textarea>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <div class="w-56 ">
-                            <label for="peraturan_inggris" class="block text-sm font-medium text-gray-600">Peraturan
-                                (Inggris)</label>
-                        </div>
-                        <textarea type="text" name="peraturan_inggris" id="peraturan_inggris"
-                            class="p-2 border border-gray w-full lg:w-full shadow-sm text-sm rounded-md"></textarea>
-                    </div>
-
-                    <hr>
-
-                    <div class="flex items-center gap-4">
-                        <div class="w-56 ">
-                            <label for="group_wa" class="block text-sm font-medium text-gray-600">Group WA</label>
-                        </div>
-                        <textarea type="text" name="group_wa" id="group_wa"
-                            class="p-2 border border-gray w-full lg:w-full shadow-sm text-sm rounded-md"></textarea>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <div class="w-56 ">
-                            <label for="group_wa_inggris" class="block text-sm font-medium text-gray-600">Group WA
-                                (Inggris)</label>
-                        </div>
-                        <textarea type="text" name="group_wa_inggris" id="group_wa_inggris"
-                            class="p-2 border border-gray w-full lg:w-full shadow-sm text-sm rounded-md"></textarea>
+                        <textarea type="text" name="group_wa" id="classic-editor3"
+                            class="flex-grow w-full shadow-sm text-sm rounded-md" required></textarea>
                     </div>
 
                     <hr>
