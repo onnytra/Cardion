@@ -2748,6 +2748,22 @@ if (document.getElementById("bg-modal") != null) {
     });
 }
 
+function showModal(i) {
+    const modal = document.getElementById(`modal${i}`);
+
+    if (modal) {
+        modal.classList.remove("hidden");
+    }
+}
+
+function hideModal(i) {
+    const modal = document.getElementById(`modal${i}`);
+
+    if (modal) {
+        modal.classList.add("hidden");
+    }
+}
+
 /* PrismJS 1.19.0
 https://prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+clike+javascript+http+javadoclike+json+jsonp+json5+markup-templating+php+phpdoc+plsql+python+sass+scss+sql&plugins=unescaped-markup+normalize-whitespace+toolbar+copy-to-clipboard */
 var _self =

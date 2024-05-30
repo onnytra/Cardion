@@ -128,13 +128,16 @@
                                 -
                             </td> --}}
                             <td class="px-6 py-4">
-                                <a href="#" id="modal-box" class="font-medium text-gray-900">
+                                <a id="modal-box{{ $data->id_peserta }}" onclick="showModal({{ $data->id_peserta }})"
+                                    class="font-medium text-gray-900 cursor-pointer">
                                     <i class="fad fa-ellipsis-h mr-2 leading-none"></i>
                                 </a>
-                                <div id="modal" class="absolute hidden" aria-labelledby="modal-title" role="dialog"
-                                    aria-modal="true">
+                                <div id="modal{{ $data->id_peserta }}" class="absolute hidden z-10"
+                                    aria-labelledby="modal-title" role="dialog" aria-modal="true">
                                     <div class="flex items-end justify-center text-center">
-                                        <div id="bg-modal" class="fixed inset-0" aria-hidden="true"></div>
+                                        <div id="bg-modal{{  $data->id_peserta }}"
+                                            onclick="hideModal({{ $data->id_peserta }})" class="fixed inset-0"
+                                            aria-hidden="true"></div>
                                         <div
                                             class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all">
                                             <div class="bg-white">
@@ -244,13 +247,16 @@
                                 -
                             </td> --}}
                             <td class="px-6 py-4">
-                                <a href="#" id="modal-box" class="font-medium text-gray-900">
+                                <a id="modal-box{{ $data->id_peserta }}" onclick="showModal({{ $data->id_peserta }})"
+                                    class="font-medium text-gray-900 cursor-pointer">
                                     <i class="fad fa-ellipsis-h mr-2 leading-none"></i>
                                 </a>
-                                <div id="modal" class="absolute hidden" aria-labelledby="modal-title" role="dialog"
-                                    aria-modal="true">
+                                <div id="modal{{ $data->id_peserta }}" class="absolute hidden z-10"
+                                    aria-labelledby="modal-title" role="dialog" aria-modal="true">
                                     <div class="flex items-end justify-center text-center">
-                                        <div id="bg-modal" class="fixed inset-0" aria-hidden="true"></div>
+                                        <div id="bg-modal{{  $data->id_peserta }}"
+                                            onclick="hideModal({{ $data->id_peserta }})" class="fixed inset-0"
+                                            aria-hidden="true"></div>
                                         <div
                                             class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all">
                                             <div class="bg-white">
