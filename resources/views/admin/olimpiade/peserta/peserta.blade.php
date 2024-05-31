@@ -153,7 +153,7 @@
                                                             </button>
                                                             <button class="w-full mt-2">
                                                                 <a href="{{route('olimpiade.peserta.delete', $data->id_peserta)}}"
-                                                                    class="btn-bs-danger">
+                                                                    class="btn-bs-danger" data-confirm-delete="true">
                                                                     <i class="fad fa-trash mr-2 leading-none"></i>
                                                                     Hapus Peserta</a>
                                                             </button>
@@ -272,7 +272,7 @@
                                                             </button>
                                                             <button class="w-full mt-2">
                                                                 <a href="{{route('olimpiade.peserta.delete', $data->id_peserta)}}"
-                                                                    class="btn-bs-danger">
+                                                                    class="btn-bs-danger" data-confirm-delete="true">
                                                                     <i class="fad fa-trash mr-2 leading-none"></i>
                                                                     Hapus Peserta</a>
                                                             </button>

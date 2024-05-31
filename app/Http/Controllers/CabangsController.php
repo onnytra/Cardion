@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\cabangs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use PhpParser\Node\Stmt\TryCatch;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -95,14 +96,20 @@ class CabangsController extends Controller
         $cabangs->cabang = $request->nama;
         $cabangs->status_cabang = $request->status_cabang ? 1 : 0;
         $cabangs->event = $this->event;
-        $cabang = $cabangs->save();
+        $cabangs->save();
         toast('Cabang Berhasil Diperbarui','success');
         return redirect()->route($this->event.'.cabang.index');
     }
 
     public function destroy(cabangs $cabangs)
     {
-        $cabangs->delete();
+        //make this with try catch
+        try {
+            $cabangs->delete();
+        } catch (\Throwable $th) {
+            toast('Cabang Gagal Dihapus, Check Apakah Cabang Memiliki Rayon','error');
+            return redirect()->route($this->event.'.cabang.index');
+        }
         toast('Cabang Berhasil Dihapus','success');
         return redirect()->route($this->event.'.cabang.index');
     }

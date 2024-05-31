@@ -79,7 +79,7 @@
                                                         </button>
                                                         <button class="w-full mt-2">
                                                             <a href="{{route('olimpiade.rayon.delete', $data->id_rayon)}}"
-                                                                class="btn-bs-danger">
+                                                                class="btn-bs-danger" data-confirm-delete="true">
                                                                 <i class="fad fa-trash mr-2 leading-none"></i>
                                                                 Hapus Rayon</a>
                                                         </button>

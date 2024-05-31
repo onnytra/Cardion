@@ -31,9 +31,9 @@
                     <div>
                         <div class="w-48 mb-4">
                             <label for="classic-editor2"
-                                class="block text-sm font-medium text-gray-600">Pengaturan*</label>
+                                class="block text-sm font-medium text-gray-600">Peraturan*</label>
                         </div>
-                        <textarea type="text" name="pengaturan" id="classic-editor2"
+                        <textarea type="text" name="peraturan" id="classic-editor2"
                             class="flex-grow w-full shadow-sm text-sm rounded-md" required></textarea>
                     </div>
 

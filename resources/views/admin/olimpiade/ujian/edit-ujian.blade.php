@@ -26,16 +26,16 @@
                                 class="block text-sm font-medium text-gray-600">Deskripsi*</label>
                         </div>
                         <textarea type="text" name="deskripsi" id="classic-editor"
-                            class="flex-grow w-full shadow-sm text-sm rounded-md" required></textarea>
+                            class="flex-grow w-full shadow-sm text-sm rounded-md" required>{{$ujians->deskripsi}}</textarea>
                     </div>
 
                     <div>
                         <div class="w-48 mb-4">
                             <label for="classic-editor2"
-                                class="block text-sm font-medium text-gray-600">Pengaturan*</label>
+                                class="block text-sm font-medium text-gray-600">Peraturan*</label>
                         </div>
-                        <textarea type="text" name="pengaturan" id="classic-editor2"
-                            class="flex-grow w-full shadow-sm text-sm rounded-md" required></textarea>
+                        <textarea type="text" name="peraturan" id="classic-editor2"
+                            class="flex-grow w-full shadow-sm text-sm rounded-md" required>{{$ujians->peraturan}}</textarea>
                     </div>
 
                     <div>
@@ -44,7 +44,7 @@
                                 WA*</label>
                         </div>
                         <textarea type="text" name="group_wa" id="classic-editor3"
-                            class="flex-grow w-full shadow-sm text-sm rounded-md" required></textarea>
+                            class="flex-grow w-full shadow-sm text-sm rounded-md" required>{{$ujians->group_wa}}</textarea>
                     </div>
                     <hr>
                     <div class="flex items-center gap-4">
@@ -171,7 +171,7 @@
                 <button>
                     <a href="{{url()->previous()}}" type="button" class="btn-bs-secondary mr-3">Kembali</a>
                 </button>
-                <button type="submit" class="btn-bs-dark" onclick="confirmInput(event)">
+                <button type="submit" class="btn-bs-dark" onclick="confirmEdit(event)">
                     Simpan
                 </button>
             </div>
