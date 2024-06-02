@@ -232,7 +232,7 @@
             <button>
                 <a href="{{url()->previous()}}" type="button" class="btn-bs-secondary mr-3">kembali</a>
             </button>
-            <button type="submit" class="btn-bs-dark" onclick="confirmInput(event)">
+            <button type="submit" class="btn-bs-dark" onclick="confirmEdit(event)">
                 Simpan
             </button>
         </div>

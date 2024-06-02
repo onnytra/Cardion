@@ -58,7 +58,7 @@
                             {{ $item->selesai }}
                         </td>
                         <td class="px-6 py-4">
-                            @if ($item->status_gelombang_pembayaran == 1)
+                            @if ($item->status_gelombang_pembayaran )
                             <span class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">Aktif</span>
                             @else
                             <span class="bg-red-200 text-red-600 py-1 px-3 rounded-full text-xs">Tidak Aktif</span>

@@ -1,8 +1,8 @@
 <div id="sideBar"
     class="relative flex flex-col flex-wrap bg-white border-r border-gray-300 p-6 flex-none w-64 lg:-ml-64 lg:fixed lg:top-0 lg:z-30 lg:h-screen lg:shadow-xl animated faster">
 
-    @if(request()->is('admin') | request()->is('admin/account') | request()->is('admin/main/' . $slot) |
-    Str::of(url()->current())->contains('main'))
+    @if(request()->is('admin') | request()->is('admin/account') | Str::of(url()->current())->contains('auth/admin') |
+    Str::of(url()->current())->contains('dashboard'))
     <div class="flex flex-col pt-20">
         <div class="text-right hidden lg:block mb-4">
             <button id="sideBarHideBtn">
@@ -16,12 +16,12 @@
             dashboard
         </a>
         <p class="uppercase text-xs text-gray-600 mb-4 mt-4 tracking-wider">navigation</p>
-        <a href="/admin/main/user"
+        <a href="{{route('dashboard.user.index')}}"
             class="{{ request()->is('admin/main/user') | Str::of(url()->current())->contains('user/') ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-user text-xs mr-2"></i>
             user
         </a>
-        <a href="/admin/main/user-type"
+        <a href="{{route('dashboard.user-type.index')}}"
             class=" {{ request()->is('admin/main/user-type') | Str::of(url()->current())->contains('user-type/') ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-user-tag text-xs mr-2"></i>
             user type
@@ -38,7 +38,7 @@
         </a>
     </div>
 
-    @elseif(request()->is('admin/olimpiade') | request()->is('admin/olimpiade/' . $slot) |
+    @elseif(request()->is('admin/olimpiade') |
     Str::of(url()->current())->contains('olimpiade'))
     <div class="flex flex-col pt-20">
         <div class="text-right hidden lg:block mb-4">
@@ -105,8 +105,8 @@
         </a>
     </div>
 
-    @elseif(request()->is('admin/public-poster') | request()->is('admin/public-poster/' . $slot) |
-    Str::of(url()->current())->contains('public-poster'))
+    @elseif(request()->is('admin/public-poster') |
+    Str::of(url()->current())->contains('poster'))
     <div class="flex flex-col pt-20">
         <div class="text-right hidden lg:block mb-4">
             <button id="sideBarHideBtn">

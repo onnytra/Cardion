@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <form id="main-form" action="{{ route('dashboard.user.update', $users->id_user) }}" method="POST">
+        <form id="main-form" action="{{ route('auth.admin.update-profile', auth()->user()->id_user) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="card-body relative overflow-x-auto sm:rounded-lg">
@@ -40,26 +40,14 @@
                             <div class="w-40">
                                 <label for="nama" class="block text-sm text-right font-medium text-gray-600">User*</label>
                             </div>
-                            <input type="text" name="nama" id="nama" value="{{ $users->name }}"
+                            <input type="text" name="nama" id="nama" value="{{ auth()->user()->name }}"
                                 class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
-                        </div>
-                        <div class="flex items-center gap-4 mb-5">
-                            <div class="w-40">
-                                <label for="user_type" class="block text-sm text-right font-medium text-gray-600">User Type*</label>
-                            </div>
-                            <select id="user_type" name="user_type"
-                                class="btn-gray w-96 lg:w-full shadow-sm text-sm text-left focus:outline-none focus:shadow-outline">
-                                <option class="font-medium text-sm" value="#">...</option>
-                                @foreach ($roles as $role)
-                                <option class="font-medium text-sm" value="{{$role->name}}"{{ $users->role == $role->name ? 'selected' : '' }}>{{ $role->name }}</option>
-                                @endforeach
-                            </select>
                         </div>
                         <div class="flex items-center gap-4 mb-5">
                             <div class="w-40">
                                 <label for="email" class="block text-sm text-right font-medium text-gray-600">Email*</label>
                             </div>
-                            <input type="email" name="email" id="email" value="{{ $users->email }}"
+                            <input type="email" name="email" id="email" value="{{ auth()->user()->email }}"
                                 class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
                         </div>
                     </div>
@@ -96,8 +84,7 @@
             </div>
         </form>
     </div>
-
-    {{-- <script>
+    <script>
         function showTab(event, tabId) {
             event.preventDefault();
             var tabs = document.getElementsByClassName('form-tab');
@@ -113,5 +100,5 @@
             event.currentTarget.classList.add('text-blue-600', 'border-blue-600', 'active');
             event.currentTarget.classList.remove('hover:text-gray-600', 'hover:border-gray-300');
         }
-    </script> --}}
+    </script>
 </x-layout>

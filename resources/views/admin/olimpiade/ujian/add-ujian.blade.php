@@ -103,7 +103,7 @@
                         <div class="w-full">
                             <div
                                 class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                                <input type="checkbox" name="soal_acak" id="toggle" value="1" {{ old('soal_acak') == 1 ? 'checked' : '' }}
+                                <input type="checkbox" name="soal_acak" id="toggle" value="1" {{ old('soal_acak') ? 'checked' : '' }}
                                     class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer transition-colors duration-500" />
                                 <label for="toggle"
                                     class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer transition-colors duration-500"></label>
@@ -141,7 +141,7 @@
                         <div class="w-full">
                             <div
                                 class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                                <input type="checkbox" name="status_ujian" id="toggle" value="1" {{ old('status_ujian') == 1 ? 'checked' : '' }}
+                                <input type="checkbox" name="status_ujian" id="toggle" value="1" {{ old('status_ujian') ? 'checked' : '' }}
                                     class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer transition-colors duration-500" />
                                 <label for="toggle"
                                     class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer transition-colors duration-500"></label>

@@ -15,6 +15,7 @@ class User extends Authenticatable
 
     protected $guarded = [];
     protected $primaryKey = 'id_user';
+    protected $table = 'users';
     public $incrementing = false;
     protected $hidden = [
         'password',

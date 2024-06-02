@@ -103,14 +103,13 @@ class CabangsController extends Controller
 
     public function destroy(cabangs $cabangs)
     {
-        //make this with try catch
         try {
             $cabangs->delete();
+            toast('Cabang Berhasil Dihapus','success');
+            return redirect()->route($this->event.'.cabang.index');
         } catch (\Throwable $th) {
             toast('Cabang Gagal Dihapus, Check Apakah Cabang Memiliki Rayon','error');
             return redirect()->route($this->event.'.cabang.index');
         }
-        toast('Cabang Berhasil Dihapus','success');
-        return redirect()->route($this->event.'.cabang.index');
     }
 }

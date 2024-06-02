@@ -8,6 +8,10 @@ use App\Http\Controllers\UjiansController;
 use App\Http\Controllers\SesisController;
 use App\Http\Controllers\GelombangPembayaransController;
 use App\Http\Controllers\PembayaransController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserTypesController;
+use App\Http\Controllers\auth\AuthController;
+use App\Http\Controllers\MainDashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -159,52 +163,7 @@ Route::get('/public-poster/pengumpulan-karya/edit', function () {
     return view('publicposter/pengumpulan-karya/edit-pengumpulan-karya', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'edit']);
 });
 
-// Admin Site
-Route::get('/admin/login', function () {
-    return view('admin/login', ['title' => 'Login', 'slug' => 'login']);
-});
-
-Route::get('/admin/logout', function () {
-    return view('admin/login', ['title' => 'Login', 'slug' => 'logout']);
-});
-
-Route::get('/admin/register', function () {
-    return view('admin/register', ['title' => 'Register', 'slug' => 'register']);
-});
-
-Route::get('/admin/account', function () {
-    return view('admin/account', ['title' => 'Akun Saya', 'slug' => 'account']);
-});
-
 // Admin Dashboard
-Route::get('/admin', function () {
-    return view('admin/main/dashboard', ['title' => 'Main Dashboard', 'slug' => 'admin']);
-});
-
-Route::get('/admin/main/user', function () {
-    return view('admin/main/user/user', ['title' => 'User', 'slug' => 'user']);
-});
-
-Route::get('/admin/main/user/add', function () {
-    return view('admin/main/user/add-user', ['title' => 'Tambah User', 'slug' => 'add']);
-});
-
-Route::get('/admin/main/user/edit', function () {
-    return view('admin/main/user/edit-user', ['title' => 'Edit User', 'slug' => 'edit']);
-});
-
-Route::get('/admin/main/user-type', function () {
-    return view('admin/main/user-type/user-type', ['title' => 'User Type', 'slug' => 'user-type']);
-});
-
-Route::get('/admin/main/user-type/add', function () {
-    return view('admin/main/user-type/add-user-type', ['title' => 'Tambah User Type', 'slug' => 'add']);
-});
-
-Route::get('/admin/main/user-type/edit', function () {
-    return view('admin/main/user-type/edit-user-type', ['title' => 'Edit User Type', 'slug' => 'edit']);
-});
-
 Route::get('/admin/main/sertifikat', function () {
     return view('admin/main/sertifikat', ['title' => 'Sertifikat', 'slug' => 'sertifikat']);
 });
@@ -212,7 +171,40 @@ Route::get('/admin/main/sertifikat', function () {
 Route::get('/admin/main/settings', function () {
     return view('admin/main/settings', ['title' => 'Settings', 'slug' => 'settings']);
 });
+//Auth
+Route::group(['as' => 'auth.', 'prefix' => '/auth'], function () {
+    Route::group(['as' => 'admin.', 'prefix' => '/admin'], function () {
+        Route::get('/login', [AuthController::class, 'admin_login_page'])->name('login');
+        Route::post('/login', [AuthController::class, 'admin_login_process'])->name('login.process');
+        Route::get('/logout', [AuthController::class, 'admin_logout'])->name('logout');
+        Route::get('/edit-profile/{users}', [AuthController::class, 'edit_profile'])->name('edit-profile');
+        Route::put('/update-profile/{users}', [AuthController::class, 'update_profile'])->name('update-profile');
+    });
+});
+//Main Dashboard
+Route::group(['as' => 'dashboard.', 'prefix' => '/admin/main'], function () {
+    Route::get('/dashboard', [MainDashboardController::class, 'index'])->name('index');
+    Route::get('/olimpiade', [MainDashboardController::class, 'dashboard_olimpiade'])->name('olimpiade');
+    Route::get('/poster', [MainDashboardController::class, 'dashboard_poster'])->name('poster');
+    
+    Route::group(['as' => 'user.', 'prefix' => '/user'], function () {
+        Route::get('/data', [UserController::class, 'index'])->name('index');
+        Route::get('/add', [UserController::class, 'create'])->name('create');
+        Route::post('/store', [UserController::class, 'store'])->name('store');
+        Route::get('/edit/{users}', [UserController::class, 'edit'])->name('edit');
+        Route::put('/update/{users}', [UserController::class, 'update'])->name('update');
+        Route::delete('/delete/{users}', [UserController::class, 'destroy'])->name('delete');
+    });
 
+    Route::group(['as' => 'user-type.', 'prefix' => '/user-type'], function () {
+        Route::get('/data', [UserTypesController::class, 'index'])->name('index');
+        Route::get('/add', [UserTypesController::class, 'create'])->name('create');
+        Route::post('/store', [UserTypesController::class, 'store'])->name('store');
+        Route::get('/edit/{role}', [UserTypesController::class, 'edit'])->name('edit');
+        Route::put('/update/{role}', [UserTypesController::class, 'update'])->name('update');
+        Route::delete('/delete/{role}', [UserTypesController::class, 'destroy'])->name('delete');
+    });
+});
 // Olimpiade
 Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' => 'olimpiade'], function () {
     Route::group(['as' => 'cabang.', 'prefix' => '/cabang'], function () {
@@ -281,25 +273,6 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' => '
 
 Route::get('/get-rayons', [RayonsController::class, 'getRayons']);
 
-Route::get('/admin/olimpiade', function () {
-    return view('admin/olimpiade/dashboard', ['title' => 'Dashboard Olimpiade', 'slug' => 'olimpiade']);
-});
-
-Route::get('/admin/olimpiade/peserta', function () {
-    return view('admin/olimpiade/peserta/peserta', ['title' => 'Peserta', 'slug' => 'peserta']);
-});
-
-Route::get('/admin/olimpiade/tambah-peserta-offline', function () {
-    return view('admin/olimpiade/peserta/tambah-peserta-offline', ['title' => 'Tambah Peserta Offline', 'slug' => 'tambah-peserta-offline']);
-});
-
-Route::get('/admin/olimpiade/edit', function () {
-    return view('admin/olimpiade/peserta/edit-peserta-offline', ['title' => 'Edit Peserta Offline', 'slug' => 'edit']);
-});
-
-Route::get('/admin/olimpiade/tambah-peserta-panitia', function () {
-    return view('admin/olimpiade/peserta/tambah-peserta-panitia', ['title' => 'Tambah Peserta Panitia', 'slug' => 'tambah-peserta-panitia']);
-});
 
 Route::get('/admin/olimpiade/monitoring-ujian', function () {
     return view('admin/olimpiade/monitoring/monitoring-ujian', ['title' => 'Monitoring Ujian', 'slug' => 'monitoring-ujian']);
