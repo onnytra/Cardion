@@ -10,7 +10,7 @@
             </h2>
             <button onclick="closeWin()" class="mt-5">
                 <a class="btn-indigo">
-                    <i class="fad fa-logout mr-2 leading-none"></i>
+                    <i class="fad fa-chevron-left mr-2 leading-none"></i>
                     Kembali
                 </a>
             </button>
