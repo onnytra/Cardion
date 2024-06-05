@@ -39,7 +39,7 @@
                         class="text-xl font-andalus leading-6 text-gray-900 hover:text-red-500 transition ease-in-out">TIMELINE</a>
                     <a href="#prize"
                         class="text-xl font-andalus leading-6 text-gray-900 hover:text-red-500 transition ease-in-out">PRIZE</a>
-                    <a href="/olympiad/login"
+                    <a href="{{route('olimpiade.login')}}"
                         class="text-xl font-andalus leading-6 text-gray-900 hover:text-red-500 transition ease-in-out">LOGIN</a>
                     <a href="/olympiad/register"
                         class="text-xl font-andalus rounded-xl px-8 py-3 leading-6 text-gray-900 bg-[#D9D9D9] hover:text-white hover:bg-red-500 transition ease-in-out">REGISTER</a>

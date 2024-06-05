@@ -23,26 +23,26 @@
         <!-- left -->
         <div
             class="text-gray-600 lg:w-full lg:flex lg:flex-row lg:flex-wrap lg:gap-2 lg:justify-evenly lg:pb-10 lg:mb-10 lg:border-b lg:border-gray-200">
-            <a href="{{ Str::of(url()->current())->contains('olympiad') ? '/olympiad/dashboard' : '/public-poster/dashboard' }}"
+            <a href="{{ Str::of(url()->current())->contains('olimpiade') ? '/olimpiade/dashboard' : '/public-poster/dashboard' }}"
                 class="{{ Str::of(url()->current())->contains('dashboard') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ Str::of(url()->current())->contains('dashboard') ? 'page' : false }}">Dashboard</a>
-            <a href="{{ Str::of(url()->current())->contains('olympiad') ? '/olympiad/pembayaran' : '/public-poster/pembayaran' }}"
+            <a href="{{ Str::of(url()->current())->contains('olimpiade') ? '/olimpiade/pembayaran' : '/public-poster/pembayaran' }}"
                 class="{{ Str::of(url()->current())->contains('pembayaran') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ Str::of(url()->current())->contains('pembayaran') ? 'page' : false }}">Pembayaran</a>
-            <a href="{{ Str::of(url()->current())->contains('olympiad') ? '/olympiad/registrasi' : '/public-poster/registrasi' }}"
+            <a href="{{ Str::of(url()->current())->contains('olimpiade') ? '/olimpiade/registrasi' : '/public-poster/registrasi' }}"
                 class="{{ Str::of(url()->current())->contains('registrasi') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ Str::of(url()->current())->contains('registrasi') ? 'page' : false }}">Registrasi</a>
-            <a href="{{ Str::of(url()->current())->contains('olympiad') ? '/olympiad/cetak-kartu' : '/public-poster/cetak-kartu' }}"
+            <a href="{{ Str::of(url()->current())->contains('olimpiade') ? '/olimpiade/cetak-kartu' : '/public-poster/cetak-kartu' }}"
                 class="{{ Str::of(url()->current())->contains('cetak-kartu') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ Str::of(url()->current())->contains('cetak-kartu') ? 'page' : false }}">Cetak Kartu</a>
-            <a href="{{ Str::of(url()->current())->contains('olympiad') ? '/olympiad/sertifikat' : '/public-poster/sertifikat' }}"
+            <a href="{{ Str::of(url()->current())->contains('olimpiade') ? '/olimpiade/sertifikat' : '/public-poster/sertifikat' }}"
                 class="{{ Str::of(url()->current())->contains('sertifikat') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ Str::of(url()->current())->contains('sertifikat') ? 'page' : false }}">Sertifikat</a>
-            @if(Str::of(url()->current())->contains('olympiad'))
-            <a href="/olympiad/ujian"
+            @if(Str::of(url()->current())->contains('olimpiade'))
+            <a href="/olimpiad/ujian"
                 class="{{ Str::of(url()->current())->contains('ujian') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ Str::of(url()->current())->contains('ujian') ? 'page' : false }}">Ujian</a>
-            <a href="/olympiad/pengumuman"
+            <a href="/olimpiad/pengumuman"
                 class="{{ Str::of(url()->current())->contains('pengumuman') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ Str::of(url()->current())->contains('pengumuman') ? 'page' : false }}">Pengumuman</a>
             <a href="https://instagram.com/cardion.2024?igshid=MWZjMTM2ODFkZg==" target="_blank"
@@ -66,7 +66,13 @@
                         <img class="w-full h-full object-cover" src="../../../img/user.svg">
                     </div>
                     <div class="ml-2 capitalize flex ">
-                        <h1 class="text-sm text-gray-800 font-semibold m-0 p-0 leading-none">User</h1>
+                        <h1 class="text-sm text-gray-800 font-semibold m-0 p-0 leading-none">
+                        @if (Auth::guard('peserta')->user()->nama_team == null)
+                            {{Auth::guard('peserta')->user()->nama}}
+                        @else
+                            {{Auth::guard('peserta')->user()->nama_team}}
+                        @endif
+                            </h1>
                         <i class="fad fa-chevron-down ml-2 text-xs leading-none"></i>
                     </div>
                 </button>
@@ -74,13 +80,25 @@
                 <div
                     class="text-gray-500 menu hidden md:mt-10 md:w-full rounded bg-white shadow-md absolute z-20 right-0 w-40 mt-5 py-2 animated faster">
                     <a class="px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out"
-                        href="/olympiad/account">
+                        href="
+                        @if(Str::of(url()->current())->contains('olimpiade'))
+                        {{route('olimpiade.account', Auth::guard('peserta')->user()->id_peserta)}}
+                        @else
+                        {{route('public-poster.account', Auth::guard('peserta')->user()->id_peserta)}}
+                        @endif
+                        ">
                         <i class="fad fa-user-edit text-xs mr-1"></i>
                         akun saya
                     </a>
                     <hr>
                     <a class="px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out"
-                        href="/olympiad/logout">
+                        href="
+                        @if(Str::of(url()->current())->contains('olimpiade'))
+                        {{route('olimpiade.logout')}}
+                        @else
+                        {{route('public-poster.logout')}}
+                        @endif
+                        ">
                         <i class="fad fa-user-times text-xs mr-1"></i>
                         log out
                     </a>

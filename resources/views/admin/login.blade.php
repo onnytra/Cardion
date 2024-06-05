@@ -15,7 +15,6 @@
             class="mt-10 bg-slate-100 bg-opacity-30 col-span-2 backdrop-blur-lg p-5 rounded-xl sm:mx-auto sm:w-full sm:max-w-lg">
             <h2 class="mt-2 text-center text-3xl font-bold leading-9 tracking-tight text-gray-900">Login Admin
             </h2>
-            {{-- write this error return redirect()->back()->with('error', 'Invalid credentials'); --}}
             @if (session('error'))
             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-2" role="alert">
                 <strong class="font-bold">{{ session('error') }}</strong>

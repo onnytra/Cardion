@@ -11,7 +11,12 @@ use App\Http\Controllers\PembayaransController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserTypesController;
 use App\Http\Controllers\auth\AuthController;
+use App\Http\Controllers\auth\AuthPesertaController;
 use App\Http\Controllers\MainDashboardController;
+use App\Http\Controllers\user\olimpiade\MainOlimpiadeController;
+use App\Http\Controllers\mail\MailsController;
+use Illuminate\Support\Facades\Mail;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,16 +32,8 @@ Route::get('/', function () {
     return view('index', ['title' => 'Cardion - Universitas Islam Negeri Maulana Malik ibrahim Malang', 'slug' => '/']);
 });
 
-Route::get('/olympiad', function () {
-    return view('olimpiade', ['title' => 'Science & Primary Medical Olimpiad - Cardion UIN Malang', 'slug' => 'olympiad']);
-});
-
-Route::get('/olympiad/login', function () {
-    return view('olimpiade/login', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'login']);
-});
-
-Route::get('/olympiad/logout', function () {
-    return view('olimpiade/login', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'login']);
+Route::get('/olympiade', function () {
+    return view('olimpiade', ['title' => 'Science & Primary Medical Olimpiad - Cardion UIN Malang', 'slug' => 'olympiade']);
 });
 
 Route::get('/olympiad/register', function () {
@@ -162,7 +159,19 @@ Route::get('/public-poster/pengumpulan-karya/add', function () {
 Route::get('/public-poster/pengumpulan-karya/edit', function () {
     return view('publicposter/pengumpulan-karya/edit-pengumpulan-karya', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'edit']);
 });
+Route::get('sendmail', [MailsController::class, 'index']);
+//User Olimpiade Side
+Route::group(['as' => 'olimpiade.', 'prefix' => '/olimpiade', 'event' => 'olimpiade'], function () {
+    Route::get('/login', [AuthPesertaController::class, 'login_page'])->name('login');
+    Route::post('/login', [AuthPesertaController::class, 'login_process'])->name('login.process');
+    Route::get('/logout', [AuthPesertaController::class, 'logout'])->name('logout');
+    Route::get('/register', [AuthPesertaController::class, 'register_page'])->name('register');
+    Route::post('/register', [AuthPesertaController::class, 'register_process'])->name('register.process');
+    Route::get('/account/{pesertas}', [AuthPesertaController::class, 'edit_profile'])->name('account');
+    Route::put('/account/{pesertas}', [AuthPesertaController::class, 'update_profile'])->name('account.update');
 
+    Route::get('/dashboard', [MainOlimpiadeController::class, 'index'])->name('dashboard');
+});
 // Admin Dashboard
 Route::get('/admin/main/sertifikat', function () {
     return view('admin/main/sertifikat', ['title' => 'Sertifikat', 'slug' => 'sertifikat']);
@@ -205,7 +214,7 @@ Route::group(['as' => 'dashboard.', 'prefix' => '/admin/main'], function () {
         Route::delete('/delete/{role}', [UserTypesController::class, 'destroy'])->name('delete');
     });
 });
-// Olimpiade
+// Olimpiade Dashboard
 Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' => 'olimpiade'], function () {
     Route::group(['as' => 'cabang.', 'prefix' => '/cabang'], function () {
         Route::get('/data', [CabangsController::class, 'index'])->name('index');

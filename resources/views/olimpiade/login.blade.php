@@ -16,8 +16,19 @@
             <h2 class="mt-2 text-center text-3xl font-bold leading-9 tracking-tight text-gray-900">Login
             </h2>
 
+            @if (session('error'))
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-2" role="alert">
+                <strong class="font-bold">{{ session('error') }}</strong>
+            </div>
+            @endif
+            @if(session('success'))
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-2" role="alert">
+                <strong class="font-bold">{{ session('success') }}</strong>
+            </div>
+            @endif
             <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                <form class="space-y-6" action="#" method="POST">
+                <form class="space-y-6" action="{{route('olimpiade.login.process')}}" method="POST">
+                    @csrf
                     <div>
                         <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
                         <div class="mt-2">
@@ -43,7 +54,7 @@
 
                     <div>
                         <div class="flex items-center">
-                            <input id="remember-me" name="remember-me" value="white" type="checkbox"
+                            <input id="remember-me" name="remember" type="checkbox"
                                 class="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500">
                             <label for="remember-me" class="ml-3 min-w-0 flex-1 text-gray-900">Remember Me</label>
                         </div>
@@ -59,7 +70,7 @@
 
                 <p class="mt-4 text-center text-sm text-white">
                     Don't have an account
-                    <a href="/olympiad/register"
+                    <a href="{{route('olimpiade.register')}}"
                         class="font-semibold leading-6 text-red-600 hover:text-red-500 hover:underline">Register
                         Now</a>
                 </p>
