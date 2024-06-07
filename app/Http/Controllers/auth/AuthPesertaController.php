@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\pesertas;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class AuthPesertaController extends Controller
 {
@@ -144,5 +145,63 @@ class AuthPesertaController extends Controller
 
         toast()->success('Profil berhasil diubah');
         return redirect()->route('olimpiade.dashboard');
+    }
+
+    public function forgot_password(){
+        if ($this->event == 'olimpiade') {
+            $title = 'Olimpiade | Cardion UIN Malang';
+        } else {
+            $title = 'Poster | Cardion UIN Malang';
+        }
+        $slug = 'forget-password';
+
+        return view('olimpiade.forgot_password', compact('title', 'slug'));
+    }
+
+    public function reset_password_page($token){
+        $validate = Validator::make(['token' => $token], [
+            'token' => 'required | exists:password_resets,token'
+        ]);
+
+        if ($validate->fails()) {
+            return redirect()->route('olimpiade.login')->with('error', 'Permintaan Reset Password Tidak Ditemukan');
+        }
+        $email = DB::table('password_resets')->where('token', $token)->first()->email;
+
+        if ($this->event == 'olimpiade') {
+            $title = 'Olimpiade | Cardion UIN Malang';
+        } else {
+            $title = 'Poster | Cardion UIN Malang';
+        }
+        $slug = 'reset-password';
+
+        return view('olimpiade.reset_password', compact('email', 'title', 'slug'));
+    }
+
+    public function reset_password_process(Request $request){
+        $validate = Validator::make($request->all(), [
+            'email' => 'required | email | exists:pesertas,email',
+            'password' => 'required | min:8',
+            'confirm_password' => 'required | same:password'
+        ], [
+            'email.required' => 'Email tidak boleh kosong',
+            'email.email' => 'Email tidak valid',
+            'email.exists' => 'Email tidak terdaftar',
+            'password.required' => 'Password tidak boleh kosong',
+            'password.min' => 'Password minimal 8 karakter',
+            'confirm_password.required' => 'Konfirmasi password tidak boleh kosong',
+            'confirm_password.same' => 'Konfirmasi password tidak sama dengan password'
+        ]);
+
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate->errors())->withInput();
+        }
+
+        DB::table('password_resets')->where('email', $request->email)->delete();
+        $peserta = pesertas::where('email', $request->email)->first();
+        $peserta->password = Hash::make($request->password);
+        $peserta->save();
+
+        return redirect()->route('olimpiade.login')->with('success', 'Password Berhasil Diubah');
     }
 }

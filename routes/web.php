@@ -167,8 +167,14 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/olimpiade', 'event' => 'olimpi
     Route::get('/logout', [AuthPesertaController::class, 'logout'])->name('logout');
     Route::get('/register', [AuthPesertaController::class, 'register_page'])->name('register');
     Route::post('/register', [AuthPesertaController::class, 'register_process'])->name('register.process');
+    
     Route::get('/account/{pesertas}', [AuthPesertaController::class, 'edit_profile'])->name('account');
     Route::put('/account/{pesertas}', [AuthPesertaController::class, 'update_profile'])->name('account.update');
+
+    Route::get('forgotpassword', [AuthPesertaController::class, 'forgot_password'])->name('forgotpassword');
+    Route::post('forgotpassword', [MailsController::class, 'forgot_password'])->name('forgotpassword.mail');
+    Route::get('/resetpassword/{token}', [AuthPesertaController::class, 'reset_password_page'])->name('resetpassword.page');
+    Route::put('/resetpassword', [AuthPesertaController::class, 'reset_password_process'])->name('resetpassword.process');
 
     Route::get('/dashboard', [MainOlimpiadeController::class, 'index'])->name('dashboard');
 });
