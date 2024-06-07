@@ -116,6 +116,7 @@ class PesertasController extends Controller
         $peserta->event = $this->event;
         $peserta->password = bcrypt($request->password);
         $peserta->status_pembayaran = 'sudah';
+        $peserta->status_data = 'belum';
         $peserta->keterangan = 'Aktif';
         $peserta->id_cabang = $request->id_cabang;
         $peserta->id_rayon = $request->id_rayon;
