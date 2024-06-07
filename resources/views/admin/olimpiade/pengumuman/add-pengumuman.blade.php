@@ -19,14 +19,6 @@
                     </div>
                     <div class="flex items-center gap-4">
                         <div class="w-56 ">
-                            <label for="judul_inggris" class="block text-sm font-medium text-gray-600">Judul
-                                (Inggris)</label>
-                        </div>
-                        <input type="text" name="judul_inggris" id="judul_inggris"
-                            class="p-2 border border-gray w-full lg:w-full shadow-sm text-sm rounded-md">
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <div class="w-56 ">
                             <label for="cabang" class="block text-sm font-medium text-gray-600">Cabang*</label>
                         </div>
                         <select id="cabang" name="cabang"
@@ -63,20 +55,13 @@
 
                     <hr>
 
-                    <div class="flex items-center gap-4">
-                        <div class="w-56 ">
-                            <label for="deskripsi" class="block text-sm font-medium text-gray-600">Deskripsi</label>
+                    <div>
+                        <div class="w-48 mb-4">
+                            <label for="classic-editor"
+                                class="block text-sm font-medium text-gray-600">Deskripsi*</label>
                         </div>
-                        <textarea type="text" name="deskripsi" id="deskripsi"
-                            class="p-2 border border-gray w-full lg:w-full shadow-sm text-sm rounded-md"></textarea>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <div class="w-56 ">
-                            <label for="deskripsi_inggris" class="block text-sm font-medium text-gray-600">Deskripsi
-                                (Inggris)</label>
-                        </div>
-                        <textarea type="text" name="deskripsi_inggris" id="deskripsi_inggris"
-                            class="p-2 border border-gray w-full lg:w-full shadow-sm text-sm rounded-md"></textarea>
+                        <textarea type="text" name="deskripsi" id="classic-editor"
+                            class="flex-grow w-full shadow-sm text-sm rounded-md" required></textarea>
                     </div>
 
                     <hr>

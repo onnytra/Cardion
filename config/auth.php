@@ -17,6 +17,10 @@ return [
         'guard' => 'web',
         'passwords' => 'users',
     ],
+    // 'peserta' => [
+    //     'driver' => 'eloquent',
+    //     'model' => App\Models\pesertas::class,
+    // ],
 
     /*
     |--------------------------------------------------------------------------
@@ -39,6 +43,10 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+        ],
+        'peserta' => [
+            'driver' => 'session',
+            'provider' => 'pesertas',
         ],
     ],
 
@@ -63,6 +71,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'pesertas' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\pesertas::class,
         ],
 
         // 'users' => [
@@ -93,6 +105,12 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
+        // 'pesertas' => [
+        //     'provider' => 'pesertas',
+        //     'table' => 'password_resets',
+        //     'expire' => 60,
+        //     'throttle' => 60,
+        // ],
     ],
 
     /*

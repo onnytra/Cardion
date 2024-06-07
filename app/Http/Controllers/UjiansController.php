@@ -4,82 +4,158 @@ namespace App\Http\Controllers;
 
 use App\Models\ujians;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UjiansController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public $event;
+
+    public function __construct()
+    {
+        $route = request()->route();
+
+        if ($route) {
+            $action = $route->getAction();
+            $this->event = $action['event'] ?? null;
+        } else {
+            $this->event = null;
+        }
+    }
+
     public function index()
     {
-        //
+        $title = 'Ujian';
+        $slug = 'ujian';
+
+        $delete = 'Delete Ujian';
+        $delete_message = 'Anda yakin ingin menghapus ujian ini ?';
+        confirmDelete($delete, $delete_message);
+
+        $ujians = ujians::all();
+        return view('admin/olimpiade/ujian/ujian', compact('ujians', 'title', 'slug'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $title = 'Tambah Ujian';
+        $slug = 'add';
+
+        if ($this->event == 'olimpiade') {
+            return view('admin/olimpiade/ujian/add-ujian', compact('title', 'slug'));
+        } else{
+            toast('Ada Kesalahan, Tanyakan Kepada Admin');
+            return redirect()->back();
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $validate = Validator::make($request->all(), [
+            'judul' => 'required|max:30',
+            'group_wa' => 'max:100',
+            'durasi' => 'required | numeric | min:1 | max:999',
+            'total_soal' => 'required | numeric | min:1 | max:999',
+        ], [
+            'judul.required' => 'Judul harus diisi',
+            'judul.max' => 'Judul maksimal 30 karakter',
+            'group_wa.max' => 'Group WA maksimal 100 karakter',
+            'durasi.required' => 'Durasi harus diisi',
+            'durasi.numeric' => 'Durasi harus berupa angka',
+            'durasi.min' => 'Durasi minimal 1 menit',
+            'durasi.max' => 'Durasi maksimal 999 menit',
+            'total_soal.required' => 'Total soal harus diisi',
+            'total_soal.numeric' => 'Total soal harus berupa angka',
+            'total_soal.min' => 'Total soal minimal 1 soal',
+            'total_soal.max' => 'Total soal maksimal 999 soal',
+        ]);
+        if ($validate->fails()) {
+            return back()->withErrors($validate)->withInput();
+        }
+
+        $ujians = new ujians();
+        $ujians->id_ujian = date('His').rand(10,99);
+        $ujians->judul = $request->judul;
+        $ujians->deskripsi = $request->deskripsi;
+        $ujians->peraturan = $request->peraturan;
+        $ujians->group_wa = $request->group_wa;
+        $ujians->durasi = $request->durasi;
+        $ujians->total_soal = $request->total_soal;
+        $ujians->benar = $request->benar;
+        $ujians->salah = $request->salah;
+        $ujians->kosong = $request->kosong;
+        $ujians->soal_acak = $request->soal_acak ? 1 : 0;
+        $ujians->status_ujian = $request->status_ujian ? 1 : 0;
+        $ujians->tampilkan_jawaban = $request->tampilkan_jawaban;
+        $ujians->tampilkan_nilai = $request->tampilkan_nilai;
+        $ujians->save();
+
+        toast('Ujian Berhasil Ditambahkan','success');
+        return redirect()->route($this->event.'.ujian.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\ujians  $ujians
-     * @return \Illuminate\Http\Response
-     */
     public function show(ujians $ujians)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\ujians  $ujians
-     * @return \Illuminate\Http\Response
-     */
     public function edit(ujians $ujians)
     {
-        //
+        $title = 'Edit Ujian';
+        $slug = 'edit';
+
+        if ($this->event == 'olimpiade') {
+            return view('admin/olimpiade/ujian/edit-ujian', compact('ujians', 'title', 'slug'));
+        } else{
+            toast('Ada Kesalahan, Tanyakan Kepada Admin');
+            return redirect()->back();
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ujians  $ujians
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, ujians $ujians)
     {
-        //
+        $validate = Validator::make($request->all(), [
+            'judul' => 'required|max:30',
+            'group_wa' => 'max:100',
+            'durasi' => 'required | numeric | min:1 | max:999',
+            'total_soal' => 'required | numeric | min:1 | max:999',
+        ], [
+            'judul.required' => 'Judul harus diisi',
+            'judul.max' => 'Judul maksimal 30 karakter',
+            'group_wa.max' => 'Group WA maksimal 100 karakter',
+            'durasi.required' => 'Durasi harus diisi',
+            'durasi.numeric' => 'Durasi harus berupa angka',
+            'durasi.min' => 'Durasi minimal 1 menit',
+            'durasi.max' => 'Durasi maksimal 999 menit',
+            'total_soal.required' => 'Total soal harus diisi',
+            'total_soal.numeric' => 'Total soal harus berupa angka',
+            'total_soal.min' => 'Total soal minimal 1 soal',
+            'total_soal.max' => 'Total soal maksimal 999 soal',
+        ]);
+        if ($validate->fails()) {
+            return back()->withErrors($validate)->withInput();
+        }
+        $ujians->judul = $request->judul;
+        $ujians->deskripsi = $request->deskripsi;
+        $ujians->peraturan = $request->peraturan;
+        $ujians->group_wa = $request->group_wa;
+        $ujians->durasi = $request->durasi;
+        $ujians->total_soal = $request->total_soal;
+        $ujians->benar = $request->benar;
+        $ujians->salah = $request->salah;
+        $ujians->kosong = $request->kosong;
+        $ujians->soal_acak = $request->soal_acak ? 1 : 0;
+        $ujians->status_ujian = $request->status_ujian ? 1 : 0;
+        $ujians->tampilkan_jawaban = $request->tampilkan_jawaban;
+        $ujians->tampilkan_nilai = $request->tampilkan_nilai;
+        $ujians->save();
+        toast('Ujian Berhasil Diperbarui','success');
+        return redirect()->route($this->event.'.ujian.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\ujians  $ujians
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(ujians $ujians)
     {
-        //
+        $ujians->delete();
+        toast('Ujian Berhasil Dihapus','success');
+        return redirect()->route($this->event.'.ujian.index');
     }
 }

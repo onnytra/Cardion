@@ -52,12 +52,44 @@
                                 class="inline-flex items-center rounded-md bg-green-200 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Aktif</span>
                             @else
                             <span
-                                class="inline-flex items-center rounded-md bg-red-200 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20">Tidak Aktif</span>
+                                class="inline-flex items-center rounded-md bg-red-200 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20">Tidak
+                                Aktif</span>
                             @endif
                         <td class="px-6 py-4">
-                            <a href="{{route('olimpiade.rayon.edit', $data->id_rayon)}}"
-                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit Rayon</a>
-                            <a href="{{route('olimpiade.rayon.delete', $data->id_rayon)}}" class="font-medium text-red-600 dark:text-red-500 hover:underline" data-confirm-delete="true">Hapus</a>
+                            <a id="modal-box{{ $data->id_rayon }}" onclick="showModal({{ $data->id_rayon }})"
+                                class="font-medium text-gray-900 cursor-pointer">
+                                <i class="fad fa-ellipsis-h mr-2 leading-none"></i>
+                            </a>
+                            <div id="modal{{ $data->id_rayon }}" class="absolute right-0 hidden z-10"
+                                aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                                <div class="flex items-end justify-center text-center">
+                                    <div id="bg-modal{{  $data->id_rayon }}" onclick="hideModal({{ $data->id_rayon }})"
+                                        class="fixed inset-0" aria-hidden="true"></div>
+                                    <div
+                                        class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all">
+                                        <div class="bg-white">
+                                            <div class="sm:flex sm:items-start">
+                                                <div class="cart mt-1 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                                    <div class="card-body relative overflow-x-visible sm:rounded-lg">
+                                                        <button class="w-full">
+                                                            <a href="{{route('olimpiade.rayon.edit', $data->id_rayon)}}"
+                                                                class="btn-bs-primary">
+                                                                <i class="fad fa-edit mr-2 leading-none"></i>
+                                                                Edit Rayon</a>
+                                                        </button>
+                                                        <button class="w-full mt-2">
+                                                            <a href="{{route('olimpiade.rayon.delete', $data->id_rayon)}}"
+                                                                class="btn-bs-danger" data-confirm-delete="true">
+                                                                <i class="fad fa-trash mr-2 leading-none"></i>
+                                                                Hapus Rayon</a>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                     @endforeach

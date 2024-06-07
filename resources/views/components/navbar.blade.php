@@ -1,10 +1,9 @@
-<div
-    class="md:fixed md:w-full md:top-0 md:z-20 flex flex-row flex-wrap items-center bg-white p-6 border-b border-gray-300">
+<div class="fixed w-full top-0 z-20 flex flex-row flex-wrap items-center bg-white p-6 border-b border-gray-300">
 
     <!-- logo -->
     <div>
         <div class="flex-none w-56 flex flex-row items-center">
-            <a href="/admin" class="flex-none flex flex-row items-center">
+            <a href="/" class="flex-none flex flex-row items-center">
                 <img src="{{asset('img/logo.png')}}" class="w-10 flex-none">
                 <strong class="capitalize ml-1 flex-1">cardion</strong>
             </a>
@@ -28,14 +27,14 @@
         <!-- left -->
         <div
             class="text-gray-600 md:w-full md:flex md:flex-row md:justify-evenly md:pb-10 md:mb-10 md:border-b md:border-gray-200">
-            <a href="/admin"
-                class="{{ request()->is('admin') | request()->is('admin/main/' . $slot) | Str::of(url()->current())->contains('main')  ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}}  rounded-md px-3 py-2 text-sm font-medium"
+            <a href="{{route('dashboard.index')}}"
+                class="{{ request()->is('admin') | Str::of(url()->current())->contains('dashboard')  ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}}  rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ request()->is('admin') ? 'page' : false }}">Main Dashboard</a>
-            <a href="/admin/olimpiade"
-                class="{{ request()->is('admin/olimpiade') | request()->is('admin/olimpiade/' . $slot) | Str::of(url()->current())->contains('olimpiade')   ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}}  rounded-md px-3 py-2 text-sm font-medium"
+            <a href="{{route('dashboard.olimpiade')}}"
+                class="{{ request()->is('admin/olimpiade') | Str::of(url()->current())->contains('olimpiade')   ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}}  rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ request()->is('olimpiade') ? 'page' : false }}">Olimpiade</a>
-            <a href="/admin/public-poster"
-                class="{{ request()->is('admin/public-poster') | request()->is('admin/public-poster/' . $slot) | Str::of(url()->current())->contains('public-poster')   ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}}  rounded-md px-3 py-2 text-sm font-medium"
+            <a href="{{route('dashboard.poster')}}"
+                class="{{ request()->is('admin/public-poster') | Str::of(url()->current())->contains('poster')   ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}}  rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ request()->is('public-poster') ? 'page' : false }}">Public Poster</a>
         </div>
         <!-- end left -->
@@ -49,7 +48,7 @@
                         <img class="w-full h-full object-cover" src="{{asset('img/user.svg')}}">
                     </div>
                     <div class="ml-2 capitalize flex ">
-                        <h1 class="text-sm text-gray-800 font-semibold m-0 p-0 leading-none">Admin</h1>
+                        <h1 class="text-sm text-gray-800 font-semibold m-0 p-0 leading-none">{{auth()->user()->name}}</h1>
                         <i class="fad fa-chevron-down ml-2 text-xs leading-none"></i>
                     </div>
                 </button>
@@ -57,13 +56,13 @@
                 <div
                     class="text-gray-500 menu hidden md:mt-10 md:w-full rounded bg-white shadow-md absolute z-20 right-0 w-40 mt-5 py-2 animated faster">
                     <a class="px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out"
-                        href="/admin/account">
+                        href="{{route('auth.admin.edit-profile',auth()->user()->id_user)}}">
                         <i class="fad fa-user-edit text-xs mr-1"></i>
                         akun saya
                     </a>
                     <hr>
                     <a class="px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out"
-                        href="/admin/logout">
+                        href="{{route('auth.admin.logout')}}">
                         <i class="fad fa-user-times text-xs mr-1"></i>
                         log out
                     </a>

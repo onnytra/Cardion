@@ -18,10 +18,11 @@ return new class extends Migration
             $table->string('judul',100);
             $table->text('deskripsi');
             $table->string('tipe_pengumuman',20);
-            $table->foreignId('id_cabang')->references('id_cabang')->on('cabangs')->onDelete('restrict')->onUpdate('cascade');
-            $table->foreignId('id_rayon')->references('id_rayon')->on('rayons')->onDelete('restrict')->onUpdate('cascade');
-            $table->foreignId('id_ujian')->references('id_ujian')->on('ujians')->onDelete('restrict')->onUpdate('cascade');
-            ;
+            // $table->foreignId('id_cabang')->nullable()->references('id_cabang')->on('cabangs')->onDelete('restrict')->onUpdate('cascade');
+            // $table->foreignId('id_rayon')->nullable()->references('id_rayon')->on('rayons')->onDelete('restrict')->onUpdate('cascade');
+            // $table->foreignId('id_ujian')->nullable()->references('id_ujian')->on('ujians')->onDelete('restrict')->onUpdate('cascade');
+            $table->foreignId('id_gelombang')->nullable()->references('id_gelombang')->on('gelombang_pembayarans')->onDelete('restrict')->onUpdate('cascade');
+            $table->string('event',15);
             $table->timestamps();
         });
     }

@@ -12,17 +12,22 @@ class RayonsController extends Controller
     public $event;
 
     public function __construct()
-{
-    $route = request()->route();
+    {
+        $route = request()->route();
 
-    if ($route) {
-        $action = $route->getAction();
-        $this->event = $action['event'] ?? null;
-    } else {
-        $this->event = null;
+        if ($route) {
+            $action = $route->getAction();
+            $this->event = $action['event'] ?? null;
+        } else {
+            $this->event = null;
+        }
     }
-}
 
+    public function getRayons(Request $request)
+    {
+        $rayons = rayons::where('id_cabang', $request->id_cabang)->get();
+        return response()->json($rayons);
+    }
     public function index(cabangs $cabangs)
     {
         $title = 'Rayon';
@@ -74,13 +79,8 @@ class RayonsController extends Controller
         $rayon->id_cabang = $cabangs->id_cabang;
         $rayon->save();
 
-        if ($rayon) {
-            toast('Rayon Berhasil Ditambahkan','success');
-            return redirect()->route($this->event.'.rayon.index', $cabangs->id_cabang);
-        } else {
-            toast('Rayon Gagal Ditambahkan','error');
-            return redirect()->route($this->event.'.rayon.index', $cabangs->id_cabang);
-        }
+        toast('Rayon Berhasil Ditambahkan','success');
+        return redirect()->route($this->event.'.rayon.index', $cabangs->id_cabang);
     }
 
     public function show(rayons $rayons)
@@ -124,24 +124,14 @@ class RayonsController extends Controller
         $rayons->status_rayon = $request->toggle ? 1 : 0;
         $rayons->save();
 
-        if ($rayons) {
-            toast('Rayon Berhasil Diperbarui','success');
-            return redirect()->route($this->event.'.rayon.index', $rayons->id_cabang);
-        } else {
-            toast('Rayon Gagal Diperbarui','error');
-            return redirect()->route($this->event.'.rayon.index', $rayons->id_cabang);
-        }
+        toast('Rayon Berhasil Diperbarui','success');
+        return redirect()->route($this->event.'.rayon.index', $rayons->id_cabang);
     }
 
     public function destroy(rayons $rayons)
     {
         $rayons->delete();
-        if ($rayons) {
-            toast('Rayon Berhasil Dihapus','success');
-            return redirect()->route($this->event.'.rayon.index', $rayons->id_cabang);
-        } else {
-            toast('Rayon Gagal Dihapus','error');
-            return redirect()->route($this->event.'.rayon', $rayons->id_cabang);
-        }
+        toast('Rayon Berhasil Dihapus','success');
+        return redirect()->route($this->event.'.rayon.index', $rayons->id_cabang);
     }
 }

@@ -17,12 +17,23 @@
             <h2 class="mt-2 text-center text-3xl font-bold leading-9 tracking-tight text-gray-900">Register
             </h2>
 
+            @if ($errors->any())
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                <strong class="font-bold">Ups! Ada yang salah.</strong>
+                <ul class="list-disc pl-5">
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                <form class="space-y-6" action="#" method="POST">
+                <form class="space-y-6" action="{{route('olimpiade.register.process')}}" method="POST">
+                    @csrf
                     <div>
                         <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
                         <div class="mt-2">
-                            <input id="name" name="name" type="text" autocomplete="name" required
+                            <input id="name" name="name" type="text" autocomplete="name" required value="{{old('name')}}" autofocus
                                 class="block w-full bg-transparent border-0 border-b-2 border-gray-500 py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-0 focus:border-red-700 sm:text-sm sm:leading-6">
                         </div>
                     </div>
@@ -30,7 +41,7 @@
                     <div>
                         <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
                         <div class="mt-2">
-                            <input id="email" name="email" type="email" autocomplete="email" required
+                            <input id="email" name="email" type="email" autocomplete="email" required value="{{old('email')}}"
                                 class="block w-full bg-transparent border-0 border-b-2 border-gray-500 py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-0 focus:border-red-700 sm:text-sm sm:leading-6">
                         </div>
                     </div>
@@ -39,8 +50,7 @@
                         <label for="phone_number" class="block text-sm font-medium leading-6 text-gray-900">Phone
                             Number</label>
                         <div class="mt-2">
-                            <input id="phone_number" name="phone_number" type="number" autocomplete="phone_number"
-                                required
+                            <input id="phone_number" name="phone_number" type="varchar" autocomplete="phone_number" required value="{{old('phone_number')}}"
                                 class="block w-full bg-transparent border-0 border-b-2 border-gray-500 py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-0 focus:border-red-700 sm:text-sm sm:leading-6">
                         </div>
                     </div>
@@ -66,7 +76,7 @@
 
                     <div>
                         <div class="flex items-center">
-                            <input id="terms-agreement" name="terms-agreement" value="white" type="checkbox"
+                            <input id="terms-agreement" name="agreement" value="1" type="checkbox" required
                                 class="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500">
                             <label for="terms-agreement" class="ml-3 min-w-0 flex-1 text-gray-900">I agree the terms and
                                 conditions</label>
@@ -82,7 +92,7 @@
 
                 <p class="mt-4 text-center text-sm text-white">
                     Have an account
-                    <a href="/olympiad/login"
+                    <a href="{{route('olimpiade.login')}}"
                         class="font-semibold leading-6 text-red-600 hover:text-red-500 hover:underline">Sign
                         In</a>
                 </p>

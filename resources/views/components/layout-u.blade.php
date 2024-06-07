@@ -8,14 +8,29 @@
     <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/toggle.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="{{asset('js/alert.js')}}"></script>
     <title>{{ $title }} | Cardion</title>
 </head>
 
 <body class="bg-gray-100">
+    @include('sweetalert::alert')
     <x-navbar-u>{{ $slug }}</x-navbar-u>
     <div class="h-screen flex flex-row flex-wrap">
         <div class="bg-gray-100 flex-1 md:mt-20">
-            <div class="p-6 ">
+            <div class="p-6 mt-20">
+                @if ($errors->any())
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                    <strong class="font-bold">Ups! Ada yang salah.</strong>
+                    <ul class="list-disc pl-5">
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
                 {{ $slot }}
             </div>
             <x-footer></x-footer>

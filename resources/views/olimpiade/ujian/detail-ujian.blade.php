@@ -2,15 +2,6 @@
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-slot:slug>{{ $slug }}</x-slot:slug>
 
-    <div class="card col-span-2 mb-5">
-        <div class="card-body">
-            <button>
-                <a href="/public-poster/ujian/history" class="btn-gray">
-                    History Ujian</a>
-            </button>
-        </div>
-    </div>
-
     <div class="grid grid-cols-3 gap-5 lg:grid-cols-1">
         <div class="card col-span-2">
             <div class="card-header">
@@ -51,7 +42,7 @@
         <div class="card self-start lg:order-last">
             <div class="card-header flex flex-row justify-between items-center">
                 <h1 class="h6">Data Ujian</h1>
-                <span class="bg-red-500 text-white px-2 py-1 rounded">Sudah Berakhir</span>
+                <span class="bg-green-500 text-white text-center text-sm px-2 py-1 rounded">Sedang Berlangsung</span>
             </div>
 
             <div class="card-body relative overflow-x-auto sm:rounded-lg">
@@ -70,8 +61,8 @@
             </div>
 
             <div class="card-footer flex justify-end">
-                <button>
-                    <a href="/public-poster/ujian/detail" class="btn-indigo">
+                <button onclick="startUjian()">
+                    <a class="btn-indigo">
                         <i class="fad fa-clock mr-2 leading-none"></i>
                         Ikuti Ujian</a>
                 </button>
@@ -87,4 +78,10 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function startUjian() {
+            window.open("/olympiad/ujian/detail/start", "_blank", "top=0, left=0, width=" + screen.width + ", height=" + screen.height);
+        }
+    </script>
 </x-layout-u>

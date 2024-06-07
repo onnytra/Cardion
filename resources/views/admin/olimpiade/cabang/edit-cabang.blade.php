@@ -27,7 +27,7 @@
                         <div class="lg:w-full">
                             <div
                                 class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                                <input type="checkbox" name="status_cabang" id="toggle" {{$cabangs->status_cabang == 1 ? 'checked' : ''}}
+                                <input type="checkbox" name="status_cabang" id="toggle" {{$cabangs->status_cabang ? 'checked' : ''}}
                                     class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer transition-colors duration-500" />
                                 <label for="toggle"
                                     class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer transition-colors duration-500"></label>

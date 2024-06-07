@@ -2477,28 +2477,185 @@ if (SummaryChart != null && typeof SummaryChart != "undefined") {
     chart.render();
 }
 
-// Tab View for table
-document
-    .getElementById("btn-tab-1")
-    .addEventListener("click", function (event) {
-        event.preventDefault();
-        document.getElementById("tab-1").style.display = "block";
-        document.getElementById("tab-2").style.display = "none";
-        if (document.getElementById("tab-3") != null) {
-            document.getElementById("tab-3").style.display = "none";
+if (document.getElementById("btn-tab-1") != null) {
+    document
+        .getElementById("btn-tab-1")
+        .addEventListener("click", function (event) {
+            event.preventDefault();
+            document.getElementById("tab-1").style.display = "block";
+            document.getElementById("tab-2").style.display = "none";
+            if (document.getElementById("tab-3") != null) {
+                document.getElementById("tab-3").style.display = "none";
+                document
+                    .getElementById("btn-tab-3")
+                    .classList.add(
+                        "border-transparent",
+                        "hover:text-gray-600",
+                        "hover:border-gray-300"
+                    );
+                document
+                    .getElementById("btn-tab-3")
+                    .classList.remove(
+                        "text-blue-600",
+                        "border-blue-600",
+                        "active"
+                    );
+            }
+            if (document.getElementById("tab-4") != null) {
+                document.getElementById("tab-4").style.display = "none";
+                document
+                    .getElementById("btn-tab-4")
+                    .classList.add(
+                        "border-transparent",
+                        "hover:text-gray-600",
+                        "hover:border-gray-300"
+                    );
+                document
+                    .getElementById("btn-tab-4")
+                    .classList.remove(
+                        "text-blue-600",
+                        "border-blue-600",
+                        "active"
+                    );
+            }
+            if (document.getElementById("dropdown-export") != null) {
+                document.getElementById("dropdown-export").style.display =
+                    "block";
+            }
             document
-                .getElementById("btn-tab-3")
+                .getElementById("btn-tab-2")
                 .classList.add(
                     "border-transparent",
                     "hover:text-gray-600",
                     "hover:border-gray-300"
                 );
             document
-                .getElementById("btn-tab-3")
+                .getElementById("btn-tab-2")
                 .classList.remove("text-blue-600", "border-blue-600", "active");
-        }
-        if (document.getElementById("tab-4") != null) {
+            document
+                .getElementById("btn-tab-1")
+                .classList.remove(
+                    "border-transparent",
+                    "hover:text-gray-600",
+                    "hover:border-gray-300"
+                );
+            document
+                .getElementById("btn-tab-1")
+                .classList.add("text-blue-600", "border-blue-600", "active");
+        });
+}
+
+if (document.getElementById("btn-tab-2") != null) {
+    document
+        .getElementById("btn-tab-2")
+        .addEventListener("click", function (event) {
+            event.preventDefault();
+            document.getElementById("tab-1").style.display = "none";
+            document.getElementById("tab-2").style.display = "block";
+            if (document.getElementById("tab-3") != null) {
+                document.getElementById("tab-3").style.display = "none";
+                document
+                    .getElementById("btn-tab-3")
+                    .classList.add(
+                        "border-transparent",
+                        "hover:text-gray-600",
+                        "hover:border-gray-300"
+                    );
+                document
+                    .getElementById("btn-tab-3")
+                    .classList.remove(
+                        "text-blue-600",
+                        "border-blue-600",
+                        "active"
+                    );
+            }
+            if (document.getElementById("tab-4") != null) {
+                document.getElementById("tab-4").style.display = "none";
+                document
+                    .getElementById("btn-tab-4")
+                    .classList.add(
+                        "border-transparent",
+                        "hover:text-gray-600",
+                        "hover:border-gray-300"
+                    );
+                document
+                    .getElementById("btn-tab-4")
+                    .classList.remove(
+                        "text-blue-600",
+                        "border-blue-600",
+                        "active"
+                    );
+            }
+            if (document.getElementById("dropdown-export") != null) {
+                document.getElementById("dropdown-export").style.display =
+                    "none";
+            }
+            document
+                .getElementById("btn-tab-2")
+                .classList.remove(
+                    "border-transparent",
+                    "hover:text-gray-600",
+                    "hover:border-gray-300"
+                );
+            document
+                .getElementById("btn-tab-2")
+                .classList.add("text-blue-600", "border-blue-600", "active");
+            document
+                .getElementById("btn-tab-1")
+                .classList.add(
+                    "border-transparent",
+                    "hover:text-gray-600",
+                    "hover:border-gray-300"
+                );
+            document
+                .getElementById("btn-tab-1")
+                .classList.remove("text-blue-600", "border-blue-600", "active");
+        });
+}
+
+if (document.getElementById("btn-tab-3") != null) {
+    document
+        .getElementById("btn-tab-3")
+        .addEventListener("click", function (event) {
+            event.preventDefault();
+            document.getElementById("tab-1").style.display = "none";
+            document.getElementById("tab-2").style.display = "none";
+            document.getElementById("tab-3").style.display = "block";
             document.getElementById("tab-4").style.display = "none";
+            if (document.getElementById("dropdown-export") != null) {
+                document.getElementById("dropdown-export").style.display =
+                    "none";
+            }
+            document
+                .getElementById("btn-tab-3")
+                .classList.remove(
+                    "border-transparent",
+                    "hover:text-gray-600",
+                    "hover:border-gray-300"
+                );
+            document
+                .getElementById("btn-tab-3")
+                .classList.add("text-blue-600", "border-blue-600", "active");
+            document
+                .getElementById("btn-tab-1")
+                .classList.add(
+                    "border-transparent",
+                    "hover:text-gray-600",
+                    "hover:border-gray-300"
+                );
+            document
+                .getElementById("btn-tab-1")
+                .classList.remove("text-blue-600", "border-blue-600", "active");
+            document
+                .getElementById("btn-tab-2")
+                .classList.add(
+                    "border-transparent",
+                    "hover:text-gray-600",
+                    "hover:border-gray-300"
+                );
+            document
+                .getElementById("btn-tab-2")
+                .classList.remove("text-blue-600", "border-blue-600", "active");
             document
                 .getElementById("btn-tab-4")
                 .classList.add(
@@ -2509,40 +2666,52 @@ document
             document
                 .getElementById("btn-tab-4")
                 .classList.remove("text-blue-600", "border-blue-600", "active");
-        }
-        if (document.getElementById("dropdown-export") != null) {
-            document.getElementById("dropdown-export").style.display = "block";
-        }
-        document
-            .getElementById("btn-tab-2")
-            .classList.add(
-                "border-transparent",
-                "hover:text-gray-600",
-                "hover:border-gray-300"
-            );
-        document
-            .getElementById("btn-tab-2")
-            .classList.remove("text-blue-600", "border-blue-600", "active");
-        document
-            .getElementById("btn-tab-1")
-            .classList.remove(
-                "border-transparent",
-                "hover:text-gray-600",
-                "hover:border-gray-300"
-            );
-        document
-            .getElementById("btn-tab-1")
-            .classList.add("text-blue-600", "border-blue-600", "active");
-    });
+        });
+}
 
-document
-    .getElementById("btn-tab-2")
-    .addEventListener("click", function (event) {
-        event.preventDefault();
-        document.getElementById("tab-1").style.display = "none";
-        document.getElementById("tab-2").style.display = "block";
-        if (document.getElementById("tab-3") != null) {
+if (document.getElementById("btn-tab-4") != null) {
+    document
+        .getElementById("btn-tab-4")
+        .addEventListener("click", function (event) {
+            event.preventDefault();
+            document.getElementById("tab-1").style.display = "none";
+            document.getElementById("tab-2").style.display = "none";
             document.getElementById("tab-3").style.display = "none";
+            document.getElementById("tab-4").style.display = "block";
+            if (document.getElementById("dropdown-export") != null) {
+                document.getElementById("dropdown-export").style.display =
+                    "none";
+            }
+            document
+                .getElementById("btn-tab-4")
+                .classList.remove(
+                    "border-transparent",
+                    "hover:text-gray-600",
+                    "hover:border-gray-300"
+                );
+            document
+                .getElementById("btn-tab-4")
+                .classList.add("text-blue-600", "border-blue-600", "active");
+            document
+                .getElementById("btn-tab-1")
+                .classList.add(
+                    "border-transparent",
+                    "hover:text-gray-600",
+                    "hover:border-gray-300"
+                );
+            document
+                .getElementById("btn-tab-1")
+                .classList.remove("text-blue-600", "border-blue-600", "active");
+            document
+                .getElementById("btn-tab-2")
+                .classList.add(
+                    "border-transparent",
+                    "hover:text-gray-600",
+                    "hover:border-gray-300"
+                );
+            document
+                .getElementById("btn-tab-2")
+                .classList.remove("text-blue-600", "border-blue-600", "active");
             document
                 .getElementById("btn-tab-3")
                 .classList.add(
@@ -2553,161 +2722,47 @@ document
             document
                 .getElementById("btn-tab-3")
                 .classList.remove("text-blue-600", "border-blue-600", "active");
-        }
-        if (document.getElementById("tab-4") != null) {
-            document.getElementById("tab-4").style.display = "none";
-            document
-                .getElementById("btn-tab-4")
-                .classList.add(
-                    "border-transparent",
-                    "hover:text-gray-600",
-                    "hover:border-gray-300"
-                );
-            document
-                .getElementById("btn-tab-4")
-                .classList.remove("text-blue-600", "border-blue-600", "active");
-        }
-        if (document.getElementById("dropdown-export") != null) {
-            document.getElementById("dropdown-export").style.display = "none";
-        }
-        document
-            .getElementById("btn-tab-2")
-            .classList.remove(
-                "border-transparent",
-                "hover:text-gray-600",
-                "hover:border-gray-300"
-            );
-        document
-            .getElementById("btn-tab-2")
-            .classList.add("text-blue-600", "border-blue-600", "active");
-        document
-            .getElementById("btn-tab-1")
-            .classList.add(
-                "border-transparent",
-                "hover:text-gray-600",
-                "hover:border-gray-300"
-            );
-        document
-            .getElementById("btn-tab-1")
-            .classList.remove("text-blue-600", "border-blue-600", "active");
-    });
+        });
+}
 
-document
-    .getElementById("btn-tab-3")
-    .addEventListener("click", function (event) {
-        event.preventDefault();
-        document.getElementById("tab-1").style.display = "none";
-        document.getElementById("tab-2").style.display = "none";
-        document.getElementById("tab-3").style.display = "block";
-        document.getElementById("tab-4").style.display = "none";
-        if (document.getElementById("dropdown-export") != null) {
-            document.getElementById("dropdown-export").style.display = "none";
-        }
-        document
-            .getElementById("btn-tab-3")
-            .classList.remove(
-                "border-transparent",
-                "hover:text-gray-600",
-                "hover:border-gray-300"
-            );
-        document
-            .getElementById("btn-tab-3")
-            .classList.add("text-blue-600", "border-blue-600", "active");
-        document
-            .getElementById("btn-tab-1")
-            .classList.add(
-                "border-transparent",
-                "hover:text-gray-600",
-                "hover:border-gray-300"
-            );
-        document
-            .getElementById("btn-tab-1")
-            .classList.remove("text-blue-600", "border-blue-600", "active");
-        document
-            .getElementById("btn-tab-2")
-            .classList.add(
-                "border-transparent",
-                "hover:text-gray-600",
-                "hover:border-gray-300"
-            );
-        document
-            .getElementById("btn-tab-2")
-            .classList.remove("text-blue-600", "border-blue-600", "active");
-        document
-            .getElementById("btn-tab-4")
-            .classList.add(
-                "border-transparent",
-                "hover:text-gray-600",
-                "hover:border-gray-300"
-            );
-        document
-            .getElementById("btn-tab-4")
-            .classList.remove("text-blue-600", "border-blue-600", "active");
-    });
+if (document.getElementById("modal-box") != null) {
+    document
+        .getElementById("modal-box")
+        .addEventListener("click", function (event) {
+            event.preventDefault();
+            document.getElementById("modal").classList.remove("hidden");
+        });
+}
 
-document
-    .getElementById("btn-tab-4")
-    .addEventListener("click", function (event) {
-        event.preventDefault();
-        document.getElementById("tab-1").style.display = "none";
-        document.getElementById("tab-2").style.display = "none";
-        document.getElementById("tab-3").style.display = "none";
-        document.getElementById("tab-4").style.display = "block";
-        if (document.getElementById("dropdown-export") != null) {
-            document.getElementById("dropdown-export").style.display = "none";
-        }
-        document
-            .getElementById("btn-tab-4")
-            .classList.remove(
-                "border-transparent",
-                "hover:text-gray-600",
-                "hover:border-gray-300"
-            );
-        document
-            .getElementById("btn-tab-4")
-            .classList.add("text-blue-600", "border-blue-600", "active");
-        document
-            .getElementById("btn-tab-1")
-            .classList.add(
-                "border-transparent",
-                "hover:text-gray-600",
-                "hover:border-gray-300"
-            );
-        document
-            .getElementById("btn-tab-1")
-            .classList.remove("text-blue-600", "border-blue-600", "active");
-        document
-            .getElementById("btn-tab-2")
-            .classList.add(
-                "border-transparent",
-                "hover:text-gray-600",
-                "hover:border-gray-300"
-            );
-        document
-            .getElementById("btn-tab-2")
-            .classList.remove("text-blue-600", "border-blue-600", "active");
-        document
-            .getElementById("btn-tab-3")
-            .classList.add(
-                "border-transparent",
-                "hover:text-gray-600",
-                "hover:border-gray-300"
-            );
-        document
-            .getElementById("btn-tab-3")
-            .classList.remove("text-blue-600", "border-blue-600", "active");
-    });
+if (document.getElementById("close-modal") != null) {
+    document
+        .getElementById("close-modal")
+        .addEventListener("click", function () {
+            document.getElementById("modal").classList.add("hidden");
+        });
+}
 
-document
-    .getElementById("modal-box")
-    .addEventListener("click", function (event) {
-        event.preventDefault();
-        document.getElementById("modal").classList.remove("hidden");
+if (document.getElementById("bg-modal") != null) {
+    document.getElementById("bg-modal").addEventListener("click", function () {
+        document.getElementById("modal").classList.add("hidden");
     });
+}
 
-document.getElementById("close-modal").addEventListener("click", function () {
-    document.getElementById("modal").classList.add("hidden");
-});
+function showModal(i) {
+    const modal = document.getElementById(`modal${i}`);
+
+    if (modal) {
+        modal.classList.remove("hidden");
+    }
+}
+
+function hideModal(i) {
+    const modal = document.getElementById(`modal${i}`);
+
+    if (modal) {
+        modal.classList.add("hidden");
+    }
+}
 
 /* PrismJS 1.19.0
 https://prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+clike+javascript+http+javadoclike+json+jsonp+json5+markup-templating+php+phpdoc+plsql+python+sass+scss+sql&plugins=unescaped-markup+normalize-whitespace+toolbar+copy-to-clipboard */

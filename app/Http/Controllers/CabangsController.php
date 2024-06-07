@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\cabangs;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use PhpParser\Node\Stmt\TryCatch;
 use RealRashid\SweetAlert\Facades\Alert;
 
 
@@ -13,16 +14,16 @@ class CabangsController extends Controller
     public $event;
 
     public function __construct()
-{
-    $route = request()->route();
+    {
+        $route = request()->route();
 
-    if ($route) {
-        $action = $route->getAction();
-        $this->event = $action['event'] ?? null;
-    } else {
-        $this->event = null;
+        if ($route) {
+            $action = $route->getAction();
+            $this->event = $action['event'] ?? null;
+        } else {
+            $this->event = null;
+        }
     }
-}
 
     public function index()
     {
@@ -34,10 +35,6 @@ class CabangsController extends Controller
         confirmDelete($delete, $delete_message);
 
         $cabangs = cabangs::where('event',$this->event)->get();
-        // foreach ($cabangs as $cabang) {
-        //     $cabang->id_cabang = Crypt::encrypt($cabang->cabang);
-        //     $cabang->status_cabang = $cabang->status_cabang == 1 ? 'ON' : 'OFF';
-        // }
         return view('admin/olimpiade/cabang/cabang', compact('cabangs', 'title', 'slug'));
     }
 
@@ -70,13 +67,8 @@ class CabangsController extends Controller
         $cabang->event = $this->event;
         $cabang->save();
 
-        if ($cabang) {
-            toast('Cabang Berhasil Ditambahkan','success');
-            return redirect()->route($this->event.'.cabang.index');
-        } else {
-            toast('Cabang Gagal Ditambahkan','error');
-            return redirect()->route($this->event.'.cabang.index');
-        }
+        toast('Cabang Berhasil Ditambahkan','success');
+        return redirect()->route($this->event.'.cabang.index');
     }
 
     public function edit(cabangs $cabangs)
@@ -104,25 +96,19 @@ class CabangsController extends Controller
         $cabangs->cabang = $request->nama;
         $cabangs->status_cabang = $request->status_cabang ? 1 : 0;
         $cabangs->event = $this->event;
-        $cabang = $cabangs->save();
-
-        if ($cabang) {
-            toast('Cabang Berhasil Diperbarui','success');
-            return redirect()->route($this->event.'.cabang.index');
-        } else {
-            toast('Cabang Gagal Diperbarui','error');
-            return redirect()->route($this->event.'.cabang.index');
-        }
+        $cabangs->save();
+        toast('Cabang Berhasil Diperbarui','success');
+        return redirect()->route($this->event.'.cabang.index');
     }
 
     public function destroy(cabangs $cabangs)
     {
-        $cabangs->delete();
-        if ($cabangs) {
+        try {
+            $cabangs->delete();
             toast('Cabang Berhasil Dihapus','success');
             return redirect()->route($this->event.'.cabang.index');
-        } else {
-            toast('Cabang Gagal Dihapus','error');
+        } catch (\Throwable $th) {
+            toast('Cabang Gagal Dihapus, Check Apakah Cabang Memiliki Rayon','error');
             return redirect()->route($this->event.'.cabang.index');
         }
     }

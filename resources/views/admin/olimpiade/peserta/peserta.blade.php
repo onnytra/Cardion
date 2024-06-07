@@ -81,142 +81,91 @@
                             <th scope="col" class="px-6 py-3">
                                 Keterangan
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            {{-- <th scope="col" class="px-6 py-3">
                                 Gelombang Pendaftaran
-                            </th>
+                            </th> --}}
                             <th scope="col" class="px-6 py-3">
                                 Aksi
                             </th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($pesertas_sudah as $data)
                         <tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td class="px-6 py-4">
-                                1
+                                {{ $loop->iteration }}
                             </td>
                             <td scope="row" class="px-6 py-4">
                                 <p class="text-gray-900">
-                                    SALMA MUTI HAFIZHA
+                                    {{ $data->nama }}
                                 </p>
                                 <p class="text-xs">
-                                    Nama Tim
+                                    {{ $data->nama_team }}
                                 </p>
                             </td>
                             <td class="px-6 py-4">
-                                SMAN 9 Malang
+                                {{ $data->sekolah }}
                             </td>
                             <td class="px-6 py-4">
                                 <p class="text-gray-900">
-                                    Malang
+                                    {{ $data->cabangs->cabang }}
                                 </p>
                                 <p class="text-xs">
-                                    Online
+                                    {{ $data->rayons->rayon }}
                                 </p>
                             </td>
                             <td class="px-6 py-4">
-                                salma@gmail.com
+                                {{ $data->email }}
                             </td>
                             <td class="px-6 py-4">
-                                081234567890
+                                {{ $data->telepon }}
                             </td>
                             <td class="px-6 py-4">
-                                Aktif
+                                {{ $data->keterangan }}
                             </td>
-                            <td class="px-6 py-4">
+                            {{-- <td class="px-6 py-4">
                                 -
-                            </td>
+                            </td> --}}
                             <td class="px-6 py-4">
-                                <a href="/admin/olimpiade/edit"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
+                                <a id="modal-box{{ $data->id_peserta }}" onclick="showModal({{ $data->id_peserta }})"
+                                    class="font-medium text-gray-900 cursor-pointer">
+                                    <i class="fad fa-ellipsis-h mr-2 leading-none"></i>
+                                </a>
+                                <div id="modal{{ $data->id_peserta }}" class="absolute right-0 hidden z-10"
+                                    aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                                    <div class="flex items-end justify-center text-center">
+                                        <div id="bg-modal{{  $data->id_peserta }}"
+                                            onclick="hideModal({{ $data->id_peserta }})" class="fixed inset-0"
+                                            aria-hidden="true"></div>
+                                        <div
+                                            class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all">
+                                            <div class="bg-white">
+                                                <div class="sm:flex sm:items-start">
+                                                    <div class="cart mt-1 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                                        <div
+                                                            class="card-body relative overflow-x-visible sm:rounded-lg">
+                                                            <button class="w-full">
+                                                                <a href="{{route('olimpiade.peserta.edit', $data->id_peserta)}}"
+                                                                    class="btn-bs-primary">
+                                                                    <i class="fad fa-edit mr-2 leading-none"></i>
+                                                                    Edit Peserta</a>
+                                                            </button>
+                                                            <button class="w-full mt-2">
+                                                                <a href="{{route('olimpiade.peserta.delete', $data->id_peserta)}}"
+                                                                    class="btn-bs-danger" data-confirm-delete="true">
+                                                                    <i class="fad fa-trash mr-2 leading-none"></i>
+                                                                    Hapus Peserta</a>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
-                        </tr>
-                        <tr
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="px-6 py-4">
-                                1
-                            </td>
-                            <td scope="row" class="px-6 py-4">
-                                <p class="text-gray-900">
-                                    SALMA MUTI HAFIZHA
-                                </p>
-                                <p class="text-xs">
-                                    Nama Tim
-                                </p>
-                            </td>
-                            <td class="px-6 py-4">
-                                SMAN 9 Malang
-                            </td>
-                            <td class="px-6 py-4">
-                                <p class="text-gray-900">
-                                    Malang
-                                </p>
-                                <p class="text-xs">
-                                    Online
-                                </p>
-                            </td>
-                            <td class="px-6 py-4">
-                                salma@gmail.com
-                            </td>
-                            <td class="px-6 py-4">
-                                081234567890
-                            </td>
-                            <td class="px-6 py-4">
-                                Aktif
-                            </td>
-                            <td class="px-6 py-4">
-                                -
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="/admin/olimpiade/edit"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
-                            </td>
-                        </tr>
-                        <tr
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="px-6 py-4">
-                                1
-                            </td>
-                            <td scope="row" class="px-6 py-4">
-                                <p class="text-gray-900">
-                                    SALMA MUTI HAFIZHA
-                                </p>
-                                <p class="text-xs">
-                                    Nama Tim
-                                </p>
-                            </td>
-                            <td class="px-6 py-4">
-                                SMAN 9 Malang
-                            </td>
-                            <td class="px-6 py-4">
-                                <p class="text-gray-900">
-                                    Malang
-                                </p>
-                                <p class="text-xs">
-                                    Online
-                                </p>
-                            </td>
-                            <td class="px-6 py-4">
-                                salma@gmail.com
-                            </td>
-                            <td class="px-6 py-4">
-                                081234567890
-                            </td>
-                            <td class="px-6 py-4">
-                                Aktif
-                            </td>
-                            <td class="px-6 py-4">
-                                -
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="/admin/olimpiade/edit"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
-                            </td>
-                        </tr>
-
+                            @endforeach
                     </tbody>
                 </table>
             </div>
@@ -251,118 +200,93 @@
                             <th scope="col" class="px-6 py-3">
                                 Keterangan
                             </th>
-                            <th scope="col" class="px-6 py-3">
+                            {{-- <th scope="col" class="px-6 py-3">
                                 Gelombang Pendaftaran
-                            </th>
+                            </th> --}}
                             <th scope="col" class="px-6 py-3">
                                 Aksi
                             </th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($pesertas_belum as $data)
                         <tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td class="px-6 py-4">
-                                1
+                                {{ $loop->iteration }}
                             </td>
-                            <td scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                ADI NUGRAHA
-                            </td>
-                            <td class="px-6 py-4">
-                                SMAN 9 Malang
-                            </td>
-                            <td class="px-6 py-4">
-                                Online
+                            <td scope="row" class="px-6 py-4">
+                                <p class="text-gray-900">
+                                    {{ $data->nama }}
+                                </p>
+                                <p class="text-xs">
+                                    {{ $data->nama_team }}
+                                </p>
                             </td>
                             <td class="px-6 py-4">
-                                adi@gmail.com
+                                {{ $data->sekolah }}
                             </td>
                             <td class="px-6 py-4">
-                                081234567890
+                                <p class="text-gray-900">
+                                    {{ $data->cabangs->cabang }}
+                                </p>
+                                <p class="text-xs">
+                                    {{ $data->rayons->rayon }}
+                                </p>
                             </td>
                             <td class="px-6 py-4">
-                                Aktif
+                                {{ $data->email }}
                             </td>
                             <td class="px-6 py-4">
+                                {{ $data->telepon }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $data->keterangan }}
+                            </td>
+                            {{-- <td class="px-6 py-4">
                                 -
-                            </td>
+                            </td> --}}
                             <td class="px-6 py-4">
-                                <a href="/admin/olimpiade/edit"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
+                                <a id="modal-box{{ $data->id_peserta }}" onclick="showModal({{ $data->id_peserta }})"
+                                    class="font-medium text-gray-900 cursor-pointer">
+                                    <i class="fad fa-ellipsis-h mr-2 leading-none"></i>
+                                </a>
+                                <div id="modal{{ $data->id_peserta }}" class="absolute right-0 hidden z-10"
+                                    aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                                    <div class="flex items-end justify-center text-center">
+                                        <div id="bg-modal{{  $data->id_peserta }}"
+                                            onclick="hideModal({{ $data->id_peserta }})" class="fixed inset-0"
+                                            aria-hidden="true"></div>
+                                        <div
+                                            class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all">
+                                            <div class="bg-white">
+                                                <div class="sm:flex sm:items-start">
+                                                    <div class="cart mt-1 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                                        <div
+                                                            class="card-body relative overflow-x-visible sm:rounded-lg">
+                                                            <button class="w-full">
+                                                                <a href="{{route('olimpiade.peserta.edit', $data->id_peserta)}}"
+                                                                    class="btn-bs-primary">
+                                                                    <i class="fad fa-edit mr-2 leading-none"></i>
+                                                                    Edit Peserta</a>
+                                                            </button>
+                                                            <button class="w-full mt-2">
+                                                                <a href="{{route('olimpiade.peserta.delete', $data->id_peserta)}}"
+                                                                    class="btn-bs-danger" data-confirm-delete="true">
+                                                                    <i class="fad fa-trash mr-2 leading-none"></i>
+                                                                    Hapus Peserta</a>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                             </td>
-                        </tr>
-                        <tr
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="px-6 py-4">
-                                2
-                            </td>
-                            <td scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                BAGAS DWI SAPUTRA
-                            </td>
-                            <td class="px-6 py-4">
-                                SMAN 9 Malang
-                            </td>
-                            <td class="px-6 py-4">
-                                Online
-                            </td>
-                            <td class="px-6 py-4">
-                                bagas@gmail.com
-                            </td>
-                            <td class="px-6 py-4">
-                                081234567890
-                            </td>
-                            <td class="px-6 py-4">
-                                Aktif
-                            </td>
-                            <td class="px-6 py-4">
-                                -
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="/admin/olimpiade/edit"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
-                            </td>
-                        </tr>
-                        <tr
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="px-6 py-4">
-                                3
-                            </td>
-                            <td scope="row"
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                AHMAD FAUZI
-                            </td>
-                            <td class="px-6 py-4">
-                                SMAN 9 Malang
-                            </td>
-                            <td class="px-6 py-4">
-                                Online
-                            </td>
-                            <td class="px-6 py-4">
-                                fauzi@gmail.com
-                            </td>
-                            <td class="px-6 py-4">
-                                081234567890
-                            </td>
-                            <td class="px-6 py-4">
-                                Aktif
-                            </td>
-                            <td class="px-6 py-4">
-                                -
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="/admin/olimpiade/edit"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
-                            </td>
-                        </tr>
+                            @endforeach
+
                     </tbody>
                 </table>
             </div>
         </div>
-
-
 </x-layout>
