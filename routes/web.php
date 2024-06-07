@@ -83,6 +83,10 @@ Route::get('/olympiad/ujian/detail/start', function () {
     return view('olimpiade/ujian/start-ujian', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'start']);
 });
 
+Route::get('/olympiad/ujian/detail/finish', function () {
+    return view('olimpiade/ujian/finish-ujian', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'finish']);
+});
+
 Route::get('/olympiad/ujian/history', function () {
     return view('olimpiade/ujian/history-ujian', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'history']);
 });
