@@ -1,8 +1,8 @@
 <div id="sideBar"
     class="relative flex flex-col flex-wrap bg-white border-r border-gray-300 p-6 flex-none w-64 lg:-ml-64 lg:fixed lg:top-0 lg:z-30 lg:h-screen lg:shadow-xl animated faster">
 
-    @if(request()->is('admin') | request()->is('admin/account') | Str::of(url()->current())->contains('auth/admin') |
-    Str::of(url()->current())->contains('dashboard'))
+    @if(request()->is('admin') | Str::of(url()->current())->contains('auth/admin')|
+    Str::of(url()->current())->contains('admin/main'))
     <div class="flex flex-col pt-20">
         <div class="text-right hidden lg:block mb-4">
             <button id="sideBarHideBtn">
@@ -10,7 +10,7 @@
             </button>
         </div>
         <p class="uppercase text-xs text-gray-600 mb-4 tracking-wider">dashboard</p>
-        <a href="/admin"
+        <a href="{{route('dashboard.index')}}"
             class="{{ request()->is('admin') ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-chart-pie text-xs mr-2"></i>
             dashboard
@@ -47,23 +47,23 @@
             </button>
         </div>
         <p class="uppercase text-xs text-gray-600 mb-4 tracking-wider">dashboard</p>
-        <a href="/admin/olimpiade"
+        <a href="{{route('olimpiade.dashboard')}}"
             class="{{ request()->is('admin/olimpiade') ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-chart-pie text-xs mr-2"></i>
             dashboard
         </a>
         <p class="uppercase text-xs text-gray-600 mb-4 mt-4 tracking-wider">navigation</p>
-        <a href="/admin/olimpiade/cabang/data"
+        <a href="{{route('olimpiade.cabang.index')}}"
             class="{{ request()->is('admin/olimpiade/cabang/data') | Str::of(url()->current())->contains('olimpiade/cabang/') | Str::of(url()->current())->contains('olimpiade/rayon/') ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-project-diagram text-xs mr-2"></i>
             cabang
         </a>
-        <a href="/admin/olimpiade/peserta/data"
+        <a href="{{route('olimpiade.peserta.index')}}"
             class=" {{ request()->is('admin/olimpiade/peserta/data') | Str::of(url()->current())->contains('olimpiade/peserta/data')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-user text-xs mr-2"></i>
             peserta
         </a>
-        <a href="/admin/olimpiade/peserta/add"
+        <a href="{{route('olimpiade.peserta.create')}}"
             class=" {{ request()->is('admin/olimpiade/peserta/add') | Str::of(url()->current())->contains('olimpiade/peserta/add')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-user-plus text-xs mr-2"></i>
             tambah peserta offline
@@ -98,7 +98,7 @@
             <i class="fad fa-coins text-xs mr-2"></i>
             pembayaran
         </a>
-        <a href="/admin/olimpiade/gelombang-pembayaran/data"
+        <a href="{{route('olimpiade.gelombang_pembayaran.index')}}"
             class="{{ request()->is('admin/olimpiade/gelombang-pembayaran') | Str::of(url()->current())->contains('olimpiade/gelombang-pembayaran/')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-money-bill-wave text-xs mr-2"></i>
             gelombang pembayaran
@@ -114,7 +114,7 @@
             </button>
         </div>
         <p class="uppercase text-xs text-gray-600 mb-4 tracking-wider">dashboard</p>
-        <a href="/admin/public-poster"
+        <a href="{{route('poster.dashboard')}}"
             class="{{ request()->is('admin/public-poster') ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-chart-pie text-xs mr-2"></i>
             dashboard

@@ -179,8 +179,6 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/olimpiade', 'event' => 'olimpi
     Route::post('forgotpassword', [MailsController::class, 'forgot_password'])->name('forgotpassword.mail');
     Route::get('/resetpassword/{token}', [AuthPesertaController::class, 'reset_password_page'])->name('resetpassword.page');
     Route::put('/resetpassword', [AuthPesertaController::class, 'reset_password_process'])->name('resetpassword.process');
-
-    Route::get('/dashboard', [MainOlimpiadeController::class, 'index'])->name('dashboard');
 });
 // Admin Dashboard
 Route::get('/admin/main/sertifikat', function () {
@@ -190,6 +188,7 @@ Route::get('/admin/main/sertifikat', function () {
 Route::get('/admin/main/settings', function () {
     return view('admin/main/settings', ['title' => 'Settings', 'slug' => 'settings']);
 });
+
 //Auth
 Route::group(['as' => 'auth.', 'prefix' => '/auth'], function () {
     Route::group(['as' => 'admin.', 'prefix' => '/admin'], function () {
@@ -200,12 +199,11 @@ Route::group(['as' => 'auth.', 'prefix' => '/auth'], function () {
         Route::put('/update-profile/{users}', [AuthController::class, 'update_profile'])->name('update-profile');
     });
 });
+
 //Main Dashboard
 Route::group(['as' => 'dashboard.', 'prefix' => '/admin/main'], function () {
     Route::get('/dashboard', [MainDashboardController::class, 'index'])->name('index');
-    Route::get('/olimpiade', [MainDashboardController::class, 'dashboard_olimpiade'])->name('olimpiade');
-    Route::get('/poster', [MainDashboardController::class, 'dashboard_poster'])->name('poster');
-    
+
     Route::group(['as' => 'user.', 'prefix' => '/user'], function () {
         Route::get('/data', [UserController::class, 'index'])->name('index');
         Route::get('/add', [UserController::class, 'create'])->name('create');
@@ -226,6 +224,7 @@ Route::group(['as' => 'dashboard.', 'prefix' => '/admin/main'], function () {
 });
 // Olimpiade Dashboard
 Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' => 'olimpiade'], function () {
+    Route::get('/olimpiade', [MainDashboardController::class, 'dashboard_olimpiade'])->name('dashboard');
     Route::group(['as' => 'cabang.', 'prefix' => '/cabang'], function () {
         Route::get('/data', [CabangsController::class, 'index'])->name('index');
         Route::get('/add', [CabangsController::class, 'create'])->name('create');
@@ -288,6 +287,10 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' => '
         Route::put('/update/{pembayarans}', [PembayaransController::class, 'update'])->name('update');
         Route::delete('/delete/{pembayarans}', [PembayaransController::class, 'destroy'])->name('delete');
     });
+});
+
+Route::group(['as' => 'poster.', 'prefix' => '/admin/poster', 'event' => 'olimpiade'], function () {
+    Route::get('/poster', [MainDashboardController::class, 'dashboard_poster'])->name('dashboard');
 });
 
 Route::get('/get-rayons', [RayonsController::class, 'getRayons']);

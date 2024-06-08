@@ -228,10 +228,10 @@
                             </td>
                             <td class="px-6 py-4">
                                 <p class="text-gray-900">
-                                    {{ $data->cabangs->cabang }}
+                                    {{ $data->cabangs->cabang ?? '-' }}
                                 </p>
                                 <p class="text-xs">
-                                    {{ $data->rayons->rayon }}
+                                    {{ $data->rayons->rayon ?? '-' }}
                                 </p>
                             </td>
                             <td class="px-6 py-4">

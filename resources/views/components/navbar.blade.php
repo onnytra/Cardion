@@ -30,10 +30,10 @@
             <a href="{{route('dashboard.index')}}"
                 class="{{ request()->is('admin') | Str::of(url()->current())->contains('dashboard')  ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}}  rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ request()->is('admin') ? 'page' : false }}">Main Dashboard</a>
-            <a href="{{route('dashboard.olimpiade')}}"
+            <a href="{{route('olimpiade.dashboard')}}"
                 class="{{ request()->is('admin/olimpiade') | Str::of(url()->current())->contains('olimpiade')   ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}}  rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ request()->is('olimpiade') ? 'page' : false }}">Olimpiade</a>
-            <a href="{{route('dashboard.poster')}}"
+            <a href="{{route('poster.dashboard')}}"
                 class="{{ request()->is('admin/public-poster') | Str::of(url()->current())->contains('poster')   ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}}  rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ request()->is('public-poster') ? 'page' : false }}">Public Poster</a>
         </div>
