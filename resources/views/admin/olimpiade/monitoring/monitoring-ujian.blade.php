@@ -23,48 +23,22 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($tests as $data)
                     <tr
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td class="px-6 py-4">
-                            1
+                            {{$loop->iteration}}
                         </td>
                         <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Olimpiade Cardion Gelombang 3
+                            {{$data->judul}}
                         </td>
                         <td class="px-6 py-4">
-                            <a href="monitoring-ujian/detail">
+                            <a href="{{route('olimpiade.monitoring_ujian.detail_monitoring', $data->id_ujian)}}">
                                 <button class="btn">Monitoring</button>
                             </a>
                         </td>
                     </tr>
-                    <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <td class="px-6 py-4">
-                            2
-                        </td>
-                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Olimpiade Cardion Gelombang 2
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="monitoring-ujian/detail">
-                                <button class="btn">Monitoring</button>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <td class="px-6 py-4">
-                            3
-                        </td>
-                        <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Olimpiade Cardion Gelombang 1
-                        </td>
-                        <td class="px-6 py-4">
-                            <a href="monitoring-ujian/detail">
-                                <button class="btn">Monitoring</button>
-                            </a>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

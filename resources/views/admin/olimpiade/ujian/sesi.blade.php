@@ -5,11 +5,18 @@
     <div class="card mt-6">
         <div class="card-header flex flex-row justify-between items-center">
             <h1 class="h6">Sesi Ujian ({{$ujians->judul}})</h1>
-            <button>
-                <a href="{{route('olimpiade.sesi.create', $ujians->id_ujian)}}" class="btn-bs-dark">
-                    <i class="fad fa-plus mr-2 leading-none"></i>
-                    Sesi Baru</a>
-            </button>
+            <div class="flex gap-2">
+                <button>
+                    <a href="{{route('olimpiade.sesi.create', $ujians->id_ujian)}}" class="btn-bs-dark">
+                        <i class="fad fa-plus mr-2 leading-none"></i>
+                        Sesi Baru</a>
+                </button>
+                <button>
+                    <a href="{{route('olimpiade.ujian.index')}}" class="btn-gray">
+                        <i class="fad fa-chevron-left mr-2 leading-none"></i>
+                        Kembali ke daftar ujian</a>
+                </button>
+            </div>
         </div>
 
         <div class="relative overflow-x-auto sm:rounded-lg text-sm p-10">
@@ -34,7 +41,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($ujians->sesi as $data)
+                    @foreach ($sesis as $data)
                     <tr
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td class="px-6 py-4">

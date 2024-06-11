@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssignTestsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CabangsController;
 use App\Http\Controllers\RayonsController;
@@ -13,9 +14,11 @@ use App\Http\Controllers\UserTypesController;
 use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\auth\AuthPesertaController;
 use App\Http\Controllers\MainDashboardController;
-use App\Http\Controllers\user\olimpiade\MainOlimpiadeController;
+use App\Http\Controllers\SoalsController;
+use App\Http\Controllers\SubyeksController;
 use App\Http\Controllers\mail\MailsController;
-use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\MonitoringUjianController;
+use App\Http\Controllers\user\olimpiade\MainOlimpiadeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -222,6 +225,7 @@ Route::group(['as' => 'dashboard.', 'prefix' => '/admin/main'], function () {
         Route::delete('/delete/{role}', [UserTypesController::class, 'destroy'])->name('delete');
     });
 });
+
 // Olimpiade Dashboard
 Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' => 'olimpiade'], function () {
     Route::get('/olimpiade', [MainDashboardController::class, 'dashboard_olimpiade'])->name('dashboard');
@@ -260,7 +264,24 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' => '
         Route::put('/update/{ujians}', [UjiansController::class, 'update'])->name('update');
         Route::delete('/delete/{ujians}', [UjiansController::class, 'destroy'])->name('delete');
     });
+    
+    Route::group(['as' => 'soal.', 'prefix' => '/soal'], function () {
+        Route::get('/data/{ujians}', [SoalsController::class, 'index'])->name('index');
+        Route::get('/add/{ujians}', [SoalsController::class, 'create'])->name('create');
+        Route::post('/store/{ujians}', [SoalsController::class, 'store'])->name('store');
+        Route::get('/edit/{soals}', [SoalsController::class, 'edit'])->name('edit');
+        Route::put('/update/{soals}', [SoalsController::class, 'update'])->name('update');
+        Route::delete('/delete/{soals}', [SoalsController::class, 'destroy'])->name('delete');
+    });
 
+    Route::group(['as' => 'subyek.', 'prefix' => '/subyek'], function () {
+        Route::get('/data/{ujians}', [SubyeksController::class, 'index'])->name('index');
+        Route::get('/add/{ujians}', [SubyeksController::class, 'create'])->name('create');
+        Route::post('/store/{ujians}', [SubyeksController::class, 'store'])->name('store');
+        Route::get('/edit/{subyeks}', [SubyeksController::class, 'edit'])->name('edit');
+        Route::put('/update/{subyeks}', [SubyeksController::class, 'update'])->name('update');
+        Route::delete('/delete/{subyeks}', [SubyeksController::class, 'destroy'])->name('delete');
+    });
     Route::group(['as' => 'sesi.', 'prefix' => '/sesi'], function () {
         Route::get('/data/{ujians}', [SesisController::class, 'index'])->name('index');
         Route::get('/add/{ujians}', [SesisController::class, 'create'])->name('create');
@@ -286,6 +307,20 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' => '
         Route::get('/edit/{pembayarans}', [PembayaransController::class, 'edit'])->name('edit');
         Route::put('/update/{pembayarans}', [PembayaransController::class, 'update'])->name('update');
         Route::delete('/delete/{pembayarans}', [PembayaransController::class, 'destroy'])->name('delete');
+    });
+
+    Route::group(['as' => 'assign_test.', 'prefix' => '/assigntest'], function () {
+        Route::get('/data/tests', [AssignTestsController::class, 'show_tests'])->name('show_tests');
+        Route::get('/data/{id}', [AssignTestsController::class, 'index'])->name('index');
+        Route::get('/add/{id}', [AssignTestsController::class, 'create'])->name('create');
+        Route::post('/store/{id}', [AssignTestsController::class, 'store'])->name('store');
+        Route::delete('/delete/{assign_tests}', [AssignTestsController::class, 'destroy'])->name('delete');
+    });
+
+    Route::group(['as' => 'monitoring_ujian.', 'prefix' => '/monitoringujian'], function () {
+        Route::get('/data/tests', [MonitoringUjianController::class, 'show_tests_monitoring'])->name('show_tests_monitoring');
+        Route::get('/data/ujian/{id}', [MonitoringUjianController::class, 'monitoring_detail'])->name('detail_monitoring');
+        Route::get('/data/peserta/{assign_tests}', [MonitoringUjianController::class, 'detail_peserta_monitoring'])->name('detail_peserta_monitoring');
     });
 });
 

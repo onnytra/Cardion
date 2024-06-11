@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('assign_tests', function (Blueprint $table) {
             $table->id('id_assign_test');
-            $table->foreignId('id_ujian')->references('id_ujian')->on('ujians')->onDelete('restrict')->onUpdate('cascade');
-            $table->foreignId('id_pengumpulan')->references('id_pengumpulan')->on('pengumpulan_karyas')->onDelete('restrict')->onUpdate('cascade');
-            $table->foreignId('id_peserta')->references('id_peserta')->on('pesertas')->onDelete('restrict')->onUpdate('cascade');
+            $table->foreignId('id_ujian')->nullable()->references('id_ujian')->on('ujians')->onDelete('cascade')->onUpdate('restrict');
+            $table->foreignId('id_pengumpulan')->nullable()->references('id_pengumpulan')->on('pengumpulan_karyas')->onDelete('cascade')->onUpdate('restrict');
+            $table->foreignId('id_peserta')->nullable()->references('id_peserta')->on('pesertas')->onDelete('cascade')->onUpdate('restrict');
             $table->string('status_test',20);
             $table->timestamps();
         });

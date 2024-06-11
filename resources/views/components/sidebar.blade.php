@@ -73,13 +73,13 @@
             <i class="fad fa-user-friends text-xs mr-2"></i>
             tambah peserta (panitia)
         </a>
-        <a href="/admin/olimpiade/ujian/data"
+        <a href="{{route('olimpiade.ujian.index')}}"
             class="{{ request()->is('admin/olimpiade/ujian/data') | Str::of(url()->current())->contains('olimpiade/ujian/')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-file-alt text-xs mr-2"></i>
             ujian
         </a>
-        <a href="/admin/olimpiade/monitoring-ujian"
-            class="{{ request()->is('admin/olimpiade/monitoring-ujian') | Str::of(url()->current())->contains('olimpiade/monitoring-ujian/')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <a href="{{route('olimpiade.monitoring_ujian.show_tests_monitoring')}}"
+            class="{{ request()->is('admin/olimpiade/monitoringujian') | Str::of(url()->current())->contains('olimpiade/monitoringujian/')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-user-secret text-xs mr-2"></i>
             monitoring ujian
         </a>
@@ -88,7 +88,7 @@
             <i class="fad fa-bullhorn text-xs mr-2"></i>
             pengumuman
         </a>
-        <a href="/admin/olimpiade/assign-test"
+        <a href="{{route('olimpiade.assign_test.show_tests')}}"
             class="{{ request()->is('admin/olimpiade/assign-test') | Str::of(url()->current())->contains('olimpiade/assign-test/')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-book-reader text-xs mr-2"></i>
             assign test
