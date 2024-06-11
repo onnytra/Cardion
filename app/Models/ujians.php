@@ -21,4 +21,19 @@ class ujians extends Model
     {
         return $this->hasMany(sesis::class, 'id_ujian', 'id_ujian');
     }
+
+    public function peserta()
+    {
+        return $this->hasMany(assign_tests::class, 'id_ujian', 'id_ujian');
+    }
+
+    public function pengumpulan_karya()
+    {
+        return $this->hasMany(pengumpulan_karyas::class, 'id_ujian', 'id_ujian');
+    }
+
+    public function assign_tests()
+    {
+        return $this->hasMany(assign_tests::class, 'id_ujian', 'id_ujian');
+    }
 }

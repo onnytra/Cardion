@@ -7,32 +7,33 @@
             <h1 class="h6">Form Tambah Subyek</h1>
         </div>
 
-        <form>
+        <form action="{{ route('olimpiade.subyek.store', $ujians->id_ujian) }}" method="POST">
+            @csrf
             <div class="card-body relative overflow-x-auto sm:rounded-lg">
                 <div class="grid gap-6">
                     <div class="flex items-center gap-4">
                         <div class="w-56 ">
                             <label for="label" class="block text-sm font-medium text-gray-600">Label*</label>
                         </div>
-                        <input type="text" name="label" id="label"
+                        <input type="text" name="label" id="label" value="{{ old('label') }}"
                             class="p-2 border border-gray w-full lg:w-full shadow-sm text-sm rounded-md" required>
                     </div>
                     <div class="flex items-center gap-4">
                         <div class="w-56 ">
                             <label for="total_soal" class="block text-sm font-medium text-gray-600">Total Soal*</label>
                         </div>
-                        <input type="number" name="total_soal" id="total_soal"
+                        <input type="number" name="total_soal" id="total_soal" value="{{ old('total_soal') }}"
                             class="p-2 border border-gray w-full lg:w-full shadow-sm text-sm rounded-md" required>
                     </div>
                 </div>
             </div>
 
-            <div class="card-footer">
+            <div class="card-footer flex justify">
                 <button>
-                    <a href="/admin/olimpiade/ujian/soal/subyek" type="button" class="btn-bs-secondary">kembali</a>
+                    <a href="{{route('olimpiade.subyek.index', $ujians->id_ujian)}}" type="button" class="btn-bs-secondary mr-3">Kembali</a>
                 </button>
-                <button>
-                    <a href="#" type="submit" class="btn-bs-dark">simpan</a>
+                <button type="submit" class="btn-bs-dark" onclick="confirmInput(event)">
+                    Simpan
                 </button>
             </div>
         </form>

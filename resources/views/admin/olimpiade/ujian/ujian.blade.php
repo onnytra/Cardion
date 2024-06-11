@@ -88,10 +88,16 @@
                                                                 Edit Ujian</a>
                                                         </button>
                                                         <button class="w-full mt-2">
-                                                            <a href="#"
+                                                            <a href="{{route('olimpiade.soal.index', $data->id_ujian)}}"
                                                                 class="btn-bs-success">
                                                                 <i class="fad fa-edit mr-2 leading-none"></i>
                                                                 Edit Soal</a>
+                                                        </button>
+                                                        <button class="w-full mt-2">
+                                                            <a href="{{route('olimpiade.sesi.index', $data->id_ujian)}}"
+                                                                class="btn-bs-secondary">
+                                                                <i class="fad fa-edit mr-2 leading-none"></i>
+                                                                Edit Sesi</a>
                                                         </button>
                                                         <button class="w-full mt-2">
                                                             <a href="{{route('olimpiade.ujian.delete', $data->id_ujian)}}" class="btn-bs-danger" data-confirm-delete="true">

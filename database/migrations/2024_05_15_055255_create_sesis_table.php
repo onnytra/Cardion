@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('id_sesi');
             $table->datetime('mulai');
             $table->datetime('berakhir');
-            $table->foreignId('id_ujian')->references('id_ujian')->on('ujians')->onDelete('restrict')->onUpdate('cascade');
+            $table->foreignId('id_ujian')->references('id_ujian')->on('ujians')->onDelete('cascade')->onUpdate('restrict');
             $table->timestamps();
         });
     }

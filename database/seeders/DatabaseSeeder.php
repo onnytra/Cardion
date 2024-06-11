@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             RayonSeeder::class,
             PesertaSeeder::class,
             RolePermissionSeeder::class,
+            UjianSeeder::class,
         ]);
     }
 }

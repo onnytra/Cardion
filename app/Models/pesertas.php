@@ -22,4 +22,7 @@ class pesertas extends Authenticatable
     {
         return $this->belongsTo(rayons::class, 'id_rayon', 'id_rayon');
     }
+    public function assign_tests(){
+        return $this->hasMany(assign_tests::class, 'id_peserta', 'id_peserta');
+    }
 }

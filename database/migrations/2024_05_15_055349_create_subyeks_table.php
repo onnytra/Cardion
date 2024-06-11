@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id('id_subyek');
             $table->string('nama',30);
             $table->integer('jumlah_soal');
+            $table->foreignId('id_ujian')->references('id_ujian')->on('ujians')->onDelete('cascade')->onUpdate('restrict');
             $table->timestamps();
         });
     }

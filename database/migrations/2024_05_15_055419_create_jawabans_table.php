@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('id_jawaban');
             $table->text('jawaban');
             $table->boolean('status_jawaban');
-            $table->foreignId('id_soal')->references('id_soal')->on('soals')->onDelete('restrict')->onUpdate('cascade');
+            $table->foreignId('id_soal')->references('id_soal')->on('soals')->onDelete('cascade')->onUpdate('restrict');
             $table->timestamps();
         });
     }

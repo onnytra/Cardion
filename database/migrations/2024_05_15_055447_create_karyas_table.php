@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('karya',50);
             $table->string('surat_originalitas',50);
             $table->string('essay_karya',50);
-            $table->foreignId('id_peserta')->references('id_peserta')->on('pesertas')->onDelete('restrict')->onUpdate('cascade');
-            $table->foreignId('id_pengumpulan')->references('id_pengumpulan')->on('pengumpulan_karyas')->onDelete('restrict')->onUpdate('cascade');
+            $table->foreignId('id_peserta')->references('id_peserta')->on('pesertas')->onDelete('cascade')->onUpdate('restrict');
+            $table->foreignId('id_pengumpulan')->references('id_pengumpulan')->on('pengumpulan_karyas')->onDelete('cascade')->onUpdate('restrict');
             $table->timestamps();
         });
     }

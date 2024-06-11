@@ -75,7 +75,21 @@
             .catch(error => {
                 console.error(error);
             });
-
+        ClassicEditor
+            .create(document.querySelector('#classic-editor4'))
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#classic-editor5'))
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#classic-editor6'))
+            .catch(error => {
+                console.error(error);
+            });
         new DataTable('#datatable');
         new DataTable('#datatable2');
         new DataTable('#datatable3');

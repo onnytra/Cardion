@@ -21,7 +21,6 @@ class UjiansController extends Controller
             $this->event = null;
         }
     }
-
     public function index()
     {
         $title = 'Ujian';
@@ -32,6 +31,10 @@ class UjiansController extends Controller
         confirmDelete($delete, $delete_message);
 
         $ujians = ujians::all();
+        $ujians->map(function ($ujian) {
+            $ujian->mulai = $ujian->sesi->min('mulai');
+            $ujian->berakhir = $ujian->sesi->max('berakhir');
+        });
         return view('admin/olimpiade/ujian/ujian', compact('ujians', 'title', 'slug'));
     }
 

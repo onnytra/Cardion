@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('soals', function (Blueprint $table) {
             $table->id('id_soal');
             $table->longText('soal');
-            $table->foreignId('id_subyek')->references('id_subyek')->on('subyeks')->onDelete('restrict')->onUpdate('cascade');
+            $table->foreignId('id_subyek')->references('id_subyek')->on('subyeks')->onDelete('cascade')->onUpdate('restrict');
             $table->string('urutan_soal',5);
-            $table->foreignId('id_ujian')->references('id_ujian')->on('ujians')->onDelete('restrict')->onUpdate('cascade');
+            $table->foreignId('id_ujian')->references('id_ujian')->on('ujians')->onDelete('cascade')->onUpdate('restrict');
             $table->timestamps();
         });
     }
