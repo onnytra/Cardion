@@ -38,7 +38,7 @@
 
             <div class="card-footer flex justify">
                 <button>
-                    <a href="{{url()->previous()}}" type="button" class="btn-bs-secondary mr-3">Kembali</a>
+                    <a href="{{route('olimpiade.cabang.index')}}" type="button" class="btn-bs-secondary mr-3">Kembali</a>
                 </button>
                 <button type="submit" class="btn-bs-dark" onclick="confirmInput(event)">
                     Simpan

@@ -83,7 +83,7 @@
             <i class="fad fa-user-secret text-xs mr-2"></i>
             monitoring ujian
         </a>
-        <a href="/admin/olimpiade/pengumuman"
+        <a href="{{route('olimpiade.pengumuman.index')}}"
             class="{{ request()->is('admin/olimpiade/pengumuman') | Str::of(url()->current())->contains('olimpiade/pengumuman/')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-bullhorn text-xs mr-2"></i>
             pengumuman
@@ -93,7 +93,7 @@
             <i class="fad fa-book-reader text-xs mr-2"></i>
             assign test
         </a>
-        <a href="/admin/olimpiade/pembayaran"
+        <a href="{{route('olimpiade.pembayaran.index')}}"
             class="{{ request()->is('admin/olimpiade/pembayaran') | Str::of(url()->current())->contains('olimpiade/pembayaran/')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-coins text-xs mr-2"></i>
             pembayaran

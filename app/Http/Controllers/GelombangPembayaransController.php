@@ -52,7 +52,7 @@ class GelombangPembayaransController extends Controller
             'nama' => 'required | max:50',
             'harga' => 'required',
             'tgl_mulai' => 'required | date',
-            'tgl_selesai' => 'required | date | after:tgl_mulai', 
+            'tgl_selesai' => 'required | date | after_or_equal:tgl_mulai', 
         ], [
             'nama.required' => 'Nama gelombang pembayaran harus diisi',
             'nama.max' => 'Nama gelombang pembayaran maksimal 50 karakter',
@@ -61,7 +61,7 @@ class GelombangPembayaransController extends Controller
             'tgl_mulai.date' => 'Tanggal mulai gelombang pembayaran harus berupa tanggal',
             'tgl_selesai.required' => 'Tanggal selesai gelombang pembayaran harus diisi',
             'tgl_selesai.date' => 'Tanggal selesai gelombang pembayaran harus berupa tanggal',
-            'tgl_selesai.after' => 'Tanggal selesai gelombang pembayaran harus setelah tanggal mulai',
+            'tgl_selesai.after_or_equal' => 'Tanggal selesai gelombang pembayaran harus sama atau setelah tanggal mulai',
         ]);
         if ($validate->fails()) {
             return redirect()->back()->withErrors($validate->errors())->withInput();
@@ -102,7 +102,7 @@ class GelombangPembayaransController extends Controller
             'nama' => 'required | max:50',
             'harga' => 'required',
             'tgl_mulai' => 'required | date',
-            'tgl_selesai' => 'required | date | after:tgl_mulai', 
+            'tgl_selesai' => 'required | date | after_or_equal:tgl_mulai', 
         ], [
             'nama.required' => 'Nama gelombang pembayaran harus diisi',
             'nama.max' => 'Nama gelombang pembayaran maksimal 50 karakter',
@@ -111,7 +111,7 @@ class GelombangPembayaransController extends Controller
             'tgl_mulai.date' => 'Tanggal mulai gelombang pembayaran harus berupa tanggal',
             'tgl_selesai.required' => 'Tanggal selesai gelombang pembayaran harus diisi',
             'tgl_selesai.date' => 'Tanggal selesai gelombang pembayaran harus berupa tanggal',
-            'tgl_selesai.after' => 'Tanggal selesai gelombang pembayaran harus setelah tanggal mulai',
+            'tgl_selesai.after' => 'Tanggal selesai gelombang pembayaran harus sama atau setelah tanggal mulai',
         ]);
         if ($validate->fails()) {
             return redirect()->back()->withErrors($validate->errors())->withInput();

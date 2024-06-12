@@ -25,4 +25,8 @@ class pesertas extends Authenticatable
     public function assign_tests(){
         return $this->hasMany(assign_tests::class, 'id_peserta', 'id_peserta');
     }
+    public function pembayarans()
+    {
+        return $this->hasMany(pembayarans::class, 'id_peserta', 'id_peserta');
+    }
 }

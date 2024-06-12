@@ -10,13 +10,15 @@ return new class extends Migration
     public function up()
     {
         DB::statement("
-        CREATE VIEW view_status_jawaban_pesertas 
+        CREATE OR REPLACE VIEW view_status_jawaban_pesertas 
         AS
         SELECT 
             p.id_peserta,
             uj.id_ujian,
             s.id_soal,
+            s.soal,
             ju.id_jawaban,
+            j.jawaban,
             CASE
                 WHEN ju.id_jawaban IS NULL THEN 'no answer'
                 WHEN j.status_jawaban = 1 THEN 'true'
@@ -45,7 +47,7 @@ return new class extends Migration
     ");
 
     DB::statement("
-        CREATE VIEW view_nilai_ujian_pesertas 
+        CREATE OR REPLACE VIEW view_nilai_ujian_pesertas 
         AS
         SELECT 
             id_peserta,
@@ -62,6 +64,6 @@ return new class extends Migration
 
     public function down()
     {
-        //
+        // 
     }
 };

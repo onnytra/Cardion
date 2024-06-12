@@ -18,6 +18,7 @@ use App\Http\Controllers\SoalsController;
 use App\Http\Controllers\SubyeksController;
 use App\Http\Controllers\mail\MailsController;
 use App\Http\Controllers\MonitoringUjianController;
+use App\Http\Controllers\PengumumansController;
 use App\Http\Controllers\user\olimpiade\MainOlimpiadeController;
 
 /*
@@ -306,7 +307,9 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' => '
         Route::post('/store', [PembayaransController::class, 'store'])->name('store');
         Route::get('/edit/{pembayarans}', [PembayaransController::class, 'edit'])->name('edit');
         Route::put('/update/{pembayarans}', [PembayaransController::class, 'update'])->name('update');
-        Route::delete('/delete/{pembayarans}', [PembayaransController::class, 'destroy'])->name('delete');
+        Route::get('/delete/{pembayarans}', [PembayaransController::class, 'destroy'])->name('delete');
+        Route::get('/tolak/{pembayarans}', [PembayaransController::class, 'tolak'])->name('tolak');
+        Route::get('/terima/{pembayarans}', [PembayaransController::class, 'terima'])->name('terima');
     });
 
     Route::group(['as' => 'assign_test.', 'prefix' => '/assigntest'], function () {
@@ -322,6 +325,15 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' => '
         Route::get('/data/ujian/{id}', [MonitoringUjianController::class, 'monitoring_detail'])->name('detail_monitoring');
         Route::get('/data/peserta/{assign_tests}', [MonitoringUjianController::class, 'detail_peserta_monitoring'])->name('detail_peserta_monitoring');
     });
+
+    Route::group(['as' => 'pengumuman.', 'prefix' => '/pengumuman'], function () {
+        Route::get('/data', [PengumumansController::class, 'index'])->name('index');
+        Route::get('/add', [PengumumansController::class, 'create'])->name('create');
+        Route::post('/store', [PengumumansController::class, 'store'])->name('store');
+        Route::get('/edit/{pengumumans}', [PengumumansController::class, 'edit'])->name('edit');
+        Route::put('/update/{pengumumans}', [PengumumansController::class, 'update'])->name('update');
+        Route::delete('/delete/{pengumumans}', [PengumumansController::class, 'destroy'])->name('delete');
+    });  
 });
 
 Route::group(['as' => 'poster.', 'prefix' => '/admin/poster', 'event' => 'olimpiade'], function () {
@@ -329,47 +341,6 @@ Route::group(['as' => 'poster.', 'prefix' => '/admin/poster', 'event' => 'olimpi
 });
 
 Route::get('/get-rayons', [RayonsController::class, 'getRayons']);
-
-
-Route::get('/admin/olimpiade/monitoring-ujian', function () {
-    return view('admin/olimpiade/monitoring/monitoring-ujian', ['title' => 'Monitoring Ujian', 'slug' => 'monitoring-ujian']);
-});
-
-Route::get('/admin/olimpiade/monitoring-ujian/detail', function () {
-    return view('admin/olimpiade/monitoring/detail-monitoring', ['title' => 'Detail Monitoring Ujian', 'slug' => 'detail']);
-});
-
-Route::get('/admin/olimpiade/monitoring-ujian/detail/detail-peserta', function () {
-    return view('admin/olimpiade/monitoring/detail-peserta', ['title' => 'Detail Peserta Monitoring Ujian', 'slug' => 'detail-peserta']);
-});
-
-Route::get('/admin/olimpiade/pengumuman', function () {
-    return view('admin/olimpiade/pengumuman/pengumuman', ['title' => 'Pengumuman', 'slug' => 'pengumuman']);
-});
-
-Route::get('/admin/olimpiade/pengumuman/add', function () {
-    return view('admin/olimpiade/pengumuman/add-pengumuman', ['title' => 'Tambah Pengumuman', 'slug' => 'add']);
-});
-
-Route::get('/admin/olimpiade/pengumuman/edit', function () {
-    return view('admin/olimpiade/pengumuman/edit-pengumuman', ['title' => 'Edit Pengumuman', 'slug' => 'edit']);
-});
-
-Route::get('/admin/olimpiade/assign-test', function () {
-    return view('admin/olimpiade/assign-test/assign-test', ['title' => 'Assign Test', 'slug' => 'assign-test']);
-});
-
-Route::get('/admin/olimpiade/assign-test/detail', function () {
-    return view('admin/olimpiade/assign-test/detail-assign-test', ['title' => 'Assign Test', 'slug' => 'detail']);
-});
-
-Route::get('/admin/olimpiade/sesi', function () {
-    return view('admin/olimpiade/sesi/sesi', ['title' => 'Sesi', 'slug' => 'sesi']);
-});
-
-Route::get('/admin/olimpiade/pembayaran', function () {
-    return view('admin/olimpiade/pembayaran', ['title' => 'Pembayaran', 'slug' => 'pembayaran']);
-});
 
 // Public Poster
 Route::get('/admin/public-poster', function () {
