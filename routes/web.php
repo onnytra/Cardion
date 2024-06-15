@@ -15,6 +15,7 @@ use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\auth\AuthPesertaController;
 use App\Http\Controllers\Export\ExportController;
 use App\Http\Controllers\Import\ImportController;
+use App\Http\Controllers\KaryasController;
 use App\Http\Controllers\MainDashboardController;
 use App\Http\Controllers\SoalsController;
 use App\Http\Controllers\SubyeksController;
@@ -440,95 +441,12 @@ Route::group(['as' => 'poster.', 'prefix' => '/admin/poster', 'event' => 'poster
     });
 
     
+    Route::group(['as' => 'penilaian.', 'prefix' => '/penilaian'], function () {
+        Route::get('/pengumpulan-karya',[KaryasController::class, 'show_pengumpulan'])->name('pengumpulan_karya');
+        Route::put('/update-nilai/{karyas}',[KaryasController::class, 'update_nilai'])->name('update_nilai');
+        Route::get('/data/{id}',[KaryasController::class, 'index'])->name('index');
+        Route::delete('/delete/{karyas}',[KaryasController::class, 'destroy'])->name('delete');
+    });
 });
 
 Route::get('/get-rayons', [RayonsController::class, 'getRayons']);
-
-// Public Poster
-Route::get('/admin/public-poster', function () {
-    return view('admin/public-poster/dashboard', ['title' => 'Dashboard Public Poster', 'slug' => 'public-poster']);
-});
-
-Route::get('/admin/public-poster/cabang', function () {
-    return view('admin/public-poster/cabang/cabang', ['title' => 'Cabang', 'slug' => 'cabang']);
-});
-
-Route::get('/admin/public-poster/cabang/add', function () {
-    return view('admin/public-poster/cabang/add-cabang', ['title' => 'Tambah Cabang', 'slug' => 'add']);
-});
-
-Route::get('/admin/public-poster/cabang/edit', function () {
-    return view('admin/public-poster/cabang/edit-cabang', ['title' => 'Edit Cabang', 'slug' => 'edit']);
-});
-
-Route::get('/admin/public-poster/cabang/rayon', function () {
-    return view('admin/public-poster/cabang/rayon', ['title' => 'Rayon', 'slug' => 'rayon']);
-});
-
-Route::get('/admin/public-poster/cabang/rayon/add', function () {
-    return view('admin/public-poster/cabang/add-rayon', ['title' => 'Tambah Rayon', 'slug' => 'add']);
-});
-
-Route::get('/admin/public-poster/cabang/rayon/edit', function () {
-    return view('admin/public-poster/cabang/edit-rayon', ['title' => 'Edit Rayon', 'slug' => 'edit']);
-});
-
-Route::get('/admin/public-poster/peserta', function () {
-    return view('admin/public-poster/peserta/peserta', ['title' => 'Peserta', 'slug' => 'peserta']);
-});
-
-Route::get('/admin/public-poster/tambah-peserta-offline', function () {
-    return view('admin/public-poster/peserta/tambah-peserta-offline', ['title' => 'Tambah Peserta Offline', 'slug' => 'tambah-peserta-offline']);
-});
-
-Route::get('/admin/public-poster/edit', function () {
-    return view('admin/public-poster/peserta/edit-peserta-offline', ['title' => 'Edit Peserta Offline', 'slug' => 'edit']);
-});
-
-Route::get('/admin/public-poster/tambah-peserta-panitia', function () {
-    return view('admin/public-poster/peserta/tambah-peserta-panitia', ['title' => 'Tambah Peserta Panitia', 'slug' => 'tambah-peserta-panitia']);
-});
-
-Route::get('/admin/public-poster/pengumpulan-karya', function () {
-    return view('admin/public-poster/pengumpulan/pengumpulan-karya', ['title' => 'Pengumpulan Karya', 'slug' => 'pengumpulan-karya']);
-});
-
-Route::get('/admin/public-poster/pengumpulan-karya/add', function () {
-    return view('admin/public-poster/pengumpulan/add-pengumpulan-karya', ['title' => 'Tambah Pengumpulan Karya', 'slug' => 'add']);
-});
-
-Route::get('/admin/public-poster/pengumpulan-karya/edit', function () {
-    return view('admin/public-poster/pengumpulan/edit-pengumpulan-karya', ['title' => 'Edit Pengumpulan Karya', 'slug' => 'edit']);
-});
-
-Route::get('/admin/public-poster/penilaian', function () {
-    return view('admin/public-poster/penilaian', ['title' => 'Penilaian', 'slug' => 'penilaian']);
-});
-
-Route::get('/admin/public-poster/assign-test', function () {
-    return view('admin/public-poster/assign-test/assign-test', ['title' => 'Assign Test', 'slug' => 'assign-test']);
-});
-
-Route::get('/admin/public-poster/assign-test/detail', function () {
-    return view('admin/public-poster/assign-test/detail-assign-test', ['title' => 'Detail Assign Test', 'slug' => 'detail']);
-});
-
-Route::get('/admin/public-poster/sesi', function () {
-    return view('admin/public-poster/sesi/sesi', ['title' => 'Sesi', 'slug' => 'sesi']);
-});
-
-Route::get('/admin/public-poster/pembayaran', function () {
-    return view('admin/public-poster/pembayaran', ['title' => 'Pembayaran', 'slug' => 'pembayaran']);
-});
-
-Route::get('/admin/public-poster/gelombang-pembayaran', function () {
-    return view('admin/public-poster/gelombang-pembayaran/gelombang-pembayaran', ['title' => 'Gelombang Pembayaran', 'slug' => 'gelombang-pembayaran']);
-});
-
-Route::get('/admin/public-poster/gelombang-pembayaran/add', function () {
-    return view('admin/public-poster/gelombang-pembayaran/add-gelombang', ['title' => 'Tambah Gelombang Pembayaran', 'slug' => 'add']);
-});
-
-Route::get('/admin/public-poster/gelombang-pembayaran/edit', function () {
-    return view('admin/public-poster/gelombang-pembayaran/edit-gelombang', ['title' => 'Edit Gelombang Pembayaran', 'slug' => 'edit']);
-});

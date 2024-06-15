@@ -145,7 +145,7 @@
             <i class="fad fa-folder-open text-xs mr-2"></i>
             pengumpulan karya
         </a>
-        <a href="/admin/poster/penilaian"
+        <a href="{{route('poster.penilaian.pengumpulan_karya')}}"
             class="{{ request()->is('admin/poster/penilaian') | Str::of(url()->current())->contains('poster/penilaian/')   ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-feather-alt text-xs mr-2"></i>
             penilaian

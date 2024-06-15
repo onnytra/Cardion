@@ -51,8 +51,17 @@ class MainDashboardController extends Controller
     {
         $title = 'Main Dashboard';
         $slug = 'admin';
+        
+        $main = new stdClass();
+        $main->peserta_olimpiade = pesertas::where('event', 'olimpiade')->count();
+        $main->peserta_olimpiade_aktif = pesertas::where('event', 'olimpiade')->where('keterangan', 'Aktif')->count();
+        $main->ujian = ujians::all()->count();
 
-        return view('admin.main.dashboard', compact('title', 'slug'));
+        $main->peserta_poster = pesertas::where('event', 'poster')->count();
+        $main->peserta_poster_aktif = pesertas::where('event', 'poster')->where('keterangan', 'Aktif')->count();
+        $main->pengumpulan_karya = pengumpulan_karyas::all()->count();
+
+        return view('admin.main.dashboard', compact('title', 'slug', 'main'));
     }
 
     public function dashboard_olimpiade()
