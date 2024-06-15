@@ -96,11 +96,12 @@
                                 {{ $data->gelombang_pembayarans->gelombang }}
                             </td>
                             <td class="px-6 py-4">
-                                <a id="modal-box{{ $data->peserta->nama }}"
-                                    onclick="showModal({{ $data->peserta->nama }})"
+                                <a id="modal-box{{ $data->id_pembayaran }}"
+                                    onclick="showModal({{ $data->id_pembayaran }})"
                                     class="text-blue-600 cursor-pointer hover:underline">Lihat Konfirmasi
                                     Pembayaran</a>
-                                <div id="modal" class="fixed z-10 inset-0 top-20 overflow-y-auto hidden"
+                                <div id="modal{{ $data->id_pembayaran }}"
+                                    class="fixed z-10 inset-0 top-20 overflow-y-auto hidden"
                                     aria-labelledby="modal-title" role="dialog" aria-modal="true">
                                     <div class="flex items-end justify-center pt-24 px-4 pb-20 text-center">
                                         <div class="fixed inset-0 bg-gray-200 bg-opacity-75 transition-opacity"
@@ -157,8 +158,8 @@
                                             </div>
                                             <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                                                 <button type="button" class="btn-bs-dark w-full"
-                                                    id="bg-modal{{ $data->peserta->nama }}"
-                                                    onclick="hideModal({{ $data->peserta->nama }})">
+                                                    id="bg-modal{{ $data->id_pembayaran }}"
+                                                    onclick="hideModal({{ $data->id_pembayaran }})">
                                                     Close
                                                 </button>
                                             </div>
@@ -233,11 +234,12 @@
                                 {{ $data->gelombang_pembayarans->gelombang }}
                             </td>
                             <td class="px-6 py-4">
-                                <a id="modal-box{{ $data->peserta->nama }}"
-                                    onclick="showModal({{ $data->peserta->nama }})"
+                                <a id="modal-box{{ $data->id_pembayaran}}"
+                                    onclick="showModal({{ $data->id_pembayaran }})"
                                     class="text-blue-600 cursor-pointer hover:underline">Lihat Konfirmasi
                                     Pembayaran</a>
-                                <div id="modal" class="fixed z-10 inset-0 top-20 overflow-y-auto hidden"
+                                <div id="modal{{ $data->id_pembayaran }}"
+                                    class="fixed z-10 inset-0 top-20 overflow-y-auto hidden"
                                     aria-labelledby="modal-title" role="dialog" aria-modal="true">
                                     <div class="flex items-end justify-center pt-24 px-4 pb-20 text-center">
                                         <div class="fixed inset-0 bg-gray-200 bg-opacity-75 transition-opacity"
@@ -294,8 +296,8 @@
                                             </div>
                                             <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                                                 <button type="button" class="btn-bs-dark w-full"
-                                                    id="bg-modal{{ $data->peserta->nama }}"
-                                                    onclick="hideModal({{ $data->peserta->nama }})">
+                                                    id="bg-modal{{ $data->id_pembayaran }}"
+                                                    onclick="hideModal({{ $data->id_pembayaran }})">
                                                     Close
                                                 </button>
                                             </div>
@@ -304,16 +306,16 @@
                                 </div>
                             </td>
                             <td class="px-6 py-4">
-                                <a id="modal-box{{ $data->id_pembayaran }}"
-                                    onclick="showModal({{ $data->id_pembayaran }})"
+                                <a id="modal-box{{ $data->id_pembayaran * 50 }}"
+                                    onclick="showModal({{ $data->id_pembayaran * 50 }})"
                                     class="font-medium text-gray-900 cursor-pointer">
                                     <i class="fad fa-ellipsis-h mr-2 leading-none"></i>
                                 </a>
-                                <div id="modal{{ $data->id_pembayaran }}" class="absolute right-0 hidden z-10"
+                                <div id="modal{{ $data->id_pembayaran * 50 }}" class="absolute right-0 hidden z-10"
                                     aria-labelledby="modal-title" role="dialog" aria-modal="true">
                                     <div class="flex items-end justify-center text-center">
-                                        <div id="bg-modal{{  $data->id_pembayaran }}"
-                                            onclick="hideModal({{ $data->id_pembayaran }})" class="fixed inset-0"
+                                        <div id="bg-modal{{  $data->id_pembayaran * 50 }}"
+                                            onclick="hideModal({{ $data->id_pembayaran * 50 }})" class="fixed inset-0"
                                             aria-hidden="true"></div>
                                         <div
                                             class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all">
@@ -405,11 +407,12 @@
                                 {{ $data->gelombang_pembayarans->gelombang }}
                             </td>
                             <td class="px-6 py-4">
-                                <a id="modal-box{{ $data->peserta->nama }}"
-                                    onclick="showModal({{ $data->peserta->nama }})"
+                                <a id="modal-box{{ $data->id_pembayaran }}"
+                                    onclick="showModal({{ $data->id_pembayaran }})"
                                     class="text-blue-600 cursor-pointer hover:underline">Lihat Konfirmasi
                                     Pembayaran</a>
-                                <div id="modal" class="fixed z-10 inset-0 top-20 overflow-y-auto hidden"
+                                <div id="modal{{ $data->id_pembayaran }}"
+                                    class="fixed z-10 inset-0 top-20 overflow-y-auto hidden"
                                     aria-labelledby="modal-title" role="dialog" aria-modal="true">
                                     <div class="flex items-end justify-center pt-24 px-4 pb-20 text-center">
                                         <div class="fixed inset-0 bg-gray-200 bg-opacity-75 transition-opacity"
@@ -465,8 +468,9 @@
                                                 </div>
                                             </div>
                                             <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                                                <button type="button" class="btn-bs-dark w-full" id="bg-modal"
-                                                    onclick="hideModal({{ $data->peserta->nama }})">
+                                                <button type="button" class="btn-bs-dark w-full"
+                                                    id="bg-modal{{ $data->id_pembayaran }}"
+                                                    onclick="hideModal({{ $data->id_pembayaran }})">
                                                     Close
                                                 </button>
                                             </div>
@@ -475,16 +479,16 @@
                                 </div>
                             </td>
                             <td class="px-6 py-4">
-                                <a id="modal-box{{ $data->id_pembayaran }}"
-                                    onclick="showModal({{ $data->id_pembayaran }})"
+                                <a id="modal-box{{ $data->id_pembayaran * 50 }}"
+                                    onclick="showModal({{ $data->id_pembayaran * 50 }})"
                                     class="font-medium text-gray-900 cursor-pointer">
                                     <i class="fad fa-ellipsis-h mr-2 leading-none"></i>
                                 </a>
-                                <div id="modal{{ $data->id_pembayaran }}" class="absolute right-0 hidden z-10"
+                                <div id="modal{{ $data->id_pembayaran * 50 }}" class="absolute right-0 hidden z-10"
                                     aria-labelledby="modal-title" role="dialog" aria-modal="true">
                                     <div class="flex items-end justify-center text-center">
-                                        <div id="bg-modal{{  $data->id_pembayaran }}"
-                                            onclick="hideModal({{ $data->id_pembayaran }})" class="fixed inset-0"
+                                        <div id="bg-modal{{  $data->id_pembayaran * 50 }}"
+                                            onclick="hideModal({{ $data->id_pembayaran * 50 }})" class="fixed inset-0"
                                             aria-hidden="true"></div>
                                         <div
                                             class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all">
