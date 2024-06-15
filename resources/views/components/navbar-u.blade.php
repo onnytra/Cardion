@@ -39,7 +39,7 @@
                 class="{{ Str::of(url()->current())->contains('sertifikat') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ Str::of(url()->current())->contains('sertifikat') ? 'page' : false }}">Sertifikat</a>
             @if(Auth::guard('peserta')->user()->event == 'olimpiade')
-            <a href="/olimpiad/ujian"
+            <a href="{{route('olimpiade.ujian')}}"
                 class="{{ Str::of(url()->current())->contains('ujian') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ Str::of(url()->current())->contains('ujian') ? 'page' : false }}">Ujian</a>
             <a href="{{route('olimpiade.pengumuman')}}"

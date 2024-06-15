@@ -27,6 +27,7 @@ use App\Http\Controllers\user\olimpiade\MainOlimpiadeController;
 use App\Http\Controllers\user\olimpiade\PembayaranController;
 use App\Http\Controllers\user\olimpiade\PengumumanController;
 use App\Http\Controllers\user\olimpiade\RegistrasiController;
+use App\Http\Controllers\user\olimpiade\UjianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,54 +78,6 @@ Route::get('/olympiad/ujian/history', function () {
 
 Route::get('/olympiad/ujian/history/hasil', function () {
     return view('olimpiade/ujian/hasil-ujian', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'hasil']);
-});
-
-Route::get('/olympiad/pengumuman', function () {
-    return view('olimpiade/pengumuman/pengumuman', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'pengumuman']);
-});
-
-Route::get('/olympiad/pengumuman/detail', function () {
-    return view('olimpiade/pengumuman/detail-pengumuman', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'detail']);
-});
-
-Route::get('/public-poster', function () {
-    return view('public-poster', ['title' => 'Public Poster - Cardion UIN Malang', 'slug' => 'public-poster']);
-});
-
-Route::get('/public-poster/login', function () {
-    return view('publicposter/login', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'login']);
-});
-
-Route::get('/public-poster/logout', function () {
-    return view('publicposter/login', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'login']);
-});
-
-Route::get('/public-poster/register', function () {
-    return view('publicposter/register', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'register']);
-});
-
-Route::get('/public-poster/account', function () {
-    return view('publicposter/account', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'account']);
-});
-
-Route::get('/public-poster/dashboard', function () {
-    return view('publicposter/dashboard', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'dashboard']);
-});
-
-Route::get('/public-poster/pembayaran', function () {
-    return view('publicposter/pembayaran/pembayaran', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'pembayaran']);
-});
-
-Route::get('/public-poster/pembayaran/add', function () {
-    return view('publicposter/pembayaran/add-pembayaran', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'add']);
-});
-
-Route::get('/public-poster/pembayaran/edit', function () {
-    return view('publicposter/pembayaran/edit-pembayaran', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'edit']);
-});
-
-Route::get('/public-poster/registrasi', function () {
-    return view('publicposter/registrasi', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'registrasi']);
 });
 
 Route::get('/public-poster/cetak-kartu', function () {
@@ -183,6 +136,10 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/olimpiade', 'event' => 'olimpi
 
     Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman');
     Route::get('/pengumuman/detail', [PengumumanController::class, 'detail'])->name('detail-pengumuman');
+
+    Route::get('/ujian', [UjianController::class, 'index'])->name('ujian');
+    Route::get('/ujian/detail/{ujians}', [UjianController::class, 'detail'])->name('detail-ujian');
+    Route::get('/ujian/detail/start/{ujians}', [UjianController::class, 'detail_start'])->name('start-ujian');
 });
 // All User Side
 Route::group(['as' => 'user.', 'prefix' => '/user', 'event' => 'olimpiade'], function () {

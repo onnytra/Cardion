@@ -25,4 +25,11 @@ class PengumumanController extends Controller
         ->get();
         return view('olimpiade.pengumuman.pengumuman', compact('title', 'slug', 'pengumuman_broadcast', 'pengumuman_gelombang'));
     }
+
+    public function detail(pengumumans $pengumumans){
+        $title = 'Detail Pengumuman | Cardion UIN Malang';
+        $slug = 'pengumuman';
+
+        return view('olimpiade.pengumuman.detail-pengumuman', compact('title', 'slug', 'pengumumans'));
+    }
 }

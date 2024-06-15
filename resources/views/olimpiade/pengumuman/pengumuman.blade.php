@@ -14,12 +14,12 @@
             </p>
         </div>
 
-        <div class="card-footer">
+        {{-- <div class="card-footer">
             <button>
                 <a href="/olympiad/pengumuman/detail" class="btn">
                     Baca Selengkapnya</a>
             </button>
-        </div>
+        </div> --}}
     </div>
     @endforeach
     @foreach ($pengumuman_gelombang as $pengumuman)
@@ -34,12 +34,12 @@
             </p>
         </div>
 
-        <div class="card-footer">
+        {{-- <div class="card-footer">
             <button>
                 <a href="/olympiad/pengumuman/detail" class="btn">
                     Baca Selengkapnya</a>
             </button>
-        </div>
+        </div> --}}
     </div>
     @endforeach
 </x-layout-u>
