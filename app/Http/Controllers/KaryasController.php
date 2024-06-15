@@ -21,6 +21,10 @@ class KaryasController extends Controller
         $title = 'Penilaian';
         $slug = 'penilaian';
 
+        $delete = 'Delete Karya';
+        $delete_message = 'Anda yakin ingin menghapus karya ini ?';
+        confirmDelete($delete, $delete_message);
+
         $karyas = karyas::where('id_pengumpulan', $id)->get();
         $karya_sudah = $karyas->whereNotNull('nilai');
         $karya_belum = $karyas->whereNull('nilai');

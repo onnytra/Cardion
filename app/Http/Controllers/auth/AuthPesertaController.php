@@ -44,7 +44,7 @@ class AuthPesertaController extends Controller
 
         if(Auth::guard('peserta')->attempt($credentials, $remember)){
             $request->session()->regenerate();
-            return redirect()->route('olimpiade.dashboard');
+            return redirect()->route('user.dashboard');
         }
         
         return redirect()->back()->with('error', 'Invalid Credentials');

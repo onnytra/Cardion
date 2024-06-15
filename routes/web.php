@@ -188,6 +188,15 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/olimpiade', 'event' => 'olimpi
     Route::get('/resetpassword/{token}', [AuthPesertaController::class, 'reset_password_page'])->name('resetpassword.page');
     Route::put('/resetpassword', [AuthPesertaController::class, 'reset_password_process'])->name('resetpassword.process');
 });
+
+// All User Side
+
+Route::group(['as' => 'user.', 'prefix' => '/user'], function () {
+    Route::group(['event' => 'olimpiade'], function () {
+        Route::get('/dashboard', [MainOlimpiadeController::class, 'index'])->name('dashboard');
+    });
+});
+
 // Admin Dashboard
 Route::get('/admin/main/sertifikat', function () {
     return view('admin/main/sertifikat', ['title' => 'Sertifikat', 'slug' => 'sertifikat']);

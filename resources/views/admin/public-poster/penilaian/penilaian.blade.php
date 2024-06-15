@@ -216,7 +216,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{route('poster.penilaian.delete', $data->id_karya)}}" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
+                                <a href="{{route('poster.penilaian.delete', $data->id_karya)}}" class="font-medium text-red-600 dark:text-red-500 hover:underline" data-confirm-delete="true">Hapus</a>
                             </td>
                         </tr>
                         @endforeach
@@ -415,7 +415,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{route('poster.penilaian.delete', $data->id_karya)}}" class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus</a>
+                                <a href="{{route('poster.penilaian.delete', $data->id_karya)}}" class="font-medium text-red-600 dark:text-red-500 hover:underline" data-confirm-delete="true">Hapus</a>
                             </td>
                         </tr>
                         @endforeach
