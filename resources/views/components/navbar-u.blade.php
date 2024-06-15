@@ -38,17 +38,17 @@
             <a href="{{ Str::of(url()->current())->contains('olimpiade') ? '/olimpiade/sertifikat' : '/public-poster/sertifikat' }}"
                 class="{{ Str::of(url()->current())->contains('sertifikat') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ Str::of(url()->current())->contains('sertifikat') ? 'page' : false }}">Sertifikat</a>
-            @if(Str::of(url()->current())->contains('olimpiade'))
+            @if(Auth::guard('peserta')->user()->event == 'olimpiade')
             <a href="/olimpiad/ujian"
                 class="{{ Str::of(url()->current())->contains('ujian') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ Str::of(url()->current())->contains('ujian') ? 'page' : false }}">Ujian</a>
-            <a href="/olimpiad/pengumuman"
+            <a href="{{route('olimpiade.pengumuman')}}"
                 class="{{ Str::of(url()->current())->contains('pengumuman') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ Str::of(url()->current())->contains('pengumuman') ? 'page' : false }}">Pengumuman</a>
             <a href="https://instagram.com/cardion.2024?igshid=MWZjMTM2ODFkZg==" target="_blank"
                 class="text-gray-600 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Berita
                 Terbaru</a>
-            @elseif(Str::of(url()->current())->contains('public-poster'))
+            @elseif(Auth::guard('peserta')->user()->event == 'poster')
             <a href="/public-poster/pengumpulan-karya"
                 class="{{ Str::of(url()->current())->contains('pengumpulan-karya') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ Str::of(url()->current())->contains('pengumpulan-karya') ? 'page' : false }}">Pengumpulan

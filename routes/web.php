@@ -25,6 +25,7 @@ use App\Http\Controllers\PengumumansController;
 use App\Http\Controllers\PengumpulanKaryasController;
 use App\Http\Controllers\user\olimpiade\MainOlimpiadeController;
 use App\Http\Controllers\user\olimpiade\PembayaranController;
+use App\Http\Controllers\user\olimpiade\PengumumanController;
 use App\Http\Controllers\user\olimpiade\RegistrasiController;
 
 /*
@@ -179,6 +180,9 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/olimpiade', 'event' => 'olimpi
     Route::post('forgotpassword', [MailsController::class, 'forgot_password'])->name('forgotpassword.mail');
     Route::get('/resetpassword/{token}', [AuthPesertaController::class, 'reset_password_page'])->name('resetpassword.page');
     Route::put('/resetpassword', [AuthPesertaController::class, 'reset_password_process'])->name('resetpassword.process');
+
+    Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman');
+    Route::get('/pengumuman/detail', [PengumumanController::class, 'detail'])->name('detail-pengumuman');
 });
 // All User Side
 Route::group(['as' => 'user.', 'prefix' => '/user', 'event' => 'olimpiade'], function () {
