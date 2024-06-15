@@ -26,12 +26,12 @@
             <a href="{{route('user.dashboard')}}"
                 class="{{ Str::of(url()->current())->contains('dashboard') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ Str::of(url()->current())->contains('dashboard') ? 'page' : false }}">Dashboard</a>
-            <a href="{{ Str::of(url()->current())->contains('olimpiade') ? '/olimpiade/registrasi' : '/public-poster/registrasi' }}"
+            <a href="{{route('user.registrasi')}}"
                 class="{{ Str::of(url()->current())->contains('registrasi') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ Str::of(url()->current())->contains('registrasi') ? 'page' : false }}">Registrasi</a>
-                <a href="{{ Str::of(url()->current())->contains('olimpiade') ? '/olimpiade/pembayaran' : '/public-poster/pembayaran' }}"
+            <a href="{{route('user.pembayaran')}}"
                     class="{{ Str::of(url()->current())->contains('pembayaran') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
-                    aria-current="{{ Str::of(url()->current())->contains('pembayaran') ? 'page' : false }}">Pembayaran</a>
+                    aria-current="{{ Str::of(url()->current())->contains('pembayaran') ? 'page' : false }}" >Pembayaran</a>
             <a href="{{ Str::of(url()->current())->contains('olimpiade') ? '/olimpiade/cetak-kartu' : '/public-poster/cetak-kartu' }}"
                 class="{{ Str::of(url()->current())->contains('cetak-kartu') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ Str::of(url()->current())->contains('cetak-kartu') ? 'page' : false }}">Cetak Kartu</a>

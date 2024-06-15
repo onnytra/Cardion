@@ -24,6 +24,8 @@ use App\Http\Controllers\MonitoringUjianController;
 use App\Http\Controllers\PengumumansController;
 use App\Http\Controllers\PengumpulanKaryasController;
 use App\Http\Controllers\user\olimpiade\MainOlimpiadeController;
+use App\Http\Controllers\user\olimpiade\PembayaranController;
+use App\Http\Controllers\user\olimpiade\RegistrasiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -171,6 +173,7 @@ Route::get('/public-poster/pengumpulan-karya/add', function () {
 Route::get('/public-poster/pengumpulan-karya/edit', function () {
     return view('publicposter/pengumpulan-karya/edit-pengumpulan-karya', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'edit']);
 });
+
 Route::get('sendmail', [MailsController::class, 'index']);
 //User Olimpiade Side
 Route::group(['as' => 'olimpiade.', 'prefix' => '/olimpiade', 'event' => 'olimpiade'], function () {
@@ -188,14 +191,20 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/olimpiade', 'event' => 'olimpi
     Route::get('/resetpassword/{token}', [AuthPesertaController::class, 'reset_password_page'])->name('resetpassword.page');
     Route::put('/resetpassword', [AuthPesertaController::class, 'reset_password_process'])->name('resetpassword.process');
 });
-
 // All User Side
-
-Route::group(['as' => 'user.', 'prefix' => '/user'], function () {
-    Route::group(['event' => 'olimpiade'], function () {
+Route::group(['as' => 'user.', 'prefix' => '/user', 'event' => 'olimpiade'], function () {
         Route::get('/dashboard', [MainOlimpiadeController::class, 'index'])->name('dashboard');
-    });
+        // Registrasi
+        Route::get('/registrasi', [RegistrasiController::class, 'index'])->name('registrasi');
+        Route::put('/registrasi/update', [RegistrasiController::class, 'update_data_peserta'])->name('registrasi-action');
+        // Pembayaran
+        Route::get('pembayaran', [PembayaranController::class, 'index'])->name('pembayaran');
+        Route::get('pembayaran/add', [PembayaranController::class, 'create'])->name('add-pembayaran');
+        Route::post('pembayaran', [PembayaranController::class, 'store'])->name('store-pembayaran');
+        Route::get('pembayaran/edit', [PembayaranController::class, 'edit'])->name('edit-pembayaran');
+        Route::post('pembayaran/update', [PembayaranController::class, 'update'])->name('update-pembayaran');
 });
+
 
 // Admin Dashboard
 Route::get('/admin/main/sertifikat', function () {
@@ -448,7 +457,6 @@ Route::group(['as' => 'poster.', 'prefix' => '/admin/poster', 'event' => 'poster
         Route::post('/store/{id}', [AssignTestsController::class, 'store'])->name('store');
         Route::delete('/delete/{assign_tests}', [AssignTestsController::class, 'destroy'])->name('delete');
     });
-
     
     Route::group(['as' => 'penilaian.', 'prefix' => '/penilaian'], function () {
         Route::get('/pengumpulan-karya',[KaryasController::class, 'show_pengumpulan'])->name('pengumpulan_karya');
