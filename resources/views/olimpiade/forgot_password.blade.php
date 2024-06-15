@@ -27,7 +27,7 @@
             </div>
             @endif
             <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                <form class="space-y-6" action="{{route('olimpiade.forgotpassword.mail')}}" method="POST">
+                <form class="space-y-6" action="{{route($event.'.forgotpassword.mail')}}" method="POST">
                     @csrf
                     <div>
                         <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
@@ -45,7 +45,7 @@
 
                 <p class="mt-4 text-center text-sm text-white">
                     Back To 
-                    <a href="{{route('olimpiade.login')}}"
+                    <a href="{{route($event.'.login')}}"
                         class="font-semibold leading-6 text-red-600 hover:text-red-500 hover:underline">Sign
                         In</a>
                 </p>

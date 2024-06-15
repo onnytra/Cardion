@@ -42,36 +42,8 @@ Route::get('/', function () {
     return view('index', ['title' => 'Cardion - Universitas Islam Negeri Maulana Malik ibrahim Malang', 'slug' => '/']);
 });
 
-Route::get('/olympiade', function () {
+Route::get('/olimpiade', function () {
     return view('olimpiade', ['title' => 'Science & Primary Medical Olimpiad - Cardion UIN Malang', 'slug' => 'olympiade']);
-});
-
-Route::get('/olympiad/register', function () {
-    return view('olimpiade/register', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'register']);
-});
-
-Route::get('/olympiad/account', function () {
-    return view('olimpiade/account', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'account']);
-});
-
-Route::get('/olympiad/dashboard', function () {
-    return view('olimpiade/dashboard', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'dashboard']);
-});
-
-Route::get('/olympiad/pembayaran', function () {
-    return view('olimpiade/pembayaran/pembayaran', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'pembayaran']);
-});
-
-Route::get('/olympiad/pembayaran/add', function () {
-    return view('olimpiade/pembayaran/add-pembayaran', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'add']);
-});
-
-Route::get('/olympiad/pembayaran/edit', function () {
-    return view('olimpiade/pembayaran/edit-pembayaran', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'edit']);
-});
-
-Route::get('/olympiad/registrasi', function () {
-    return view('olimpiade/registrasi', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'registrasi']);
 });
 
 Route::get('/olympiad/cetak-kartu', function () {
@@ -175,6 +147,23 @@ Route::get('/public-poster/pengumpulan-karya/edit', function () {
 });
 
 Route::get('sendmail', [MailsController::class, 'index']);
+// User Poster Side
+Route::group(['as' => 'poster.', 'prefix' => '/poster', 'event' => 'poster'], function () {
+    Route::get('/login', [AuthPesertaController::class, 'login_page'])->name('login');
+    Route::post('/login', [AuthPesertaController::class, 'login_process'])->name('login.process');
+    Route::get('/logout', [AuthPesertaController::class, 'logout'])->name('logout');
+    Route::get('/register', [AuthPesertaController::class, 'register_page'])->name('register');
+    Route::post('/register', [AuthPesertaController::class, 'register_process'])->name('register.process');
+    
+    Route::get('/account/{pesertas}', [AuthPesertaController::class, 'edit_profile'])->name('account');
+    Route::put('/account/{pesertas}', [AuthPesertaController::class, 'update_profile'])->name('account.update');
+
+    Route::get('forgotpassword', [AuthPesertaController::class, 'forgot_password'])->name('forgotpassword');
+    Route::post('forgotpassword', [MailsController::class, 'forgot_password'])->name('forgotpassword.mail');
+    Route::get('/resetpassword/{token}', [AuthPesertaController::class, 'reset_password_page'])->name('resetpassword.page');
+    Route::put('/resetpassword', [AuthPesertaController::class, 'reset_password_process'])->name('resetpassword.process');
+});
+
 //User Olimpiade Side
 Route::group(['as' => 'olimpiade.', 'prefix' => '/olimpiade', 'event' => 'olimpiade'], function () {
     Route::get('/login', [AuthPesertaController::class, 'login_page'])->name('login');
