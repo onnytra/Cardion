@@ -84,8 +84,8 @@
                             </td> --}}
                             <td class="px-6 py-4">
                                 <button>
-                                    <a href="{{asset('storage/karya/'.$data->karya)}}" class="btn-gray" target="_blank"><i
-                                            class="fad fa-download text-xs mr-2"></i>Download</a>
+                                    <a href="{{asset('storage/karya/'.$data->karya)}}" class="btn-gray"
+                                        target="_blank"><i class="fad fa-download text-xs mr-2"></i>Download</a>
                                 </button>
                             </td>
                             <td class="px-6 py-4">
@@ -94,8 +94,8 @@
                                 </div>
                             </td>
                             <td class="px-6 py-4">
-                                <a href="" id="modal-box"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                <a id="modal-box{{ $data->id_karya }}" onclick="showModal({{ $data->id_karya }})"
+                                    class="font-medium text-blue-600 dark:text-blue-500 cursor-pointer hover:underline">Edit</a>
                                 <div id="modal" class="fixed z-10 inset-0 top-20 overflow-y-auto hidden"
                                     aria-labelledby="modal-title" role="dialog" aria-modal="true">
                                     <div class="flex items
@@ -106,7 +106,8 @@
                                             aria-hidden="true">&#8203;</span>
                                         <div
                                             class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                                            <form action="{{ route('poster.penilaian.update_nilai', $data->id_karya) }}" method="post">
+                                            <form action="{{ route('poster.penilaian.update_nilai', $data->id_karya) }}"
+                                                method="post">
                                                 @csrf
                                                 @method('put')
                                                 <div class="bg-white px-4 pt-2">
@@ -153,7 +154,8 @@
                                                                             <button>
                                                                                 <a href="{{asset('storage/karya/'.$data->karya)}}"
                                                                                     class="btn-gray" target="_blank"><i
-                                                                                        class="fad fa-download text-xs mr-2"></i>Download Karya</a>
+                                                                                        class="fad fa-download text-xs mr-2"></i>Download
+                                                                                    Karya</a>
                                                                             </button>
                                                                         </td>
                                                                     </tr>
@@ -163,7 +165,8 @@
                                                                             <button>
                                                                                 <a href="{{asset('storage/karya/'.$data->surat_originalitas)}}"
                                                                                     class="btn-gray" target="_blank"><i
-                                                                                        class="fad fa-download text-xs mr-2"></i>Download Surat</a>
+                                                                                        class="fad fa-download text-xs mr-2"></i>Download
+                                                                                    Surat</a>
                                                                             </button>
                                                                         </td>
                                                                     </tr>
@@ -173,7 +176,8 @@
                                                                             <button>
                                                                                 <a href="{{asset('storage/karya/'.$data->essay_karya)}}"
                                                                                     class="btn-gray" target="_blank"><i
-                                                                                        class="fad fa-download text-xs mr-2"></i>Download Essay</a>
+                                                                                        class="fad fa-download text-xs mr-2"></i>Download
+                                                                                    Essay</a>
                                                                             </button>
                                                                         </td>
                                                                     </tr>
@@ -183,7 +187,8 @@
                                                                                 class="block text-sm">Nilai</label>
                                                                         </td>
                                                                         <td class="px-6 py-3 text-gray-600">
-                                                                            <input type="number" name="nilai" id="nilai" value="{{ $data->nilai }}"
+                                                                            <input type="number" name="nilai" id="nilai"
+                                                                                value="{{ $data->nilai }}"
                                                                                 class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md">
                                                                         </td>
                                                                     </tr>
@@ -205,10 +210,12 @@
                                                     </div>
                                                 </div>
                                                 <div class="bg-gray-50 px-4 py-3 flex flex-row-reverse gap-2">
-                                                    <button type="button" class="btn-bs-dark" id="close-modal">
+                                                    <button type="button" class="btn-bs-dark" id="bg-modal"
+                                                        onclick="hideModal({{ $data->id_karya }})">
                                                         batal
                                                     </button>
-                                                    <button type="submit" class="btn-indigo" onclick="confirmEdit(event)">
+                                                    <button type="submit" class="btn-indigo"
+                                                        onclick="confirmEdit(event)">
                                                         Simpan
                                                     </button>
                                                 </div>
@@ -216,7 +223,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{route('poster.penilaian.delete', $data->id_karya)}}" class="font-medium text-red-600 dark:text-red-500 hover:underline" data-confirm-delete="true">Hapus</a>
+                                <a href="{{route('poster.penilaian.delete', $data->id_karya)}}"
+                                    class="font-medium text-red-600 dark:text-red-500 hover:underline"
+                                    data-confirm-delete="true">Hapus</a>
                             </td>
                         </tr>
                         @endforeach
@@ -283,8 +292,8 @@
                             </td> --}}
                             <td class="px-6 py-4">
                                 <button>
-                                    <a href="{{asset('storage/karya/'.$data->karya)}}" class="btn-gray" target="_blank"><i
-                                            class="fad fa-download text-xs mr-2"></i>Download</a>
+                                    <a href="{{asset('storage/karya/'.$data->karya)}}" class="btn-gray"
+                                        target="_blank"><i class="fad fa-download text-xs mr-2"></i>Download</a>
                                 </button>
                             </td>
                             <td class="px-6 py-4">
@@ -293,8 +302,8 @@
                                 </div>
                             </td>
                             <td class="px-6 py-4">
-                                <a href="" id="modal-box"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                <a id="modal-box{{ $data->id_karya }}" onclick="showModal({{ $data->id_karya }})"
+                                    class="font-medium text-blue-600 dark:text-blue-500 cursor-pointer hover:underline">Edit</a>
                                 <div id="modal" class="fixed z-10 inset-0 top-20 overflow-y-auto hidden"
                                     aria-labelledby="modal-title" role="dialog" aria-modal="true">
                                     <div class="flex items
@@ -305,7 +314,8 @@
                                             aria-hidden="true">&#8203;</span>
                                         <div
                                             class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                                            <form action="{{ route('poster.penilaian.update_nilai', $data->id_karya) }}" method="post">
+                                            <form action="{{ route('poster.penilaian.update_nilai', $data->id_karya) }}"
+                                                method="post">
                                                 @csrf
                                                 @method('put')
                                                 <div class="bg-white px-4 pt-2">
@@ -352,7 +362,8 @@
                                                                             <button>
                                                                                 <a href="{{asset('storage/karya/'.$data->karya)}}"
                                                                                     class="btn-gray" target="_blank"><i
-                                                                                        class="fad fa-download text-xs mr-2"></i>Download Karya</a>
+                                                                                        class="fad fa-download text-xs mr-2"></i>Download
+                                                                                    Karya</a>
                                                                             </button>
                                                                         </td>
                                                                     </tr>
@@ -362,7 +373,8 @@
                                                                             <button>
                                                                                 <a href="{{asset('storage/karya/'.$data->surat_originalitas)}}"
                                                                                     class="btn-gray" target="_blank"><i
-                                                                                        class="fad fa-download text-xs mr-2"></i>Download Surat</a>
+                                                                                        class="fad fa-download text-xs mr-2"></i>Download
+                                                                                    Surat</a>
                                                                             </button>
                                                                         </td>
                                                                     </tr>
@@ -372,7 +384,8 @@
                                                                             <button>
                                                                                 <a href="{{asset('storage/karya/'.$data->essay_karya)}}"
                                                                                     class="btn-gray" target="_blank"><i
-                                                                                        class="fad fa-download text-xs mr-2"></i>Download Essay</a>
+                                                                                        class="fad fa-download text-xs mr-2"></i>Download
+                                                                                    Essay</a>
                                                                             </button>
                                                                         </td>
                                                                     </tr>
@@ -382,7 +395,8 @@
                                                                                 class="block text-sm">Nilai</label>
                                                                         </td>
                                                                         <td class="px-6 py-3 text-gray-600">
-                                                                            <input type="number" name="nilai" id="nilai" value="{{ $data->nilai }}"
+                                                                            <input type="number" name="nilai" id="nilai"
+                                                                                value="{{ $data->nilai }}"
                                                                                 class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md">
                                                                         </td>
                                                                     </tr>
@@ -404,10 +418,12 @@
                                                     </div>
                                                 </div>
                                                 <div class="bg-gray-50 px-4 py-3 flex flex-row-reverse gap-2">
-                                                    <button type="button" class="btn-bs-dark" id="close-modal">
+                                                    <button type="button" class="btn-bs-dark" id="bg-modal"
+                                                        onclick="hideModal({{ $data->id_karya }})">
                                                         batal
                                                     </button>
-                                                    <button type="submit" class="btn-indigo" onclick="confirmEdit(event)">
+                                                    <button type="submit" class="btn-indigo"
+                                                        onclick="confirmEdit(event)">
                                                         Simpan
                                                     </button>
                                                 </div>
@@ -415,7 +431,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{route('poster.penilaian.delete', $data->id_karya)}}" class="font-medium text-red-600 dark:text-red-500 hover:underline" data-confirm-delete="true">Hapus</a>
+                                <a href="{{route('poster.penilaian.delete', $data->id_karya)}}"
+                                    class="font-medium text-red-600 dark:text-red-500 hover:underline"
+                                    data-confirm-delete="true">Hapus</a>
                             </td>
                         </tr>
                         @endforeach
