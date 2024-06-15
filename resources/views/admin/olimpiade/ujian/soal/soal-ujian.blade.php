@@ -121,13 +121,13 @@
                                                             <a href="{{route('olimpiade.soal.edit', $soal->id_soal)}}"
                                                                 class="btn-bs-primary">
                                                                 <i class="fad fa-edit mr-2 leading-none"></i>
-                                                                Edit Ujian</a>
+                                                                Edit Soal</a>
                                                         </button>
                                                         <button class="w-full mt-2">
                                                             <a href="{{route('olimpiade.soal.delete', $soal->id_soal)}}"
                                                                 class="btn-bs-danger" data-confirm-delete="true">
                                                                 <i class="fad fa-trash mr-2 leading-none"></i>
-                                                                Hapus Ujian</a>
+                                                                Hapus Soal</a>
                                                         </button>
                                                     </div>
                                                 </div>

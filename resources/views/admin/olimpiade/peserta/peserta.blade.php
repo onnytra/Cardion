@@ -43,18 +43,16 @@
                                 Cabang
                             </p>
                             <hr>
+                            @foreach ($cabangs as $data)
                             <a class="px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out"
-                                href="#">
-                                Online
+                                href="{{route($event.'.exportexcel.peserta-lunas-cabang', $data->id_cabang)}}">
+                                {{$data->cabang}}
                             </a>
-                            <a class="px-4 py-2 block capitalize font-medium text-sm tracking-wide bg-white hover:bg-gray-200 hover:text-gray-900 transition-all duration-300 ease-in-out"
-                                href="#">
-                                Offline
-                            </a>
+                            @endforeach
                         </div>
                     </div>
                     <button>
-                        <a href="#" class="btn">Export as Excel</a>
+                        <a href="{{route($event.'.exportexcel.peserta-lunas')}}" class="btn">Export as Excel</a>
                     </button>
                 </div>
                 <table id="datatable" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -146,13 +144,13 @@
                                                         <div
                                                             class="card-body relative overflow-x-visible sm:rounded-lg">
                                                             <button class="w-full">
-                                                                <a href="{{route('olimpiade.peserta.edit', $data->id_peserta)}}"
+                                                                <a href="{{route($event.'.peserta.edit', $data->id_peserta)}}"
                                                                     class="btn-bs-primary">
                                                                     <i class="fad fa-edit mr-2 leading-none"></i>
                                                                     Edit Peserta</a>
                                                             </button>
                                                             <button class="w-full mt-2">
-                                                                <a href="{{route('olimpiade.peserta.delete', $data->id_peserta)}}"
+                                                                <a href="{{route($event.'.peserta.delete', $data->id_peserta)}}"
                                                                     class="btn-bs-danger" data-confirm-delete="true">
                                                                     <i class="fad fa-trash mr-2 leading-none"></i>
                                                                     Hapus Peserta</a>
@@ -173,7 +171,7 @@
             <div class="relative overflow-x-auto hidden sm:rounded-lg text-sm p-10" id="tab-2">
                 <div class="flex gap-6 pb-6 mb-6 border-b">
                     <button>
-                        <a href="#" class="btn">Export as Excel</a>
+                        <a href="{{route($event.'.exportexcel.peserta-belum-lunas')}}" class="btn">Export as Excel</a>
                     </button>
                 </div>
                 <table id="datatable2" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -265,13 +263,13 @@
                                                         <div
                                                             class="card-body relative overflow-x-visible sm:rounded-lg">
                                                             <button class="w-full">
-                                                                <a href="{{route('olimpiade.peserta.edit', $data->id_peserta)}}"
+                                                                <a href="{{route($event.'.peserta.edit', $data->id_peserta)}}"
                                                                     class="btn-bs-primary">
                                                                     <i class="fad fa-edit mr-2 leading-none"></i>
                                                                     Edit Peserta</a>
                                                             </button>
                                                             <button class="w-full mt-2">
-                                                                <a href="{{route('olimpiade.peserta.delete', $data->id_peserta)}}"
+                                                                <a href="{{route($event.'.peserta.delete', $data->id_peserta)}}"
                                                                     class="btn-bs-danger" data-confirm-delete="true">
                                                                     <i class="fad fa-trash mr-2 leading-none"></i>
                                                                     Hapus Peserta</a>

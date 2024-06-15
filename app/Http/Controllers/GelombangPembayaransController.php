@@ -25,25 +25,21 @@ class GelombangPembayaransController extends Controller
     {
         $title = 'Gelombang Pembayaran';
         $slug = 'gelombang-pembayaran';
-
+        $event = $this->event;
         $delete = 'Delete Gelombang Pembayaran';
         $delete_message = 'Anda yakin ingin menghapus gelombang pembayaran ini ?';
         confirmDelete($delete, $delete_message);
 
         $gelombang_pembayarans = gelombang_pembayarans::where('event',$this->event)->get();
-        return view('admin/olimpiade/gelombang-pembayaran/gelombang-pembayaran', compact('gelombang_pembayarans', 'title', 'slug'));
+        return view('admin/olimpiade/gelombang-pembayaran/gelombang-pembayaran', compact('gelombang_pembayarans', 'title', 'slug', 'event'));
     }
 
     public function create()
     {
         $title = 'Tambah Gelombang Pembayaran';
         $slug = 'add';
-
-        if ($this->event == 'olimpiade') {
-            return view('admin/olimpiade/gelombang-pembayaran/add-gelombang', compact('title', 'slug'));
-        } elseif ($this->event == 'poster'){
-            return view('admin/poster/gelombang-pembayaran/add-gelombang', compact('title', 'slug'));
-        }
+        $event = $this->event;
+        return view('admin/olimpiade/gelombang-pembayaran/add-gelombang', compact('title', 'slug', 'event'));
     }
 
     public function store(Request $request)
@@ -88,12 +84,9 @@ class GelombangPembayaransController extends Controller
     {
         $title = 'Edit Gelombang Pembayaran';
         $slug = 'edit';
+        $event = $this->event;
 
-        if ($this->event == 'olimpiade') {
-            return view('admin/olimpiade/gelombang-pembayaran/edit-gelombang', compact('title', 'slug', 'gelombang_pembayarans'));
-        } elseif ($this->event == 'poster'){
-            return view('admin/poster/gelombang-pembayaran/edit-gelombang', compact('title', 'slug', 'gelombang_pembayarans'));
-        }
+        return view('admin/olimpiade/gelombang-pembayaran/edit-gelombang', compact('title', 'slug', 'gelombang_pembayarans', 'event'));
     }
 
     public function update(Request $request, gelombang_pembayarans $gelombang_pembayarans)

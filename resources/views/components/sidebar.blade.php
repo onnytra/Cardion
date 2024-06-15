@@ -1,7 +1,7 @@
 <div id="sideBar"
     class="relative flex flex-col flex-wrap bg-white border-r border-gray-300 p-6 flex-none w-64 lg:-ml-64 lg:fixed lg:top-0 lg:z-30 lg:h-screen lg:shadow-xl animated faster">
 
-    @if(request()->is('admin') | Str::of(url()->current())->contains('auth/admin')|
+    @if(request()->is('admin') | Str::of(url()->current())->contains('main')|
     Str::of(url()->current())->contains('admin/main'))
     <div class="flex flex-col pt-20">
         <div class="text-right hidden lg:block mb-4">
@@ -11,7 +11,7 @@
         </div>
         <p class="uppercase text-xs text-gray-600 mb-4 tracking-wider">dashboard</p>
         <a href="{{route('dashboard.index')}}"
-            class="{{ request()->is('admin') ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+            class="{{ request()->is('admin/main/dashboard') ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-chart-pie text-xs mr-2"></i>
             dashboard
         </a>
@@ -48,7 +48,7 @@
         </div>
         <p class="uppercase text-xs text-gray-600 mb-4 tracking-wider">dashboard</p>
         <a href="{{route('olimpiade.dashboard')}}"
-            class="{{ request()->is('admin/olimpiade') ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+            class="{{ request()->is('admin/olimpiade/olimpiade') ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-chart-pie text-xs mr-2"></i>
             dashboard
         </a>
@@ -68,10 +68,10 @@
             <i class="fad fa-user-plus text-xs mr-2"></i>
             tambah peserta offline
         </a>
-        <a href="/admin/olimpiade/tambah-peserta-panitia"
-            class=" {{ request()->is('admin/olimpiade/tambah-peserta-panitia') | Str::of(url()->current())->contains('olimpiade/tambah-peserta-panitia/')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <a href="{{route('olimpiade.peserta.create-excel')}}"
+            class=" {{ Str::of(url()->current())->contains('olimpiade/peserta/excel')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-user-friends text-xs mr-2"></i>
-            tambah peserta (panitia)
+            tambah peserta (excel)
         </a>
         <a href="{{route('olimpiade.ujian.index')}}"
             class="{{ request()->is('admin/olimpiade/ujian/data') | Str::of(url()->current())->contains('olimpiade/ujian/')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
@@ -89,7 +89,7 @@
             pengumuman
         </a>
         <a href="{{route('olimpiade.assign_test.show_tests')}}"
-            class="{{ request()->is('admin/olimpiade/assign-test') | Str::of(url()->current())->contains('olimpiade/assign-test/')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+            class="{{ request()->is('admin/olimpiade/assigntest') | Str::of(url()->current())->contains('olimpiade/assigntest/')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-book-reader text-xs mr-2"></i>
             assign test
         </a>
@@ -105,7 +105,7 @@
         </a>
     </div>
 
-    @elseif(request()->is('admin/public-poster') |
+    @elseif(request()->is('admin/poster') |
     Str::of(url()->current())->contains('poster'))
     <div class="flex flex-col pt-20">
         <div class="text-right hidden lg:block mb-4">
@@ -115,53 +115,53 @@
         </div>
         <p class="uppercase text-xs text-gray-600 mb-4 tracking-wider">dashboard</p>
         <a href="{{route('poster.dashboard')}}"
-            class="{{ request()->is('admin/public-poster') ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+            class="{{ request()->is('admin/poster/poster') ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-chart-pie text-xs mr-2"></i>
             dashboard
         </a>
         <p class="uppercase text-xs text-gray-600 mb-4 mt-4 tracking-wider">navigation</p>
-        <a href="/admin/public-poster/cabang"
-            class="{{ request()->is('admin/public-poster/cabang') | Str::of(url()->current())->contains('public-poster/cabang/')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <a href="{{route('poster.cabang.index')}}"
+            class="{{ request()->is('admin/poster/cabang') | Str::of(url()->current())->contains('poster/cabang/')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-project-diagram text-xs mr-2"></i>
             cabang
         </a>
-        <a href="/admin/public-poster/peserta"
-            class=" {{ request()->is('admin/public-poster/peserta') | Str::of(url()->current())->contains('public-poster/peserta/')   ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <a href="{{route('poster.peserta.index')}}"
+            class=" {{ Str::of(url()->current())->contains('poster/peserta/data')   ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-user text-xs mr-2"></i>
             peserta
         </a>
-        <a href="/admin/public-poster/tambah-peserta-offline"
-            class=" {{ request()->is('admin/public-poster/tambah-peserta-offline') | Str::of(url()->current())->contains('public-poster/tambah-peserta-offline/')   ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <a href="{{route('poster.peserta.create')}}"
+            class=" {{ Str::of(url()->current())->contains('poster/peserta/add')   ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-user-plus text-xs mr-2"></i>
             tambah peserta offline
         </a>
-        <a href="/admin/public-poster/tambah-peserta-panitia"
-            class=" {{ request()->is('admin/public-poster/tambah-peserta-panitia') | Str::of(url()->current())->contains('public-poster/tambah-peserta-panitia/')   ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <a href="{{route('poster.peserta.create-excel')}}"
+            class=" {{ Str::of(url()->current())->contains('poster/peserta/excel')   ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-user-friends text-xs mr-2"></i>
-            tambah peserta (panitia)
+            tambah peserta (excel)
         </a>
-        <a href="/admin/public-poster/pengumpulan-karya"
-            class="{{ request()->is('admin/public-poster/pengumpulan-karya') | Str::of(url()->current())->contains('public-poster/pengumpulan-karya/')   ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <a href="{{route('poster.pengumpulan_karya.index')}}"
+            class="{{ request()->is('admin/poster/pengumpulan-karya') | Str::of(url()->current())->contains('poster/pengumpulan-karya/')   ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-folder-open text-xs mr-2"></i>
             pengumpulan karya
         </a>
-        <a href="/admin/public-poster/penilaian"
-            class="{{ request()->is('admin/public-poster/penilaian') | Str::of(url()->current())->contains('public-poster/penilaian/')   ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <a href="/admin/poster/penilaian"
+            class="{{ request()->is('admin/poster/penilaian') | Str::of(url()->current())->contains('poster/penilaian/')   ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-feather-alt text-xs mr-2"></i>
             penilaian
         </a>
-        <a href="/admin/public-poster/assign-test"
-            class="{{ request()->is('admin/public-poster/assign-test') | Str::of(url()->current())->contains('public-poster/assign-test/')   ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <a href="{{route('poster.assign_test.show_tests')}}"
+            class="{{ request()->is('admin/poster/assigntest') | Str::of(url()->current())->contains('poster/assigntest/')   ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-book-reader text-xs mr-2"></i>
             assign test
         </a>
-        <a href="/admin/public-poster/pembayaran"
-            class="{{ request()->is('admin/public-poster/pembayaran') | Str::of(url()->current())->contains('public-poster/pembayaran/')   ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <a href="{{route('poster.pembayaran.index')}}"
+            class="{{ request()->is('admin/poster/pembayaran') | Str::of(url()->current())->contains('poster/pembayaran/')   ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-coins text-xs mr-2"></i>
             pembayaran
         </a>
-        <a href="/admin/public-poster/gelombang-pembayaran"
-            class="{{ request()->is('admin/public-poster/gelombang-pembayaran') | Str::of(url()->current())->contains('public-poster/gelombang-pembayaran/')   ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+        <a href="{{route('poster.gelombang_pembayaran.index')}}"
+            class="{{ request()->is('admin/poster/gelombang-pembayaran') | Str::of(url()->current())->contains('poster/gelombang-pembayaran/')   ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-money-bill-wave text-xs mr-2"></i>
             gelombang pembayaran
         </a>

@@ -7,7 +7,7 @@
             <h1 class="h6">Form Tambah Cabang</h1>
         </div>
 
-        <form action="{{route('olimpiade.cabang.store')}}" method="POST">
+        <form action="{{route($event.'.cabang.store')}}" method="POST">
             @csrf
             <div class="card-body relative overflow-x-auto sm:rounded-lg">
                 <div class="grid gap-6">
@@ -38,7 +38,7 @@
 
             <div class="card-footer flex justify">
                 <button>
-                    <a href="{{route('olimpiade.cabang.index')}}" type="button" class="btn-bs-secondary mr-3">Kembali</a>
+                    <a href="{{route($event.'.cabang.index')}}" type="button" class="btn-bs-secondary mr-3">Kembali</a>
                 </button>
                 <button type="submit" class="btn-bs-dark" onclick="confirmInput(event)">
                     Simpan

@@ -8,7 +8,7 @@
         <div class="card mt-6">
             <!-- header -->
             <div class="card-header">
-                <h1 class="h6">Data Tanggal 2023/09/12 - 2024/10/19</h1>
+                <h1 class="h6">Data Tanggal {{$datas->tanggal}}</h1>
             </div>
             <!-- end header -->
 
@@ -16,11 +16,13 @@
             <div class="card-body">
                 <div class="p-4">
                     <p class="text-black font-medium mb-2">Target Peserta : <strong>3250</strong></p>
-                    <h1 class="h2 text-teal-400">91</h1>
+                    <h1 class="h2 text-teal-400">{{$datas->peserta}}</h1>
                     <p class="text-black font-medium mb-4">Jumlah Peserta</p>
 
                     <div class="bg-gray-300 h-2 rounded-full mt-2 relative">
-                        <div class="rounded-full bg-teal-400 h-full w-3/4 shadow-md"></div>
+                        <div class="rounded-full bg-teal-400 h-full
+                            w-{{$datas->persen}}
+                        shadow-md"></div>
                     </div>
                 </div>
             </div>
@@ -38,7 +40,7 @@
                     </div>
 
                     <div class="flex flex-col">
-                        <h1 class="font-semibold">91</h1>
+                        <h1 class="font-semibold">{{$datas->peserta}}</h1>
                         <p class="text-xs">Total Peserta</p>
                     </div>
                 </div>
@@ -53,7 +55,7 @@
                     </div>
 
                     <div class="flex flex-col">
-                        <h1 class="font-semibold">40</h1>
+                        <h1 class="font-semibold">{{$datas->peserta_belumlunas}}</h1>
                         <p class="text-xs">Akun Belum Bayar</p>
                     </div>
                 </div>
@@ -68,7 +70,7 @@
                     </div>
 
                     <div class="flex flex-col">
-                        <h1 class="font-semibold">0</h1>
+                        <h1 class="font-semibold">{{$datas->pembayaran_menunggu}}</h1>
                         <p class="text-xs">Waiting Payment</p>
                     </div>
                 </div>
@@ -83,7 +85,7 @@
                     </div>
 
                     <div class="flex flex-col">
-                        <h1 class="font-semibold">41.437.500</h1>
+                        <h1 class="font-semibold">{{$datas->transaksi}}</h1>
                         <p class="text-xs">Total Transaksi</p>
                     </div>
                 </div>
@@ -98,7 +100,7 @@
                     </div>
 
                     <div class="flex flex-col">
-                        <h1 class="font-semibold">5</h1>
+                        <h1 class="font-semibold">{{$datas->ujian}}</h1>
                         <p class="text-xs">Aktif Tes</p>
                     </div>
                 </div>

@@ -43,7 +43,7 @@
 
         <div class="card-footer">
             <button>
-                <a href="#" class="btn-bs-dark"><i class="fad fa-print text-xs mr-2"></i>Export as Excel</a>
+                <a href="{{route('olimpiade.exportexcel.ujian-peserta', $ujian->id_ujian)}}" class="btn-bs-dark"><i class="fad fa-print text-xs mr-2"></i>Export as Excel</a>
             </button>
         </div>
     </div>

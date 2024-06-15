@@ -29,25 +29,22 @@ class CabangsController extends Controller
     {
         $title = 'Cabang';
         $slug = 'cabang';
-
+        $event = $this->event;
         $delete = 'Delete Cabang';
         $delete_message = 'Anda yakin ingin menghapus cabang ini ?';
         confirmDelete($delete, $delete_message);
 
         $cabangs = cabangs::where('event',$this->event)->get();
-        return view('admin/olimpiade/cabang/cabang', compact('cabangs', 'title', 'slug'));
+        return view('admin/olimpiade/cabang/cabang', compact('cabangs', 'title', 'slug', 'event'));
     }
 
     public function create()
     {
         $title = 'Tambah Cabang';
         $slug = 'add';
-
-        if ($this->event == 'olimpiade') {
-            return view('admin/olimpiade/cabang/add-cabang', compact('title', 'slug'));
-        } elseif ($this->event == 'poster'){
-            return view('admin/poster/cabang/add-cabang', compact('title', 'slug'));
-        }
+        $event = $this->event;
+        
+        return view('admin/olimpiade/cabang/add-cabang', compact('title', 'slug', 'event'));
     }
 
     public function store(Request $request)
@@ -75,11 +72,8 @@ class CabangsController extends Controller
     {
         $title = 'Edit Cabang';
         $slug = 'edit';
-        if ($this->event == 'olimpiade') {
-            return view('admin/olimpiade/cabang/edit-cabang', compact('cabangs', 'title', 'slug'));
-        } elseif ($this->event == 'poster'){
-            return view('admin/poster/cabang/edit-cabang', compact('cabangs', 'title', 'slug'));
-        }
+        $event = $this->event;
+        return view('admin/olimpiade/cabang/edit-cabang', compact('cabangs', 'title', 'slug', 'event'));
     }
 
     public function update(Request $request, cabangs $cabangs)

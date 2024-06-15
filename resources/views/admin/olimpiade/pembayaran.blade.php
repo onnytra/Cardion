@@ -147,7 +147,7 @@
                                 </div>
                             </td>
                             <td class="px-6 py-4">
-                                <a href="{{route('olimpiade.pembayaran.tolak', $data->id_pembayaran)}}" class="font-medium text-red-600 dark:text-red-500 hover:underline">Tolak</a>
+                                <a href="{{route($event.'.pembayaran.tolak', $data->id_pembayaran)}}" class="font-medium text-red-600 dark:text-red-500 hover:underline">Tolak</a>
                             </td>
                         </tr>
                         @endforeach
@@ -281,12 +281,12 @@
                                                     <div class="cart mt-1 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                                         <div class="card-body relative overflow-x-visible sm:rounded-lg">
                                                             <button class="w-full">
-                                                                <a href="{{route('olimpiade.pembayaran.terima', $data->id_pembayaran)}}" class="btn-bs-success">
+                                                                <a href="{{route($event.'.pembayaran.terima', $data->id_pembayaran)}}" class="btn-bs-success">
                                                                     <i class="fad fa-check mr-2 leading-none"></i>
                                                                     Terima Pembayaran</a>
                                                             </button>
                                                             <button class="w-full mt-2">
-                                                                <a href="{{route('olimpiade.pembayaran.delete', $data->id_pembayaran)}}" class="btn-bs-danger" data-confirm-delete="true">
+                                                                <a href="{{route($event.'.pembayaran.delete', $data->id_pembayaran)}}" class="btn-bs-danger" data-confirm-delete="true">
                                                                     <i class="fad fa-trash mr-2 leading-none"></i>
                                                                     Hapus Pembayaran</a>
                                                             </button>
@@ -430,12 +430,12 @@
                                                     <div class="cart mt-1 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                                         <div class="card-body relative overflow-x-visible sm:rounded-lg">
                                                             <button class="w-full">
-                                                                <a href="{{route('olimpiade.pembayaran.terima', $data->id_pembayaran)}}" class="btn-bs-success">
+                                                                <a href="{{route($event.'.pembayaran.terima', $data->id_pembayaran)}}" class="btn-bs-success">
                                                                     <i class="fad fa-check mr-2 leading-none"></i>
                                                                     Terima Pembayaran</a>
                                                             </button>
                                                             <button class="w-full mt-2">
-                                                                <a href="{{route('olimpiade.pembayaran.delete', $data->id_pembayaran)}}" class="btn-bs-danger" data-confirm-delete="true">
+                                                                <a href="{{route($event.'.pembayaran.delete', $data->id_pembayaran)}}" class="btn-bs-danger" data-confirm-delete="true">
                                                                     <i class="fad fa-trash mr-2 leading-none"></i>
                                                                     Hapus Pembayaran</a>
                                                             </button>

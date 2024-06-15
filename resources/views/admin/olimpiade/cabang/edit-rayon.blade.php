@@ -7,7 +7,7 @@
             <h1 class="h6">Form Edit Rayon {{$rayons->rayon}}</h1>
         </div>
 
-        <form action="{{route('olimpiade.rayon.update', $rayons->id_rayon)}}" method="POST">
+        <form action="{{route($event.'.rayon.update', $rayons->id_rayon)}}" method="POST">
             @csrf
             @method('PUT')
             <div class="card-body relative overflow-x-auto sm:rounded-lg">
@@ -54,7 +54,7 @@
 
             <div class="card-footer flex justify">
                 <button>
-                    <a href="{{url()->previous()}}" type="button" class="btn-bs-secondary mr-3">Kembali</a>
+                    <a href="{{route($event.'.rayon.index', $rayons->id_cabang)}}" type="button" class="btn-bs-secondary mr-3">Kembali</a>
                 </button>
                 <button type="submit" class="btn-bs-dark" onclick="confirmEdit(event)">
                     Simpan

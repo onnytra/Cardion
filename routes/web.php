@@ -13,12 +13,15 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserTypesController;
 use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\auth\AuthPesertaController;
+use App\Http\Controllers\Export\ExportController;
+use App\Http\Controllers\Import\ImportController;
 use App\Http\Controllers\MainDashboardController;
 use App\Http\Controllers\SoalsController;
 use App\Http\Controllers\SubyeksController;
 use App\Http\Controllers\mail\MailsController;
 use App\Http\Controllers\MonitoringUjianController;
 use App\Http\Controllers\PengumumansController;
+use App\Http\Controllers\PengumpulanKaryasController;
 use App\Http\Controllers\user\olimpiade\MainOlimpiadeController;
 
 /*
@@ -230,6 +233,19 @@ Route::group(['as' => 'dashboard.', 'prefix' => '/admin/main'], function () {
 // Olimpiade Dashboard
 Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' => 'olimpiade'], function () {
     Route::get('/olimpiade', [MainDashboardController::class, 'dashboard_olimpiade'])->name('dashboard');
+
+    Route::group(['as' => 'exportexcel.', 'prefix' => '/excel'], function () {
+        Route::get('/peserta-lunas', [ExportController::class, 'pesertalunas'])->name('peserta-lunas');
+        Route::get('/peserta-lunas/{cabangs}', [ExportController::class, 'pesertalunas_bycabang'])->name('peserta-lunas-cabang');
+        Route::get('/peserta-belum-lunas', [ExportController::class, 'pesertabelumlunas'])->name('peserta-belum-lunas');
+        Route::get('/ujian-peserta/{ujians}', [ExportController::class, 'ujianpeserta'])->name('ujian-peserta');
+    });
+
+    Route::group(['as' => 'importexcel.', 'prefix' => '/excel'], function () {
+        Route::post('/import-peserta', [ImportController::class, 'importpeserta'])->name('import-peserta');
+        Route::get('/format-excel', [ImportController::class, 'formatexcel'])->name('format-excel');
+    });
+
     Route::group(['as' => 'cabang.', 'prefix' => '/cabang'], function () {
         Route::get('/data', [CabangsController::class, 'index'])->name('index');
         Route::get('/add', [CabangsController::class, 'create'])->name('create');
@@ -255,6 +271,10 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' => '
         Route::get('/edit/{pesertas}', [PesertasController::class, 'edit'])->name('edit');
         Route::put('/update/{pesertas}', [PesertasController::class, 'update'])->name('update');
         Route::delete('/delete/{pesertas}', [PesertasController::class, 'destroy'])->name('delete');
+
+        Route::get('/excel', [PesertasController::class, 'tambah_peserta_excel'])->name('create-excel');
+        Route::get('/excel/check',[PesertasController::class, 'check_peserta_excel'])->name('check-peserta-excel');
+        Route::post('/excel/store', [PesertasController::class, 'store_peserta_excel'])->name('store-excel');
     });
 
     Route::group(['as' => 'ujian.', 'prefix' => '/ujian'], function () {
@@ -336,8 +356,90 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' => '
     });  
 });
 
-Route::group(['as' => 'poster.', 'prefix' => '/admin/poster', 'event' => 'olimpiade'], function () {
+// Poster Dashboard
+Route::group(['as' => 'poster.', 'prefix' => '/admin/poster', 'event' => 'poster'], function () {
     Route::get('/poster', [MainDashboardController::class, 'dashboard_poster'])->name('dashboard');
+
+    Route::group(['as' => 'exportexcel.', 'prefix' => '/excel'], function () {
+        Route::get('/peserta-lunas', [ExportController::class, 'pesertalunas'])->name('peserta-lunas');
+        Route::get('/peserta-lunas/{cabangs}', [ExportController::class, 'pesertalunas_bycabang'])->name('peserta-lunas-cabang');
+        Route::get('/peserta-belum-lunas', [ExportController::class, 'pesertabelumlunas'])->name('peserta-belum-lunas');
+        Route::get('/ujian-peserta/{ujians}', [ExportController::class, 'ujianpeserta'])->name('ujian-peserta');
+    });
+
+    Route::group(['as' => 'importexcel.', 'prefix' => '/excel'], function () {
+        Route::post('/import-peserta', [ImportController::class, 'importpeserta'])->name('import-peserta');
+        Route::get('/format-excel', [ImportController::class, 'formatexcel'])->name('format-excel');
+    });
+
+    Route::group(['as' => 'cabang.', 'prefix' => '/cabang'], function () {
+        Route::get('/data', [CabangsController::class, 'index'])->name('index');
+        Route::get('/add', [CabangsController::class, 'create'])->name('create');
+        Route::post('/store', [CabangsController::class, 'store'])->name('store');
+        Route::get('/edit/{cabangs}', [CabangsController::class, 'edit'])->name('edit');
+        Route::put('/update/{cabangs}', [CabangsController::class, 'update'])->name('update');
+        Route::delete('/delete/{cabangs}', [CabangsController::class, 'destroy'])->name('delete');
+    });
+
+    Route::group(['as' => 'rayon.', 'prefix' => '/rayon'], function () {
+        Route::get('/data/{cabangs}', [RayonsController::class, 'index'])->name('index');
+        Route::get('/add/{cabangs}', [RayonsController::class, 'create'])->name('create');
+        Route::post('/store/{cabangs}', [RayonsController::class, 'store'])->name('store');
+        Route::get('/edit/{rayons}', [RayonsController::class, 'edit'])->name('edit');
+        Route::put('/update/{rayons}', [RayonsController::class, 'update'])->name('update');
+        Route::delete('/delete/{rayons}', [RayonsController::class, 'destroy'])->name('delete');
+    });
+
+    Route::group(['as' => 'peserta.', 'prefix' => '/peserta'], function () {
+        Route::get('/data', [PesertasController::class, 'index'])->name('index');
+        Route::get('/add', [PesertasController::class, 'create'])->name('create');
+        Route::post('/store', [PesertasController::class, 'store'])->name('store');
+        Route::get('/edit/{pesertas}', [PesertasController::class, 'edit'])->name('edit');
+        Route::put('/update/{pesertas}', [PesertasController::class, 'update'])->name('update');
+        Route::delete('/delete/{pesertas}', [PesertasController::class, 'destroy'])->name('delete');
+
+        Route::get('/excel', [PesertasController::class, 'tambah_peserta_excel'])->name('create-excel');
+        Route::get('/excel/check',[PesertasController::class, 'check_peserta_excel'])->name('check-peserta-excel');
+        Route::post('/excel/store', [PesertasController::class, 'store_peserta_excel'])->name('store-excel');
+    });
+    
+    Route::group(['as' => 'pengumpulan_karya.', 'prefix' => '/pengumpulan-karya'], function () {
+        Route::get('/data', [PengumpulanKaryasController::class, 'index'])->name('index');
+        Route::get('/add', [PengumpulanKaryasController::class, 'create'])->name('create');
+        Route::post('/store', [PengumpulanKaryasController::class, 'store'])->name('store');
+        Route::get('/edit/{pengumpulan_karyas}', [PengumpulanKaryasController::class, 'edit'])->name('edit');
+        Route::put('/update/{pengumpulan_karyas}', [PengumpulanKaryasController::class, 'update'])->name('update');
+        Route::delete('/delete/{pengumpulan_karyas}', [PengumpulanKaryasController::class, 'destroy'])->name('delete');
+    });
+    Route::group(['as' => 'gelombang_pembayaran.', 'prefix' => '/gelombang-pembayaran'], function () {
+        Route::get('/data', [GelombangPembayaransController::class, 'index'])->name('index');
+        Route::get('/add', [GelombangPembayaransController::class, 'create'])->name('create');
+        Route::post('/store', [GelombangPembayaransController::class, 'store'])->name('store');
+        Route::get('/edit/{gelombang_pembayarans}', [GelombangPembayaransController::class, 'edit'])->name('edit');
+        Route::put('/update/{gelombang_pembayarans}', [GelombangPembayaransController::class, 'update'])->name('update');
+        Route::delete('/delete/{gelombang_pembayarans}', [GelombangPembayaransController::class, 'destroy'])->name('delete');
+    });
+
+    Route::group(['as' => 'pembayaran.', 'prefix' => '/pembayaran'], function () {
+        Route::get('/data', [PembayaransController::class, 'index'])->name('index');
+        Route::get('/add', [PembayaransController::class, 'create'])->name('create');
+        Route::post('/store', [PembayaransController::class, 'store'])->name('store');
+        Route::get('/edit/{pembayarans}', [PembayaransController::class, 'edit'])->name('edit');
+        Route::put('/update/{pembayarans}', [PembayaransController::class, 'update'])->name('update');
+        Route::get('/delete/{pembayarans}', [PembayaransController::class, 'destroy'])->name('delete');
+        Route::get('/tolak/{pembayarans}', [PembayaransController::class, 'tolak'])->name('tolak');
+        Route::get('/terima/{pembayarans}', [PembayaransController::class, 'terima'])->name('terima');
+    });
+
+    Route::group(['as' => 'assign_test.', 'prefix' => '/assigntest'], function () {
+        Route::get('/data/tests', [AssignTestsController::class, 'show_tests'])->name('show_tests');
+        Route::get('/data/{id}', [AssignTestsController::class, 'index'])->name('index');
+        Route::get('/add/{id}', [AssignTestsController::class, 'create'])->name('create');
+        Route::post('/store/{id}', [AssignTestsController::class, 'store'])->name('store');
+        Route::delete('/delete/{assign_tests}', [AssignTestsController::class, 'destroy'])->name('delete');
+    });
+
+    
 });
 
 Route::get('/get-rayons', [RayonsController::class, 'getRayons']);

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('kuota');
             $table->string('contact_person',15)->nullable();
             $table->boolean('status_rayon');
-            $table->foreignId('id_cabang')->references('id_cabang')->on('cabangs')->onDelete('cascade')->onUpdate('restrict');
+            $table->foreignId('id_cabang')->references('id_cabang')->on('cabangs')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
         });
     }

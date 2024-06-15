@@ -7,7 +7,7 @@
             <h1 class="h6">Form Tambah Rayon</h1>
         </div>
 
-        <form action="{{route('olimpiade.rayon.store', $cabangs->id_cabang)}}" method="POST">
+        <form action="{{route($event.'.rayon.store', $cabangs->id_cabang)}}" method="POST">
             @csrf
             <div class="card-body relative overflow-x-auto sm:rounded-lg">
                 <div class="grid gap-6">
@@ -53,7 +53,7 @@
 
             <div class="card-footer flex justify">
                 <button>
-                    <a href="{{url()->previous()}}" type="button" class="btn-bs-secondary mr-3">Kembali</a>
+                    <a href="{{route($event.'.rayon.index', $cabangs->id_cabang)}}" type="button" class="btn-bs-secondary mr-3">Kembali</a>
                 </button>
                 <button type="submit" class="btn-bs-dark" onclick="confirmInput(event)">
                     Simpan
