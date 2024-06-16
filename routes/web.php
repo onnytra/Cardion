@@ -25,6 +25,7 @@ use App\Http\Controllers\PengumumansController;
 use App\Http\Controllers\PengumpulanKaryasController;
 use App\Http\Controllers\user\olimpiade\MainOlimpiadeController;
 use App\Http\Controllers\user\olimpiade\PembayaranController;
+use App\Http\Controllers\user\olimpiade\PengumpulanController;
 use App\Http\Controllers\user\olimpiade\PengumumanController;
 use App\Http\Controllers\user\olimpiade\RegistrasiController;
 use App\Http\Controllers\user\olimpiade\UjianController;
@@ -116,6 +117,13 @@ Route::group(['as' => 'poster.', 'prefix' => '/poster', 'event' => 'poster'], fu
     Route::post('forgotpassword', [MailsController::class, 'forgot_password'])->name('forgotpassword.mail');
     Route::get('/resetpassword/{token}', [AuthPesertaController::class, 'reset_password_page'])->name('resetpassword.page');
     Route::put('/resetpassword', [AuthPesertaController::class, 'reset_password_process'])->name('resetpassword.process');
+
+    Route::get('/pengumpulan-karya', [PengumpulanController::class, 'index'])->name('karya');
+    Route::get('/pengumpulan-karya/add/{pengumpulan_karyas}', [PengumpulanController::class, 'create'])->name('add-karya');
+    Route::post('/pengumpulan-karya/store', [PengumpulanController::class, 'store'])->name('store-karya');
+    // Route::get('/pengumpulan-karya/edit', [PengumpulanController::class, 'edit'])->name('edit-karya');
+    // Route::put('/pengumpulan-karya/update', [PengumpulanController::class, 'update'])->name('update-karya');
+
 });
 
 //User Olimpiade Side
@@ -139,7 +147,9 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/olimpiade', 'event' => 'olimpi
 
     Route::get('/ujian', [UjianController::class, 'index'])->name('ujian');
     Route::get('/ujian/detail/{ujians}', [UjianController::class, 'detail'])->name('detail-ujian');
-    Route::get('/ujian/detail/start/{ujians}', [UjianController::class, 'detail_start'])->name('start-ujian');
+    Route::get('/ujian/detail/start/{ujians}/{nosoal}', [UjianController::class, 'detail_start'])->name('start-ujian');
+    Route::get('/ujian/detail/finish/{ujians}', [UjianController::class, 'detail_finish'])->name('finish-ujian');
+    Route::get('/ujian/history', [UjianController::class, 'history'])->name('history-ujian');
 });
 // All User Side
 Route::group(['as' => 'user.', 'prefix' => '/user', 'event' => 'olimpiade'], function () {

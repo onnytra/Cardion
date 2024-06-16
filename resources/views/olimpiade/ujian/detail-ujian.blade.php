@@ -44,7 +44,7 @@
             </div>
 
             <div class="card-footer flex justify-end">
-                <button onclick="startUjian($ujians->id_ujian)">
+                <button onclick="startUjian($ujians->id_ujian, 0)">
                     <a class="btn-indigo">
                         <i class="fad fa-clock mr-2 leading-none"></i>
                         Ikuti Ujian</a>
@@ -65,8 +65,8 @@
     </div>
 
     <script>
-        function startUjian(id_ujian) {
-            window.open("/ujian/detail/start/" + id_ujian, "_blank", "top=0, left=0, width=" + screen.width + ", height=" + screen.height);
+        function startUjian(id_ujian, soal) {
+            window.open("start/" + id_ujian +"/" +soal, "_blank", "top=0, left=0, width=" + screen.width + ", height=" + screen.height);
         }
     </script>
 </x-layout-u>

@@ -41,13 +41,16 @@ class UjianController extends Controller
         return view('olimpiade.ujian.detail-ujian', compact('title', 'slug', 'ujians', 'sesi'));
     }
 
-    public function detail_start(ujians $ujians)
+    public function detail_start(ujians $ujians, $nosoal)
     {
         $title = 'Detail Ujian | Cardion UIN Malang';
         $slug = 'ujian';
 
         $sesi = $ujians->sesi->where('mulai', '>', now())->sortBy('mulai')->first();
-        return view('olimpiade.ujian.start-ujian', compact('title', 'slug', 'ujians', 'sesi'));
+        // take all soal from ujian
+        $soals = soals::where('id_ujian', $ujians->id_ujian)->get();
+        dd($soals[$nosoal]);
+        return view('olimpiade.ujian.start-ujian', compact('title', 'slug', 'ujians', 'sesi', 'soals'));
     }
 
     public function hasil()
@@ -55,5 +58,12 @@ class UjianController extends Controller
         $title = 'Hasil Ujian | Cardion UIN Malang';
         $slug = 'ujian';
         return view('olimpiade.ujian.hasil-ujian', compact('title', 'slug'));
+    }
+
+    public function history(){
+        $title = 'History Ujian | Cardion UIN Malang';
+        $slug = 'ujian';
+        
+        return view('olimpiade.ujian.history-ujian', compact('title', 'slug'));
     }
 }
