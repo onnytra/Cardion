@@ -3,6 +3,7 @@
 use App\Http\Controllers\AssignTestsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CabangsController;
+use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\RayonsController;
 use App\Http\Controllers\PesertasController;
 use App\Http\Controllers\UjiansController;
@@ -179,7 +180,7 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/olimpiade', 'event' => 'olimpi
     Route::get('/logout', [AuthPesertaController::class, 'logout'])->name('logout');
     Route::get('/register', [AuthPesertaController::class, 'register_page'])->name('register');
     Route::post('/register', [AuthPesertaController::class, 'register_process'])->name('register.process');
-    
+
     Route::get('/account/{pesertas}', [AuthPesertaController::class, 'edit_profile'])->name('account');
     Route::put('/account/{pesertas}', [AuthPesertaController::class, 'update_profile'])->name('account.update');
 
@@ -283,7 +284,7 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' => '
         Route::delete('/delete/{pesertas}', [PesertasController::class, 'destroy'])->name('delete');
 
         Route::get('/excel', [PesertasController::class, 'tambah_peserta_excel'])->name('create-excel');
-        Route::get('/excel/check',[PesertasController::class, 'check_peserta_excel'])->name('check-peserta-excel');
+        Route::get('/excel/check', [PesertasController::class, 'check_peserta_excel'])->name('check-peserta-excel');
         Route::post('/excel/store', [PesertasController::class, 'store_peserta_excel'])->name('store-excel');
     });
 
@@ -295,7 +296,7 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' => '
         Route::put('/update/{ujians}', [UjiansController::class, 'update'])->name('update');
         Route::delete('/delete/{ujians}', [UjiansController::class, 'destroy'])->name('delete');
     });
-    
+
     Route::group(['as' => 'soal.', 'prefix' => '/soal'], function () {
         Route::get('/data/{ujians}', [SoalsController::class, 'index'])->name('index');
         Route::get('/add/{ujians}', [SoalsController::class, 'create'])->name('create');
@@ -363,7 +364,7 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' => '
         Route::get('/edit/{pengumumans}', [PengumumansController::class, 'edit'])->name('edit');
         Route::put('/update/{pengumumans}', [PengumumansController::class, 'update'])->name('update');
         Route::delete('/delete/{pengumumans}', [PengumumansController::class, 'destroy'])->name('delete');
-    });  
+    });
 });
 
 // Poster Dashboard
@@ -409,10 +410,10 @@ Route::group(['as' => 'poster.', 'prefix' => '/admin/poster', 'event' => 'poster
         Route::delete('/delete/{pesertas}', [PesertasController::class, 'destroy'])->name('delete');
 
         Route::get('/excel', [PesertasController::class, 'tambah_peserta_excel'])->name('create-excel');
-        Route::get('/excel/check',[PesertasController::class, 'check_peserta_excel'])->name('check-peserta-excel');
+        Route::get('/excel/check', [PesertasController::class, 'check_peserta_excel'])->name('check-peserta-excel');
         Route::post('/excel/store', [PesertasController::class, 'store_peserta_excel'])->name('store-excel');
     });
-    
+
     Route::group(['as' => 'pengumpulan_karya.', 'prefix' => '/pengumpulan-karya'], function () {
         Route::get('/data', [PengumpulanKaryasController::class, 'index'])->name('index');
         Route::get('/add', [PengumpulanKaryasController::class, 'create'])->name('create');
@@ -449,13 +450,14 @@ Route::group(['as' => 'poster.', 'prefix' => '/admin/poster', 'event' => 'poster
         Route::delete('/delete/{assign_tests}', [AssignTestsController::class, 'destroy'])->name('delete');
     });
 
-    
+
     Route::group(['as' => 'penilaian.', 'prefix' => '/penilaian'], function () {
-        Route::get('/pengumpulan-karya',[KaryasController::class, 'show_pengumpulan'])->name('pengumpulan_karya');
-        Route::put('/update-nilai/{karyas}',[KaryasController::class, 'update_nilai'])->name('update_nilai');
-        Route::get('/data/{id}',[KaryasController::class, 'index'])->name('index');
-        Route::delete('/delete/{karyas}',[KaryasController::class, 'destroy'])->name('delete');
+        Route::get('/pengumpulan-karya', [KaryasController::class, 'show_pengumpulan'])->name('pengumpulan_karya');
+        Route::put('/update-nilai/{karyas}', [KaryasController::class, 'update_nilai'])->name('update_nilai');
+        Route::get('/data/{id}', [KaryasController::class, 'index'])->name('index');
+        Route::delete('/delete/{karyas}', [KaryasController::class, 'destroy'])->name('delete');
     });
 });
 
 Route::get('/get-rayons', [RayonsController::class, 'getRayons']);
+Route::post('/upload-image', [CKEditorController::class, 'upload'])->name('ckeditor.upload');
