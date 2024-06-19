@@ -32,25 +32,23 @@ class RayonsController extends Controller
     {
         $title = 'Rayon';
         $slug = 'rayon';
+        $event = $this->event;
 
         $delete = 'Delete Rayon';
         $delete_message = 'Anda yakin ingin menghapus rayon ini ?';
         confirmDelete($delete, $delete_message);
 
         $rayons = rayons::where('id_cabang', $cabangs->id_cabang)->get();
-        return view('admin/olimpiade/cabang/rayon', compact('cabangs','rayons', 'title', 'slug'));
+        return view('admin/olimpiade/cabang/rayon', compact('cabangs','rayons', 'title', 'slug','event'));
     }
 
     public function create(cabangs $cabangs)
     {
         $title = 'Tambah Rayon';
         $slug = 'add';
+        $event = $this->event;
 
-        if ($this->event == 'olimpiade') {
-            return view('admin/olimpiade/cabang/add-rayon', compact('cabangs','title', 'slug'));
-        } elseif ($this->event == 'poster'){
-            return view('admin/poster/cabang/add-rayon', compact('cabangs','title', 'slug'));
-        }
+        return view('admin/olimpiade/cabang/add-rayon', compact('cabangs','title', 'slug', 'event'));
     }
 
     public function store(Request $request, cabangs $cabangs)
@@ -92,12 +90,9 @@ class RayonsController extends Controller
     {
         $title = 'Edit Rayon';
         $slug = 'edit';
+        $event = $this->event;
 
-        if ($this->event == 'olimpiade') {
-            return view('admin/olimpiade/cabang/edit-rayon', compact('rayons', 'title', 'slug'));
-        } elseif ($this->event == 'poster'){
-            return view('admin/poster/cabang/edit-rayon', compact('rayons', 'title', 'slug'));
-        }
+        return view('admin/olimpiade/cabang/edit-rayon', compact('rayons', 'title', 'slug', 'event'));
     }
 
     public function update(Request $request, rayons $rayons)

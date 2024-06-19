@@ -32,7 +32,7 @@ class SesisController extends Controller
         $delete_message = 'Anda yakin ingin menghapus sesi ini ?';
         confirmDelete($delete, $delete_message);
 
-        $sesis = sesis::where('id_ujian', $ujians->id_ujian)->get();
+        $sesis = sesis::where('id_ujian', $ujians->id_ujian)->orderBy('mulai', 'asc')->get();
         return view('admin/olimpiade/ujian/sesi', compact('ujians','sesis', 'title', 'slug'));
     }
 
@@ -53,12 +53,13 @@ class SesisController extends Controller
     {
         $validate = Validator::make($request->all(), [
             'mulai' => 'required | date',
-            'berakhir' => 'required | date',
+            'berakhir' => 'required | date | after_or_equal:mulai',
             'waktu_mulai' => 'required',
-            'waktu_berakhir' => 'required | after:waktu-mulai',
+            'waktu_berakhir' => 'required | ' . ($request->berakhir == $request->mulai ? 'after:waktu_mulai' : ''),
         ], [
             'mulai.required' => 'Tanggal Mulai harus diisi',
             'berakhir.required' => 'Tanggal Berakhir harus diisi',
+            'berakhir.after_or_equal' => 'Tanggal Berakhir harus sama atau setelah Tanggal Mulai',
             'waktu_mulai.required' => 'Waktu Mulai harus diisi',
             'waktu_berakhir.required' => 'Waktu Berakhir harus diisi',
             'waktu_berakhir.after' => 'Waktu Berakhir harus setelah Waktu Mulai',
@@ -105,12 +106,13 @@ class SesisController extends Controller
     {
         $validate = Validator::make($request->all(), [
             'mulai' => 'required | date',
-            'berakhir' => 'required | date',
+            'berakhir' => 'required | date | after_or_equal:mulai',
             'waktu_mulai' => 'required',
-            'waktu_berakhir' => 'required | after:waktu-mulai',
+            'waktu_berakhir' => 'required | ' . ($request->berakhir == $request->mulai ? 'after:waktu_mulai' : ''),
         ], [
             'mulai.required' => 'Tanggal Mulai harus diisi',
             'berakhir.required' => 'Tanggal Berakhir harus diisi',
+            'berakhir.after_or_equal' => 'Tanggal Berakhir harus sama atau setelah Tanggal Mulai',
             'waktu_mulai.required' => 'Waktu Mulai harus diisi',
             'waktu_berakhir.required' => 'Waktu Berakhir harus diisi',
             'waktu_berakhir.after' => 'Waktu Berakhir harus setelah Waktu Mulai',

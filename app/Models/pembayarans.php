@@ -19,8 +19,7 @@ class pembayarans extends Model
         return $this->belongsTo(gelombang_pembayarans::class, 'id_gelombang');
     }
 
-    public function pesertas()
-    {
-        return $this->hasMany(pesertas::class, 'id_pembayaran');
+    public function peserta(){
+        return $this->belongsTo(pesertas::class, 'id_peserta', 'id_peserta');
     }
 }

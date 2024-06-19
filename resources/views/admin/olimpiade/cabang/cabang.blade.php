@@ -4,9 +4,9 @@
 
     <div class="card mt-6">
         <div class="card-header flex flex-row justify-between items-center">
-            <h1 class="h6">Daftar Cabang Olimpiade</h1>
+            <h1 class="h6" style="text-transform: capitalize">Daftar Cabang {{$event}}</h1>
             <button>
-                <a href="/admin/olimpiade/cabang/add" class="btn-bs-dark">
+                <a href="{{route($event.'.cabang.create')}}" class="btn-bs-dark">
                     <i class="fad fa-plus mr-2 leading-none"></i>
                     Cabang Baru</a>
             </button>
@@ -68,19 +68,19 @@
                                                 <div class="cart mt-1 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                                     <div class="card-body relative overflow-x-visible sm:rounded-lg">
                                                         <button class="w-full">
-                                                            <a href="{{route('olimpiade.rayon.index', $data->id_cabang)}}"
+                                                            <a href="{{route($event.'.rayon.index', $data->id_cabang)}}"
                                                                 class="btn-bs-success">
                                                                 <i class="fad fa-edit mr-2 leading-none"></i>
                                                                 Edit Rayon</a>
                                                         </button>
                                                         <button class="w-full mt-2">
-                                                            <a href="{{route('olimpiade.cabang.edit', $data->id_cabang)}}"
+                                                            <a href="{{route($event.'.cabang.edit', $data->id_cabang)}}"
                                                                 class="btn-bs-primary">
                                                                 <i class="fad fa-edit mr-2 leading-none"></i>
                                                                 Edit Cabang</a>
                                                         </button>
                                                         <button class="w-full mt-2">
-                                                            <a href="{{route('olimpiade.cabang.delete', $data->id_cabang)}}"
+                                                            <a href="{{route($event.'.cabang.delete', $data->id_cabang)}}"
                                                                 class="btn-bs-danger" data-confirm-delete="true">
                                                                 <i class="fad fa-trash mr-2 leading-none"></i>
                                                                 Hapus Cabang</a>

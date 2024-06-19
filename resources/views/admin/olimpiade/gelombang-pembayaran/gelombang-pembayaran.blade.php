@@ -6,7 +6,7 @@
         <div class="card-header flex flex-row justify-between items-center">
             <h1 class="h6">Daftar Gelombang Pembayaran</h1>
             <button>
-                <a href="{{ route('olimpiade.gelombang_pembayaran.create')}}" class="btn-bs-dark">
+                <a href="{{ route($event.'.gelombang_pembayaran.create')}}" class="btn-bs-dark">
                     <i class="fad fa-plus mr-2 leading-none"></i>
                     Gelombang Baru</a>
             </button>
@@ -77,12 +77,12 @@
                                                 <div class="cart mt-1 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                                     <div class="card-body relative overflow-x-visible sm:rounded-lg">
                                                         <button class="w-full">
-                                                            <a href="{{ route('olimpiade.gelombang_pembayaran.edit', $item->id_gelombang)}}" class="btn-bs-primary">
+                                                            <a href="{{ route($event.'.gelombang_pembayaran.edit', $item->id_gelombang)}}" class="btn-bs-primary">
                                                                 <i class="fad fa-edit mr-2 leading-none"></i>
                                                                 Edit Gelombang</a>
                                                         </button>
                                                         <button class="w-full mt-2">
-                                                            <a href="{{ route('olimpiade.gelombang_pembayaran.delete', $item->id_gelombang)}}" class="btn-bs-danger" data-confirm-delete="true">
+                                                            <a href="{{ route($event.'.gelombang_pembayaran.delete', $item->id_gelombang)}}" class="btn-bs-danger" data-confirm-delete="true">
                                                                 <i class="fad fa-trash mr-2 leading-none"></i>
                                                                 Hapus Gelombang</a>
                                                         </button>

@@ -13,7 +13,7 @@
     <div class="grid min-h-full grid-cols-1 px-6 py-0 md:grid-cols-3 lg:px-8 lg:py-12">
         <div
             class="mt-10 bg-slate-100 bg-opacity-30 col-span-2 backdrop-blur-lg p-5 rounded-xl sm:mx-auto sm:w-full sm:max-w-lg">
-            <h2 class="mt-2 text-center text-3xl font-bold leading-9 tracking-tight text-gray-900">Login Admin
+            <h2 class="mt-2 text-center text-3xl font-bold leading-9 tracking-tight text-gray-900">Login
             </h2>
             @if (session('error'))
             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-2" role="alert">

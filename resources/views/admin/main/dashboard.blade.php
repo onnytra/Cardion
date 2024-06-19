@@ -19,21 +19,21 @@
 
                     <!-- bottom -->
                     <div class="mt-8 flex flex-row items-center gap-3">
-                        <h1 class="h5 text-blue-600">618</h1>
+                        <h1 class="h5 text-blue-600">{{$main->peserta_olimpiade}}</h1>
                         <p>Jumlah peserta</p>
                     </div>
                     <!-- end bottom -->
 
                     <!-- bottom -->
                     <div class="mt-8 flex flex-row items-center gap-3">
-                        <h1 class="h5 text-green-600">255</h1>
+                        <h1 class="h5 text-green-600">{{$main->peserta_olimpiade_aktif}}</h1>
                         <p>Jumlah peserta aktif</p>
                     </div>
                     <!-- end bottom -->
 
                     <!-- bottom -->
                     <div class="mt-8 flex flex-row items-center gap-3">
-                        <h1 class="h5 text-red-600">10</h1>
+                        <h1 class="h5 text-red-600">{{$main->ujian}}</h1>
                         <p>Jumlah ujian</p>
                     </div>
                     <!-- end bottom -->
@@ -58,21 +58,21 @@
 
                     <!-- bottom -->
                     <div class="mt-8 flex flex-row items-center gap-3">
-                        <h1 class="h5 text-blue-600">94</h1>
+                        <h1 class="h5 text-blue-600">{{$main->peserta_poster}}</h1>
                         <p>Jumlah peserta</p>
                     </div>
                     <!-- end bottom -->
 
                     <!-- bottom -->
                     <div class="mt-8 flex flex-row items-center gap-3">
-                        <h1 class="h5 text-green-600">61</h1>
+                        <h1 class="h5 text-green-600">{{$main->peserta_poster_aktif}}</h1>
                         <p>Jumlah peserta aktif</p>
                     </div>
                     <!-- end bottom -->
 
                     <!-- bottom -->
                     <div class="mt-8 flex flex-row items-center gap-3">
-                        <h1 class="h5 text-red-600">3</h1>
+                        <h1 class="h5 text-red-600">{{$main->pengumpulan_karya}}</h1>
                         <p>Jumlah ujian</p>
                     </div>
                     <!-- end bottom -->
@@ -85,7 +85,7 @@
     <!-- End General Report -->
 
     <!-- start Analytics -->
-    <div class="mt-6 grid grid-cols-2 gap-6 xl:grid-cols-1">
+    {{-- <div class="mt-6 grid grid-cols-2 gap-6 xl:grid-cols-1">
 
         <div class="card">
             <div class="py-3 px-4 flex flex-row justify-between">
@@ -117,6 +117,6 @@
             <div class="analytics_1"></div>
         </div>
 
-    </div>
+    </div> --}}
     <!-- end Analytics -->
 </x-layout>

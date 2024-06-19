@@ -13,7 +13,7 @@
     <div class="grid min-h-full grid-cols-1 px-6 py-0 md:grid-cols-3 lg:px-8 lg:py-12">
         <div
             class="mt-10 bg-slate-100 bg-opacity-30 col-span-2 backdrop-blur-lg p-5 rounded-xl sm:mx-auto sm:w-full sm:max-w-lg">
-            <h2 class="mt-2 text-center text-3xl font-bold leading-9 tracking-tight text-gray-900">Login
+            <h2 class="mt-2 text-center text-3xl font-bold leading-9 tracking-tight text-gray-900" style="text-transform: capitalize">Login {{$event}}
             </h2>
 
             @if (session('error'))
@@ -22,12 +22,13 @@
             </div>
             @endif
             @if(session('success'))
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-2" role="alert">
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-2"
+                role="alert">
                 <strong class="font-bold">{{ session('success') }}</strong>
             </div>
             @endif
             <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                <form class="space-y-6" action="{{route('olimpiade.login.process')}}" method="POST">
+                <form class="space-y-6" action="{{route($event.'.login.process')}}" method="POST">
                     @csrf
                     <div>
                         <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
@@ -44,9 +45,16 @@
                                 required
                                 class="block w-full bg-transparent border-0 border-b-2 border-gray-500 py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-0 focus:border-red-700 sm:text-sm sm:leading-6">
                         </div>
-                        <div class="flex justify-end mt-2">
+                        <div class="flex justify-between mt-2">
+                            <div>
+                                <input type="checkbox" id="show-password"
+                                    class="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500"> <label
+                                    for="show-password" class="ml-3 min-w-0 text-sm flex-1 text-gray-900">Show
+                                    Password</label>
+                            </div>
                             <div class="text-sm">
-                                <a href="{{route('olimpiade.forgotpassword')}}" class="font-semibold text-red-600 hover:text-red-500 hover:underline">Forgot
+
+                                <a href="{{route($event.'.forgotpassword')}}" class="font-semibold text-red-600 hover:text-red-500 hover:underline">Forgot
                                     password?</a>
                             </div>
                         </div>
@@ -70,7 +78,7 @@
 
                 <p class="mt-4 text-center text-sm text-white">
                     Don't have an account
-                    <a href="{{route('olimpiade.register')}}"
+                    <a href="{{route($event.'.register')}}"
                         class="font-semibold leading-6 text-red-600 hover:text-red-500 hover:underline">Register
                         Now</a>
                 </p>
@@ -79,5 +87,15 @@
     </div>
 
 </body>
+<script>
+    document.getElementById('show-password').addEventListener('change', function() {
+        const passwordInput = document.getElementById('password');
+        if (this.checked) {
+            passwordInput.type = 'text';
+        } else {
+            passwordInput.type = 'password';
+        }
+    });
+</script>
 
 </html>

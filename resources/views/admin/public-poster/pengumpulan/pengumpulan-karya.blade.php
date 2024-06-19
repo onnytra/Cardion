@@ -20,7 +20,7 @@
                             No
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Ujian
+                            Pengumpulan Karya
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Mulai
@@ -28,66 +28,68 @@
                         <th scope="col" class="px-6 py-3">
                             Berakhir
                         </th>
-                        {{-- <th scope="col" class="px-6 py-3">
-                            Status
-                        </th> --}}
+                        <th scope="col" class="px-6 py-3">
+                            Status Pengumpulan
+                        </th>
                         <th scope="col" class="px-6 py-3">
                             Aksi
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    @for($i = 1; $i <= 3; $i++) <tr
+                    @foreach ($pengumpulan_karyas as $data)
+                    <tr
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td class="px-6 py-4">
-                            1
+                            {{ $loop->iteration }}
                         </td>
                         <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            Olimpiade Cardion Gelombang 3
+                            {{ $data->judul }}
                         </td>
                         <td class="px-6 py-4">
-                            28-01-2024 13:20
+                            {{ $data->mulai ?? '--'}}
                         </td>
                         <td class="px-6 py-4">
-                            26-04-2024 23:00
+                            {{ $data->berakhir ?? '--'}}
                         </td>
-                        {{-- <td class="px-6 py-4">
-                            <div
-                                class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                                <input type="checkbox" name="toggle" id="toggle"
-                                    class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer transition-colors duration-500" />
-                                <label for="toggle"
-                                    class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer transition-colors duration-500"></label>
-                            </div>
-                        </td> --}}
                         <td class="px-6 py-4">
-                            <a id="modal-box{{ $i }}" onclick="showModal({{ $i }})"
+                                @if($data->status_pengumpulan)
+                                <span
+                                    class="inline-flex items-center rounded-md bg-green-200 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Aktif</span>
+                                @else
+                                <span
+                                    class="inline-flex items-center rounded-md bg-red-200 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20">Tidak
+                                    Aktif</span>
+                                @endif
+                        </td>
+                        <td class="px-6 py-4">
+                            <a id="modal-box{{ $loop->iteration }}" onclick="showModal({{ $loop->iteration }})"
                                 class="font-medium text-gray-900 cursor-pointer">
                                 <i class="fad fa-ellipsis-h mr-2 leading-none"></i>
                             </a>
-                            <div id="modal{{ $i }}" class="absolute right-0 hidden z-10" aria-labelledby="modal-title"
-                                role="dialog" aria-modal="true">
-                                <div class="flex items-end justify-center text-center">
-                                    <div id="bg-modal{{  $i }}" onclick="hideModal({{ $i }})" class="fixed inset-0"
-                                        aria-hidden="true"></div>
-                                    <div
-                                        class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all">
-                                        <div class="bg-white">
-                                            <div class="sm:flex sm:items-start">
-                                                <div class="cart mt-1 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                                                    <div class="card-body relative overflow-x-visible sm:rounded-lg">
-                                                        <button class="w-full">
-                                                            <a href="/admin/public-poster/pengumpulan-karya/edit"
-                                                                class="btn-bs-primary">
-                                                                <i class="fad fa-edit mr-2 leading-none"></i>
-                                                                Edit Pengumpulan Karya</a>
-                                                        </button>
-                                                        <button class="w-full mt-2">
-                                                            <a href="" class="btn-bs-danger">
-                                                                <i class="fad fa-trash mr-2 leading-none"></i>
-                                                                Hapus Pengumpulan Karya</a>
-                                                        </button>
-                                                    </div>
+                            <div id="modal{{ $loop->iteration }}" class="absolute right-0 hidden z-10"
+                                aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                                <div class="flex items
+                                -end justify-center text-center">
+                                <div id="bg-modal{{ $loop->iteration }}" onclick="hideModal({{ $loop->iteration }})"
+                                    class="fixed inset-0" aria-hidden="true"></div>
+                                <div
+                                    class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all">
+                                    <div class="bg-white">
+                                        <div class="sm:flex sm:items-start">
+                                            <div class="cart mt-1 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                                <div class="card-body relative overflow-x-visible sm:rounded-lg">
+                                                    <button class="w-full">
+                                                        <a href="{{ route('poster.pengumpulan_karya.edit', $data->id_pengumpulan) }}"
+                                                            class="btn-bs-primary">
+                                                            <i class="fad fa-edit mr-2 leading-none"></i>
+                                                            Edit Pengumpulan Karya</a>
+                                                    </button>
+                                                    <button class="w-full mt-2">
+                                                        <a href="{{route('poster.pengumpulan_karya.delete', $data->id_pengumpulan)}}" class="btn-bs-danger" data-confirm-delete="true">
+                                                            <i class="fad fa-trash mr-2 leading-none"></i>
+                                                            Hapus Pengumpulan Karya</a>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -96,7 +98,7 @@
                             </div>
                         </td>
                         </tr>
-                        @endfor
+                    @endforeach
                 </tbody>
             </table>
         </div>

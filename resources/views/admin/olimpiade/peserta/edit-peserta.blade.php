@@ -39,7 +39,7 @@
         </div>
     </div>
 
-    <form id="main-form" action="{{route('olimpiade.peserta.update', $pesertas->id_peserta)}}" method="POST">
+    <form id="main-form" action="{{route($event.'.peserta.update', $pesertas->id_peserta)}}" method="POST">
         @csrf
         @method('PUT')
         <div class="card-body relative overflow-x-auto sm:rounded-lg">
@@ -230,7 +230,7 @@
 
         <div class="card-footer flex justify">
             <button>
-                <a href="{{url()->previous()}}" type="button" class="btn-bs-secondary mr-3">kembali</a>
+                <a href="{{route($event.'.peserta.index')}}" type="button" class="btn-bs-secondary mr-3">kembali</a>
             </button>
             <button type="submit" class="btn-bs-dark" onclick="confirmEdit(event)">
                 Simpan

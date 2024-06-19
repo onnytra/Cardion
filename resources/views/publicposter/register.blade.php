@@ -52,6 +52,9 @@
                                 required
                                 class="block w-full bg-transparent border-0 border-b-2 border-gray-500 py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-0 focus:border-red-700 sm:text-sm sm:leading-6">
                         </div>
+                        <input type="checkbox" id="show-password"
+                            class="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500"> <label
+                            for="show-password" class="ml-3 min-w-0 flex-1 text-gray-900">Show Password</label>
                     </div>
 
                     <div>
@@ -62,6 +65,10 @@
                                 autocomplete="current-password" required
                                 class="block w-full bg-transparent border-0 border-b-2 border-gray-500 py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-0 focus:border-red-700 sm:text-sm sm:leading-6">
                         </div>
+                        <input type="checkbox" id="show-confirm-password"
+                            class="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500"> <label
+                            for="show-confirm-password" class="ml-3 min-w-0 flex-1 text-gray-900">Show Confirm
+                            Password</label>
                     </div>
 
                     <div>
@@ -91,5 +98,24 @@
     </div>
 
 </body>
+<script>
+    document.getElementById('show-password').addEventListener('change', function() {
+        const passwordInput = document.getElementById('password');
+        if (this.checked) {
+            passwordInput.type = 'text';
+        } else {
+            passwordInput.type = 'password';
+        }
+    });
+    
+    document.getElementById('show-confirm-password').addEventListener('change', function() {
+        const passwordInput = document.getElementById('confirm_password');
+        if (this.checked) {
+            passwordInput.type = 'text';
+        } else {
+            passwordInput.type = 'password';
+        }
+    });
+</script>
 
 </html>

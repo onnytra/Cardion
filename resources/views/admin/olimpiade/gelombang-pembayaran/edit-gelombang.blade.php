@@ -7,7 +7,7 @@
             <h1 class="h6">Form Edit Gelombang Pembayaran</h1>
         </div>
 
-        <form action="{{route('olimpiade.gelombang_pembayaran.update', $gelombang_pembayarans->id_gelombang)}}" method="POST">
+        <form action="{{route($event.'.gelombang_pembayaran.update', $gelombang_pembayarans->id_gelombang)}}" method="POST">
         @csrf
         @method('PUT')
             <div class="card-body relative overflow-x-auto sm:rounded-lg">
@@ -62,7 +62,7 @@
 
             <div class="card-footer flex justify">
                 <button>
-                    <a href="{{url()->previous()}}" type="button" class="btn-bs-secondary mr-3">Kembali</a>
+                    <a href="{{route($event.'.gelombang_pembayaran.index')}}" type="button" class="btn-bs-secondary mr-3">Kembali</a>
                 </button>
                 <button type="submit" class="btn-bs-dark" onclick="confirmEdit(event)">
                     Simpan

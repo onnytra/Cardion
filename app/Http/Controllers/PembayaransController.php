@@ -3,83 +3,105 @@
 namespace App\Http\Controllers;
 
 use App\Models\pembayarans;
+use App\Models\pesertas;
 use Illuminate\Http\Request;
 
 class PembayaransController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public $event;
+
+    public function __construct()
     {
-        //
+        $route = request()->route();
+
+        if ($route) {
+            $action = $route->getAction();
+            $this->event = $action['event'] ?? null;
+        } else {
+            $this->event = null;
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function index()
+    {
+        $title = 'Pembayaran';
+        $slug = 'pembayaran';
+        $event = $this->event;
+        $delete = 'Delete Pembayaran';
+        $delete_message = 'Anda yakin ingin menghapus pembayaran ini ?';
+        confirmDelete($delete, $delete_message);
+
+        $pembayarans = pembayarans::where('event',$this->event)->get();
+
+        $lunas = $pembayarans->where('status_pembayaran', 'lunas');
+        $menunggu = $pembayarans->where('status_pembayaran', 'menunggu');
+        $ditolak = $pembayarans->where('status_pembayaran', 'ditolak');
+        $belum_konfirmasi = $pembayarans->where('status_pembayaran', 'belum_konfirmasi');
+        return view('admin/olimpiade/pembayaran', compact('title', 'slug', 'lunas', 'menunggu', 'ditolak', 'belum_konfirmasi', 'event'));
+    }
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\pembayarans  $pembayarans
-     * @return \Illuminate\Http\Response
-     */
     public function show(pembayarans $pembayarans)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\pembayarans  $pembayarans
-     * @return \Illuminate\Http\Response
-     */
     public function edit(pembayarans $pembayarans)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\pembayarans  $pembayarans
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, pembayarans $pembayarans)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\pembayarans  $pembayarans
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(pembayarans $pembayarans)
     {
-        //
+        $peserta = pesertas::find($pembayarans->id_peserta);
+        $peserta->update([
+            'status_pembayaran' => 'belum'
+        ]);
+        $pembayarans->delete();
+
+        toast('Pembayaran berhasil dihapus','success');
+        return redirect()->route($this->event.'.pembayaran.index');
+    }
+
+    public function tolak(pembayarans $pembayarans)
+    {
+        $peserta = pesertas::find($pembayarans->id_peserta);
+        $peserta->update([
+            'status_pembayaran' => 'belum'
+        ]);
+        $pembayarans->update([
+            'status_pembayaran' => 'ditolak'
+        ]);
+
+        toast('Pembayaran berhasil ditolak','success');
+        return redirect()->route($this->event.'.pembayaran.index');
+    }
+
+    public function terima(pembayarans $pembayarans)
+    {
+        $peserta = pesertas::find($pembayarans->id_peserta);
+        $peserta->update([
+            'status_pembayaran' => 'sudah'
+        ]);
+        $pembayarans->update([
+            'status_pembayaran' => 'lunas'
+        ]);
+
+        toast('Pembayaran berhasil diterima','success');
+        return redirect()->route($this->event.'.pembayaran.index');
     }
 }

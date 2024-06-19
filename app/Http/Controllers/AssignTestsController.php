@@ -3,83 +3,128 @@
 namespace App\Http\Controllers;
 
 use App\Models\assign_tests;
+use App\Models\pengumpulan_karyas;
+use App\Models\pesertas;
+use App\Models\ujians;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AssignTestsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public $event;
+
+    public function __construct()
     {
-        //
+        $route = request()->route();
+
+        if ($route) {
+            $action = $route->getAction();
+            $this->event = $action['event'] ?? null;
+        } else {
+            $this->event = null;
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function get_tests(){
+        if ($this->event == 'olimpiade'){
+            $tests = ujians::all();
+        } elseif ($this->event == 'poster') {
+            $tests = pengumpulan_karyas::all();
+        }
+        return $tests;
+    }
+
+    public function show_tests(){
+        $title = 'Assign Tests';
+        $slug = 'assign_tests';
+
+        $function = new AssignTestsController();
+        $tests = $function->get_tests();
+
+        return view('admin.olimpiade.assign-test.assign-test', compact('title', 'slug', 'tests'));
+    }
+    
+    public function index($id)
+    {
+        $title = 'Assign Tests';
+        $slug = 'assign_tests';
+
+        $delete = "Delete Assign Test Peserta";
+        $delete_message = "Anda Yakin Ingin Menghapus Assign Test Peserta Ini?";
+        confirmDelete($delete, $delete_message);
+
+        $ujian = ujians::find($id);
+        $ujian->mulai = $ujian->sesi->min('mulai');
+        $ujian->berakhir = $ujian->sesi->max('berakhir');
+        $ujian->sesi = $ujian->sesi->count();
+        $ujian->peserta = $ujian->peserta->count();
+        $pesertas = pesertas::where('event', $this->event)
+        ->where('status_pembayaran', 'sudah')
+        ->where('status_data', 'sudah')
+        ->whereNotIn('id_peserta', function($query) use ($id) {
+            $query->select('id_peserta')->from('assign_tests')->where('id_ujian', $id);
+        })
+        ->get(['id_peserta','nama','email','id_rayon']);
+
+        if ($this->event == 'olimpiade'){
+            $assign_tests = assign_tests::where('id_ujian', $id)->get();
+        } elseif ($this->event == 'poster') {
+            $assign_tests = assign_tests::where('id_pengumpulan', $id)->get();
+        }
+        return view('admin.olimpiade.assign-test.detail-assign-test', compact('slug','title', 'assign_tests', 'ujian', 'pesertas'));
+    }
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(Request $request, $id_ujian)
     {
-        //
+        if ($request->peserta[0] == 'all'){
+        $pesertas = pesertas::where('event', $this->event)
+            ->where('status_pembayaran', 'sudah')
+            ->where('status_data', 'sudah')
+            ->whereNotIn('id_peserta', function($query) use ($id_ujian) {
+                $query->select('id_peserta')->from('assign_tests')->where('id_ujian', $id_ujian);
+            })
+            ->get(['id_peserta']);
+        } else {
+            $pesertas = collect($request->peserta)->map(function($pesertaId) {
+                return ['id_peserta' => $pesertaId];
+            });
+        }
+        foreach ($pesertas as $peserta) {
+            $assign_tests = new assign_tests();
+            $assign_tests->id_peserta = $peserta['id_peserta'];
+            $assign_tests->id_ujian = $id_ujian;
+            $assign_tests->status_test = 'belum';
+            $assign_tests->save();
+        }
+
+        toast('Data Berhasil Disimpan', 'success');
+        return redirect()->route('olimpiade.assign_test.index', $id_ujian);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\assign_tests  $assign_tests
-     * @return \Illuminate\Http\Response
-     */
     public function show(assign_tests $assign_tests)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\assign_tests  $assign_tests
-     * @return \Illuminate\Http\Response
-     */
     public function edit(assign_tests $assign_tests)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\assign_tests  $assign_tests
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, assign_tests $assign_tests)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\assign_tests  $assign_tests
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(assign_tests $assign_tests)
     {
-        //
+        $assign_tests->delete();
+        toast('Data Berhasil Dihapus', 'success');
+        return redirect()->route('olimpiade.assign_test.index', $assign_tests->id_ujian);
     }
 }

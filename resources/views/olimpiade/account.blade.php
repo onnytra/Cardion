@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <form id="tab-1" action="{{ route('olimpiade.account.update', $pesertas->id_peserta) }}" method="POST">
+        <form id="tab-1" action="{{ route($event.'.account.update', $pesertas->id_peserta) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="card-body relative overflow-x-auto sm:rounded-lg">

@@ -7,11 +7,25 @@ use Illuminate\Http\Request;
 
 class MainOlimpiadeController extends Controller
 {
+    public $event;
+
+    public function __construct()
+    {
+        $route = request()->route();
+
+        if ($route) {
+            $action = $route->getAction();
+            $this->event = $action['event'] ?? null;
+        } else {
+            $this->event = null;
+        }
+    }
     public function index()
     {
-        $title = 'Olimpiade | Cardion UIN Malang';
+        $title = 'Cardion UIN Malang';
         $slug = 'dashboard';
-
-        return view('olimpiade.dashboard', compact('title', 'slug'));
+        $event = $this->event;
+        
+        return view('olimpiade.dashboard', compact('title', 'slug', 'event'));
     }
 }

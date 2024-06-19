@@ -83,11 +83,11 @@
             <div></div>
             <div class="max-w-2xl col-span-1 py-32 mx-auto lg:py-48">
                 <div class="text-center mx-auto w-3/4 ">
-                    <h1 class="text-[3.8rem] font-asian-ninja leading-tight text-gray-900 sm:text-[4.8rem]">
+                    <h1 class="text-[4.2rem] font-asian-ninja leading-tight text-gray-900 sm:text-[4.8rem]">
                         Dare to go beyond the limit?
                     </h1>
                     <div class="mt-10">
-                        <a href="#"
+                        <a href="#event"
                             class="rounded-xl font-andalus bg-[#D9D9D9] px-12 py-4 text-xl shadow-sm hover:bg-red-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 focus-visible:text-white transition ease-in-out">
                             REGISTER NOW
                         </a>
@@ -107,11 +107,9 @@
                     </h1>
                     <p
                         class="text-[1.1rem] leading-8 font-abhaya mt-10 text-gray-900 sm:mt-16 sm:leading-9 sm:text-[1.25rem]">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                        voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        Cardion (Science and Primary Medical Competition) is the science and primary medical Olympiad
+                        and Public poster held by Student Association of Medical Education UIN Maulana Malik Ibrahim
+                        Malang. Cardion has been held since 2018.
                     </p>
                 </div>
             </div>
@@ -127,7 +125,7 @@
                         Our Event
                     </h1>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-5">
-                        <a href="/olympiade"
+                        <a href="/olimpiade"
                             class="flex items-center justify-center shadow-xl md:items-baseline md:justify-start bg-event-1 bg-cover bg-bottom hover:bg-red-500 hover:bg-none rounded-3xl h-52 md:h-[24rem] lg:h-[30rem] transform transition duration-500 ease-in-out hover:scale-105"
                             id="buttonEventOlympiad">
                             <p class="font-osaka md:w-36 text-3xl md:text-2xl mt-4 ml-4 md:mt-12 md:ml-10 lg:text-3xl lg:mt-20 xl:ml-16"
@@ -139,7 +137,7 @@
                                     Science & Primary Medical Olimpiad
                                 </h3>
                                 <p class="lg:text-lg text-sm font-abhaya mt-5">
-                                    About Science & Primary Medical Olympiad, The Cardion Olympiad 2024 theme is Sensory
+                                    About Science & Primary Medical Olympiad, The Cardion Olympiad 2025 theme is Sensory
                                     System. Cardion Olympiad consist of three rounds, there are preliminary, semifinal,
                                     and final. The preliminary round will be held in 6 cities in Indonesia by offline
                                     and centered by online. The semifinal and final round will be held in Malang.
@@ -158,10 +156,10 @@
                                     Public Poster
                                 </h3>
                                 <p class="lg:text-lg text-sm font-abhaya mt-5">
-                                    About New Branch of Competition in Cardion 2023, The Cardion Public Poster 2024
+                                    About New Branch of Competition in Cardion 2023, The Cardion Public Poster 2025
                                     theme is Sensory System. Cardion Public Poster consist of two rounds, there are
                                     preliminary and final. The preliminary round will be held on Official Account
-                                    Instagram @cardion2024 by online voting. The final round will be held by offline in
+                                    Instagram @cardion.2025 by online voting. The final round will be held by offline in
                                     Malang.
                                 </p>
                             </div>
@@ -279,10 +277,10 @@
                                 Telepon/WhatsApp
                             </p>
                             <p class="text-xl font-osaka">
-                                Fikriy +62 812-3101-4966
+                                Fikriy - +62 812 3101 4966
                             </p>
                             <p class="text-xl font-osaka">
-                                Khansa +62 851-5682-0134
+                                Khansa - +62 851 5682 0134
                             </p>
                         </div>
                         <div class="mt-12">
@@ -290,10 +288,10 @@
                                 ID Line
                             </p>
                             <p class="text-xl font-osaka">
-                                Fikriy: 812-3101-4966
+                                Fikriy - 812 3101 4966
                             </p>
                             <p class="text-xl font-osaka">
-                                Khansa:
+                                Khansa - knsa11
                             </p>
                         </div>
                     </div>
@@ -303,12 +301,12 @@
 
         <div class="min-h-screen px-6 pt-14 lg:px-8 bg-ready bg-bottom bg-cover">
             <div class="max-w-5xl py-32 mx-auto lg:py-48">
-                <div class="text-center mx-auto">
-                    <h1 class="text-[3.8rem] font-asian-ninja leading-tight text-gray-900 sm:text-[4.8rem]">
+                <div class="text-center mx-auto w-3/4">
+                    <h1 class="text-[4.2rem] font-asian-ninja leading-tight text-gray-900 sm:text-[4.8rem]">
                         Dare to go beyond the limit?
                     </h1>
                     <div class="mt-10">
-                        <a href="#"
+                        <a href="#event"
                             class="rounded-xl font-andalus bg-[#D9D9D9] px-12 py-4 text-xl shadow-sm hover:bg-red-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 focus-visible:text-white transition ease-in-out">
                             REGISTER NOW
                         </a>
@@ -330,13 +328,13 @@
                         Faculty of Medicine and Health Sciences, Maulana Malik Ibrahim State Islamic University
                     </p>
                     <div class="mt-24 flex justify-center gap-24">
-                        <a href="https://www.instagram.com/cardion2024/">
+                        <a href="https://www.instagram.com/cardion.2025/" target="_blank">
                             <img src="img/instagram.png" alt="Instagram" class="w-10">
                         </a>
-                        <a href="https://www.tiktok.com/@cardionfkuinmaliki">
+                        <a href="https://www.tiktok.com/@cardionfkuinmaliki" target="_blank">
                             <img src="img/tiktok.png" alt="Tiktok" class="w-10">
                         </a>
-                        <a href="https://www.youtube.com/@cardionfkuinmalang1630">
+                        <a href="https://youtube.com/@cardionfkuinmalang?feature=shared" target="_blank">
                             <img src="img/youtube.png" alt="Youtube" class="w-10">
                         </a>
                     </div>

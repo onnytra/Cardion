@@ -6,7 +6,7 @@
         <div class="card-header flex flex-row justify-between items-center">
             <h1 class="h6">Keterangan Ujian</h1>
             <button>
-                <a href="/admin/olimpiade/monitoring-ujian" class="btn-gray">
+                <a href="{{route('olimpiade.monitoring_ujian.show_tests_monitoring')}}" class="btn-gray">
                     <i class="fad fa-chevron-left mr-2 leading-none"></i>
                     Kembali</a>
             </button>
@@ -16,38 +16,34 @@
             <table class="w-full text-sm text-left rtl:text-right">
                 <tr>
                     <td class="px-6 py-3">Judul Ujian</td>
-                    <td class="px-6 py-3 text-gray-600">Olimpiade Cardion Gelombang 3</td>
+                    <td class="px-6 py-3 text-gray-600">{{$ujian->judul}}</td>
                 </tr>
                 <tr>
                     <td class="px-6 py-3">Waktu Ujian</td>
-                    <td class="px-6 py-3 text-gray-600">28/01/2024 13:20 - 26/04/2024 23:00</td>
+                    <td class="px-6 py-3 text-gray-600">{{$ujian->mulai}} - {{$ujian->berakhir}}</td>
                 </tr>
                 <tr>
-                    <td class="px-6 py-3">Tipe Ujian</td>
-                    <td class="px-6 py-3 text-gray-600">Periodik</td>
-                </tr>
-                <tr>
-                    <td class="px-6 py-3">Jumlah Soal</td>
-                    <td class="px-6 py-3 text-gray-600">121 Soal</td>
+                    <td class="px-6 py-3">Jumlah Sesi Ujian</td>
+                    <td class="px-6 py-3 text-gray-600">{{$ujian->sesi}} Sesi</td>
                 </tr>
                 <tr>
                     <td class="px-6 py-3">Durasi</td>
-                    <td class="px-6 py-3 text-gray-600">120 Menit</td>
+                    <td class="px-6 py-3 text-gray-600">{{$ujian->durasi}} Menit</td>
                 </tr>
                 <tr>
                     <td class="px-6 py-3">Jumlah Peserta</td>
-                    <td class="px-6 py-3 text-gray-600">44 Peserta</td>
+                    <td class="px-6 py-3 text-gray-600">{{$ujian->peserta}} Peserta</td>
                 </tr>
                 <tr>
                     <td class="px-6 py-3">Jumlah Peserta Belum Ujian</td>
-                    <td class="px-6 py-3 text-gray-600">10 Peserta</td>
+                    <td class="px-6 py-3 text-gray-600">{{$ujian->peserta_belum}} Peserta</td>
                 </tr>
             </table>
         </div>
 
         <div class="card-footer">
             <button>
-                <a href="#" class="btn-bs-dark"><i class="fad fa-print text-xs mr-2"></i>Export as Excel</a>
+                <a href="{{route('olimpiade.exportexcel.ujian-peserta', $ujian->id_ujian)}}" class="btn-bs-dark"><i class="fad fa-print text-xs mr-2"></i>Export as Excel</a>
             </button>
         </div>
     </div>
@@ -106,114 +102,44 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($pesertas_sudah as $data)
                         <tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td class="px-6 py-4">
-                                1
+                                {{$loop->iteration}}
                             </td>
                             <td scope="row" class="px-6 py-4">
                                 <p class="text-gray-900">
-                                    Najwa Kharirotuz Zahwa
+                                    {{$data->peserta->nama}}
                                 </p>
                                 <p class="text-xs">
-                                    01-01-007-0552
+                                    {{$data->peserta->nomor}}
                                 </p>
                             </td>
                             <td class="px-6 py-4">
-                                SMA ALMAAHIRA IIBS MALANG
+                                {{$data->peserta->sekolah}}
                             </td>
                             <td class="px-6 py-4">
-                                dianita.puspitasari1@gmail.com
+                                {{$data->peserta->email}}
                             </td>
                             <td class="px-6 py-4">
-                                085704241809
+                                {{$data->peserta->telepon}}
                             </td>
                             <td class="px-6 py-4">
                                 <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
-                                    <span class="text-white text-lg">100</span>
+                                    <span class="text-white text-lg">{{$data->nilai->total_score}}</span>
                                 </div>
                             </td>
                             <td class="px-6 py-4">
-                                2024-01-28 16:05:53
+                                {{$data->updated_at}}
                             </td>
                             <td class="px-6 py-4">
-                                <a href="/admin/olimpiade/monitoring-ujian/detail/detail-peserta"
+                                <a href="{{route('olimpiade.monitoring_ujian.detail_peserta_monitoring', $data->id_assign_test)}}"
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
                                 <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Reset</a>
                             </td>
                         </tr>
-                        <tr
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="px-6 py-4">
-                                1
-                            </td>
-                            <td scope="row" class="px-6 py-4">
-                                <p class="text-gray-900">
-                                    Najwa Kharirotuz Zahwa
-                                </p>
-                                <p class="text-xs">
-                                    01-01-007-0552
-                                </p>
-                            </td>
-                            <td class="px-6 py-4">
-                                SMA ALMAAHIRA IIBS MALANG
-                            </td>
-                            <td class="px-6 py-4">
-                                dianita.puspitasari1@gmail.com
-                            </td>
-                            <td class="px-6 py-4">
-                                085704241809
-                            </td>
-                            <td class="px-6 py-4">
-                                <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
-                                    <span class="text-white text-lg">100</span>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4">
-                                2024-01-28 16:05:53
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="/admin/olimpiade/monitoring-ujian/detail/detail-peserta"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
-                                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Reset</a>
-                            </td>
-                        </tr>
-                        <tr
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="px-6 py-4">
-                                1
-                            </td>
-                            <td scope="row" class="px-6 py-4">
-                                <p class="text-gray-900">
-                                    Najwa Kharirotuz Zahwa
-                                </p>
-                                <p class="text-xs">
-                                    01-01-007-0552
-                                </p>
-                            </td>
-                            <td class="px-6 py-4">
-                                SMA ALMAAHIRA IIBS MALANG
-                            </td>
-                            <td class="px-6 py-4">
-                                dianita.puspitasari1@gmail.com
-                            </td>
-                            <td class="px-6 py-4">
-                                085704241809
-                            </td>
-                            <td class="px-6 py-4">
-                                <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center">
-                                    <span class="text-white text-lg">100</span>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4">
-                                2024-01-28 16:05:53
-                            </td>
-                            <td class="px-6 py-4">
-                                <a href="/admin/olimpiade/monitoring-ujian/detail/detail-peserta"
-                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
-                                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Reset</a>
-                            </td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -240,75 +166,31 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($pesertas_belum as $data)
                         <tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td class="px-6 py-4">
-                                1
+                                {{$loop->iteration}}
                             </td>
                             <td scope="row" class="px-6 py-4">
                                 <p class="text-gray-900">
-                                    Najwa Kharirotuz Zahwa
+                                    {{$data->peserta->nama}}
                                 </p>
                                 <p class="text-xs">
-                                    01-01-007-0552
+                                    {{$data->peserta->nomor}}
                                 </p>
                             </td>
                             <td class="px-6 py-4">
-                                SMA ALMAAHIRA IIBS MALANG
+                                {{$data->peserta->sekolah}}
                             </td>
                             <td class="px-6 py-4">
-                                dianita.puspitasari1@gmail.com
+                                {{$data->peserta->email}}
                             </td>
                             <td class="px-6 py-4">
-                                085704241809
+                                {{$data->peserta->telepon}}
                             </td>
                         </tr>
-                        <tr
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="px-6 py-4">
-                                1
-                            </td>
-                            <td scope="row" class="px-6 py-4">
-                                <p class="text-gray-900">
-                                    Najwa Kharirotuz Zahwa
-                                </p>
-                                <p class="text-xs">
-                                    01-01-007-0552
-                                </p>
-                            </td>
-                            <td class="px-6 py-4">
-                                SMA ALMAAHIRA IIBS MALANG
-                            </td>
-                            <td class="px-6 py-4">
-                                dianita.puspitasari1@gmail.com
-                            </td>
-                            <td class="px-6 py-4">
-                                085704241809
-                            </td>
-                        </tr>
-                        <tr
-                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="px-6 py-4">
-                                1
-                            </td>
-                            <td scope="row" class="px-6 py-4">
-                                <p class="text-gray-900">
-                                    Najwa Kharirotuz Zahwa
-                                </p>
-                                <p class="text-xs">
-                                    01-01-007-0552
-                                </p>
-                            </td>
-                            <td class="px-6 py-4">
-                                SMA ALMAAHIRA IIBS MALANG
-                            </td>
-                            <td class="px-6 py-4">
-                                dianita.puspitasari1@gmail.com
-                            </td>
-                            <td class="px-6 py-4">
-                                085704241809
-                            </td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

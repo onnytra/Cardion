@@ -7,7 +7,7 @@
             <h1 class="h6">Form Edit Cabang</h1>
         </div>
 
-        <form action="{{route('olimpiade.cabang.update', $cabangs->id_cabang)}}" method="POST">
+        <form action="{{route($event.'.cabang.update', $cabangs->id_cabang)}}" method="POST">
             @csrf
             @method('PUT')
             <div class="card-body relative overflow-x-auto sm:rounded-lg">
@@ -39,7 +39,7 @@
 
             <div class="card-footer flex justify">
                 <button>
-                    <a href="{{url()->previous()}}" type="button" class="btn-bs-secondary mr-3">Kembali</a>
+                    <a href="{{route($event.'.cabang.index')}}" type="button" class="btn-bs-secondary mr-3">Kembali</a>
                 </button>
                 <button type="submit" class="btn-bs-dark" onclick="confirmEdit(event)">Simpan</button>
             </div>
