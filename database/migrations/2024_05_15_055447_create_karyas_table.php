@@ -18,9 +18,9 @@ return new class extends Migration
             $table->date('tanggal');
             $table->double('nilai')->nullable();
             $table->string('keterangan_nilai',150)->nullable();
-            $table->string('karya',50);
-            $table->string('surat_originalitas',50);
-            $table->string('essay_karya',50);
+            $table->string('karya',100);
+            $table->string('surat_originalitas',100);
+            $table->string('essay_karya',100);
             $table->foreignId('id_peserta')->references('id_peserta')->on('pesertas')->onDelete('cascade')->onUpdate('restrict');
             $table->foreignId('id_pengumpulan')->references('id_pengumpulan')->on('pengumpulan_karyas')->onDelete('cascade')->onUpdate('restrict');
             $table->timestamps();

@@ -2,23 +2,44 @@
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-slot:slug>{{ $slug }}</x-slot:slug>
 
-    @for ($i = 1; $i <= 5; $i++) <div class="card">
+    @foreach ($pengumuman_broadcast as $broadcast)
+    <div class="card">
         <div class="card-header">
-            <h1 class="h6">Materi Kedokteran Dasar {{ $i }}</h1>
+            <h1 class="h6">{{ $broadcast->judul }}</h1>
         </div>
 
         <div class="card-body relative overflow-x-auto sm:rounded-lg">
-            <p class="text-gray-900">Materi Kedokteran Dasar {{ $i }}</p>
-            <a class="block mt-2 text-blue-500 hover:underline"
-                href="https://drive.google.com/file/d/1vgGjU0a94T7WCgzPOy8RkUvMvVmqS_kQ/view?usp=drive_link">https://drive.google.com/file/d/1vgGjU0a94T7WCgzPOy8RkUvMvVmqS_kQ/view?usp=drive_link</a>
+            <p class="text-gray-900">
+                {!! strip_tags($broadcast->deskripsi) !!}
+            </p>
         </div>
 
-        <div class="card-footer">
+        {{-- <div class="card-footer">
             <button>
                 <a href="/olympiad/pengumuman/detail" class="btn">
                     Baca Selengkapnya</a>
             </button>
+        </div> --}}
+    </div>
+    @endforeach
+    @foreach ($pengumuman_gelombang as $pengumuman)
+    <div class="card">
+        <div class="card-header">
+            <h1 class="h6">{{ $pengumuman->judul }}</h1>
         </div>
+
+        <div class="card-body relative overflow-x-auto sm:rounded-lg">
+            <p class="text-gray-900">
+                {!! strip_tags($pengumuman->deskripsi) !!}
+            </p>
         </div>
-        @endfor
+
+        {{-- <div class="card-footer">
+            <button>
+                <a href="/olympiad/pengumuman/detail" class="btn">
+                    Baca Selengkapnya</a>
+            </button>
+        </div> --}}
+    </div>
+    @endforeach
 </x-layout-u>

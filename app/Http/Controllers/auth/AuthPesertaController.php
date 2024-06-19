@@ -28,10 +28,16 @@ class AuthPesertaController extends Controller
 
     public function login_page()
     {
-        $title = 'Login Olimpiade';
+        $event = $this->event;
+        if ($event == 'olimpiade') {
+            $title = 'Olimpiade | Cardion UIN Malang';
+        } else {
+            $title = 'Poster | Cardion UIN Malang';
+        }
         $slug = 'login';
 
-        return view('olimpiade.login', compact('title', 'slug'));
+        
+        return view('olimpiade.login', compact('title', 'slug', 'event'));
     }
 
     public function login_process(Request $request)
@@ -52,14 +58,15 @@ class AuthPesertaController extends Controller
 
     public function register_page()
     {
-        if ($this->event == 'olimpiade') {
+        $event = $this->event;
+        if ($event == 'olimpiade') {
             $title = 'Olimpiade | Cardion UIN Malang';
         } else {
             $title = 'Poster | Cardion UIN Malang';
         }
         $slug = 'register';
 
-        return view('olimpiade.register', compact('title', 'slug'));
+        return view('olimpiade.register', compact('title', 'slug', 'event'));
     }
 
     public function register_process(Request $request)
@@ -96,29 +103,38 @@ class AuthPesertaController extends Controller
         $peserta->email = $request->email;
         $peserta->telepon = $request->phone_number;
         $peserta->password = Hash::make($request->password);
-        $peserta->event = $this->event;
+        $peserta->event = $this->event == 'olimpiade' ? 'olimpiade' : 'poster';
         $peserta->status_pembayaran = 'belum';
         $peserta->status_data = 'belum';
         $peserta->save();
 
-        return redirect()->route('olimpiade.login')->with('success', 'Registrasi Berhasil');
+        return redirect()->route($this->event.'.login')->with('success', 'Registrasi Berhasil');
     }
 
     public function logout()
     {
         if(Auth::guard('peserta')->check()){
             Auth::guard('peserta')->logout();
-            return redirect()->route('olimpiade.login');
+            if ($this->event == 'olimpiade') {
+                return redirect()->route('olimpiade.login');
+            } else {
+                return redirect()->route('poster.login');
+            }
         }else{
-            return redirect()->route('olimpiade.login');
+            if ($this->event == 'olimpiade') {
+                return redirect()->route('olimpiade.login');
+            } else {
+                return redirect()->route('poster.login');
+            }
         }
     }
 
     public function edit_profile(pesertas $pesertas)
     {
+        $event = $this->event;
         $title = 'Edit Profil';
         $slug = 'edit-profil';
-        return view('olimpiade.account', compact('title', 'slug', 'pesertas'));
+        return view('olimpiade.account', compact('title', 'slug', 'pesertas', 'event'));
     }
 
     public function update_profile(Request $request, pesertas $pesertas)
@@ -148,14 +164,15 @@ class AuthPesertaController extends Controller
     }
 
     public function forgot_password(){
-        if ($this->event == 'olimpiade') {
+        $event = $this->event;
+        if ($event == 'olimpiade') {
             $title = 'Olimpiade | Cardion UIN Malang';
         } else {
             $title = 'Poster | Cardion UIN Malang';
         }
         $slug = 'forget-password';
 
-        return view('olimpiade.forgot_password', compact('title', 'slug'));
+        return view('olimpiade.forgot_password', compact('title', 'slug', 'event'));
     }
 
     public function reset_password_page($token){
@@ -168,14 +185,15 @@ class AuthPesertaController extends Controller
         }
         $email = DB::table('password_resets')->where('token', $token)->first()->email;
 
-        if ($this->event == 'olimpiade') {
+        $event = $this->event;
+        if ($event == 'olimpiade') {
             $title = 'Olimpiade | Cardion UIN Malang';
         } else {
             $title = 'Poster | Cardion UIN Malang';
         }
         $slug = 'reset-password';
 
-        return view('olimpiade.reset_password', compact('email', 'title', 'slug'));
+        return view('olimpiade.reset_password', compact('email', 'title', 'slug', 'event'));
     }
 
     public function reset_password_process(Request $request){
@@ -202,6 +220,10 @@ class AuthPesertaController extends Controller
         $peserta->password = Hash::make($request->password);
         $peserta->save();
 
-        return redirect()->route('olimpiade.login')->with('success', 'Password Berhasil Diubah');
+        if ($peserta->event == 'olimpiade') {
+            return redirect()->route('olimpiade.login')->with('success', 'Password Berhasil Diubah');
+        } else {
+            return redirect()->route('poster.login')->with('success', 'Password Berhasil Diubah');
+        }
     }
 }

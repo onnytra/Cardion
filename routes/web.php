@@ -25,6 +25,11 @@ use App\Http\Controllers\MonitoringUjianController;
 use App\Http\Controllers\PengumumansController;
 use App\Http\Controllers\PengumpulanKaryasController;
 use App\Http\Controllers\user\olimpiade\MainOlimpiadeController;
+use App\Http\Controllers\user\olimpiade\PembayaranController;
+use App\Http\Controllers\user\olimpiade\PengumpulanController;
+use App\Http\Controllers\user\olimpiade\PengumumanController;
+use App\Http\Controllers\user\olimpiade\RegistrasiController;
+use App\Http\Controllers\user\olimpiade\UjianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,36 +46,8 @@ Route::get('/', function () {
     return view('index', ['title' => 'Cardion - Universitas Islam Negeri Maulana Malik ibrahim Malang', 'slug' => '/']);
 });
 
-Route::get('/olympiade', function () {
+Route::get('/olimpiade', function () {
     return view('olimpiade', ['title' => 'Science & Primary Medical Olimpiad - Cardion UIN Malang', 'slug' => 'olympiade']);
-});
-
-Route::get('/olympiad/register', function () {
-    return view('olimpiade/register', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'register']);
-});
-
-Route::get('/olympiad/account', function () {
-    return view('olimpiade/account', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'account']);
-});
-
-Route::get('/olympiad/dashboard', function () {
-    return view('olimpiade/dashboard', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'dashboard']);
-});
-
-Route::get('/olympiad/pembayaran', function () {
-    return view('olimpiade/pembayaran/pembayaran', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'pembayaran']);
-});
-
-Route::get('/olympiad/pembayaran/add', function () {
-    return view('olimpiade/pembayaran/add-pembayaran', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'add']);
-});
-
-Route::get('/olympiad/pembayaran/edit', function () {
-    return view('olimpiade/pembayaran/edit-pembayaran', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'edit']);
-});
-
-Route::get('/olympiad/registrasi', function () {
-    return view('olimpiade/registrasi', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'registrasi']);
 });
 
 Route::get('/olympiad/cetak-kartu', function () {
@@ -105,54 +82,6 @@ Route::get('/olympiad/ujian/history/hasil', function () {
     return view('olimpiade/ujian/hasil-ujian', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'hasil']);
 });
 
-Route::get('/olympiad/pengumuman', function () {
-    return view('olimpiade/pengumuman/pengumuman', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'pengumuman']);
-});
-
-Route::get('/olympiad/pengumuman/detail', function () {
-    return view('olimpiade/pengumuman/detail-pengumuman', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'detail']);
-});
-
-Route::get('/public-poster', function () {
-    return view('public-poster', ['title' => 'Public Poster - Cardion UIN Malang', 'slug' => 'public-poster']);
-});
-
-Route::get('/public-poster/login', function () {
-    return view('publicposter/login', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'login']);
-});
-
-Route::get('/public-poster/logout', function () {
-    return view('publicposter/login', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'login']);
-});
-
-Route::get('/public-poster/register', function () {
-    return view('publicposter/register', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'register']);
-});
-
-Route::get('/public-poster/account', function () {
-    return view('publicposter/account', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'account']);
-});
-
-Route::get('/public-poster/dashboard', function () {
-    return view('publicposter/dashboard', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'dashboard']);
-});
-
-Route::get('/public-poster/pembayaran', function () {
-    return view('publicposter/pembayaran/pembayaran', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'pembayaran']);
-});
-
-Route::get('/public-poster/pembayaran/add', function () {
-    return view('publicposter/pembayaran/add-pembayaran', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'add']);
-});
-
-Route::get('/public-poster/pembayaran/edit', function () {
-    return view('publicposter/pembayaran/edit-pembayaran', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'edit']);
-});
-
-Route::get('/public-poster/registrasi', function () {
-    return view('publicposter/registrasi', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'registrasi']);
-});
-
 Route::get('/public-poster/cetak-kartu', function () {
     return view('publicposter/cetak-kartu', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'cetak-kartu']);
 });
@@ -172,7 +101,32 @@ Route::get('/public-poster/pengumpulan-karya/add', function () {
 Route::get('/public-poster/pengumpulan-karya/edit', function () {
     return view('publicposter/pengumpulan-karya/edit-pengumpulan-karya', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'edit']);
 });
+
 Route::get('sendmail', [MailsController::class, 'index']);
+// User Poster Side
+Route::group(['as' => 'poster.', 'prefix' => '/poster', 'event' => 'poster'], function () {
+    Route::get('/login', [AuthPesertaController::class, 'login_page'])->name('login');
+    Route::post('/login', [AuthPesertaController::class, 'login_process'])->name('login.process');
+    Route::get('/logout', [AuthPesertaController::class, 'logout'])->name('logout');
+    Route::get('/register', [AuthPesertaController::class, 'register_page'])->name('register');
+    Route::post('/register', [AuthPesertaController::class, 'register_process'])->name('register.process');
+    
+    Route::get('/account/{pesertas}', [AuthPesertaController::class, 'edit_profile'])->name('account');
+    Route::put('/account/{pesertas}', [AuthPesertaController::class, 'update_profile'])->name('account.update');
+
+    Route::get('forgotpassword', [AuthPesertaController::class, 'forgot_password'])->name('forgotpassword');
+    Route::post('forgotpassword', [MailsController::class, 'forgot_password'])->name('forgotpassword.mail');
+    Route::get('/resetpassword/{token}', [AuthPesertaController::class, 'reset_password_page'])->name('resetpassword.page');
+    Route::put('/resetpassword', [AuthPesertaController::class, 'reset_password_process'])->name('resetpassword.process');
+
+    Route::get('/pengumpulan-karya', [PengumpulanController::class, 'index'])->name('karya');
+    Route::get('/pengumpulan-karya/add/{pengumpulan_karyas}', [PengumpulanController::class, 'create'])->name('add-karya');
+    Route::post('/pengumpulan-karya/store', [PengumpulanController::class, 'store'])->name('store-karya');
+    // Route::get('/pengumpulan-karya/edit', [PengumpulanController::class, 'edit'])->name('edit-karya');
+    // Route::put('/pengumpulan-karya/update', [PengumpulanController::class, 'update'])->name('update-karya');
+
+});
+
 //User Olimpiade Side
 Route::group(['as' => 'olimpiade.', 'prefix' => '/olimpiade', 'event' => 'olimpiade'], function () {
     Route::get('/login', [AuthPesertaController::class, 'login_page'])->name('login');
@@ -188,15 +142,30 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/olimpiade', 'event' => 'olimpi
     Route::post('forgotpassword', [MailsController::class, 'forgot_password'])->name('forgotpassword.mail');
     Route::get('/resetpassword/{token}', [AuthPesertaController::class, 'reset_password_page'])->name('resetpassword.page');
     Route::put('/resetpassword', [AuthPesertaController::class, 'reset_password_process'])->name('resetpassword.process');
-});
 
+    Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman');
+    Route::get('/pengumuman/detail', [PengumumanController::class, 'detail'])->name('detail-pengumuman');
+
+    Route::get('/ujian', [UjianController::class, 'index'])->name('ujian');
+    Route::get('/ujian/detail/{ujians}', [UjianController::class, 'detail'])->name('detail-ujian');
+    Route::get('/ujian/detail/start/{ujians}/{nosoal}', [UjianController::class, 'detail_start'])->name('start-ujian');
+    Route::get('/ujian/detail/finish/{ujians}', [UjianController::class, 'detail_finish'])->name('finish-ujian');
+    Route::get('/ujian/history', [UjianController::class, 'history'])->name('history-ujian');
+});
 // All User Side
-
-Route::group(['as' => 'user.', 'prefix' => '/user'], function () {
-    Route::group(['event' => 'olimpiade'], function () {
+Route::group(['as' => 'user.', 'prefix' => '/user', 'event' => 'olimpiade'], function () {
         Route::get('/dashboard', [MainOlimpiadeController::class, 'index'])->name('dashboard');
-    });
+        // Registrasi
+        Route::get('/registrasi', [RegistrasiController::class, 'index'])->name('registrasi');
+        Route::put('/registrasi/update', [RegistrasiController::class, 'update_data_peserta'])->name('registrasi-action');
+        // Pembayaran
+        Route::get('pembayaran', [PembayaranController::class, 'index'])->name('pembayaran');
+        Route::get('pembayaran/add', [PembayaranController::class, 'create'])->name('add-pembayaran');
+        Route::post('pembayaran', [PembayaranController::class, 'store'])->name('store-pembayaran');
+        Route::get('pembayaran/edit', [PembayaranController::class, 'edit'])->name('edit-pembayaran');
+        Route::post('pembayaran/update', [PembayaranController::class, 'update'])->name('update-pembayaran');
 });
+
 
 // Admin Dashboard
 Route::get('/admin/main/sertifikat', function () {
@@ -449,8 +418,7 @@ Route::group(['as' => 'poster.', 'prefix' => '/admin/poster', 'event' => 'poster
         Route::post('/store/{id}', [AssignTestsController::class, 'store'])->name('store');
         Route::delete('/delete/{assign_tests}', [AssignTestsController::class, 'destroy'])->name('delete');
     });
-
-
+  
     Route::group(['as' => 'penilaian.', 'prefix' => '/penilaian'], function () {
         Route::get('/pengumpulan-karya', [KaryasController::class, 'show_pengumpulan'])->name('pengumpulan_karya');
         Route::put('/update-nilai/{karyas}', [KaryasController::class, 'update_nilai'])->name('update_nilai');

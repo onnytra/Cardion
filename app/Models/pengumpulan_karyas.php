@@ -14,11 +14,11 @@ class pengumpulan_karyas extends Model
 
     public function karyas()
     {
-        return $this->belongsTo(karyas::class, 'id_karya', 'id_karya');
+        return $this->hasMany(karyas::class, 'id_pengumpulan', 'id_pengumpulan');
     }
 
-    public function assign_test()
+    public function assign_tests()
     {
-        return $this->belongsTo(assign_tests::class, 'id_assign_test', 'id_assign_test');
+        return $this->hasMany(assign_tests::class, 'id_pengumpulan', 'id_pengumpulan');
     }
 }

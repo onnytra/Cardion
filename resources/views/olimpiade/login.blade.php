@@ -13,7 +13,7 @@
     <div class="grid min-h-full grid-cols-1 px-6 py-0 md:grid-cols-3 lg:px-8 lg:py-12">
         <div
             class="mt-10 bg-slate-100 bg-opacity-30 col-span-2 backdrop-blur-lg p-5 rounded-xl sm:mx-auto sm:w-full sm:max-w-lg">
-            <h2 class="mt-2 text-center text-3xl font-bold leading-9 tracking-tight text-gray-900">Login
+            <h2 class="mt-2 text-center text-3xl font-bold leading-9 tracking-tight text-gray-900" style="text-transform: capitalize">Login {{$event}}
             </h2>
 
             @if (session('error'))
@@ -27,7 +27,7 @@
             </div>
             @endif
             <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                <form class="space-y-6" action="{{route('olimpiade.login.process')}}" method="POST">
+                <form class="space-y-6" action="{{route($event.'.login.process')}}" method="POST">
                     @csrf
                     <div>
                         <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
@@ -46,7 +46,7 @@
                         </div>
                         <div class="flex justify-end mt-2">
                             <div class="text-sm">
-                                <a href="{{route('olimpiade.forgotpassword')}}" class="font-semibold text-red-600 hover:text-red-500 hover:underline">Forgot
+                                <a href="{{route($event.'.forgotpassword')}}" class="font-semibold text-red-600 hover:text-red-500 hover:underline">Forgot
                                     password?</a>
                             </div>
                         </div>
@@ -70,7 +70,7 @@
 
                 <p class="mt-4 text-center text-sm text-white">
                     Don't have an account
-                    <a href="{{route('olimpiade.register')}}"
+                    <a href="{{route($event.'.register')}}"
                         class="font-semibold leading-6 text-red-600 hover:text-red-500 hover:underline">Register
                         Now</a>
                 </p>

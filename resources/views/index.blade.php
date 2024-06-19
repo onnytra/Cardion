@@ -127,7 +127,7 @@
                         Our Event
                     </h1>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-5">
-                        <a href="/olympiade"
+                        <a href="/olimpiade"
                             class="flex items-center justify-center shadow-xl md:items-baseline md:justify-start bg-event-1 bg-cover bg-bottom hover:bg-red-500 hover:bg-none rounded-3xl h-52 md:h-[24rem] lg:h-[30rem] transform transition duration-500 ease-in-out hover:scale-105"
                             id="buttonEventOlympiad">
                             <p class="font-osaka md:w-36 text-3xl md:text-2xl mt-4 ml-4 md:mt-12 md:ml-10 lg:text-3xl lg:mt-20 xl:ml-16"
