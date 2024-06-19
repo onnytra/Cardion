@@ -61,32 +61,57 @@
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.0.1/dist/js/multi-select-tag.js"></script>
     <script>
         ClassicEditor
-            .create(document.querySelector('#classic-editor'))
+            .create(document.querySelector('#classic-editor')
+                , {
+                    ckfinder: {
+                        uploadUrl: "{{route('ckeditor.upload',['_token'=>csrf_token()])}}"
+                    , }
+                })
             .catch(error => {
                 console.error(error);
             });
         ClassicEditor
-            .create(document.querySelector('#classic-editor2'))
+            .create(document.querySelector('#classic-editor2'), {
+                ckfinder: {
+                    uploadUrl: "{{route('ckeditor.upload',['_token'=>csrf_token()])}}"
+                , }
+            })
             .catch(error => {
                 console.error(error);
             });
         ClassicEditor
-            .create(document.querySelector('#classic-editor3'))
+            .create(document.querySelector('#classic-editor3'), {
+                ckfinder: {
+                    uploadUrl: "{{route('ckeditor.upload',['_token'=>csrf_token()])}}"
+                , }
+            })
             .catch(error => {
                 console.error(error);
             });
         ClassicEditor
-            .create(document.querySelector('#classic-editor4'))
+            .create(document.querySelector('#classic-editor4'), {
+                ckfinder: {
+                    uploadUrl: "{{route('ckeditor.upload',['_token'=>csrf_token()])}}"
+                , }
+            })
             .catch(error => {
                 console.error(error);
             });
         ClassicEditor
-            .create(document.querySelector('#classic-editor5'))
+            .create(document.querySelector('#classic-editor5'), {
+                ckfinder: {
+                    uploadUrl: "{{route('ckeditor.upload',['_token'=>csrf_token()])}}"
+                , }
+            })
             .catch(error => {
                 console.error(error);
             });
         ClassicEditor
-            .create(document.querySelector('#classic-editor6'))
+            .create(document.querySelector('#classic-editor6'), {
+                ckfinder: {
+                    uploadUrl: "{{route('ckeditor.upload',['_token'=>csrf_token()])}}"
+                , }
+            })
             .catch(error => {
                 console.error(error);
             });
