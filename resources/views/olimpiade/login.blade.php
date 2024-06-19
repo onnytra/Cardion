@@ -22,7 +22,8 @@
             </div>
             @endif
             @if(session('success'))
-            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-2" role="alert">
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-2"
+                role="alert">
                 <strong class="font-bold">{{ session('success') }}</strong>
             </div>
             @endif
@@ -44,8 +45,15 @@
                                 required
                                 class="block w-full bg-transparent border-0 border-b-2 border-gray-500 py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-0 focus:border-red-700 sm:text-sm sm:leading-6">
                         </div>
-                        <div class="flex justify-end mt-2">
+                        <div class="flex justify-between mt-2">
+                            <div>
+                                <input type="checkbox" id="show-password"
+                                    class="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500"> <label
+                                    for="show-password" class="ml-3 min-w-0 text-sm flex-1 text-gray-900">Show
+                                    Password</label>
+                            </div>
                             <div class="text-sm">
+
                                 <a href="{{route($event.'.forgotpassword')}}" class="font-semibold text-red-600 hover:text-red-500 hover:underline">Forgot
                                     password?</a>
                             </div>
@@ -79,5 +87,15 @@
     </div>
 
 </body>
+<script>
+    document.getElementById('show-password').addEventListener('change', function() {
+        const passwordInput = document.getElementById('password');
+        if (this.checked) {
+            passwordInput.type = 'text';
+        } else {
+            passwordInput.type = 'password';
+        }
+    });
+</script>
 
 </html>

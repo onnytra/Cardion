@@ -187,7 +187,7 @@
                             </div>
                             <p class="text-lg font-abhaya mt-2">
                                 Free 6x Scheduled TO : 2 Basic, 2 Intermediet, 2 Advanced ; 12 Scheduled Primary Medical
-                                Subject; Free Class UTBK
+                                Subject.
                             </p>
                         </div>
                         <div class="bg-[#F7EEDD] text-left p-8 rounded-tr-[60px] rounded-bl-[60px]">
@@ -198,7 +198,7 @@
                             </div>
                             <p class="text-lg font-abhaya mt-2">
                                 Free 5x Scheduled TO : 1 Basic, 2 Intermediet, 2 Advanced ; 10 Scheduled Primary Medical
-                                Subject; Free Class UTBK
+                                Subject.
                             </p>
                         </div>
                         <div class="bg-[#F7EEDD] text-left p-8 rounded-bl-[60px] rounded-tr-[60px]">
@@ -208,8 +208,7 @@
                                 <p class="text-xl font-andalus">Rp150.000,-</p>
                             </div>
                             <p class="text-lg font-abhaya mt-2">
-                                Free 4x Scheduled TO : 2 Intermediate, 2 Advanced ; 8 Scheduled Primary Medical Subject;
-                                Free Class UTBK
+                                Free 4x Scheduled TO : 2 Intermediate, 2 Advanced ; 8 Scheduled Primary Medical Subject.
                             </p>
                         </div>
                         <div class="bg-[#F7EEDD] text-left p-8 rounded-br-[60px] rounded-tl-[60px]">
@@ -219,8 +218,7 @@
                                 <p class="text-xl font-andalus">Rp170.000,-</p>
                             </div>
                             <p class="text-lg font-abhaya mt-2">
-                                Free 3x Scheduled TO : 1 Intermediet, 2 Advanced ; 6 Scheduled Primary Medical Subject;
-                                Free Class UTBK
+                                Free 3x Scheduled TO : 1 Intermediet, 2 Advanced ; 6 Scheduled Primary Medical Subject.
                             </p>
                         </div>
                     </div>
@@ -289,16 +287,19 @@
                         Get To Know More!
                     </h1>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mt-80">
-                        <a href="#"
-                            class="rounded-xl font-andalus bg-[#D9D9D9] px-12 py-4 text-xl shadow-sm hover:bg-red-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 focus-visible:text-white transition ease-in-out">
+                        <a href="https://drive.google.com/drive/folders/1XUB7D-cV4JkmUX-JTz0xKgCt-UcpG7YL?usp=drive_link"
+                            target="_blank"
+                            class="rounded-xl font-andalus flex items-center justify-center bg-[#D9D9D9] px-12 py-4 text-xl shadow-sm hover:bg-red-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 focus-visible:text-white transition ease-in-out">
                             Download FAQ
                         </a>
-                        <a href="#"
-                            class="rounded-xl font-andalus bg-[#D9D9D9] px-12 py-4 text-xl shadow-sm hover:bg-red-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 focus-visible:text-white transition ease-in-out">
+                        <a href="https://drive.google.com/drive/folders/1XUB7D-cV4JkmUX-JTz0xKgCt-UcpG7YL?usp=drive_link"
+                            target="_blank"
+                            class="rounded-xl font-andalus flex items-center justify-center bg-[#D9D9D9] px-12 py-4 text-xl shadow-sm hover:bg-red-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 focus-visible:text-white transition ease-in-out">
                             Download Guideline
                         </a>
-                        <a href="#"
-                            class="rounded-xl font-andalus bg-[#D9D9D9] px-12 py-4 text-xl shadow-sm hover:bg-red-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 focus-visible:text-white transition ease-in-out">
+                        <a href="https://drive.google.com/drive/folders/1hMpSgn103aG8FamPe6k-2zn0dW0Si2ip"
+                            target="_blank"
+                            class="rounded-xl font-andalus flex items-center justify-center bg-[#D9D9D9] px-12 py-4 text-xl shadow-sm hover:bg-red-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 focus-visible:text-white transition ease-in-out">
                             Download Syllabus
                         </a>
                     </div>
@@ -314,8 +315,8 @@
                     </h1>
                     <div class="h-96 md:h-[30rem] mt-10">
                         <iframe class="w-full h-96 md:h-[30rem] rounded-3xl"
-                            src="https://www.youtube.com/embed/XBvbZnoyGOQ" title="Tutorial Mendaftar Cadion"
-                            frameborder="0"
+                            src="https://www.youtube.com/embed/9SAWNooGW_w?si=uNihJSp0Lqi1f0J1"
+                            title="Tutorial Mendaftar Cadion" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
@@ -355,10 +356,10 @@
                                 Telepon/WhatsApp
                             </p>
                             <p class="text-xl font-osaka">
-                                Fikriy +62 812-3101-4966
+                                Fikriy - +62 812 3101 4966
                             </p>
                             <p class="text-xl font-osaka">
-                                Khansa +62 851-5682-0134
+                                Khansa - +62 851 5682 0134
                             </p>
                         </div>
                         <div class="mt-12">
@@ -366,10 +367,10 @@
                                 ID Line
                             </p>
                             <p class="text-xl font-osaka">
-                                Fikriy: 812-3101-4966
+                                Fikriy - 812 3101 4966
                             </p>
                             <p class="text-xl font-osaka">
-                                Khansa:
+                                Khansa - knsa11
                             </p>
                         </div>
                     </div>
@@ -387,7 +388,7 @@
                         To Win The Competition?
                     </h1>
                     <div class="mt-10">
-                        <a href="#"
+                        <a href="/olympiad/register"
                             class="rounded-xl font-andalus bg-[#D9D9D9] px-12 py-4 text-xl shadow-sm hover:bg-red-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 focus-visible:text-white transition ease-in-out">
                             REGISTER NOW
                         </a>
@@ -409,15 +410,15 @@
                         Faculty of Medicine and health Sciences, Maulana Malik Ibrahim State Islamic University
                     </p>
                     <div class="mt-12 flex justify-center gap-12">
-                        <a href="https://www.instagram.com/cardion2024/"
+                        <a href="https://www.instagram.com/cardion.2025/" target="_blank"
                             class="bg-white p-5 rounded-full hover:bg-red-500 transition ease-in-out">
                             <img src="img/instagram.png" alt="Instagram" class="w-8">
                         </a>
-                        <a href="https://www.tiktok.com/@cardionfkuinmaliki"
+                        <a href="https://www.tiktok.com/@cardionfkuinmaliki" target="_blank"
                             class="bg-white p-5 rounded-full hover:bg-red-500 transition ease-in-out">
                             <img src="img/tiktok.png" alt="Tiktok" class="w-8">
                         </a>
-                        <a href="https://www.youtube.com/@cardionfkuinmalang1630"
+                        <a href="https://youtube.com/@cardionfkuinmalang?feature=shared" target="_blank"
                             class="bg-white p-5 rounded-full hover:bg-red-500 transition ease-in-out">
                             <img src="img/youtube.png" alt="Youtube" class="w-8">
                         </a>
