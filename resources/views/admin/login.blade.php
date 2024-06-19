@@ -44,6 +44,15 @@
                             </div>
                         </div> --}}
                     </div>
+                    
+                    <div class="flex justify-between mt-2">
+                        <div>
+                            <input type="checkbox" id="show-password"
+                                class="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500"> <label
+                                for="show-password" class="ml-3 min-w-0 text-sm flex-1 text-gray-900">Show
+                                Password</label>
+                        </div>
+                    </div>
                     <div>
                         <div class="flex items-center">
                             <input id="remember-me" name="remember" type="checkbox"
@@ -70,4 +79,14 @@
 
 </body>
 
+<script>
+    document.getElementById('show-password').addEventListener('change', function() {
+        const passwordInput = document.getElementById('password');
+        if (this.checked) {
+            passwordInput.type = 'text';
+        } else {
+            passwordInput.type = 'password';
+        }
+    });
+</script>
 </html>
