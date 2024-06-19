@@ -29,6 +29,9 @@
                             Tipe Pengumuman
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Status
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Aksi
                         </th>
                     </tr>
@@ -49,6 +52,17 @@
                         <td class="px-6 py-4">
                             {{ $pengumuman->tipe_pengumuman }}
                         </td>
+                        <td class="px-6 py-4">
+                            @if($pengumuman->status_pengumuman)
+                            <span
+                                class="inline-flex items-center rounded-md bg-green-200 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Aktif</span>
+                            @else
+                            <span
+                                class="inline-flex items-center rounded-md bg-red-200 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20">Tidak
+                                Aktif</span>
+                            @endif
+                        </td>
+
                         <td class="px-6 py-4">
                             <a id="modal-box{{ $loop->iteration }}" onclick="showModal({{ $loop->iteration }})"
                                 class="font-medium text-gray-900 cursor-pointer">

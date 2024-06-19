@@ -18,7 +18,7 @@
                         <i class="fad fa-chevron-right leading-none text-indigo-500"></i>
                     </a>
                 </div>
-                <p class="text-sm font-bold">Ujian 1 dari 120</p>
+                <p class="text-sm font-bold">Ujian 1 dari {{$ujians->total_soal}}</p>
             </div>
 
             <form action="">

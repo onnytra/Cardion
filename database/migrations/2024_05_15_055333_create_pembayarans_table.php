@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('metode_pembayaran',20);
             $table->date('tanggal');
             $table->string('status_pembayaran',20);
+            $table->string('nama_rekening',150)->nullable();
             $table->string('bank', 50)->nullable();
             $table->string('bukti',50)->nullable();
             $table->foreignId('id_gelombang')->references('id_gelombang')->on('gelombang_pembayarans')->onDelete('cascade')->onUpdate('restrict');
