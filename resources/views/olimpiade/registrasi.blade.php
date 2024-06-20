@@ -44,230 +44,226 @@
                 </div>
             </div>
 
-            <form id="tab-1">
+            <form id="main-form" action="{{route('user.registrasi-action')}}" method="POST">
+                @csrf
+                @method('PUT')
                 <div class="card-body relative overflow-x-auto sm:rounded-lg">
                     <div class="grid gap-6 justify-center">
-                        <div class="flex justify-center">
-                            <h2 class="font-medium ">Data Peserta</h2>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-40">
-                                <label for="nama" class="block text-sm text-right font-medium text-gray-600">Nama
-                                    Lengkap*</label>
+                        <!-- Profil -->
+                        <div id="tab-1" class="form-tab">
+                            <div class="flex justify-center">
+                                <h2 class="font-medium ">Data Peserta</h2>
                             </div>
-                            <input type="text" name="nama" id="nama"
+                            <div class="flex items-center gap-4 mb-5">
+                                <div class="w-40">
+                                    <label for="nama" class="block text-sm text-right font-medium text-gray-600">Nama Lengkap (Ketua)*</label>
+                                </div>
+                                <input type="text" name="nama" id="nama" value="{{$data->nama}}"
                                 class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-40">
-                                <label for="notelp" class="block text-sm text-right font-medium text-gray-600">Nomor
-                                    Telepon/Ponsel*</label>
                             </div>
-                            <input type="number" name="notelp" id="notelp"
-                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-40">
-                                <label for="email"
-                                    class="block text-sm text-right font-medium text-gray-600">Email*</label>
+                            <div class="flex items-center gap-4 mb-5">
+                                <div class="w-40">
+                                    <label for="notelp" class="block text-sm text-right font-medium text-gray-600">Nomor
+                                        Telepon/Ponsel*</label>
+                                </div>
+                                <input type="number" name="telepon" id="telepon" value="{{$data->telepon}}"
+                                    class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
                             </div>
-                            <input type="email" name="email" id="email"
-                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-40">
-                                <label for="sekolah"
-                                    class="block text-sm text-right font-medium text-gray-600">Sekolah*</label>
+                            <div class="flex items-center gap-4 mb-5">
+                                <div class="w-40">
+                                    <label for="email" class="block text-sm text-right font-medium text-gray-600">Email*</label>
+                                </div>
+                                <input type="email" name="email" id="email" value="{{$data->email}}"
+                                    class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
                             </div>
-                            <input type="text" name="sekolah" id="sekolah"
-                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-40">
-                                <label for="alamatsekolah"
-                                    class="block text-sm text-right font-medium text-gray-600">Alamat
-                                    Sekolah*</label>
+                            <div class="flex items-center gap-4 mb-5">
+                                <div class="w-40">
+                                    <label for="sekolah"
+                                        class="block text-sm text-right font-medium text-gray-600">Sekolah*</label>
+                                </div>
+                                <input type="text" name="sekolah" id="sekolah" value="{{$data->sekolah}}"
+                                    class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
                             </div>
-                            <textarea type="text" name="alamatsekolah" id="alamatsekolah"
-                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md"
-                                required></textarea>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-40">
-                                <label for="nomorsertifikat"
-                                    class="block text-sm text-right font-medium text-gray-600">Nomor Sertifikat</label>
+                            <div class="flex items-center gap-4 mb-5">
+                                <div class="w-40">
+                                    <label for="alamatsekolah" class="block text-sm text-right font-medium text-gray-600">Alamat
+                                        Sekolah*</label>
+                                </div>
+                                <textarea type="text" name="alamat_sekolah" id="alamat_sekolah"
+                                    class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md"
+                                    required>{{$data->alamat_sekolah}}</textarea>
                             </div>
-                            <textarea type="text" name="nomorsertifikat" id="nomorsertifikat"
-                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md"></textarea>
+                        </div>
+                        <!-- Cabang/Rayon -->
+                        <div id="tab-2" class="hidden form-tab">
+                            <div class="flex justify-center">
+                                <h2 class="font-medium ">Data Cabang/Rayon</h2>
+                            </div>
+                            <div class="flex items-center gap-4 mb-5">
+                                <div class="w-40">
+                                    <label for="cabang"
+                                        class="block text-sm text-right font-medium text-gray-600">Cabang*</label>
+                                </div>
+                                <select id="cabang" name="id_cabang"
+                                    class="btn-gray w-96 lg:w-full shadow-sm text-sm text-left focus:outline-none focus:shadow-outline"
+                                    required>
+                                    <option class="font-medium text-sm" value="#">...</option>
+                                    @foreach ($cabangs as $item)
+                                    <option class="font-medium text-sm" value="{{$item->id_cabang}}" {{$data->id_cabang == $item->id_cabang ? 'selected' : ''}}
+                                        >{{$item->cabang}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="flex items-center gap-4 mb-5">
+                                <div class="w-40">
+                                    <label for="rayon" class="block text-sm text-right font-medium text-gray-600">Rayon*</label>
+                                </div>
+                                <select id="rayon" name="id_rayon"
+                                    class="btn-gray w-96 lg:w-full shadow-sm text-sm text-left focus:outline-none focus:shadow-outline"
+                                    required>
+                                    <option class="font-medium text-sm" value="#">...</option>
+                                    @if($rayons)
+                                        @foreach ($rayons as $item)
+                                        <option class="font-medium text-sm" value="{{$item->id_rayon}}"{{$data->id_rayon == $item->id_rayon ? 'selected' : ''}}>{{$item->rayon}}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                            </div>
+                            <div class="flex items-center gap-4 mb-5">
+                                <div class="w-40">
+                                    <label for="zona_waktu" class="block text-sm text-right font-medium text-gray-600">Zona Waktu*</label>
+                                </div>
+                                <select id="zona_waktu" name="zona_waktu"
+                                    class="btn-gray w-96 lg:w-full shadow-sm text-sm text-left focus:outline-none focus:shadow-outline"
+                                    required>
+                                    <option class="font-medium text-sm" value="#">...</option>
+                                    <option class="font-medium text-sm" value="WIB" {{$data->zona_waktu == 'WIB' ? 'selected' : ''}}>WIB</option>
+                                    <option class="font-medium text-sm" value="WITA" {{$data->zona_waktu == 'WITA' ? 'selected' : ''}}>WITA</option>
+                                    <option class="font-medium text-sm" value="WIT" {{$data->zona_waktu == 'WIT' ? 'selected' : ''}}>WIT</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Anggota -->
+                        <div id="tab-3" class="hidden form-tab">
+                            <div class="flex justify-center">
+                                <h2 class="font-medium ">Data Anggota</h2>
+                            </div>
+                            <div class="flex items-center gap-4 mb-5">
+                                <div class="w-40">
+                                    <label for="nama_tim" class="block text-sm text-right font-medium text-gray-600">Nama
+                                        Team*</label>
+                                </div>
+                                <input type="text" name="nama_team" id="nama_team" value="{{$data->nama_team}}"
+                                    class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
+                            </div>
+                            <div class="flex items-center gap-4 mb-5">
+                                <div class="w-40">
+                                    <label for="nama_anggota_1" class="block text-sm text-right font-medium text-gray-600">Nama
+                                        Anggota 1</label>
+                                </div>
+                                <input type="text" name="anggota_pertama" id="nama_anggota_1" value="{{ $data->anggota_pertama }}"
+                                    class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md">
+                            </div>
+                            <div class="flex items-center gap-4 mb-5">
+                                <div class="w-40">
+                                    <label for="notelp_anggota_1"
+                                        class="block text-sm text-right font-medium text-gray-600">Nomor
+                                        Telepon/Ponsel Anggota 1</label>
+                                </div>
+                                <input type="number" name="telepon_anggota_pertama" id="notelp_anggota_1" value="{{ $data->telepon_anggota_pertama }}"
+                                    class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md">
+                            </div>
+                            <div class="flex items-center gap-4 mb-5">
+                                <div class="w-40">
+                                    <label for="nama_anggota_1" class="block text-sm text-right font-medium text-gray-600">Nama
+                                        Anggota 2</label>
+                                </div>
+                                <input type="text" name="anggota_kedua" id="nama_anggota_2" value="{{ $data->anggota_kedua }}"
+                                    class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md">
+                            </div>
+                            <div class="flex items-center gap-4 mb-5">
+                                <div class="w-40">
+                                    <label for="notelp_anggota_2"
+                                        class="block text-sm text-right font-medium text-gray-600">Nomor
+                                        Telepon/Ponsel Anggota 2</label>
+                                </div>
+                                <input type="number" name="telepon_anggota_kedua" id="notelp_anggota_2" value="{{ $data->telepon_anggota_kedua }}"
+                                    class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md">
+                            </div>
+                        </div>
+                        <!-- Ubah Password -->
+                        <div id="tab-4" class="hidden form-tab">
+                            <div class="flex justify-center">
+                                <h2 class="font-medium">Ubah Password</h2>
+                            </div>
+                            <div class="flex items-center gap-4 mb-5">
+                                <div class="w-40">
+                                    <label for="password" class="block text-sm text-right font-medium text-gray-600">Password Baru</label>
+                                </div>
+                                <div class="relative w-96 lg:w-full">
+                                    <input type="password" name="password" id="password"
+                                        class="p-2 border border-gray w-full shadow-sm text-sm rounded-md pr-10" required>
+                                    <i class="fa fa-eye absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer" id="togglePassword"></i>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 mb-5">
+                                <div class="w-40">
+                                    <label for="verify_password" class="block text-sm text-right font-medium text-gray-600">Ulangi Password</label>
+                                </div>
+                                <div class="relative w-96 lg:w-full">
+                                    <input type="password" name="verify_password" id="verify_password"
+                                        class="p-2 border border-gray w-full shadow-sm text-sm rounded-md pr-10" required>
+                                    <i class="fa fa-eye absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer" id="toggleVerifyPassword"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="card-footer">
+    
+                <div class="card-footer flex justify">
                     <button>
-                        <a href="#" type="submit" class="btn-bs-dark">simpan</a>
+                        <a href="{{route('user.dashboard')}}" type="button" class="btn-bs-secondary mr-3">kembali</a>
                     </button>
-                </div>
-            </form>
-
-            <form id="tab-2" class="hidden">
-                <div class="card-body relative overflow-x-auto sm:rounded-lg">
-                    <div class="grid gap-6 justify-center">
-                        <div class="flex justify-center">
-                            <h2 class="font-medium ">Data Cabang/Rayon</h2>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-40">
-                                <label for="cabang"
-                                    class="block text-sm text-right font-medium text-gray-600">Cabang*</label>
-                            </div>
-                            <select id="cabang" name="cabang"
-                                class="btn-gray w-96 lg:w-full shadow-sm text-sm text-left focus:outline-none focus:shadow-outline"
-                                required>
-                                <option class="font-medium text-sm"></option>
-                                <option class="font-medium text-sm">Online</option>
-                                <option class="font-medium text-sm">Offline</option>
-                            </select>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-40">
-                                <label for="rayon"
-                                    class="block text-sm text-right font-medium text-gray-600">Rayon*</label>
-                            </div>
-                            <select id="rayon" name="rayon"
-                                class="btn-gray w-96 lg:w-full shadow-sm text-sm text-left focus:outline-none focus:shadow-outline"
-                                required>
-                                <option class="font-medium text-sm">...</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-footer">
-                    <button>
-                        <a href="#" type="submit" class="btn-bs-dark">simpan</a>
-                    </button>
-                </div>
-            </form>
-
-            <form id="tab-3" class="hidden">
-                <div class="card-body relative overflow-x-auto sm:rounded-lg">
-                    <div class="grid gap-6 justify-center">
-                        <div class="flex justify-center">
-                            <h2 class="font-medium ">Data Anggota</h2>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-40">
-                                <label for="nama_tim" class="block text-sm text-right font-medium text-gray-600">Nama
-                                    Tim*</label>
-                            </div>
-                            <input type="text" name="nama_tim" id="nama_tim"
-                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-40">
-                                <label for="nama_ketua" class="block text-sm text-right font-medium text-gray-600">Nama
-                                    Ketua*</label>
-                            </div>
-                            <input type="text" name="nama_ketua" id="nama_ketua"
-                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-40">
-                                <label for="notelp_ketua"
-                                    class="block text-sm text-right font-medium text-gray-600">Nomor
-                                    Telepon/Ponsel Ketua*</label>
-                            </div>
-                            <input type="number" name="notelp_ketua" id="notelp_ketua"
-                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-40">
-                                <label for="email_ketua"
-                                    class="block text-sm text-right font-medium text-gray-600">Email
-                                    Ketua*</label>
-                            </div>
-                            <input type="email" name="email_ketua" id="email_ketua"
-                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-40">
-                                <label for="nama_anggota_1"
-                                    class="block text-sm text-right font-medium text-gray-600">Nama
-                                    Anggota 1</label>
-                            </div>
-                            <input type="text" name="nama_anggota_1" id="nama_anggota_1"
-                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md">
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-40">
-                                <label for="notelp_anggota_1"
-                                    class="block text-sm text-right font-medium text-gray-600">Nomor
-                                    Telepon/Ponsel Anggota 1</label>
-                            </div>
-                            <input type="number" name="notelp_anggota_1" id="notelp_anggota_1"
-                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md">
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-40">
-                                <label for="nama_anggota_1"
-                                    class="block text-sm text-right font-medium text-gray-600">Nama
-                                    Anggota 2</label>
-                            </div>
-                            <input type="text" name="nama_anggota_2" id="nama_anggota_2"
-                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md">
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-40">
-                                <label for="notelp_anggota_2"
-                                    class="block text-sm text-right font-medium text-gray-600">Nomor
-                                    Telepon/Ponsel Anggota 2</label>
-                            </div>
-                            <input type="number" name="notelp_anggota_2" id="notelp_anggota_2"
-                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-footer">
-                    <button>
-                        <a href="#" type="submit" class="btn-bs-dark">simpan</a>
-                    </button>
-                </div>
-            </form>
-
-            <form id="tab-4" class="hidden">
-                <div class="card-body relative overflow-x-auto sm:rounded-lg">
-                    <div class="grid gap-6 justify-center">
-                        <div class="flex justify-center">
-                            <h2 class="font-medium">Ubah Password</h2>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-40">
-                                <label for="password"
-                                    class="block text-sm text-right font-medium text-gray-600">Password
-                                    Baru*</label>
-                            </div>
-                            <input type="password" name="password" id="password"
-                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <div class="w-40">
-                                <label for="verify_password"
-                                    class="block text-sm text-right font-medium text-gray-600">Ulangi Password*</label>
-                            </div>
-                            <input type="password" name="verify_password" id="verify_password"
-                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card-footer">
-                    <button>
-                        <a href="#" type="submit" class="btn-bs-dark">simpan</a>
+                    <button type="submit" class="btn-bs-dark" onclick="confirmEdit(event)">
+                        Simpan
                     </button>
                 </div>
             </form>
         </div>
     </div>
+    <style>
+        .relative input {
+            padding-right: 2.5rem; /* Ensure there's space for the icon */
+        }
+    
+        .fa-eye {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #aaa;
+        }
+    
+        .fa-eye:hover {
+            color: #000;
+        }
+    </style>
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const password = document.getElementById('password');
+        togglePassword.addEventListener('click', function () {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+
+        const toggleVerifyPassword = document.getElementById('toggleVerifyPassword');
+        const verifyPassword = document.getElementById('verify_password');
+        toggleVerifyPassword.addEventListener('click', function () {
+            const type = verifyPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+            verifyPassword.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
 </x-layout-u>

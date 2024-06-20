@@ -50,11 +50,11 @@ Route::get('/olimpiade', function () {
     return view('olimpiade', ['title' => 'Science & Primary Medical Olimpiad - Cardion UIN Malang', 'slug' => 'olympiade']);
 });
 
-Route::get('/olympiad/cetak-kartu', function () {
+Route::get('/olimpiade/cetak-kartu', function () {
     return view('olimpiade/cetak-kartu', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'cetak-kartu']);
 });
 
-Route::get('/olympiad/sertifikat', function () {
+Route::get('/olimpiade/sertifikat', function () {
     return view('olimpiade/sertifikat', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'sertifikat']);
 });
 
@@ -164,6 +164,7 @@ Route::group(['as' => 'user.', 'prefix' => '/user', 'event' => 'olimpiade'], fun
         Route::post('pembayaran', [PembayaranController::class, 'store'])->name('store-pembayaran');
         Route::get('pembayaran/edit', [PembayaranController::class, 'edit'])->name('edit-pembayaran');
         Route::post('pembayaran/update', [PembayaranController::class, 'update'])->name('update-pembayaran');
+        Route::get('pembayaran/konfirmasi', [PembayaranController::class, 'konfirmasi_pembayaran_user'])->name('konfirmasi-pembayaran');
 });
 
 

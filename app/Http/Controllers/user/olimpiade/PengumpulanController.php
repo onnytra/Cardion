@@ -23,11 +23,16 @@ class PengumpulanController extends Controller
         $closest_pengumpulan_karya = pengumpulan_karyas::join('assign_tests', 'pengumpulan_karyas.id_pengumpulan', '=', 'assign_tests.id_pengumpulan')
             ->where('assign_tests.id_peserta', $user->id_peserta)
             ->where('assign_tests.status_test', 'belum')
+            ->where('pengumpulan_karyas.status_pengumpulan', 1)
             ->where('pengumpulan_karyas.mulai', '>=', $today)
             ->orderBy('pengumpulan_karyas.mulai', 'asc')
             ->first(['pengumpulan_karyas.*']);
-
+        if($closest_pengumpulan_karya != null){
             $karya = karyas::where('id_peserta', $user->id_peserta)->where('id_pengumpulan', $closest_pengumpulan_karya->id_pengumpulan)->first();
+        }
+        else{
+            $karya = null;
+        }
         return view('publicposter.pengumpulan-karya.pengumpulan-karya', compact('title', 'slug', 'closest_pengumpulan_karya', 'karya'));
     }
 

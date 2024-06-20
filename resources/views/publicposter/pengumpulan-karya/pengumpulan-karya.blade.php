@@ -2,6 +2,7 @@
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-slot:slug>{{ $slug }}</x-slot:slug>
 
+    @if ($closest_pengumpulan_karya != null)
     <div class="card">
         <div class="card-header">
             <h1 class="h6">{{$closest_pengumpulan_karya->judul}}</h1>
@@ -30,4 +31,11 @@
             @endif
         </div>
     </div>
+    @else
+    <div class="card">
+        <div class="card-header">
+            <h1 class="h6">Belum ada pengumpulan karya</h1>
+        </div>
+    </div>
+    @endif
 </x-layout-u>

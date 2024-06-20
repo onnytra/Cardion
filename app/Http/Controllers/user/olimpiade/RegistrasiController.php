@@ -36,7 +36,7 @@ class RegistrasiController extends Controller
             return redirect()->route('user.dashboard');
         }
         if ($data->id_cabang != null) {
-            $cabangs = cabangs::where('id_cabang', $data->id_cabang)->get();
+            $cabangs = cabangs::where('event', $this->event)->get();
             $rayons = rayons::where('id_rayon', $data->id_rayon)->get();
         }else{
             $cabangs = cabangs::where('event', $this->event)->get();

@@ -33,9 +33,17 @@
                             {{ $data->judul }}
                         </td>
                         <td class="px-6 py-4">
+                            @if($event == 'olimpiade')
                             <a href="{{ route('olimpiade.assign_test.index', $data->id_ujian) }}">
                                 <button class="btn">Assign Test</button>
                             </a>
+                            @elseif($event == 'poster')
+                            <a href="{{ route('poster.assign_test.index', $data->id_pengumpulan) }}">
+                                <button class="btn">Assign Test</button>
+                            </a>
+                            @else
+                            Error
+                            @endif
                         </td>
                     </tr>
                     @endforeach
