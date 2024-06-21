@@ -6,7 +6,7 @@
         <div class="card-header flex flex-row justify-between items-center">
             <h1 class="h6">Daftar Ujian Public Poster</h1>
             <button>
-                <a href="/admin/public-poster/pengumpulan-karya/add" class="btn-bs-dark">
+                <a href="{{route('poster.pengumpulan_karya.create')}}" class="btn-bs-dark">
                     <i class="fad fa-plus mr-2 leading-none"></i>
                     Pengumpulan Karya Baru</a>
             </button>

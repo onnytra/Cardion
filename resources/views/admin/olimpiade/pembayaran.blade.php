@@ -330,6 +330,13 @@
                                                                     <i class="fad fa-check mr-2 leading-none"></i>
                                                                     Terima Pembayaran</a>
                                                             </button>
+                                                            {{-- make yellow button for ditolak --}}
+                                                            <button class="w-full mt-2">
+                                                                <a href="{{route($event.'.pembayaran.tolak', $data->id_pembayaran)}}"
+                                                                    class="btn-warning">
+                                                                    <i class="fad fa-times mr-2 leading-none"></i>
+                                                                    Tolak Pembayaran</a>
+                                                            </button>
                                                             <button class="w-full mt-2">
                                                                 <a href="{{route($event.'.pembayaran.delete', $data->id_pembayaran)}}"
                                                                     class="btn-bs-danger" data-confirm-delete="true">
@@ -545,7 +552,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($menunggu as $data)
+                        @foreach ($belum_konfirmasi as $data)
                         <tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td class="px-6 py-4">

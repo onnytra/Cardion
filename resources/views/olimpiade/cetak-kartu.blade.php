@@ -7,7 +7,7 @@
             <h1 class="h6">Kartu Peserta</h1>
         </div>
 
-        <div class="card-body relative overflow-x-auto sm:rounded-lg">
+        {{-- <div class="card-body relative overflow-x-auto sm:rounded-lg">
             <div class="flex items-center gap-5">
                 <img src="../../../img/user.svg" alt="user" class="w-20 h-20">
                 <div>
@@ -68,7 +68,7 @@
             <hr class="my-5">
             <p class="text-gray-600">Harap diperhatikan kepada seluruh peserta untuk mencetak dan membawa kartu peserta
                 saat babak penyisihan berlangsung</p>
-        </div>
+        </div> --}}
 
         <div class="card-footer">
             <button>

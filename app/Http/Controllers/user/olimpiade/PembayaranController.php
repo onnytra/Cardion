@@ -29,16 +29,14 @@ class PembayaranController extends Controller
         $title = 'Pembayaran Peserta';
         $slug = 'pembayaran';
 
-        $data = Auth::guard('peserta')->user();
+    $data = Auth::guard('peserta')->user();
+        if($data->status_pembayaran == 'sudah'){
+            toast('Pembayaran Sudah Dilakukan', 'info');
+        }
         if($data->status_data == 'belum'){
             toast('Data Registrasi Belum Diupdate', 'info');
             return redirect()->route('user.registrasi');
         }
-        if($data->status_pembayaran == 'sudah'){
-            toast('Pembayaran Sudah Dilakukan', 'info');
-            return redirect()->route('user.dashboard');
-        }
-
         $pembayaran = pembayarans::where('id_peserta', $data->id_peserta)->first();
         return view('olimpiade.pembayaran.pembayaran', compact('title', 'slug', 'data', 'pembayaran'));
     }
@@ -90,7 +88,7 @@ class PembayaranController extends Controller
         $pembayaran->tanggal = $request->tanggal;
         $pembayaran->metode_pembayaran = $request->metode_pembayaran;
         $pembayaran->id_gelombang = $request->gelombang_pembayaran;
-        $pembayaran->status_pembayaran = 'menunggu';
+        $pembayaran->status_pembayaran = 'belum_konfirmasi';
         // save the image to storage in directory pembayaran
         $file = $request->file('bukti_pembayaran');
         $filename = 'pembayaran/'.time() . '.' . $file->getClientOriginalExtension();
@@ -159,6 +157,15 @@ class PembayaranController extends Controller
         $pembayaran->save();
 
         toast('Pembayaran Berhasil Diupdate', 'success');
+        return redirect()->route('user.pembayaran');
+    }
+
+    public function konfirmasi_pembayaran_user(){
+        $pembayaran = pembayarans::where('id_peserta', Auth::guard('peserta')->user()->id_peserta)->first();
+        $pembayaran->status_pembayaran = 'menunggu';
+        $pembayaran->save();
+
+        toast('Pembayaran Berhasil Dikonfirmasi', 'success');
         return redirect()->route('user.pembayaran');
     }
 }
