@@ -93,8 +93,8 @@
         </div>
 
         <div id="about" class="bg-page-2 bg-center bg-cover xl:pr-40">
-            <div class="min-h-screen px-6 pt-20 lg:px-8 bg-illustration-about bg-cover bg-right">
-                <div class="w-full grid grid-cols-1 lg:grid-cols-2 py-36 pr-24 mx-auto lg:py-32 md:px-48">
+            <div class="min-h-screen px-6 pt-20 lg:px-8 sm:bg-about-olimpiade bg-illustration-about bg-cover bg-right">
+                <div class="w-full grid grid-cols-1 lg:grid-cols-2 py-36 pr-24 mx-auto lg:py-32 md:px-48 sm:hidden">
                     <div></div>
                     <div class="md:text-center pl-0 md:pl-20 lg:pl-0">
                         <h1 class="text-[3rem] font-asian-ninja leading-tight text-gray-900 sm:text-[4.2rem]">
@@ -120,9 +120,7 @@
                     </h1>
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-5">
                         <div class="text-left">
-                            <div class="bg-timeline-1 bg-contain bg-no-repeat p-5">
-                                <h2 class="text-4xl font-harukaze pl-16 mt-2">
-                                    Registration and Submission</h2>
+                            <div class="bg-timeline-1-poster bg-contain bg-no-repeat p-10">
                             </div>
                             <div class="text-left pl-20">
                                 <p class="font-abhaya mt-5 text-lg">
@@ -138,9 +136,7 @@
                         </div>
                         <img src="img/footstep.png" alt="Footstep" class="w-full hidden lg:block">
                         <div class="text-left">
-                            <div class="bg-timeline-2 bg-contain bg-no-repeat p-5">
-                                <h2 class="text-4xl font-harukaze pl-28 mt-2">
-                                    Preliminary</h2>
+                            <div class="bg-timeline-2-poster bg-contain bg-no-repeat p-10">
                             </div>
                             <div class="text-left pl-20">
                                 <p class="font-abhaya mt-5 text-lg">
@@ -154,9 +150,7 @@
                         </div>
                         <div class="hidden lg:block"></div>
                         <div class="text-left">
-                            <div class="bg-timeline-3 bg-contain bg-no-repeat p-5">
-                                <h2 class="text-4xl font-harukaze pl-28 mt-2">
-                                    Semifinal and Final</h2>
+                            <div class="bg-timeline-3-poster bg-contain bg-no-repeat p-10">
                             </div>
                             <div class="text-left pl-20">
                                 <p class="font-abhaya mt-5 text-lg">
@@ -234,8 +228,7 @@
                         By participating in this competition, you have the opportunity to win prizes worth millions
                         of rupiah, certificates and trophies.
                     </p>
-                    <div class="relative mt-16 bg-prize-1 h-96 bg-no-repeat bg-center bg-contain">
-                        <p class="absolute bottom-6 inset-x-0 text-3xl font-abhaya text-yellow-300">Rp1.000.000,-</p>
+                    <div class="relative mt-16 bg-prize-1-poster h-96 bg-no-repeat bg-center bg-contain">
                     </div>
                 </div>
             </div>
@@ -245,25 +238,11 @@
             <div class="max-w-4xl py-10 mx-auto lg:py-72">
                 <div class=" text-center">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-20 md:gap-0">
-                        <div class="relative bg-prize-2 h-96 bg-no-repeat bg-center bg-contain">
-                            <p
-                                class="absolute bottom-6 md:bottom-16 lg:bottom-14 inset-x-0 text-3xl md:text-xl lg:text-2xl font-abhaya text-yellow-300">
-                                Rp750.000,-
-                            </p>
+                        <div class="relative bg-prize-2-poster h-96 bg-no-repeat bg-center bg-contain">
                         </div>
-                        <div class="relative bg-prize-3 h-96 bg-no-repeat bg-center bg-contain">
-                            <p
-                                class="absolute bottom-6 md:bottom-16 lg:bottom-14 inset-x-0 text-3xl md:text-xl lg:text-2xl font-abhaya text-yellow-300">
-                                Rp500.000,-
-                            </p>
+                        <div class="relative bg-prize-3-poster h-96 bg-no-repeat bg-center bg-contain">
                         </div>
-                        <div class="relative bg-prize-4 h-96 bg-no-repeat bg-center bg-contain">
-                            <p class="absolute top-20 inset-x-0 text-4xl text-white font-harukaze">Most<br>Favourite
-                            </p>
-                            <p
-                                class="absolute bottom-6 md:bottom-16 lg:bottom-14 inset-x-0 text-3xl md:text-xl lg:text-2xl font-abhaya text-yellow-300">
-                                Rp300.000,-
-                            </p>
+                        <div class="relative bg-prize-4-poster h-96 bg-no-repeat bg-center bg-contain">
                         </div>
                     </div>
                 </div>
