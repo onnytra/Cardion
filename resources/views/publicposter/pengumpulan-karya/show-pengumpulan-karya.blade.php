@@ -61,64 +61,38 @@
 
     <div class="card mt-5">
         <div class="card-header">
-            <h1 class="h6">Input Hasil Karya</h1>
+            <h1 class="h6">Hasil Karya</h1>
         </div>
-
-        <form action="{{route('poster.store-karya')}}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <input type="hidden" name="id_pengumpulan" value="{{$pengumpulan_karyas->id_pengumpulan}}">
             <div class="card-body relative overflow-x-auto sm:rounded-lg">
                 <div class="grid gap-6">
                     <div class="flex items-start gap-4">
                         <div class="w-56">
                             <label for="surat" class="block text-sm font-medium text-gray-600">Karya Poster*</label>
                         </div>
-                        <div>
-                            <input type="file" name="karya_poster" id="karya_poster"
-                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
-                            <p class="mt-2">jpg, png, jpeg  Max 2 Mb</p>
-                        </div>
-                        {{-- <button>
-                            <a href="" class="btn-indigo">Preview</a>
-                        </button> --}}
+                        <button>
+                            <a href="{{asset('storage/karya/'.$karya->karya)}}" class="btn-indigo" target="_blank">Preview</a>
+                        </button>
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-56">
                             <label for="surat" class="block text-sm font-medium text-gray-600">Surat
                                 Originalitas*</label>
                         </div>
-                        <div>
-                            <input type="file" name="surat" id="surat"
-                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
-                            <p class="mt-2">pdf Max 2 Mb</p>
-                        </div>
-                        {{-- <button>
-                            <a href="" class="btn-indigo">Preview</a>
-                        </button> --}}
+                        <button>
+                            <a href="{{asset('storage/karya/'.$karya->surat_originalitas)}}" class="btn-indigo" target="_blank">Preview</a>
+                        </button>
                     </div>
                     <div class="flex items-start gap-4">
                         <div class="w-56">
                             <label for="deskripsi" class="block text-sm font-medium text-gray-600">Essay
                                 Karya*</label>
                         </div>
-                        <div>
-                            <input type="file" name="essay" id="deskripsi"
-                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
-                            <p class="mt-2">pdf Max 2 Mb</p>
-                        </div>
-                        {{-- <button>
-                            <a href="" class="btn-indigo">Preview</a>
-                        </button> --}}
+                        <button>
+                            <a href="{{asset('storage/karya/'.$karya->essay_karya)}}" class="btn-indigo
+                                " target="_blank">Preview</a>
+                        </button>
                     </div>
                 </div>
             </div>
-
-            <div class="card-footer">
-                <p class="mt-2">*** Periksa Kembali Data Yang Anda Kumpulkan, Pengumpulan Hanya Bisa Dilakukan Satu Kali***</p>
-                <button type="submit" class="btn-bs-dark" onclick="confirmInput(event)">
-                    Simpan
-                </button>
-            </div>
-        </form>
     </div>
 </x-layout-u>

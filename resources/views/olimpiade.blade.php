@@ -71,9 +71,9 @@
                                     class="-mx-3 block rounded-lg px-3 py-2 text-base font-andalus leading-7 text-gray-900 hover:bg-red-500 hover:text-white transition ease-in-out">TIMELINE</a>
                                 <a href="#prize"
                                     class="-mx-3 block rounded-lg px-3 py-2 text-base font-andalus leading-7 text-gray-900 hover:bg-red-500 hover:text-white transition ease-in-out">PRIZE</a>
-                                <a href="/olympiad/login"
+                                <a href="{{route('olimpiade.login')}}"
                                     class="-mx-3 block rounded-lg px-3 py-2 text-base font-andalus leading-7 text-gray-900 hover:bg-red-500 hover:text-white transition ease-in-out">LOGIN</a>
-                                <a href="/olympiad/register"
+                                <a href="{{route('olimpiade.register')}}"
                                     class="-mx-3 block text-center text-xl font-andalus rounded-xl px-8 py-3 leading-6 text-gray-900 bg-[#D9D9D9] hover:text-white hover:bg-red-500 transition ease-in-out">REGISTER</a>
                             </div>
                         </div>
@@ -124,7 +124,7 @@
                             </div>
                             <div class="text-left pl-20">
                                 <p class="font-abhaya mt-5 text-lg">
-                                    15 May 2024 - 25 January 2025
+                                    15 May 2024 - 20 January 2025
                                 </p>
                                 <p class="font-abhaya text-lg">
                                     * Maximum 3 person in 1 team
@@ -143,7 +143,7 @@
                                     Sunday, 26 January 2025
                                 </p>
                                 <p class="font-abhaya text-lg">
-                                    * Offline at Malang, Surabaya, Kediri, Jember, Jombang, Madura, and Online by
+                                    * Offline at Malang, Surabaya, Kediri, Jember, Jombang, Madura, Semarang and Online by
                                     website
                                 </p>
                             </div>
@@ -340,7 +340,7 @@
                                 ID Line
                             </p>
                             <p class="text-xl font-osaka">
-                                Fikriy - 812 3101 4966
+                                Fikriy - Frzy.14
                             </p>
                             <p class="text-xl font-osaka">
                                 Khansa - knsa11
@@ -361,7 +361,7 @@
                         To Win The Competition?
                     </h1>
                     <div class="mt-10">
-                        <a href="/olympiad/register"
+                        <a href="{{route('olimpiade.register')}}"
                             class="rounded-xl font-andalus bg-[#D9D9D9] px-12 py-4 text-xl shadow-sm hover:bg-red-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 focus-visible:text-white transition ease-in-out">
                             REGISTER NOW
                         </a>

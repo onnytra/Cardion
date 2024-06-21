@@ -18,22 +18,23 @@ class PengumpulanController extends Controller
         $slug = 'pengumpulan-karya';
 
         $user = Auth::guard('peserta')->user();
-        $today = Carbon::today();
-
+        $today = Carbon::now();
+        if ($user->status_data == 'belum' || $user->status_pembayaran == 'belum') {
+            toast('Lengkapi Data Diri dan Lakukan Pembayaran Terlebih Dahulu', 'info');
+            return redirect()->route('user.dashboard');
+        }
         $closest_pengumpulan_karya = pengumpulan_karyas::join('assign_tests', 'pengumpulan_karyas.id_pengumpulan', '=', 'assign_tests.id_pengumpulan')
             ->where('assign_tests.id_peserta', $user->id_peserta)
-            ->where('assign_tests.status_test', 'belum')
             ->where('pengumpulan_karyas.status_pengumpulan', 1)
-            ->where('pengumpulan_karyas.mulai', '>=', $today)
+            // ->where('pengumpulan_karyas.berakhir', '>=', $today)
+            ->with('assign_tests')
             ->orderBy('pengumpulan_karyas.mulai', 'asc')
-            ->first(['pengumpulan_karyas.*']);
-        if($closest_pengumpulan_karya != null){
-            $karya = karyas::where('id_peserta', $user->id_peserta)->where('id_pengumpulan', $closest_pengumpulan_karya->id_pengumpulan)->first();
-        }
-        else{
-            $karya = null;
-        }
-        return view('publicposter.pengumpulan-karya.pengumpulan-karya', compact('title', 'slug', 'closest_pengumpulan_karya', 'karya'));
+            ->get(['pengumpulan_karyas.*']);
+            // check closest pengumpulan
+            if($closest_pengumpulan_karya->isEmpty()){
+                $closest_pengumpulan_karya = null;
+            }
+        return view('publicposter.pengumpulan-karya.pengumpulan-karya', compact('title', 'slug', 'closest_pengumpulan_karya', 'today'));
     }
 
     public function create(pengumpulan_karyas $pengumpulan_karyas){
@@ -47,7 +48,6 @@ class PengumpulanController extends Controller
 
     public function store(Request $request){
         $user = Auth::guard('peserta')->user();
-
         $validation = Validator::make($request->all(), [
             'karya_poster' => 'required|mimes:jpeg,jpg,png|max:2048',
             'surat' => 'required|mimes:pdf|max:2048',
@@ -67,15 +67,23 @@ class PengumpulanController extends Controller
         if($validation->fails()){
             return redirect()->back()->withErrors($validation->errors())->withInput();
         }
-
+        // check time of pengumpulan
+        $today = Carbon::now();
+        $pengumpulan = pengumpulan_karyas::where('id_pengumpulan', $request->id_pengumpulan)->first();
+        if($today < $pengumpulan->mulai ){
+            toast('Pengumpulan Belum Dibuka', 'info');
+            return redirect()->route('poster.karya');
+        }elseif($today > $pengumpulan->berakhir){
+            toast('Pengumpulan Sudah Ditutup', 'info');
+            return redirect()->route('poster.karya');
+        }
         $karya_poster = $request->file('karya_poster');
         $surat = $request->file('surat');
         $essay = $request->file('essay');
 
-        $maxLength = 50 - strlen('gambar/'.time().'_');
-        $karya_poster_name = 'gambar/'.time().'_'.substr($karya_poster->getClientOriginalName(), 0, $maxLength);
-        $surat_name = 'surat/'.time().'_'.substr($surat->getClientOriginalName(), 0, $maxLength);
-        $essay_name = 'essay/'.time().'_'.substr($essay->getClientOriginalName(), 0, $maxLength);
+        $karya_poster_name = 'gambar/'.time().'_'.$user->id_peserta;
+        $surat_name = 'surat/'.time().'_'.$user->id_peserta;
+        $essay_name = 'essay/'.time().'_'.$user->id_peserta;
 
         $karya_poster->storeAs('public/karya', $karya_poster_name);
         $surat->storeAs('public/karya', $surat_name);
@@ -90,7 +98,24 @@ class PengumpulanController extends Controller
         $karya->tanggal = Carbon::now();
         $karya->save();
 
+        // edit assign test
+        $assign_test = assign_tests::where('id_peserta', $user->id_peserta)
+            ->where('id_pengumpulan', $request->id_pengumpulan)
+            ->first();
+        $assign_test->status_test = 'sudah';
+        $assign_test->save();
         toast('Karya Berhasil Diunggah', 'success');
         return redirect()->route('poster.karya');
+    }
+
+    public function show (pengumpulan_karyas $pengumpulan_karyas){
+        $title = 'Public Poster | Cardion UIN Malang';
+        $slug = 'pengumpulan-karya';
+
+        $user = Auth::guard('peserta')->user();
+        $karya = karyas::where('id_peserta', $user->id_peserta)
+            ->where('id_pengumpulan', $pengumpulan_karyas->id_pengumpulan)
+            ->first();
+        return view('publicposter.pengumpulan-karya.show-pengumpulan-karya', compact('title', 'slug', 'pengumpulan_karyas', 'user', 'karya'));
     }
 }

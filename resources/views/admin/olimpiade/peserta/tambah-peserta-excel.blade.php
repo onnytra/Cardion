@@ -75,50 +75,53 @@
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <td class="px-6 py-4">{{ $index + 1 }}</td>
                     <td class="px-6 py-4">
-                        <input type="text" name="nama_team[{{ $index }}]" value="{{ $row['nama_team'] }}" class="form-control" />
+                        <input type="text" name="nama_team[{{ $index }}]" value="{{ $row['nama_team'] ?? ''}}" class="form-control" />
                     </td>
                     <td class="px-6 py-4">
-                        <input type="text" name="ketua[{{ $index }}]" value="{{ $row['ketua'] }}" class="form-control" />
+                        <input type="text" name="ketua[{{ $index }}]" value="{{ $row['ketua'] ?? ''}}" class="form-control" />
                     </td>
                     <td class="px-6 py-4">
-                        <input type="email" name="email[{{ $index }}]" value="{{ $row['email'] }}" class="form-control" />
+                        <input type="email" name="email[{{ $index }}]" value="{{ $row['email'] ?? ''}}" class="form-control" />
                     </td>
                     <td class="px-6 py-4">
-                        <input type="text" name="telepon[{{ $index }}]" value="{{ $row['telepon'] }}" class="form-control" />
+                        <input type="text" name="telepon[{{ $index }}]" value="{{ $row['telepon'] ?? ''}}" class="form-control" />
                     </td>
                     <td class="px-6 py-4">
-                        <input type="password" name="password[{{ $index }}]" value="{{ $row['password'] }}" class="form-control" />
+                        <input type="password" name="password[{{ $index }}]" value="{{ $row['password'] ?? ''}}" class="form-control" />
                     </td>
                     <td class="px-6 py-4">
                         <select id="event" name="cabang_lomba[{{ $index }}]"
                             class="btn-gray w-96 lg:w-full shadow-sm text-sm text-left focus:outline-none focus:shadow-outline"
                             required>
                             <option class="font-medium text-sm" value="#">...</option>
+                            @if($event == 'olimpiade')
                             <option class="font-medium text-sm" value="olimpiade" {{$row['cabang_lomba'] == 'olimpiade' ? 'selected' : ''}}>
                                 olimpiade
                             </option>
+                            @elseif($event == 'poster')
                             <option class="font-medium text-sm" value="poster" {{$row['cabang_lomba'] == 'poster' ? 'selected' : ''}}>
                                 poster
                             </option>
+                            @endif
                         </select>
                     </td>
                     <td class="px-6 py-4">
-                        <input type="text" name="anggota_pertama[{{ $index }}]" value="{{ $row['anggota_pertama'] }}" class="form-control" />
+                        <input type="text" name="anggota_pertama[{{ $index }}]" value="{{ $row['anggota_pertama'] ?? ''}}" class="form-control" />
                     </td>
                     <td class="px-6 py-4">
-                        <input type="text" name="telepon_anggota_pertama[{{ $index }}]" value="{{ $row['telepon_anggota_pertama'] }}" class="form-control" />
+                        <input type="text" name="telepon_anggota_pertama[{{ $index }}]" value="{{ $row['telepon_anggota_pertama'] ?? ''}}" class="form-control" />
                     </td>
                     <td class="px-6 py-4">
-                        <input type="text" name="anggota_kedua[{{ $index }}]" value="{{ $row['anggota_kedua'] }}" class="form-control" />
+                        <input type="text" name="anggota_kedua[{{ $index }}]" value="{{ $row['anggota_kedua'] ?? ''}}" class="form-control" />
                     </td>
                     <td class="px-6 py-4">
-                        <input type="text" name="telepon_anggota_kedua[{{ $index }}]" value="{{ $row['telepon_anggota_kedua'] }}" class="form-control" />
+                        <input type="text" name="telepon_anggota_kedua[{{ $index }}]" value="{{ $row['telepon_anggota_kedua'] ?? ''}}" class="form-control" />
                     </td>
                     <td class="px-6 py-4">
-                        <input type="text" name="sekolah[{{ $index }}]" value="{{ $row['sekolah'] }}" class="form-control" />
+                        <input type="text" name="sekolah[{{ $index }}]" value="{{ $row['sekolah'] ?? ''}}" class="form-control" />
                     </td>
                     <td class="px-6 py-4">
-                        <input type="text" name="alamat_sekolah[{{ $index }}]" value="{{ $row['alamat_sekolah'] }}" class="form-control" />
+                        <input type="text" name="alamat_sekolah[{{ $index }}]" value="{{ $row['alamat_sekolah'] ?? ''}}" class="form-control" />
                     </td>
                     <td class="px-6 py-4">
                         <select id="cabang" name="id_cabang[{{ $index }}]"
@@ -173,7 +176,7 @@
                         </select>
                     </td>
                     <td class="px-6 py-4">
-                        <input type="text" name="bukti_pembayaran[{{ $index }}]" value="{{ $row['bukti_pembayaran'] }}" class="form-control" />
+                        <input type="text" name="bukti_pembayaran[{{ $index }}]" value="{{ $row['bukti_pembayaran'] ?? ''}}" class="form-control" />
                     </td>
                 </tr>
             @endforeach

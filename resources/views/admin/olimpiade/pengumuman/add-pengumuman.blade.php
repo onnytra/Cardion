@@ -7,7 +7,7 @@
             <h1 class="h6">Form Tambah Pengumuman</h1>
         </div>
 
-        <form action="{{ route('olimpiade.pengumuman.store') }}" method="POST">
+        <form action="{{ route($event.'.pengumuman.store') }}" method="POST">
             @csrf
             <div class="card-body relative overflow-x-auto sm:rounded-lg">
                 <div class="grid gap-6">
@@ -67,7 +67,7 @@
             </div>
             <div class="card-footer flex justify">
                 <button>
-                    <a href="{{ route('olimpiade.pengumuman.index') }}" type="button" class="btn-bs-secondary mr-3">Kembali</a>
+                    <a href="{{ route($event.'.pengumuman.index') }}" type="button" class="btn-bs-secondary mr-3">Kembali</a>
                 </button>
                 <button type="submit" class="btn-bs-dark" onclick="confirmInput(event)">
                     Simpan

@@ -145,10 +145,18 @@
                                                                 <tr>
                                                                     <td class="px-6 py-3">Bukti Pembayaran</td>
                                                                     <td class="px-6 py-3 text-gray-600">
+                                                                        @if ($data->bukti == null)
+                                                                        <span class="text-red-500">Pendaftar Offline / Import Excel</span>
+                                                                        @elseif ($data->bukti && strpos($data->bukti, 'pembayaran/') !== false)
                                                                         <a href="{{asset('storage/'.$data->bukti)}}"
                                                                             class="btn-gray" target="_blank">
                                                                             View
                                                                         </a>
+                                                                        @else
+                                                                        <a href="{{$data->bukti}}"
+                                                                            class="btn-gray" target="_blank">
+                                                                            View
+                                                                        @endif
                                                                     </td>
                                                                 </tr>
                                                             </table>

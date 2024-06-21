@@ -6,7 +6,7 @@
         <div class="card-header flex flex-row justify-between items-center">
             <h1 class="h6">Daftar Pengumuman</h1>
             <button>
-                <a href="{{route('olimpiade.pengumuman.create')}}" class="btn-bs-dark">
+                <a href="{{route($event.'.pengumuman.create')}}" class="btn-bs-dark">
                     <i class="fad fa-plus mr-2 leading-none"></i>
                     Pengumuman Baru</a>
             </button>
@@ -80,13 +80,13 @@
                                                 <div class="cart mt-1 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                                     <div class="card-body relative overflow-x-visible sm:rounded-lg">
                                                         <button class="w-full">
-                                                            <a href="{{ route('olimpiade.pengumuman.edit', $pengumuman->id_pengumuman) }}"
+                                                            <a href="{{ route($event.'.pengumuman.edit', $pengumuman->id_pengumuman) }}"
                                                                 class="btn-bs-primary">
                                                                 <i class="fad fa-edit mr-2 leading-none"></i>
                                                                 Edit Pengumuman</a>
                                                         </button>
                                                         <button class="w-full mt-2">
-                                                            <a href="{{ route('olimpiade.pengumuman.delete', $pengumuman->id_pengumuman) }}"
+                                                            <a href="{{ route($event.'.pengumuman.delete', $pengumuman->id_pengumuman) }}"
                                                                 class="btn-bs-danger" data-confirm-delete="true">
                                                                 <i class="fad fa-trash mr-2 leading-none"></i>
                                                                 Hapus Pengumuman</a>

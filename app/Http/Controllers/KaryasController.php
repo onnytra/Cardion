@@ -34,9 +34,8 @@ class KaryasController extends Controller
     public function update_nilai(Request $request, karyas $karyas)
     {
         $validation = Validator::make($request->all(), [
-            'nilai' => 'required|numeric|min:0|max:100'
+            'nilai' => 'numeric|min:0|max:100'
         ],[
-            'nilai.required' => 'Nilai harus diisi',
             'nilai.numeric' => 'Nilai harus berupa angka',
             'nilai.min' => 'Nilai minimal 0',
             'nilai.max' => 'Nilai maksimal 100'

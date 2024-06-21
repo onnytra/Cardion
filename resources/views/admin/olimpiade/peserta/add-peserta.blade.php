@@ -88,6 +88,21 @@
                         </div>
                         <div class="flex items-center gap-4 mb-5">
                             <div class="w-40">
+                                <label for="tgl" class="block text-sm text-right font-medium text-gray-600">Gelombang Pembayaran*</label>
+                            </div>
+                            <select id="event" name="gelombang_pembayaran"
+                                class="btn-gray w-96 lg:w-full shadow-sm text-sm text-left focus:outline-none focus:shadow-outline"
+                                required>
+                                <option class="font-medium text-sm" value="#">...</option>
+                                @foreach ($gelombangpembayaran as $item)
+                                <option class="font-medium text-sm" value="{{$item->id_gelombang}}"
+                                    {{ old('gelombang_pembayaran') == $item->id_gelombang ? 'selected' : ''}}>
+                                    {{$item->gelombang}} - (Rp.{{$item->harga}})
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="flex items-center gap-4 mb-5">
+                            <div class="w-40">
                                 <label for="nomorsertifikat"
                                     class="block text-sm text-right font-medium text-gray-600">Nomor Sertifikat</label>
                             </div>
@@ -139,30 +154,6 @@
                             <input type="text" name="nama_team" id="nama_team" value="{{ old('nama_team') }}"
                                 class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
                         </div>
-                        {{-- <div class="flex items-center gap-4 mb-5">
-                            <div class="w-40">
-                                <label for="nama_ketua" class="block text-sm text-right font-medium text-gray-600">Nama
-                                    Ketua*</label>
-                            </div>
-                            <input type="text" name="nama_ketua" id="nama_ketua"
-                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
-                        </div> --}}
-                        {{-- <div class="flex items-center gap-4 mb-5">
-                            <div class="w-40">
-                                <label for="notelp_ketua" class="block text-sm text-right font-medium text-gray-600">Nomor
-                                    Telepon/Ponsel Ketua*</label>
-                            </div>
-                            <input type="number" name="notelp_ketua" id="notelp_ketua"
-                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
-                        </div> --}}
-                        {{-- <div class="flex items-center gap-4 mb-5">
-                            <div class="w-40">
-                                <label for="email_ketua" class="block text-sm text-right font-medium text-gray-600">Email
-                                    Ketua*</label>
-                            </div>
-                            <input type="email" name="email_ketua" id="email_ketua"
-                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
-                        </div> --}}
                         <div class="flex items-center gap-4 mb-5">
                             <div class="w-40">
                                 <label for="nama_anggota_1" class="block text-sm text-right font-medium text-gray-600">Nama

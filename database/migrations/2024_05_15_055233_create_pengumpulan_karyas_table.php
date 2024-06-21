@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('judul',30);
             $table->longText('deskripsi')->nullable();
             $table->longText('peraturan')->nullable();
-            $table->string('group_wa',100);
+            $table->string('group_wa',100)->nullable();
             $table->datetime('mulai');
             $table->datetime('berakhir');
             $table->boolean('status_pengumpulan');

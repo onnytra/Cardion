@@ -139,7 +139,7 @@ class PembayaranController extends Controller
         $pembayaran->bank = $request->bank;
         $pembayaran->tanggal = $request->tanggal;
         $pembayaran->metode_pembayaran = $request->metode_pembayaran;
-        $pembayaran->status_pembayaran = 'menunggu';
+        $pembayaran->status_pembayaran = 'belum_konfirmasi';
         if($request->hasFile('bukti_pembayaran')){
             // delete the old image
             $oldfile = $pembayaran->bukti;

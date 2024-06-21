@@ -204,27 +204,31 @@
                     </div>
                 </div>
                 <!-- Ubah Password -->
-                <div id="tab-4" class="hidden form-tab">
-                    <div class="flex justify-center">
-                        <h2 class="font-medium">Ubah Password</h2>
-                    </div>
-                    <div class="flex items-center gap-4 mb-5">
-                        <div class="w-40">
-                            <label for="password" class="block text-sm text-right font-medium text-gray-600">Password
-                                Baru*</label>
+                    <div id="tab-4" class="hidden form-tab">
+                        <div class="flex justify-center">
+                            <h2 class="font-medium">Ubah Password</h2>
                         </div>
-                        <input type="password" name="password" id="password"
-                            class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
-                    </div>
-                    <div class="flex items-center gap-4 mb-5">
-                        <div class="w-40">
-                            <label for="verify_password"
-                                class="block text-sm text-right font-medium text-gray-600">Ulangi Password*</label>
+                        <div class="flex items-center gap-4 mb-5">
+                            <div class="w-40">
+                                <label for="password" class="block text-sm text-right font-medium text-gray-600">Password Baru*</label>
+                            </div>
+                            <div class="relative w-96 lg:w-full">
+                                <input type="password" name="password" id="password"
+                                    class="p-2 border border-gray w-full shadow-sm text-sm rounded-md pr-10" required>
+                                <i class="fa fa-eye absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer" id="togglePassword"></i>
+                            </div>
                         </div>
-                        <input type="password" name="verify_password" id="verify_password"
-                            class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
+                        <div class="flex items-center gap-4">
+                            <div class="w-40">
+                                <label for="verify_password" class="block text-sm text-right font-medium text-gray-600">Ulangi Password*</label>
+                            </div>
+                            <div class="relative w-96 lg:w-full">
+                                <input type="password" name="verify_password" id="verify_password"
+                                    class="p-2 border border-gray w-full shadow-sm text-sm rounded-md pr-10" required>
+                                <i class="fa fa-eye absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer" id="toggleVerifyPassword"></i>
+                            </div>
+                        </div>
                     </div>
-                </div>
             </div>
         </div>
 
@@ -238,4 +242,39 @@
         </div>
     </form>
 </div>
+<style>
+    .relative input {
+        padding-right: 2.5rem; /* Ensure there's space for the icon */
+    }
+
+    .fa-eye {
+        position: absolute;
+        right: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        color: #aaa;
+    }
+
+    .fa-eye:hover {
+        color: #000;
+    }
+</style>
+<script>
+    const togglePassword = document.getElementById('togglePassword');
+    const password = document.getElementById('password');
+    togglePassword.addEventListener('click', function () {
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        this.classList.toggle('fa-eye-slash');
+    });
+
+    const toggleVerifyPassword = document.getElementById('toggleVerifyPassword');
+    const verifyPassword = document.getElementById('verify_password');
+    toggleVerifyPassword.addEventListener('click', function () {
+        const type = verifyPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+        verifyPassword.setAttribute('type', type);
+        this.classList.toggle('fa-eye-slash');
+    });
+</script>
 </x-layout>

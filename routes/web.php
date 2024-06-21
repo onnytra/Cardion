@@ -50,6 +50,10 @@ Route::get('/olimpiade', function () {
     return view('olimpiade', ['title' => 'Science & Primary Medical Olimpiad - Cardion UIN Malang', 'slug' => 'olympiade']);
 });
 
+Route::get('/public-poster', function () {
+    return view('public-poster', ['title' => 'Science & Primary Medical Olimpiad - Cardion UIN Malang', 'slug' => 'Public Poster']);
+});
+
 Route::get('/olimpiade/cetak-kartu', function () {
     return view('olimpiade/cetak-kartu', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'cetak-kartu']);
 });
@@ -122,6 +126,7 @@ Route::group(['as' => 'poster.', 'prefix' => '/poster', 'event' => 'poster'], fu
     Route::get('/pengumpulan-karya', [PengumpulanController::class, 'index'])->name('karya');
     Route::get('/pengumpulan-karya/add/{pengumpulan_karyas}', [PengumpulanController::class, 'create'])->name('add-karya');
     Route::post('/pengumpulan-karya/store', [PengumpulanController::class, 'store'])->name('store-karya');
+    Route::get('/pengumpulan-karya/show/{pengumpulan_karyas}', [PengumpulanController::class, 'show'])->name('view-karya');
     // Route::get('/pengumpulan-karya/edit', [PengumpulanController::class, 'edit'])->name('edit-karya');
     // Route::put('/pengumpulan-karya/update', [PengumpulanController::class, 'update'])->name('update-karya');
 
@@ -143,9 +148,6 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/olimpiade', 'event' => 'olimpi
     Route::get('/resetpassword/{token}', [AuthPesertaController::class, 'reset_password_page'])->name('resetpassword.page');
     Route::put('/resetpassword', [AuthPesertaController::class, 'reset_password_process'])->name('resetpassword.process');
 
-    Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman');
-    Route::get('/pengumuman/detail', [PengumumanController::class, 'detail'])->name('detail-pengumuman');
-
     Route::get('/ujian', [UjianController::class, 'index'])->name('ujian');
     Route::get('/ujian/detail/{ujians}', [UjianController::class, 'detail'])->name('detail-ujian');
     Route::get('/ujian/detail/start/{ujians}/{nosoal}', [UjianController::class, 'detail_start'])->name('start-ujian');
@@ -165,6 +167,10 @@ Route::group(['as' => 'user.', 'prefix' => '/user', 'event' => 'olimpiade'], fun
         Route::get('pembayaran/edit', [PembayaranController::class, 'edit'])->name('edit-pembayaran');
         Route::post('pembayaran/update', [PembayaranController::class, 'update'])->name('update-pembayaran');
         Route::get('pembayaran/konfirmasi', [PembayaranController::class, 'konfirmasi_pembayaran_user'])->name('konfirmasi-pembayaran');
+        // Pengumuman
+        
+        Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman');
+        Route::get('/pengumuman/detail', [PengumumanController::class, 'detail'])->name('detail-pengumuman');
 });
 
 
@@ -425,6 +431,15 @@ Route::group(['as' => 'poster.', 'prefix' => '/admin/poster', 'event' => 'poster
         Route::put('/update-nilai/{karyas}', [KaryasController::class, 'update_nilai'])->name('update_nilai');
         Route::get('/data/{id}', [KaryasController::class, 'index'])->name('index');
         Route::delete('/delete/{karyas}', [KaryasController::class, 'destroy'])->name('delete');
+    });
+    
+    Route::group(['as' => 'pengumuman.', 'prefix' => '/pengumuman'], function () {
+        Route::get('/data', [PengumumansController::class, 'index'])->name('index');
+        Route::get('/add', [PengumumansController::class, 'create'])->name('create');
+        Route::post('/store', [PengumumansController::class, 'store'])->name('store');
+        Route::get('/edit/{pengumumans}', [PengumumansController::class, 'edit'])->name('edit');
+        Route::put('/update/{pengumumans}', [PengumumansController::class, 'update'])->name('update');
+        Route::delete('/delete/{pengumumans}', [PengumumansController::class, 'destroy'])->name('delete');
     });
 });
 
