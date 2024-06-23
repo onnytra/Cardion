@@ -149,9 +149,11 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/olimpiade', 'event' => 'olimpi
     Route::put('/resetpassword', [AuthPesertaController::class, 'reset_password_process'])->name('resetpassword.process');
 
     Route::get('/ujian', [UjianController::class, 'index'])->name('ujian');
-    Route::get('/ujian/detail/{ujians}', [UjianController::class, 'detail'])->name('detail-ujian');
-    Route::get('/ujian/detail/start/{ujians}/{nosoal}', [UjianController::class, 'detail_start'])->name('start-ujian');
-    Route::get('/ujian/detail/finish/{ujians}', [UjianController::class, 'detail_finish'])->name('finish-ujian');
+    Route::get('/ujian/detail/{ujians}/{sesis}', [UjianController::class, 'detail'])->name('detail-ujian');
+    Route::get('/ujian/detail/start/{ujians}/{sesis}/{soals}', [UjianController::class, 'detail_start'])->name('start-ujian');
+    Route::post('/ujian/simpan_jawaban', [UjianController::class, 'simpan_jawaban'])->name('simpan_jawaban');
+    Route::post('/ujian/hapus_jawaban', [UjianController::class, 'hapus_jawaban'])->name('hapus_jawaban');
+    Route::post('/ujian/finish', [UjianController::class, 'finish_ujian'])->name('finish_ujian');
     Route::get('/ujian/history', [UjianController::class, 'history'])->name('history-ujian');
 });
 // All User Side
