@@ -62,19 +62,22 @@ class UjianController extends Controller
     $ujian = ujians::with('soal')->find($ujians->id_ujian);
     
     if (!$ujian) {
-        abort(404, 'Ujian tidak ditemukan.');
+        toast('Ujian tidak ditemukan.', 'error');
+        return redirect()->back();
     }
     
     $soals = $ujian->soal;
 
     if (!$soals || $soals->isEmpty()) {
-        abort(404, 'Soal tidak ditemukan.');
+        toast('Soal tidak ditemukan.', 'error');
+        return redirect()->back();
     }
 
     $soal = $soals->where('id_soal', $soal_id)->first();
     
     if (!$soal) {
-        abort(404, 'Soal tidak ditemukan.');
+        toast('Soal tidak ditemukan.', 'error');
+        return redirect()->back();
     }
 
     // Cari nomor urutan soal saat ini
@@ -83,7 +86,8 @@ class UjianController extends Controller
     });
 
     if ($current_question_index === false) {
-        abort(404, 'Soal tidak ditemukan dalam ujian ini.');
+        toast('Soal tidak ditemukan dalam ujian ini.', 'error');
+        return redirect()->back();
     }
 
     $current_question_number = $current_question_index + 1;
@@ -163,17 +167,41 @@ class UjianController extends Controller
         return redirect()->route('olimpiade.ujian');
     }
 
-    public function hasil()
+    public function hasil(ujians $ujians)
     {
         $title = 'Hasil Ujian | Cardion UIN Malang';
         $slug = 'ujian';
-        return view('olimpiade.ujian.hasil-ujian', compact('title', 'slug'));
+
+        $user = Auth::guard('peserta')->user();
+        // take soal and user jawaban
+        $soals = soals::where('id_ujian', $ujians->id_ujian)->get();
+        foreach ($soals as $key => $value) {
+            $jawaban_user = jawaban_users::where('id_soal', $value->id_soal)
+            ->where('id_peserta', $user->id_peserta)
+            ->where('id_ujian', $ujians->id_ujian)
+            ->first();
+            $jawaban = $jawaban_user== null ? 'Tidak Ada Jawaban' : $jawaban_user->jawaban->jawaban;
+            $value->jawaban = $jawaban;
+        }
+        return view('olimpiade.ujian.hasil-ujian', compact('title', 'slug', 'soals', 'ujians'));
     }
 
     public function history(){
         $title = 'History Ujian | Cardion UIN Malang';
         $slug = 'ujian';
-        
-        return view('olimpiade.ujian.history-ujian', compact('title', 'slug'));
+
+        $user = Auth::guard('peserta')->user();
+        $today = Carbon::now();
+
+        $assign_test = assign_tests::where('id_peserta', $user->id_peserta)
+        ->where('status_test', 'sudah')
+        ->with('ujian')
+        ->get();
+        if ($assign_test->isEmpty()) {
+            $assign_test = null;
+            toast('Anda Belum Terdaftar Pada Ujian', 'info');
+        }
+
+        return view('olimpiade.ujian.history-ujian', compact('title', 'slug', 'today', 'assign_test'));
     }
 }

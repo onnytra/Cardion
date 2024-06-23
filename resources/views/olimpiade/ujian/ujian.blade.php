@@ -5,7 +5,7 @@
     <div class="card mb-5">
         <div class="card-body">
             <button>
-                <a href="{{route('olimpiade.ujian')}}" class="btn-gray">
+                <a href="{{route('olimpiade.history_ujian')}}" class="btn-gray">
                     History Ujian</a>
             </button>
         </div>

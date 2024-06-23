@@ -32,7 +32,7 @@
             <a href="{{route('user.pembayaran')}}"
                     class="{{ Str::of(url()->current())->contains('pembayaran') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                     aria-current="{{ Str::of(url()->current())->contains('pembayaran') ? 'page' : false }}" >Pembayaran</a>
-            <a href="{{ Auth::guard('peserta')->user()->event == 'olimpiade' ? '/olimpiade/cetak-kartu' : '/public-poster/cetak-kartu' }}"
+            <a href="{{route('user.cetak_kartu')}}"
                 class="{{ Str::of(url()->current())->contains('cetak-kartu') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ Str::of(url()->current())->contains('cetak-kartu') ? 'page' : false }}">Cetak Kartu</a>
             <a href="{{ Str::of(url()->current())->contains('olimpiade') ? '/olimpiade/sertifikat' : '/public-poster/sertifikat' }}"

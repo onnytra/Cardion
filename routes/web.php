@@ -24,6 +24,7 @@ use App\Http\Controllers\mail\MailsController;
 use App\Http\Controllers\MonitoringUjianController;
 use App\Http\Controllers\PengumumansController;
 use App\Http\Controllers\PengumpulanKaryasController;
+use App\Http\Controllers\user\olimpiade\CetakKartuController;
 use App\Http\Controllers\user\olimpiade\MainOlimpiadeController;
 use App\Http\Controllers\user\olimpiade\PembayaranController;
 use App\Http\Controllers\user\olimpiade\PengumpulanController;
@@ -106,6 +107,9 @@ Route::get('/public-poster/pengumpulan-karya/edit', function () {
     return view('publicposter/pengumpulan-karya/edit-pengumpulan-karya', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'edit']);
 });
 
+Route::get('/cetak/temp', function () {
+    return view('olimpiade/cetak_kartu/temp', ['title' => 'Temp', 'slug' => 'temp']);
+});
 Route::get('sendmail', [MailsController::class, 'index']);
 // User Poster Side
 Route::group(['as' => 'poster.', 'prefix' => '/poster', 'event' => 'poster'], function () {
@@ -154,7 +158,8 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/olimpiade', 'event' => 'olimpi
     Route::post('/ujian/simpan_jawaban', [UjianController::class, 'simpan_jawaban'])->name('simpan_jawaban');
     Route::post('/ujian/hapus_jawaban', [UjianController::class, 'hapus_jawaban'])->name('hapus_jawaban');
     Route::post('/ujian/finish', [UjianController::class, 'finish_ujian'])->name('finish_ujian');
-    Route::get('/ujian/history', [UjianController::class, 'history'])->name('history-ujian');
+    Route::get('/ujian/history', [UjianController::class, 'history'])->name('history_ujian');
+    Route::get('/ujian/history/{ujians}', [UjianController::class, 'hasil'])->name('hasil_ujian');
 });
 // All User Side
 Route::group(['as' => 'user.', 'prefix' => '/user', 'event' => 'olimpiade'], function () {
@@ -170,9 +175,13 @@ Route::group(['as' => 'user.', 'prefix' => '/user', 'event' => 'olimpiade'], fun
         Route::post('pembayaran/update', [PembayaranController::class, 'update'])->name('update-pembayaran');
         Route::get('pembayaran/konfirmasi', [PembayaranController::class, 'konfirmasi_pembayaran_user'])->name('konfirmasi-pembayaran');
         // Pengumuman
-        
         Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman');
         Route::get('/pengumuman/detail', [PengumumanController::class, 'detail'])->name('detail-pengumuman');
+        // Cetak Kartu
+        Route::get('/cetak-kartu', [CetakKartuController::class, 'index'])->name('cetak_kartu');
+        Route::get('/cetak-kartu/cetak', [CetakKartuController::class, 'cetak'])->name('cetak_kartu_process');
+        Route::get('/kartu/peserta/{pesertas}', [CetakKartuController::class, 'show_peserta'])->name('kartu_peserta');
+
 });
 
 
