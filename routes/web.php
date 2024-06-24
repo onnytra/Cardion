@@ -113,56 +113,62 @@ Route::get('/cetak/temp', function () {
 Route::get('sendmail', [MailsController::class, 'index']);
 // User Poster Side
 Route::group(['as' => 'poster.', 'prefix' => '/poster', 'event' => 'poster'], function () {
-    Route::get('/login', [AuthPesertaController::class, 'login_page'])->name('login');
-    Route::post('/login', [AuthPesertaController::class, 'login_process'])->name('login.process');
-    Route::get('/logout', [AuthPesertaController::class, 'logout'])->name('logout');
-    Route::get('/register', [AuthPesertaController::class, 'register_page'])->name('register');
-    Route::post('/register', [AuthPesertaController::class, 'register_process'])->name('register.process');
-    
-    Route::get('/account/{pesertas}', [AuthPesertaController::class, 'edit_profile'])->name('account');
-    Route::put('/account/{pesertas}', [AuthPesertaController::class, 'update_profile'])->name('account.update');
+    Route::middleware(['guest:peserta'])->group(function () {
+        Route::get('/login', [AuthPesertaController::class, 'login_page'])->name('login');
+        Route::post('/login', [AuthPesertaController::class, 'login_process'])->name('login.process');
+        Route::get('/register', [AuthPesertaController::class, 'register_page'])->name('register');
+        Route::post('/register', [AuthPesertaController::class, 'register_process'])->name('register.process');
 
-    Route::get('forgotpassword', [AuthPesertaController::class, 'forgot_password'])->name('forgotpassword');
-    Route::post('forgotpassword', [MailsController::class, 'forgot_password'])->name('forgotpassword.mail');
-    Route::get('/resetpassword/{token}', [AuthPesertaController::class, 'reset_password_page'])->name('resetpassword.page');
-    Route::put('/resetpassword', [AuthPesertaController::class, 'reset_password_process'])->name('resetpassword.process');
+        Route::get('forgotpassword', [AuthPesertaController::class, 'forgot_password'])->name('forgotpassword');
+        Route::post('forgotpassword', [MailsController::class, 'forgot_password'])->name('forgotpassword.mail');
+        Route::get('/resetpassword/{token}', [AuthPesertaController::class, 'reset_password_page'])->name('resetpassword.page');
+        Route::put('/resetpassword', [AuthPesertaController::class, 'reset_password_process'])->name('resetpassword.process');
+    });
+    Route::middleware(['peserta'])->group(function () {
+        Route::get('/logout', [AuthPesertaController::class, 'logout'])->name('logout');
+        Route::get('/account/{pesertas}', [AuthPesertaController::class, 'edit_profile'])->name('account');
+        Route::put('/account/{pesertas}', [AuthPesertaController::class, 'update_profile'])->name('account.update');
 
-    Route::get('/pengumpulan-karya', [PengumpulanController::class, 'index'])->name('karya');
-    Route::get('/pengumpulan-karya/add/{pengumpulan_karyas}', [PengumpulanController::class, 'create'])->name('add-karya');
-    Route::post('/pengumpulan-karya/store', [PengumpulanController::class, 'store'])->name('store-karya');
-    Route::get('/pengumpulan-karya/show/{pengumpulan_karyas}', [PengumpulanController::class, 'show'])->name('view-karya');
-    // Route::get('/pengumpulan-karya/edit', [PengumpulanController::class, 'edit'])->name('edit-karya');
-    // Route::put('/pengumpulan-karya/update', [PengumpulanController::class, 'update'])->name('update-karya');
-
+        Route::get('/pengumpulan-karya', [PengumpulanController::class, 'index'])->name('karya');
+        Route::get('/pengumpulan-karya/add/{pengumpulan_karyas}', [PengumpulanController::class, 'create'])->name('add-karya');
+        Route::post('/pengumpulan-karya/store', [PengumpulanController::class, 'store'])->name('store-karya');
+        Route::get('/pengumpulan-karya/show/{pengumpulan_karyas}', [PengumpulanController::class, 'show'])->name('view-karya');
+        // Route::get('/pengumpulan-karya/edit', [PengumpulanController::class, 'edit'])->name('edit-karya');
+        // Route::put('/pengumpulan-karya/update', [PengumpulanController::class, 'update'])->name('update-karya');
+    });
 });
 
 //User Olimpiade Side
 Route::group(['as' => 'olimpiade.', 'prefix' => '/olimpiade', 'event' => 'olimpiade'], function () {
-    Route::get('/login', [AuthPesertaController::class, 'login_page'])->name('login');
-    Route::post('/login', [AuthPesertaController::class, 'login_process'])->name('login.process');
-    Route::get('/logout', [AuthPesertaController::class, 'logout'])->name('logout');
-    Route::get('/register', [AuthPesertaController::class, 'register_page'])->name('register');
-    Route::post('/register', [AuthPesertaController::class, 'register_process'])->name('register.process');
 
-    Route::get('/account/{pesertas}', [AuthPesertaController::class, 'edit_profile'])->name('account');
-    Route::put('/account/{pesertas}', [AuthPesertaController::class, 'update_profile'])->name('account.update');
+    Route::middleware(['guest:peserta'])->group(function () {
+        Route::get('/login', [AuthPesertaController::class, 'login_page'])->name('login');
+        Route::post('/login', [AuthPesertaController::class, 'login_process'])->name('login.process');
+        Route::get('/register', [AuthPesertaController::class, 'register_page'])->name('register');
+        Route::post('/register', [AuthPesertaController::class, 'register_process'])->name('register.process');
+        Route::get('forgotpassword', [AuthPesertaController::class, 'forgot_password'])->name('forgotpassword');
+        Route::post('forgotpassword', [MailsController::class, 'forgot_password'])->name('forgotpassword.mail');
+        Route::get('/resetpassword/{token}', [AuthPesertaController::class, 'reset_password_page'])->name('resetpassword.page');
+        Route::put('/resetpassword', [AuthPesertaController::class, 'reset_password_process'])->name('resetpassword.process');
+    });
 
-    Route::get('forgotpassword', [AuthPesertaController::class, 'forgot_password'])->name('forgotpassword');
-    Route::post('forgotpassword', [MailsController::class, 'forgot_password'])->name('forgotpassword.mail');
-    Route::get('/resetpassword/{token}', [AuthPesertaController::class, 'reset_password_page'])->name('resetpassword.page');
-    Route::put('/resetpassword', [AuthPesertaController::class, 'reset_password_process'])->name('resetpassword.process');
-
-    Route::get('/ujian', [UjianController::class, 'index'])->name('ujian');
-    Route::get('/ujian/detail/{ujians}/{sesis}', [UjianController::class, 'detail'])->name('detail-ujian');
-    Route::get('/ujian/detail/start/{ujians}/{sesis}/{soals}', [UjianController::class, 'detail_start'])->name('start-ujian');
-    Route::post('/ujian/simpan_jawaban', [UjianController::class, 'simpan_jawaban'])->name('simpan_jawaban');
-    Route::post('/ujian/hapus_jawaban', [UjianController::class, 'hapus_jawaban'])->name('hapus_jawaban');
-    Route::post('/ujian/finish', [UjianController::class, 'finish_ujian'])->name('finish_ujian');
-    Route::get('/ujian/history', [UjianController::class, 'history'])->name('history_ujian');
-    Route::get('/ujian/history/{ujians}', [UjianController::class, 'hasil'])->name('hasil_ujian');
+    Route::middleware(['peserta'])->group(function () {
+        Route::get('/logout', [AuthPesertaController::class, 'logout'])->name('logout');
+        Route::get('/account/{pesertas}', [AuthPesertaController::class, 'edit_profile'])->name('account');
+        Route::put('/account/{pesertas}', [AuthPesertaController::class, 'update_profile'])->name('account.update');
+        Route::get('/ujian', [UjianController::class, 'index'])->name('ujian');
+        Route::get('/ujian/detail/{ujians}/{sesis}', [UjianController::class, 'detail'])->name('detail-ujian');
+        Route::get('/ujian/detail/start/{ujians}/{sesis}/{soals}', [UjianController::class, 'detail_start'])->name('start-ujian');
+        Route::post('/ujian/simpan_jawaban', [UjianController::class, 'simpan_jawaban'])->name('simpan_jawaban');
+        Route::post('/ujian/hapus_jawaban', [UjianController::class, 'hapus_jawaban'])->name('hapus_jawaban');
+        Route::post('/ujian/finish', [UjianController::class, 'finish_ujian'])->name('finish_ujian');
+        Route::get('/ujian/history', [UjianController::class, 'history'])->name('history_ujian');
+        Route::get('/ujian/history/{ujians}', [UjianController::class, 'hasil'])->name('hasil_ujian');
+    });
 });
 // All User Side
 Route::group(['as' => 'user.', 'prefix' => '/user', 'event' => 'olimpiade'], function () {
+    Route::middleware(['peserta'])->group(function () {
         Route::get('/dashboard', [MainOlimpiadeController::class, 'index'])->name('dashboard');
         // Registrasi
         Route::get('/registrasi', [RegistrasiController::class, 'index'])->name('registrasi');
@@ -181,7 +187,7 @@ Route::group(['as' => 'user.', 'prefix' => '/user', 'event' => 'olimpiade'], fun
         Route::get('/cetak-kartu', [CetakKartuController::class, 'index'])->name('cetak_kartu');
         Route::get('/cetak-kartu/cetak', [CetakKartuController::class, 'cetak'])->name('cetak_kartu_process');
         Route::get('/kartu/peserta/{pesertas}', [CetakKartuController::class, 'show_peserta'])->name('kartu_peserta');
-
+    });
 });
 
 
@@ -197,11 +203,13 @@ Route::get('/admin/main/settings', function () {
 //Auth
 Route::group(['as' => 'auth.', 'prefix' => '/auth'], function () {
     Route::group(['as' => 'admin.', 'prefix' => '/admin'], function () {
-        Route::get('/login', [AuthController::class, 'admin_login_page'])->name('login');
-        Route::post('/login', [AuthController::class, 'admin_login_process'])->name('login.process');
-        Route::get('/logout', [AuthController::class, 'admin_logout'])->name('logout');
+        Route::middleware(['guest:web'])->group(function () {
+            Route::get('/login', [AuthController::class, 'admin_login_page'])->name('login');
+            Route::post('/login', [AuthController::class, 'admin_login_process'])->name('login.process');
+        });
         Route::get('/edit-profile/{users}', [AuthController::class, 'edit_profile'])->name('edit-profile');
         Route::put('/update-profile/{users}', [AuthController::class, 'update_profile'])->name('update-profile');
+        Route::get('/logout', [AuthController::class, 'admin_logout'])->name('logout');
     });
 });
 
@@ -436,14 +444,14 @@ Route::group(['as' => 'poster.', 'prefix' => '/admin/poster', 'event' => 'poster
         Route::post('/store/{id}', [AssignTestsController::class, 'store'])->name('store');
         Route::delete('/delete/{assign_tests}', [AssignTestsController::class, 'destroy'])->name('delete');
     });
-  
+
     Route::group(['as' => 'penilaian.', 'prefix' => '/penilaian'], function () {
         Route::get('/pengumpulan-karya', [KaryasController::class, 'show_pengumpulan'])->name('pengumpulan_karya');
         Route::put('/update-nilai/{karyas}', [KaryasController::class, 'update_nilai'])->name('update_nilai');
         Route::get('/data/{id}', [KaryasController::class, 'index'])->name('index');
         Route::delete('/delete/{karyas}', [KaryasController::class, 'destroy'])->name('delete');
     });
-    
+
     Route::group(['as' => 'pengumuman.', 'prefix' => '/pengumuman'], function () {
         Route::get('/data', [PengumumansController::class, 'index'])->name('index');
         Route::get('/add', [PengumumansController::class, 'create'])->name('create');
