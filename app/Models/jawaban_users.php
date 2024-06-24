@@ -10,6 +10,8 @@ class jawaban_users extends Model
     use HasFactory;
 
     protected $table = 'jawaban_users';
+    protected $guarded = [];
+    protected $primaryKey = 'id_jawaban_user';
 
     public function peserta()
     {

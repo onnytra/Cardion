@@ -32,28 +32,28 @@
             <a href="{{route('user.pembayaran')}}"
                     class="{{ Str::of(url()->current())->contains('pembayaran') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                     aria-current="{{ Str::of(url()->current())->contains('pembayaran') ? 'page' : false }}" >Pembayaran</a>
-            <a href="{{ Str::of(url()->current())->contains('olimpiade') ? '/olimpiade/cetak-kartu' : '/public-poster/cetak-kartu' }}"
+            <a href="{{route('user.cetak_kartu')}}"
                 class="{{ Str::of(url()->current())->contains('cetak-kartu') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ Str::of(url()->current())->contains('cetak-kartu') ? 'page' : false }}">Cetak Kartu</a>
             <a href="{{ Str::of(url()->current())->contains('olimpiade') ? '/olimpiade/sertifikat' : '/public-poster/sertifikat' }}"
                 class="{{ Str::of(url()->current())->contains('sertifikat') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
-                aria-current="{{ Str::of(url()->current())->contains('sertifikat') ? 'page' : false }}">Sertifikat</a>
+                aria-current="{{ Auth::guard('peserta')->user()->event == 'olimpiade' ? 'page' : false }}">Sertifikat</a>
             @if(Auth::guard('peserta')->user()->event == 'olimpiade')
             <a href="{{route('olimpiade.ujian')}}"
                 class="{{ Str::of(url()->current())->contains('ujian') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ Str::of(url()->current())->contains('ujian') ? 'page' : false }}">Ujian</a>
-            <a href="{{route('olimpiade.pengumuman')}}"
-                class="{{ Str::of(url()->current())->contains('pengumuman') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
-                aria-current="{{ Str::of(url()->current())->contains('pengumuman') ? 'page' : false }}">Pengumuman</a>
-            <a href="https://instagram.com/cardion.2024?igshid=MWZjMTM2ODFkZg==" target="_blank"
-                class="text-gray-600 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Berita
-                Terbaru</a>
-            @elseif(Auth::guard('peserta')->user()->event == 'poster')
+                @elseif(Auth::guard('peserta')->user()->event == 'poster')
             <a href="{{route('poster.karya')}}"
                 class="{{ Str::of(url()->current())->contains('pengumpulan-karya') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
                 aria-current="{{ Str::of(url()->current())->contains('pengumpulan-karya') ? 'page' : false }}">Pengumpulan
                 Karya</a>
             @endif
+            <a href="{{route('user.pengumuman')}}"
+                    class="{{ Str::of(url()->current())->contains('pengumuman') ? 'bg-gray-900 text-white' : 'text-gray-600 hover:bg-gray-700 hover:text-white'}} rounded-md px-3 py-2 text-sm font-medium"
+                    aria-current="{{ Str::of(url()->current())->contains('pengumuman') ? 'page' : false }}">Pengumuman</a>
+            <a href="https://www.instagram.com/cardion.2025?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank"
+                class="text-gray-600 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Berita
+                Terbaru</a>
         </div>
         <!-- end left -->
 

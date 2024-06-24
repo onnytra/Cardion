@@ -114,6 +114,7 @@
             </div>
 
             <div class="card-footer">
+                <p class="mt-2">*** Periksa Kembali Data Yang Anda Kumpulkan, Pengumpulan Hanya Bisa Dilakukan Satu Kali***</p>
                 <button type="submit" class="btn-bs-dark" onclick="confirmInput(event)">
                     Simpan
                 </button>

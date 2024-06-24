@@ -25,13 +25,13 @@
         <div class="card self-start lg:order-last">
             <div class="card-header flex flex-row justify-between items-center">
                 <h1 class="h6">Data Ujian</h1>
-                <span class="bg-green-500 text-white text-center text-sm px-2 py-1 rounded">Sedang Berlangsung</span>
+                <span class="bg-blue-500 text-white text-center text-sm px-2 py-1 rounded">Sedang Berlangsung</span>
             </div>
 
             <div class="card-body relative overflow-x-auto sm:rounded-lg">
                 <div class="flex items-center gap-5">
                     <i class="fad fa-calendar mr-2 leading-none"></i>
-                    <p class="text-gray-900 hover:text-blue-500">{{$sesi->mulai}}</p>
+                    <p class="text-gray-900 hover:text-blue-500">{{$sesi->mulai}} - {{$sesi->berakhir}}</p>
                 </div>
                 <div class="flex items-center gap-5">
                     <i class="fad fa-clock mr-2 leading-none"></i>
@@ -44,10 +44,12 @@
             </div>
 
             <div class="card-footer flex justify-end">
-                <button onclick="startUjian($ujians->id_ujian, 0)">
-                    <a class="btn-indigo">
+                {{-- <button onclick="startUjian($ujians->id_ujian, 0)"> --}}
+                <button>
+                    <a href="{{route('olimpiade.start-ujian', ['ujians'=>$ujians->id_ujian, 'sesis'=>$sesi->id_sesi, 'soals'=>1])}}" class="btn">
                         <i class="fad fa-clock mr-2 leading-none"></i>
-                        Ikuti Ujian</a>
+                        Start Ujian
+                    </a>
                 </button>
             </div>
         </div>

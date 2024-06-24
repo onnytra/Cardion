@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\assign_tests;
 use App\Models\pengumpulan_karyas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -57,6 +58,7 @@ class PengumpulanKaryasController extends Controller
         $datetime_mulai = $request->mulai . 'T' . $request->waktu_mulai;
         $datetime_berakhir = $request->berakhir . 'T' . $request->waktu_berakhir;
         $pengumpulan_karyas = new pengumpulan_karyas();
+        $pengumpulan_karyas->id_pengumpulan = rand(1, 10) . date('YmdHis');
         $pengumpulan_karyas->judul = $request->judul;
         $pengumpulan_karyas->deskripsi = $request->deskripsi;
         $pengumpulan_karyas->peraturan = $request->peraturan;
@@ -65,7 +67,7 @@ class PengumpulanKaryasController extends Controller
         $pengumpulan_karyas->berakhir = $datetime_berakhir;
         $pengumpulan_karyas->status_pengumpulan = $request->status_pengumpulan ?? 0;
         $pengumpulan_karyas->save();
-
+        
         toast('Pengumpulan Karya Berhasil Ditambahkan','success');
         return redirect()->route('poster.pengumpulan_karya.index');
     }

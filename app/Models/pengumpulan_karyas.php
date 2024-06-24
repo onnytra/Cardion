@@ -21,4 +21,5 @@ class pengumpulan_karyas extends Model
     {
         return $this->hasMany(assign_tests::class, 'id_pengumpulan', 'id_pengumpulan');
     }
+
 }

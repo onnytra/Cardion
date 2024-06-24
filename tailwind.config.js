@@ -32,15 +32,44 @@ module.exports = {
                 "page-9": "url('../../public/img/page-9.png')",
                 "page-10": "url('../../public/img/page-10.png')",
                 "page-11": "url('../../public/img/page-11.png')",
+                "about-poster": "url('../../public/img/about-poster.png')",
+                "about-olimpiade":
+                    "url('../../public/img/about-olimpiade.png')",
                 "illustration-about":
                     "url('../../public/img/illustration-about.png')",
                 "timeline-1": "url('../../public/img/timeline-1.png')",
                 "timeline-2": "url('../../public/img/timeline-2.png')",
                 "timeline-3": "url('../../public/img/timeline-3.png')",
+                "timeline-1-poster":
+                    "url('../../public/img/timeline-1-poster.png')",
+                "timeline-2-poster":
+                    "url('../../public/img/timeline-2-poster.png')",
+                "timeline-3-poster":
+                    "url('../../public/img/timeline-3-poster.png')",
+                "timeline-1-olimpiade":
+                    "url('../../public/img/timeline-1-olimpiade.png')",
+                "timeline-2-olimpiade":
+                    "url('../../public/img/timeline-2-olimpiade.png')",
+                "timeline-3-olimpiade":
+                    "url('../../public/img/timeline-3-olimpiade.png')",
                 "prize-1": "url('../../public/img/prize-1.png')",
                 "prize-2": "url('../../public/img/prize-2.png')",
                 "prize-3": "url('../../public/img/prize-3.png')",
                 "prize-4": "url('../../public/img/prize-4.png')",
+                "prize-1-poster": "url('../../public/img/prize-1-poster.png')",
+                "prize-2-poster": "url('../../public/img/prize-2-poster.png')",
+                "prize-3-poster": "url('../../public/img/prize-3-poster.png')",
+                "prize-4-poster": "url('../../public/img/prize-4-poster.png')",
+                "prize-1-olimpiade":
+                    "url('../../public/img/prize-1-olimpiade.png')",
+                "prize-2-olimpiade":
+                    "url('../../public/img/prize-2-olimpiade.png')",
+                "prize-3-olimpiade":
+                    "url('../../public/img/prize-3-olimpiade.png')",
+                "prize-4-olimpiade":
+                    "url('../../public/img/prize-4-olimpiade.png')",
+                "prize-5-olimpiade":
+                    "url('../../public/img/prize-5-olimpiade.png')",
             },
             fontFamily: {
                 andalus: ["Andalus", "sans-serif"],

@@ -150,6 +150,11 @@
             <i class="fad fa-feather-alt text-xs mr-2"></i>
             penilaian
         </a>
+        <a href="{{route('poster.pengumuman.index')}}"
+            class="{{ request()->is('admin/poster/pengumuman') | Str::of(url()->current())->contains('poster/pengumuman/')  ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
+            <i class="fad fa-bullhorn text-xs mr-2"></i>
+            pengumuman
+        </a>
         <a href="{{route('poster.assign_test.show_tests')}}"
             class="{{ request()->is('admin/poster/assigntest') | Str::of(url()->current())->contains('poster/assigntest/')   ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-book-reader text-xs mr-2"></i>

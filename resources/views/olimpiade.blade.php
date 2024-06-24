@@ -71,9 +71,9 @@
                                     class="-mx-3 block rounded-lg px-3 py-2 text-base font-andalus leading-7 text-gray-900 hover:bg-red-500 hover:text-white transition ease-in-out">TIMELINE</a>
                                 <a href="#prize"
                                     class="-mx-3 block rounded-lg px-3 py-2 text-base font-andalus leading-7 text-gray-900 hover:bg-red-500 hover:text-white transition ease-in-out">PRIZE</a>
-                                <a href="/olympiad/login"
+                                <a href="{{route('olimpiade.login')}}"
                                     class="-mx-3 block rounded-lg px-3 py-2 text-base font-andalus leading-7 text-gray-900 hover:bg-red-500 hover:text-white transition ease-in-out">LOGIN</a>
-                                <a href="/olympiad/register"
+                                <a href="{{route('olimpiade.register')}}"
                                     class="-mx-3 block text-center text-xl font-andalus rounded-xl px-8 py-3 leading-6 text-gray-900 bg-[#D9D9D9] hover:text-white hover:bg-red-500 transition ease-in-out">REGISTER</a>
                             </div>
                         </div>
@@ -93,8 +93,8 @@
         </div>
 
         <div id="about" class="bg-page-2 bg-center bg-cover xl:pr-40">
-            <div class="min-h-screen px-6 pt-20 lg:px-8 bg-illustration-about bg-cover bg-right">
-                <div class="w-full grid grid-cols-1 lg:grid-cols-2 py-36 pr-24 mx-auto lg:py-32 md:px-48">
+            <div class="min-h-screen px-6 pt-20 lg:px-8 sm:bg-about-poster bg-illustration-about bg-cover bg-right">
+                <div class="w-full grid grid-cols-1 lg:grid-cols-2 py-36 pr-24 mx-auto lg:py-32 md:px-48 sm:hidden">
                     <div></div>
                     <div class="md:text-center pl-0 md:pl-20 lg:pl-0">
                         <h1 class="text-[3rem] font-asian-ninja leading-tight text-gray-900 sm:text-[4.2rem]">
@@ -120,13 +120,11 @@
                     </h1>
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-5">
                         <div class="text-left">
-                            <div class="bg-timeline-1 bg-contain bg-no-repeat p-5">
-                                <h2 class="text-4xl font-harukaze pl-28 mt-2">
-                                    Registration</h2>
+                            <div class="bg-timeline-1-olimpiade w-full bg-contain bg-no-repeat p-10">
                             </div>
                             <div class="text-left pl-20">
                                 <p class="font-abhaya mt-5 text-lg">
-                                    15 May 2024 - 25 January 2025
+                                    15 May 2024 - 20 January 2025
                                 </p>
                                 <p class="font-abhaya text-lg">
                                     * Maximum 3 person in 1 team
@@ -138,25 +136,21 @@
                         </div>
                         <img src="img/footstep.png" alt="Footstep" class="w-full hidden lg:block">
                         <div class="text-left">
-                            <div class="bg-timeline-2 bg-contain bg-no-repeat p-5">
-                                <h2 class="text-4xl font-harukaze pl-28 mt-2">
-                                    Preliminary</h2>
+                            <div class="bg-timeline-2-olimpiade bg-contain bg-no-repeat p-10">
                             </div>
                             <div class="text-left pl-20">
                                 <p class="font-abhaya mt-5 text-lg">
                                     Sunday, 26 January 2025
                                 </p>
                                 <p class="font-abhaya text-lg">
-                                    * Offline at Malang, Surabaya, Kediri, Jember, Jombang, Madura, and Online by
+                                    * Offline at Malang, Surabaya, Kediri, Jember, Jombang, Madura, Semarang and Online by
                                     website
                                 </p>
                             </div>
                         </div>
                         <div class="hidden lg:block"></div>
                         <div class="text-left">
-                            <div class="bg-timeline-3 bg-contain bg-no-repeat p-5">
-                                <h2 class="text-4xl font-harukaze pl-28 mt-2">
-                                    Semifinal and Final</h2>
+                            <div class="bg-timeline-3-olimpiade bg-contain bg-no-repeat p-10">
                             </div>
                             <div class="text-left pl-20">
                                 <p class="font-abhaya mt-5 text-lg">
@@ -236,8 +230,7 @@
                         By participating in this competition, you have the opportunity to win prizes worth millions
                         of rupiah, certificates and trophies.
                     </p>
-                    <div class="relative mt-16 bg-prize-1 h-96 bg-no-repeat bg-center bg-contain">
-                        <p class="absolute bottom-6 inset-x-0 text-3xl font-abhaya text-yellow-300">Rp3.150.000,-</p>
+                    <div class="relative mt-16 bg-prize-1-olimpiade h-96 bg-no-repeat bg-center bg-contain">
                     </div>
                 </div>
             </div>
@@ -247,33 +240,13 @@
             <div class="max-w-6xl py-10 mx-auto lg:py-72">
                 <div class=" text-center">
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-20 md:gap-0">
-                        <div class="relative bg-prize-2 h-96 bg-no-repeat bg-center bg-contain">
-                            <p
-                                class="absolute bottom-6 md:bottom-24 lg:bottom-16 inset-x-0 text-3xl md:text-xl lg:text-2xl font-abhaya text-yellow-300">
-                                Rp2.650.000,-
-                            </p>
+                        <div class="relative bg-prize-2-olimpiade h-96 bg-no-repeat bg-center bg-contain">
                         </div>
-                        <div class="relative bg-prize-3 h-96 bg-no-repeat bg-center bg-contain">
-                            <p
-                                class="absolute bottom-6 md:bottom-24 lg:bottom-16 inset-x-0 text-3xl md:text-xl lg:text-2xl font-abhaya text-yellow-300">
-                                Rp2.150.000,-
-                            </p>
+                        <div class="relative bg-prize-3-olimpiade h-96 bg-no-repeat bg-center bg-contain">
                         </div>
-                        <div class="relative bg-prize-4 h-96 bg-no-repeat bg-center bg-contain">
-                            <p class="absolute top-20 inset-x-0 text-4xl text-white font-harukaze">First <br> Runner-Up
-                            </p>
-                            <p
-                                class="absolute bottom-6 md:bottom-24 lg:bottom-16 inset-x-0 text-3xl md:text-xl lg:text-2xl font-abhaya text-yellow-300">
-                                Rp1.650.000,-
-                            </p>
+                        <div class="relative bg-prize-4-olimpiade h-96 bg-no-repeat bg-center bg-contain">
                         </div>
-                        <div class="relative bg-prize-4 h-96 bg-no-repeat bg-center bg-contain">
-                            <p class="absolute top-20 inset-x-0 text-4xl text-white font-harukaze">Second <br> Runner-Up
-                            </p>
-                            <p
-                                class="absolute bottom-6 md:bottom-24 lg:bottom-16 inset-x-0 text-3xl md:text-xl lg:text-2xl font-abhaya text-yellow-300">
-                                Rp1.150.000,-
-                            </p>
+                        <div class="relative bg-prize-4-olimpiade h-96 bg-no-repeat bg-center bg-contain">
                         </div>
                     </div>
                 </div>
@@ -367,7 +340,7 @@
                                 ID Line
                             </p>
                             <p class="text-xl font-osaka">
-                                Fikriy - 812 3101 4966
+                                Fikriy - Frzy.14
                             </p>
                             <p class="text-xl font-osaka">
                                 Khansa - knsa11
@@ -388,7 +361,7 @@
                         To Win The Competition?
                     </h1>
                     <div class="mt-10">
-                        <a href="/olympiad/register"
+                        <a href="{{route('olimpiade.register')}}"
                             class="rounded-xl font-andalus bg-[#D9D9D9] px-12 py-4 text-xl shadow-sm hover:bg-red-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 focus-visible:text-white transition ease-in-out">
                             REGISTER NOW
                         </a>

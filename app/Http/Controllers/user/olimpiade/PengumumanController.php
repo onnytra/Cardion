@@ -16,13 +16,19 @@ class PengumumanController extends Controller
         $slug = 'pengumuman';
         $user = Auth::guard('peserta')->user();
         $id_gelombang = pembayarans::where('id_peserta', $user->id_peserta)->first();
-        $pengumuman_broadcast = pengumumans::where('tipe_pengumuman', 'broadcast')
+        $pengumuman_broadcast = pengumumans::where('event', $user->event)
+        ->where('tipe_pengumuman', 'broadcast')
         ->where('status_pengumuman', 1)
         ->get();
-        $pengumuman_gelombang = pengumumans::where('tipe_pengumuman', 'gelombang')
-        ->where('id_gelombang', $id_gelombang->id_gelombang)
-        ->where('status_pengumuman', 1)
-        ->get();
+        if($id_gelombang != null){
+            $pengumuman_gelombang = pengumumans::where('event', $user->event)
+            ->where('tipe_pengumuman', 'gelombang')
+            ->where('id_gelombang', $id_gelombang->id_gelombang)
+            ->where('status_pengumuman', 1)
+            ->get();
+        }else{
+            $pengumuman_gelombang = [];
+        }
         return view('olimpiade.pengumuman.pengumuman', compact('title', 'slug', 'pengumuman_broadcast', 'pengumuman_gelombang'));
     }
 

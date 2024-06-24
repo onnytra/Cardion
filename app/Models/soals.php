@@ -21,4 +21,9 @@ class soals extends Model
     {
         return $this->belongsTo(subyeks::class, 'id_subyek', 'id_subyek');
     }
+
+    public function jawaban()
+    {
+        return $this->hasMany(jawabans::class, 'id_soal', 'id_soal');
+    }
 }

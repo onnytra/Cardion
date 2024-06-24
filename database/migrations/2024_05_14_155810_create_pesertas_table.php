@@ -35,6 +35,7 @@ return new class extends Migration
             $table->string('zona_waktu',20)->nullable();
             $table->foreignId('id_cabang')->nullable()->references('id_cabang')->on('cabangs')->onDelete('cascade')->onUpdate('restrict');
             $table->foreignId('id_rayon')->nullable()->references('id_rayon')->on('rayons')->onDelete('cascade')->onUpdate('restrict');
+            $table->rememberToken();
             $table->timestamps();
         });
     }

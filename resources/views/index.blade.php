@@ -106,7 +106,7 @@
                         What is Cardion?
                     </h1>
                     <p
-                        class="text-[1.1rem] leading-8 font-abhaya mt-10 text-gray-900 sm:mt-16 sm:leading-9 sm:text-[1.25rem]">
+                        class="text-[1.1rem] leading-8 font-abhaya mt-10 text-gray-900 sm:mt-20 sm:leading-9 sm:text-[1.25rem]">
                         Cardion (Science and Primary Medical Competition) is the science and primary medical Olympiad
                         and Public poster held by Student Association of Medical Education UIN Maulana Malik Ibrahim
                         Malang. Cardion has been held since 2018.
@@ -288,7 +288,7 @@
                                 ID Line
                             </p>
                             <p class="text-xl font-osaka">
-                                Fikriy - 812 3101 4966
+                                Fikriy - Frzy.14
                             </p>
                             <p class="text-xl font-osaka">
                                 Khansa - knsa11

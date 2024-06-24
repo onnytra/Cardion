@@ -27,26 +27,26 @@ class PengumumansController extends Controller
     {
         $title = 'Pengumuman';
         $slug = 'pengumuman';
-
+        $event = $this->event;
         $delete = 'Delete Pengumuman';
         $delete_message = 'Anda yakin ingin menghapus pengumuman ini ?';
         confirmDelete($delete, $delete_message);
 
         $pengumumans = pengumumans::where('event',$this->event)->get();
-        return view('admin.olimpiade.pengumuman.pengumuman', compact('pengumumans', 'title', 'slug'));
+        return view('admin.olimpiade.pengumuman.pengumuman', compact('pengumumans', 'title', 'slug', 'event'));
     }
 
     public function create()
     {
         $title = 'Tambah Pengumuman';
         $slug = 'add';
-
-        if ($this->event == 'olimpiade') {
+        $event = $this->event;
+        if ($event == 'olimpiade') {
             $gelombangs = gelombang_pembayarans::where('event', 'olimpiade')->get();
-        } elseif ($this->event == 'poster'){
+        } elseif ($event == 'poster'){
             $gelombangs = gelombang_pembayarans::where('event', 'poster')->get();
         }
-        return view('admin.olimpiade.pengumuman.add-pengumuman', compact('title', 'slug', 'gelombangs'));
+        return view('admin.olimpiade.pengumuman.add-pengumuman', compact('title', 'slug', 'gelombangs', 'event'));
     }
 
     public function store(Request $request)
@@ -93,13 +93,13 @@ class PengumumansController extends Controller
     {
         $title = 'Edit Pengumuman';
         $slug = 'edit';
-
-        if ($this->event == 'olimpiade') {
+        $event = $this->event;
+        if ($event == 'olimpiade') {
             $gelombangs = gelombang_pembayarans::where('event', 'olimpiade')->get();
-        } elseif ($this->event == 'poster'){
+        } elseif ($event == 'poster'){
             $gelombangs = gelombang_pembayarans::where('event', 'poster')->get();
         }
-        return view('admin.olimpiade.pengumuman.edit-pengumuman', compact('pengumumans', 'title', 'slug', 'gelombangs'));
+        return view('admin.olimpiade.pengumuman.edit-pengumuman', compact('pengumumans', 'title', 'slug', 'gelombangs', 'event'));
     }
 
     public function update(Request $request, pengumumans $pengumumans)

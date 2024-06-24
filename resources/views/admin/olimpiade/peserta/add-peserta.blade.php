@@ -88,6 +88,21 @@
                         </div>
                         <div class="flex items-center gap-4 mb-5">
                             <div class="w-40">
+                                <label for="tgl" class="block text-sm text-right font-medium text-gray-600">Gelombang Pembayaran*</label>
+                            </div>
+                            <select id="event" name="gelombang_pembayaran"
+                                class="btn-gray w-96 lg:w-full shadow-sm text-sm text-left focus:outline-none focus:shadow-outline"
+                                required>
+                                <option class="font-medium text-sm" value="#">...</option>
+                                @foreach ($gelombangpembayaran as $item)
+                                <option class="font-medium text-sm" value="{{$item->id_gelombang}}"
+                                    {{ old('gelombang_pembayaran') == $item->id_gelombang ? 'selected' : ''}}>
+                                    {{$item->gelombang}} - (Rp.{{$item->harga}})
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="flex items-center gap-4 mb-5">
+                            <div class="w-40">
                                 <label for="nomorsertifikat"
                                     class="block text-sm text-right font-medium text-gray-600">Nomor Sertifikat</label>
                             </div>
@@ -139,30 +154,6 @@
                             <input type="text" name="nama_team" id="nama_team" value="{{ old('nama_team') }}"
                                 class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
                         </div>
-                        {{-- <div class="flex items-center gap-4 mb-5">
-                            <div class="w-40">
-                                <label for="nama_ketua" class="block text-sm text-right font-medium text-gray-600">Nama
-                                    Ketua*</label>
-                            </div>
-                            <input type="text" name="nama_ketua" id="nama_ketua"
-                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
-                        </div> --}}
-                        {{-- <div class="flex items-center gap-4 mb-5">
-                            <div class="w-40">
-                                <label for="notelp_ketua" class="block text-sm text-right font-medium text-gray-600">Nomor
-                                    Telepon/Ponsel Ketua*</label>
-                            </div>
-                            <input type="number" name="notelp_ketua" id="notelp_ketua"
-                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
-                        </div> --}}
-                        {{-- <div class="flex items-center gap-4 mb-5">
-                            <div class="w-40">
-                                <label for="email_ketua" class="block text-sm text-right font-medium text-gray-600">Email
-                                    Ketua*</label>
-                            </div>
-                            <input type="email" name="email_ketua" id="email_ketua"
-                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
-                        </div> --}}
                         <div class="flex items-center gap-4 mb-5">
                             <div class="w-40">
                                 <label for="nama_anggota_1" class="block text-sm text-right font-medium text-gray-600">Nama
@@ -205,21 +196,26 @@
                         </div>
                         <div class="flex items-center gap-4 mb-5">
                             <div class="w-40">
-                                <label for="password" class="block text-sm text-right font-medium text-gray-600">Password
-                                    Baru*</label>
+                                <label for="password" class="block text-sm text-right font-medium text-gray-600">Password Baru*</label>
                             </div>
-                            <input type="password" name="password" id="password"
-                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
+                            <div class="relative w-96 lg:w-full">
+                                <input type="password" name="password" id="password"
+                                    class="p-2 border border-gray w-full shadow-sm text-sm rounded-md pr-10" required>
+                                <i class="fa fa-eye absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer" id="togglePassword"></i>
+                            </div>
                         </div>
-                        <div class="flex items-center gap-4 mb-5">
+                        <div class="flex items-center gap-4">
                             <div class="w-40">
-                                <label for="verify_password"
-                                    class="block text-sm text-right font-medium text-gray-600">Ulangi Password*</label>
+                                <label for="verify_password" class="block text-sm text-right font-medium text-gray-600">Ulangi Password*</label>
                             </div>
-                            <input type="password" name="verify_password" id="verify_password"
-                                class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" required>
+                            <div class="relative w-96 lg:w-full">
+                                <input type="password" name="verify_password" id="verify_password"
+                                    class="p-2 border border-gray w-full shadow-sm text-sm rounded-md pr-10" required>
+                                <i class="fa fa-eye absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer" id="toggleVerifyPassword"></i>
+                            </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
 
@@ -233,4 +229,40 @@
             </div>
         </form>
     </div>
+    <style>
+        .relative input {
+            padding-right: 2.5rem; /* Ensure there's space for the icon */
+        }
+    
+        .fa-eye {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #aaa;
+        }
+    
+        .fa-eye:hover {
+            color: #000;
+        }
+    </style>
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const password = document.getElementById('password');
+        togglePassword.addEventListener('click', function () {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+
+        const toggleVerifyPassword = document.getElementById('toggleVerifyPassword');
+        const verifyPassword = document.getElementById('verify_password');
+        toggleVerifyPassword.addEventListener('click', function () {
+            const type = verifyPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+            verifyPassword.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
+
 </x-layout>

@@ -8,6 +8,7 @@ use App\Models\gelombang_pembayarans;
 use App\Models\pembayarans;
 use App\Models\rayons;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Validator;
 
 class PesertasController extends Controller
@@ -47,8 +48,10 @@ class PesertasController extends Controller
         $slug = 'add';
         $event = $this->event;
         $cabangs = cabangs::where('event', $this->event)->get();
-
-        return view('admin/olimpiade/peserta/add-peserta', compact('cabangs','title', 'slug', 'event'));
+        $gelombangpembayaran =  gelombang_pembayarans::where('event', $this->event)
+        ->where('status_gelombang_pembayaran', 1)
+        ->get();
+        return view('admin/olimpiade/peserta/add-peserta', compact('cabangs','title', 'slug', 'event', 'gelombangpembayaran'));
     }
 
     public function store(Request $request)
@@ -65,6 +68,7 @@ class PesertasController extends Controller
             'password' => 'required | min:8',
             'verify_password' => 'required | same:password',
             'sertifikat' => $request->sertifikat ? 'required | max:100' : '',
+            'gelombang_pembayaran' => 'required | exists:gelombang_pembayarans,id_gelombang',
         ],
         [
             'nama.required' => 'Nama peserta harus diisi',
@@ -91,12 +95,15 @@ class PesertasController extends Controller
             'verify_password.same' => 'Konfirmasi password peserta tidak sama dengan password peserta',
             'sertifikat.required' => 'Sertifikat peserta harus diisi',
             'sertifikat.max' => 'Sertifikat peserta maksimal 100 karakter',
+            'gelombang_pembayaran.required' => 'Gelombang pembayaran peserta harus diisi',
+            'gelombang_pembayaran.exists' => 'Gelombang pembayaran peserta tidak valid',
         ]);
 
         if ($validate->fails()) {
             return redirect()->back()->withErrors($validate->errors())->withInput();
         }
 
+        $event = $this->event;
         $peserta = new pesertas();
         $peserta->id_peserta = date('His').rand(1,999);
         $peserta->nomor = $this->event == 'olimpiade' ? '01-'.$peserta->id_peserta.'-'.rand(1,999) : '02-'.$peserta->id_peserta.'-'.rand(1,999);
@@ -111,7 +118,7 @@ class PesertasController extends Controller
         $peserta->telepon_anggota_pertama = $request->telepon_anggota_pertama;
         $peserta->anggota_kedua = $request->anggota_kedua;
         $peserta->telepon_anggota_kedua = $request->telepon_anggota_kedua;
-        $peserta->event = $this->event;
+        $peserta->event = $event;
         $peserta->password = bcrypt($request->password);
         $peserta->status_pembayaran = 'sudah';
         $peserta->status_data = 'belum';
@@ -120,6 +127,16 @@ class PesertasController extends Controller
         $peserta->id_rayon = $request->id_rayon;
         $peserta->password = bcrypt($request->password);
         $peserta->save();
+        
+        $pembayaran = new pembayarans();
+        $pembayaran->tanggal = now();
+        $pembayaran->metode_pembayaran = 'Tunai';
+        $pembayaran->bukti = null;
+        $pembayaran->id_peserta = $peserta->id_peserta;
+        $pembayaran->id_gelombang = $request->gelombang_pembayaran;
+        $pembayaran->status_pembayaran = 'lunas';
+        $pembayaran->event = $event;
+        $pembayaran->save();
 
         toast('Peserta Berhasil Ditambahkan','success');
         return redirect()->route($this->event.'.peserta.index');
@@ -135,7 +152,7 @@ class PesertasController extends Controller
         $title = 'Edit Peserta';
         $slug = 'edit';
         $event = $this->event;
-        $cabangs = cabangs::where('event', $this->event)->get();
+        $cabangs = cabangs::where('event', $event)->get();
         $rayons = rayons::where('id_cabang', $pesertas->id_cabang)->get();
 
         return view('admin/olimpiade/peserta/edit-peserta', compact('pesertas', 'cabangs','rayons','title', 'slug', 'event'));
@@ -260,11 +277,11 @@ class PesertasController extends Controller
             $rules["email.$index"] = "required|email|max:150|unique:pesertas,email";
             $rules["telepon.$index"] = 'required|max:15';
             $rules["password.$index"] = 'required|min:8';
-            $rules["cabang_lomba.$index"] = 'required|max:100';
-            $rules["anggota_pertama.$index"] = 'required|max:100';
-            $rules["telepon_anggota_pertama.$index"] = 'required|max:15';
-            $rules["anggota_kedua.$index"] = 'required|max:100';
-            $rules["telepon_anggota_kedua.$index"] = 'required|max:15';
+            $rules["cabang_lomba.$index"] = 'required|max:100|not_in:#';
+            $rules["anggota_pertama.$index"] = 'max:100';
+            $rules["telepon_anggota_pertama.$index"] = 'max:15';
+            $rules["anggota_kedua.$index"] = 'max:100';
+            $rules["telepon_anggota_kedua.$index"] = 'max:15';
             $rules["sekolah.$index"] = 'required|max:100';
             $rules["alamat_sekolah.$index"] = 'required|max:100';
             $rules["id_cabang.$index"] = 'required|exists:cabangs,id_cabang';
@@ -285,15 +302,16 @@ class PesertasController extends Controller
             $messages["telepon.$index.max"] = "Telepon '{$data['telepon'][$index]}' maksimal 15 karakter";
             $messages["password.$index.required"] = "Password untuk '{$data['nama_team'][$index]}' harus diisi";
             $messages["password.$index.min"] = "Password untuk '{$data['nama_team'][$index]}' minimal 8 karakter";
-            $messages["cabang_lomba.$index.required"] = "Cabang lomba '{$data['cabang_lomba'][$index]}' harus diisi";
-            $messages["cabang_lomba.$index.max"] = "Cabang lomba '{$data['cabang_lomba'][$index]}' maksimal 100 karakter";
-            $messages["anggota_pertama.$index.required"] = "Anggota pertama '{$data['anggota_pertama'][$index]}' harus diisi";
+            $messages["cabang_lomba.$index.required"] = "Cabang lomba '{$data['nama_team'][$index]}' harus diisi";
+            $messages["cabang_lomba.$index.max"] = "Cabang lomba '{$data['nama_team'][$index]}' maksimal 100 karakter";
+            $messages["cabang_lomba.$index.not_in"] = "Cabang lomba '{$data['nama_team'][$index]}' harus diisi";
+            // $messages["anggota_pertama.$index.required"] = "Anggota pertama '{$data['anggota_pertama'][$index]}' harus diisi";
             $messages["anggota_pertama.$index.max"] = "Anggota pertama '{$data['anggota_pertama'][$index]}' maksimal 100 karakter";
-            $messages["telepon_anggota_pertama.$index.required"] = "Telepon anggota pertama '{$data['telepon_anggota_pertama'][$index]}' harus diisi";
+            // $messages["telepon_anggota_pertama.$index.required"] = "Telepon anggota pertama '{$data['telepon_anggota_pertama'][$index]}' harus diisi";
             $messages["telepon_anggota_pertama.$index.max"] = "Telepon anggota pertama '{$data['telepon_anggota_pertama'][$index]}' maksimal 15 karakter";
-            $messages["anggota_kedua.$index.required"] = "Anggota kedua '{$data['anggota_kedua'][$index]}' harus diisi";
+            // $messages["anggota_kedua.$index.required"] = "Anggota kedua '{$data['anggota_kedua'][$index]}' harus diisi";
             $messages["anggota_kedua.$index.max"] = "Anggota kedua '{$data['anggota_kedua'][$index]}' maksimal 100 karakter";
-            $messages["telepon_anggota_kedua.$index.required"] = "Telepon anggota kedua '{$data['telepon_anggota_kedua'][$index]}' harus diisi";
+            // $messages["telepon_anggota_kedua.$index.required"] = "Telepon anggota kedua '{$data['telepon_anggota_kedua'][$index]}' harus diisi";
             $messages["telepon_anggota_kedua.$index.max"] = "Telepon anggota kedua '{$data['telepon_anggota_kedua'][$index]}' maksimal 15 karakter";
             $messages["sekolah.$index.required"] = "Sekolah '{$data['sekolah'][$index]}' harus diisi";
             $messages["sekolah.$index.max"] = "Sekolah '{$data['sekolah'][$index]}' maksimal 100 karakter";
@@ -346,7 +364,6 @@ class PesertasController extends Controller
             $pembayaran->metode_pembayaran = $data['metode_pembayaran'][$index];
             $pembayaran->bukti = $data['bukti_pembayaran'][$index];
             $pembayaran->id_peserta = $peserta->id_peserta;
-
             $pembayaran->id_gelombang = $data['gelombang_pembayaran'][$index];
             $pembayaran->status_pembayaran = 'lunas';
             $pembayaran->event = $data['cabang_lomba'][$index];

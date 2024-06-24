@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 
+
 class ImportController extends Controller
 {
     public $event;
@@ -38,8 +39,17 @@ class ImportController extends Controller
             return redirect()->back()->withErrors($validate->errors());
         }
 
-        $path = $request->file('file')->getRealPath();
-        $data = Excel::toArray(new PesertasImport, $path);
+        // $path = $request->file('file')->getRealPath();
+        // $data = Excel::toArray(new PesertasImport, $path);
+        $file = $request->file('file');
+        $path = $file->store('temp'); // Simpan file ke direktori sementara
+        $fullPath = storage_path('app/' . $path); // Ambil path lengkap file
+
+        try {
+            $data = Excel::toArray(new PesertasImport, $fullPath);
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['file' => 'Error membaca file: ' . $e->getMessage()]);
+        }
         return redirect()->route($event.'.peserta.check-peserta-excel', compact('data'));
     }
 

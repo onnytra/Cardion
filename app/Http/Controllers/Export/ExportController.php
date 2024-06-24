@@ -36,6 +36,10 @@ class ExportController extends Controller
         $rayon = [];
         foreach ($cabangs as $cabang) {
             $rayon[] = rayons::where('id_cabang', $cabang->id_cabang)->get();
+            if($rayon[0]->isEmpty()){
+                toast('Data Rayon Belum Ada', 'error');
+                return redirect()->back();
+            }
         }
         return Excel::download(new SheetFormatPeserta($rayon), 'peserta-sudah-bayar.xlsx');
     }
@@ -43,6 +47,10 @@ class ExportController extends Controller
     public function pesertalunas_bycabang(cabangs $cabangs)
     {
         $rayon = rayons::where('id_cabang', $cabangs->id_cabang)->get();
+        if ($rayon->isEmpty()) {
+            toast('Data Rayon Belum Ada', 'error');
+            return redirect()->back();
+        }
         return Excel::download(new SheetFormatPeserta([$rayon]), 'peserta-sudah-bayar-'.$cabangs->cabang.'.xlsx');
     }
 
@@ -52,6 +60,10 @@ class ExportController extends Controller
         $rayon = [];
         foreach ($cabangs as $cabang) {
             $rayon[] = rayons::where('id_cabang', $cabang->id_cabang)->get();
+            if($rayon[0]->isEmpty()){
+                toast('Data Rayon Belum Ada', 'error');
+                return redirect()->back();
+            }
         }
         return Excel::download(new SheetFormatPesertaBelumLunas($rayon), 'peserta-belum-bayar.xlsx');
     }

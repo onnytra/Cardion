@@ -305,7 +305,7 @@
                             <td class="px-6 py-4">
                                 <a id="modal-box{{ $data->id_karya }}" onclick="showModal({{ $data->id_karya }})"
                                     class="font-medium text-blue-600 dark:text-blue-500 cursor-pointer hover:underline">Edit</a>
-                                <div id="modal" class="fixed z-10 inset-0 top-20 overflow-y-auto hidden"
+                                <div id="modal{{ $data->id_karya }}" class="fixed z-10 inset-0 top-20 overflow-y-auto hidden"
                                     aria-labelledby="modal-title" role="dialog" aria-modal="true">
                                     <div class="flex items
                                     -end justify-center pt-24 px-4 pb-20 text-center">
