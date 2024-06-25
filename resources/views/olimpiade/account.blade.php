@@ -32,19 +32,23 @@
                     </div>
                     <div class="flex items-center gap-4">
                         <div class="w-40">
-                            <label for="password" class="block text-sm text-right font-medium text-gray-600">Buat
-                                Password Baru</label>
+                            <label for="password" class="block text-sm text-right font-medium text-gray-600">Password Baru</label>
                         </div>
-                        <input type="password" name="password" id="password"
-                            class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md" >
+                        <div class="relative w-96 lg:w-full">
+                            <input type="password" name="password" id="password"
+                                class="p-2 border border-gray w-full shadow-sm text-sm rounded-md pr-10" required>
+                            <i class="fa fa-eye absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer" id="togglePassword"></i>
+                        </div>
                     </div>
                     <div class="flex items-center gap-4">
                         <div class="w-40">
-                            <label for="verify-password"
-                                class="block text-sm text-right font-medium text-gray-600">Ulangi Password</label>
+                            <label for="verify-password" class="block text-sm text-right font-medium text-gray-600">Ulangi Password</label>
                         </div>
-                        <input type="password" name="verify-password" id="verify-password"
-                            class="p-2 border border-gray w-96 lg:w-full shadow-sm text-sm rounded-md">
+                        <div class="relative w-96 lg:w-full">
+                            <input type="password" name="confirm_password" id="verify_password"
+                                class="p-2 border border-gray w-full shadow-sm text-sm rounded-md pr-10" required>
+                            <i class="fa fa-eye absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer" id="toggleVerifyPassword"></i>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -58,5 +62,39 @@
             </div>
         </form>
     </div>
-
+    <style>
+        .relative input {
+            padding-right: 2.5rem; /* Ensure there's space for the icon */
+        }
+    
+        .fa-eye {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #aaa;
+        }
+    
+        .fa-eye:hover {
+            color: #000;
+        }
+    </style>
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const password = document.getElementById('password');
+        togglePassword.addEventListener('click', function () {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+    
+        const toggleVerifyPassword = document.getElementById('toggleVerifyPassword');
+        const verifyPassword = document.getElementById('verify_password');
+        toggleVerifyPassword.addEventListener('click', function () {
+            const type = verifyPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+            verifyPassword.setAttribute('type', type);
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
 </x-layout-u>

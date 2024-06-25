@@ -20,10 +20,15 @@ class RedirectIfAuthenticated
     public function handle(Request $request, Closure $next, ...$guards)
     {
         $guards = empty($guards) ? [null] : $guards;
-
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                toast('Anda sudah login', 'info');
+                if ($guard === 'peserta') {
+                    return redirect()->route('user.dashboard');
+                } elseif ($guard === 'web') {
+                    // return redirect()->route('auth.admin.edit-profile',auth()->user()->id_user);
+                    return redirect()->route('dashboard.index');
+                }
             }
         }
 

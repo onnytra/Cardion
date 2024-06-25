@@ -77,6 +77,7 @@ class RolePermissionSeeder extends Seeder
             [['postertest_view','postertest_create_edit','postertest_delete'],['poster_group'],['Assign Test'], ['View', 'Create/Edit', 'Delete']],
             [['posterpembayaran_view','posterpembayaran_create_edit','posterpembayaran_delete'],['poster_group'],['Pembayaran'], ['View', 'Create/Edit', 'Delete']],
             [['postergelombang_view', 'postergelombang_create_edit', 'postergelombang_delete'],['poster_group'],['Gelombang'], ['View', 'Create/Edit', 'Delete']],
+            [['posterpengumuman_view','posterpengumuman_create_edit','posterpengumuman_delete'],['poster_group'],['Pengumuman'], ['View', 'Create/Edit', 'Delete']],
         ];
         $permission3 = collect($arrayOfTeamPoster)->flatMap(function ($permission) {
             return collect($permission[0])->map(function ($name, $index) use ($permission) {
@@ -93,7 +94,10 @@ class RolePermissionSeeder extends Seeder
         });
         Permission::insert($permission3->toArray());
 
-        $role = Role::create(['name' => 'admin']);
+        $role = Role::create([
+            'name' => 'admin',
+            'status_role' => 1,
+        ]);
         $role->givePermissionTo(Permission::all());
         
         $user = User::where('name', 'Admin')->first();

@@ -73,6 +73,10 @@ class UserTypesController extends Controller
 
     public function edit(Role $role)
     {
+        if ($role->id == 1) {
+            toast()->error('User Type Admin Tidak Dapat Diedit');
+            return redirect()->route('dashboard.user-type.index');
+        }
         $title = 'Edit User Type';
         $slug = 'edit';
 
@@ -86,8 +90,13 @@ class UserTypesController extends Controller
 
     public function update(Request $request, Role $role)
     {
+        if ($role->id == 1) {
+            toast()->error('User Type Admin Tidak Dapat Diedit');
+            return redirect()->route('dashboard.user-type.index');
+        }
+
         $validate = Validator::make($request->all(), [
-            'nama' => 'required | max:100',
+            'nama' => 'required|max:100',
         ], [
             'nama.required' => 'Name harus diisi',
             'nama.max' => 'Name maksimal 100 karakter',
@@ -99,30 +108,45 @@ class UserTypesController extends Controller
 
         $role->update(['name' => $request->nama, 'status_role' => $request->status_role ? 1 : 0]);
 
-        // Check if 'permission' exists in the request
-        if ($request->has('permission')) {
-            // Iterate through each permission
-            foreach ($request->permission as $permissionId => $permissionName) {
-                // Check if permission ID is numeric (to avoid processing unexpected keys)
-                if (is_numeric($permissionId)) {
-                    // Find the permission by ID
-                    $permission = Permission::find($permissionId);
+        // Ambil semua permission ID yang ada dalam request
+        $newPermissions = $request->has('permission') ? array_keys($request->permission) : [];
 
-                    // If permission exists, assign it to the role
-                    if ($permission) {
-                        $role->givePermissionTo($permission);
-                    }
-                }
+        // Ambil semua permission ID yang saat ini ada pada role
+        $currentPermissions = $role->permissions->pluck('id')->toArray();
+
+        // Permissions yang perlu ditambahkan
+        $permissionsToAdd = array_diff($newPermissions, $currentPermissions);
+
+        // Permissions yang perlu dihapus
+        $permissionsToRemove = array_diff($currentPermissions, $newPermissions);
+
+        // Tambahkan permissions baru
+        foreach ($permissionsToAdd as $permissionId) {
+            $permission = Permission::find($permissionId);
+            if ($permission) {
+                $role->givePermissionTo($permission);
             }
-        }else{
-            $role->permissions()->detach();
         }
+
+        // Hapus permissions yang tidak lagi ada dalam request
+        foreach ($permissionsToRemove as $permissionId) {
+            $permission = Permission::find($permissionId);
+            if ($permission) {
+                $role->revokePermissionTo($permission);
+            }
+        }
+
         toast()->success('User Type berhasil diubah');
         return redirect()->route('dashboard.user-type.index');
     }
 
+
     public function destroy(Role $role)
     {
+        if ($role->id == 1) {
+            toast()->error('User Type Admin Tidak Dapat Dihapus');
+            return redirect()->route('dashboard.user-type.index');
+        }
         $role->delete();
         toast()->success('User Type berhasil dihapus');
         return redirect()->route('dashboard.user-type.index');
