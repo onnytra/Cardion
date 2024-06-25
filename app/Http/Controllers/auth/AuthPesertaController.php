@@ -160,7 +160,7 @@ class AuthPesertaController extends Controller
         $pesertas->save();
 
         toast()->success('Profil berhasil diubah');
-        return redirect()->route('olimpiade.dashboard');
+        return redirect()->route('user.dashboard');
     }
 
     public function forgot_password(){
