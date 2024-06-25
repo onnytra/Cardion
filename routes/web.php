@@ -207,15 +207,21 @@ Route::group(['as' => 'auth.', 'prefix' => '/auth'], function () {
             Route::get('/login', [AuthController::class, 'admin_login_page'])->name('login');
             Route::post('/login', [AuthController::class, 'admin_login_process'])->name('login.process');
         });
-        Route::get('/edit-profile/{users}', [AuthController::class, 'edit_profile'])->name('edit-profile');
-        Route::put('/update-profile/{users}', [AuthController::class, 'update_profile'])->name('update-profile');
-        Route::get('/logout', [AuthController::class, 'admin_logout'])->name('logout');
+        
+        Route::middleware(['admin'])->group(function () {
+            Route::get('/edit-profile/{users}', [AuthController::class, 'edit_profile'])->name('edit-profile');
+            Route::put('/update-profile/{users}', [AuthController::class, 'update_profile'])->name('update-profile');
+            Route::get('/logout', [AuthController::class, 'admin_logout'])->name('logout');
+        });
     });
 });
 
 //Main Dashboard
 Route::group(['as' => 'dashboard.', 'prefix' => '/admin/main'], function () {
-    Route::get('/dashboard', [MainDashboardController::class, 'index'])->name('index');
+
+    Route::middleware(['admin'])->group(function () {
+        Route::get('/dashboard', [MainDashboardController::class, 'index'])->name('index');
+    });
 
     Route::group(['as' => 'user.', 'prefix' => '/user'], function () {
         Route::get('/data', [UserController::class, 'index'])->name('index')->middleware('permission:mainuser_view');
@@ -238,8 +244,10 @@ Route::group(['as' => 'dashboard.', 'prefix' => '/admin/main'], function () {
 
 // Olimpiade Dashboard
 Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' => 'olimpiade'], function () {
-    Route::get('/olimpiade', [MainDashboardController::class, 'dashboard_olimpiade'])->name('dashboard');
-
+    
+    Route::middleware(['admin'])->group(function () {
+        Route::get('/olimpiade', [MainDashboardController::class, 'dashboard_olimpiade'])->name('dashboard');
+    });
     Route::group(['as' => 'exportexcel.', 'prefix' => '/excel'], function () {
         Route::get('/peserta-lunas', [ExportController::class, 'pesertalunas'])->name('peserta-lunas')->middleware('permission:olimpeserta_view');
         Route::get('/peserta-lunas/{cabangs}', [ExportController::class, 'pesertalunas_bycabang'])->name('peserta-lunas-cabang')->middleware('permission:olimpeserta_view');
@@ -364,101 +372,102 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' => '
 
 // Poster Dashboard
 Route::group(['as' => 'poster.', 'prefix' => '/admin/poster', 'event' => 'poster'], function () {
-    Route::get('/poster', [MainDashboardController::class, 'dashboard_poster'])->name('dashboard');
-
+    
+    Route::middleware(['admin'])->group(function () {
+        Route::get('/poster', [MainDashboardController::class, 'dashboard_poster'])->name('dashboard');
+    });
     Route::group(['as' => 'exportexcel.', 'prefix' => '/excel'], function () {
-        Route::get('/peserta-lunas', [ExportController::class, 'pesertalunas'])->name('peserta-lunas');
-        Route::get('/peserta-lunas/{cabangs}', [ExportController::class, 'pesertalunas_bycabang'])->name('peserta-lunas-cabang');
-        Route::get('/peserta-belum-lunas', [ExportController::class, 'pesertabelumlunas'])->name('peserta-belum-lunas');
-        Route::get('/ujian-peserta/{ujians}', [ExportController::class, 'ujianpeserta'])->name('ujian-peserta');
+        Route::get('/peserta-lunas', [ExportController::class, 'pesertalunas'])->name('peserta-lunas')->middleware('permission:posterpeserta_view');
+        Route::get('/peserta-lunas/{cabangs}', [ExportController::class, 'pesertalunas_bycabang'])->name('peserta-lunas-cabang')->middleware('permission:posterpeserta_view');
+        Route::get('/peserta-belum-lunas', [ExportController::class, 'pesertabelumlunas'])->name('peserta-belum-lunas')->middleware('permission:posterpeserta_view');
     });
 
     Route::group(['as' => 'importexcel.', 'prefix' => '/excel'], function () {
-        Route::post('/import-peserta', [ImportController::class, 'importpeserta'])->name('import-peserta');
-        Route::get('/format-excel', [ImportController::class, 'formatexcel'])->name('format-excel');
+        Route::post('/import-peserta', [ImportController::class, 'importpeserta'])->name('import-peserta')->middleware('permission:posterpeserta_create_edit');
+        Route::get('/format-excel', [ImportController::class, 'formatexcel'])->name('format-excel')->middleware('permission:posterpeserta_create_edit');
     });
 
     Route::group(['as' => 'cabang.', 'prefix' => '/cabang'], function () {
-        Route::get('/data', [CabangsController::class, 'index'])->name('index');
-        Route::get('/add', [CabangsController::class, 'create'])->name('create');
-        Route::post('/store', [CabangsController::class, 'store'])->name('store');
-        Route::get('/edit/{cabangs}', [CabangsController::class, 'edit'])->name('edit');
-        Route::put('/update/{cabangs}', [CabangsController::class, 'update'])->name('update');
-        Route::delete('/delete/{cabangs}', [CabangsController::class, 'destroy'])->name('delete');
+        Route::get('/data', [CabangsController::class, 'index'])->name('index')->middleware('permission:postercabang_view');
+        Route::get('/add', [CabangsController::class, 'create'])->name('create')->middleware('permission:postercabang_create_edit');
+        Route::post('/store', [CabangsController::class, 'store'])->name('store')->middleware('permission:postercabang_create_edit');
+        Route::get('/edit/{cabangs}', [CabangsController::class, 'edit'])->name('edit')->middleware('permission:postercabang_create_edit');
+        Route::put('/update/{cabangs}', [CabangsController::class, 'update'])->name('update')->middleware('permission:postercabang_create_edit');
+        Route::delete('/delete/{cabangs}', [CabangsController::class, 'destroy'])->name('delete')->middleware('permission:postercabang_delete');
     });
 
     Route::group(['as' => 'rayon.', 'prefix' => '/rayon'], function () {
-        Route::get('/data/{cabangs}', [RayonsController::class, 'index'])->name('index');
-        Route::get('/add/{cabangs}', [RayonsController::class, 'create'])->name('create');
-        Route::post('/store/{cabangs}', [RayonsController::class, 'store'])->name('store');
-        Route::get('/edit/{rayons}', [RayonsController::class, 'edit'])->name('edit');
-        Route::put('/update/{rayons}', [RayonsController::class, 'update'])->name('update');
-        Route::delete('/delete/{rayons}', [RayonsController::class, 'destroy'])->name('delete');
+        Route::get('/data/{cabangs}', [RayonsController::class, 'index'])->name('index')->middleware('permission:posterrayon_view');
+        Route::get('/add/{cabangs}', [RayonsController::class, 'create'])->name('create')->middleware('permission:posterrayon_create_edit');
+        Route::post('/store/{cabangs}', [RayonsController::class, 'store'])->name('store')->middleware('permission:posterrayon_create_edit');
+        Route::get('/edit/{rayons}', [RayonsController::class, 'edit'])->name('edit')->middleware('permission:posterrayon_create_edit');
+        Route::put('/update/{rayons}', [RayonsController::class, 'update'])->name('update')->middleware('permission:posterrayon_create_edit');
+        Route::delete('/delete/{rayons}', [RayonsController::class, 'destroy'])->name('delete')->middleware('permission:posterrayon_delete');
     });
 
     Route::group(['as' => 'peserta.', 'prefix' => '/peserta'], function () {
-        Route::get('/data', [PesertasController::class, 'index'])->name('index');
-        Route::get('/add', [PesertasController::class, 'create'])->name('create');
-        Route::post('/store', [PesertasController::class, 'store'])->name('store');
-        Route::get('/edit/{pesertas}', [PesertasController::class, 'edit'])->name('edit');
-        Route::put('/update/{pesertas}', [PesertasController::class, 'update'])->name('update');
-        Route::delete('/delete/{pesertas}', [PesertasController::class, 'destroy'])->name('delete');
+        Route::get('/data', [PesertasController::class, 'index'])->name('index')->middleware('permission:posterpeserta_view');
+        Route::get('/add', [PesertasController::class, 'create'])->name('create')->middleware('permission:posterpeserta_create_edit');
+        Route::post('/store', [PesertasController::class, 'store'])->name('store')->middleware('permission:posterpeserta_create_edit');
+        Route::get('/edit/{pesertas}', [PesertasController::class, 'edit'])->name('edit')->middleware('permission:posterpeserta_create_edit');
+        Route::put('/update/{pesertas}', [PesertasController::class, 'update'])->name('update')->middleware('permission:posterpeserta_create_edit');
+        Route::delete('/delete/{pesertas}', [PesertasController::class, 'destroy'])->name('delete')->middleware('permission:posterpeserta_delete');
 
-        Route::get('/excel', [PesertasController::class, 'tambah_peserta_excel'])->name('create-excel');
-        Route::get('/excel/check', [PesertasController::class, 'check_peserta_excel'])->name('check-peserta-excel');
-        Route::post('/excel/store', [PesertasController::class, 'store_peserta_excel'])->name('store-excel');
+        Route::get('/excel', [PesertasController::class, 'tambah_peserta_excel'])->name('create-excel')->middleware('permission:posterpeserta_create_edit');
+        Route::get('/excel/check', [PesertasController::class, 'check_peserta_excel'])->name('check-peserta-excel')->middleware('permission:posterpeserta_create_edit');
+        Route::post('/excel/store', [PesertasController::class, 'store_peserta_excel'])->name('store-excel')->middleware('permission:posterpeserta_create_edit');
     });
 
     Route::group(['as' => 'pengumpulan_karya.', 'prefix' => '/pengumpulan-karya'], function () {
-        Route::get('/data', [PengumpulanKaryasController::class, 'index'])->name('index');
-        Route::get('/add', [PengumpulanKaryasController::class, 'create'])->name('create');
-        Route::post('/store', [PengumpulanKaryasController::class, 'store'])->name('store');
-        Route::get('/edit/{pengumpulan_karyas}', [PengumpulanKaryasController::class, 'edit'])->name('edit');
-        Route::put('/update/{pengumpulan_karyas}', [PengumpulanKaryasController::class, 'update'])->name('update');
-        Route::delete('/delete/{pengumpulan_karyas}', [PengumpulanKaryasController::class, 'destroy'])->name('delete');
+        Route::get('/data', [PengumpulanKaryasController::class, 'index'])->name('index')->middleware('permission:posterpengumpulan_view');
+        Route::get('/add', [PengumpulanKaryasController::class, 'create'])->name('create')->middleware('permission:posterpengumpulan_create_edit');
+        Route::post('/store', [PengumpulanKaryasController::class, 'store'])->name('store')->middleware('permission:posterpengumpulan_create_edit');
+        Route::get('/edit/{pengumpulan_karyas}', [PengumpulanKaryasController::class, 'edit'])->name('edit')->middleware('permission:posterpengumpulan_create_edit');
+        Route::put('/update/{pengumpulan_karyas}', [PengumpulanKaryasController::class, 'update'])->name('update')->middleware('permission:posterpengumpulan_create_edit');
+        Route::delete('/delete/{pengumpulan_karyas}', [PengumpulanKaryasController::class, 'destroy'])->name('delete')->middleware('permission:posterpengumpulan_delete');
     });
     Route::group(['as' => 'gelombang_pembayaran.', 'prefix' => '/gelombang-pembayaran'], function () {
-        Route::get('/data', [GelombangPembayaransController::class, 'index'])->name('index');
-        Route::get('/add', [GelombangPembayaransController::class, 'create'])->name('create');
-        Route::post('/store', [GelombangPembayaransController::class, 'store'])->name('store');
-        Route::get('/edit/{gelombang_pembayarans}', [GelombangPembayaransController::class, 'edit'])->name('edit');
-        Route::put('/update/{gelombang_pembayarans}', [GelombangPembayaransController::class, 'update'])->name('update');
-        Route::delete('/delete/{gelombang_pembayarans}', [GelombangPembayaransController::class, 'destroy'])->name('delete');
+        Route::get('/data', [GelombangPembayaransController::class, 'index'])->name('index')->middleware('permission:postergelombang_view');
+        Route::get('/add', [GelombangPembayaransController::class, 'create'])->name('create')->middleware('permission:postergelombang_create_edit');
+        Route::post('/store', [GelombangPembayaransController::class, 'store'])->name('store')->middleware('permission:postergelombang_create_edit');
+        Route::get('/edit/{gelombang_pembayarans}', [GelombangPembayaransController::class, 'edit'])->name('edit')->middleware('permission:postergelombang_create_edit');
+        Route::put('/update/{gelombang_pembayarans}', [GelombangPembayaransController::class, 'update'])->name('update')->middleware('permission:postergelombang_create_edit');
+        Route::delete('/delete/{gelombang_pembayarans}', [GelombangPembayaransController::class, 'destroy'])->name('delete')->middleware('permission:postergelombang_delete');
     });
 
     Route::group(['as' => 'pembayaran.', 'prefix' => '/pembayaran'], function () {
-        Route::get('/data', [PembayaransController::class, 'index'])->name('index');
-        Route::get('/add', [PembayaransController::class, 'create'])->name('create');
-        Route::post('/store', [PembayaransController::class, 'store'])->name('store');
-        Route::get('/edit/{pembayarans}', [PembayaransController::class, 'edit'])->name('edit');
-        Route::put('/update/{pembayarans}', [PembayaransController::class, 'update'])->name('update');
-        Route::get('/delete/{pembayarans}', [PembayaransController::class, 'destroy'])->name('delete');
-        Route::get('/tolak/{pembayarans}', [PembayaransController::class, 'tolak'])->name('tolak');
-        Route::get('/terima/{pembayarans}', [PembayaransController::class, 'terima'])->name('terima');
+        Route::get('/data', [PembayaransController::class, 'index'])->name('index')->middleware('permission:posterpembayaran_view');
+        Route::get('/add', [PembayaransController::class, 'create'])->name('create')->middleware('permission:posterpembayaran_create_edit');
+        Route::post('/store', [PembayaransController::class, 'store'])->name('store')->middleware('permission:posterpembayaran_create_edit');
+        Route::get('/edit/{pembayarans}', [PembayaransController::class, 'edit'])->name('edit')->middleware('permission:posterpembayaran_create_edit');
+        Route::put('/update/{pembayarans}', [PembayaransController::class, 'update'])->name('update')->middleware('permission:posterpembayaran_create_edit');
+        Route::get('/delete/{pembayarans}', [PembayaransController::class, 'destroy'])->name('delete')->middleware('permission:posterpembayaran_delete');
+        Route::get('/tolak/{pembayarans}', [PembayaransController::class, 'tolak'])->name('tolak')->middleware('permission:posterpembayaran_create_edit');
+        Route::get('/terima/{pembayarans}', [PembayaransController::class, 'terima'])->name('terima')->middleware('permission:posterpembayaran_create_edit');
     });
 
     Route::group(['as' => 'assign_test.', 'prefix' => '/assigntest'], function () {
-        Route::get('/data/tests', [AssignTestsController::class, 'show_tests'])->name('show_tests');
-        Route::get('/data/{id}', [AssignTestsController::class, 'index'])->name('index');
-        Route::get('/add/{id}', [AssignTestsController::class, 'create'])->name('create');
-        Route::post('/store/{id}', [AssignTestsController::class, 'store'])->name('store');
-        Route::delete('/delete/{assign_tests}', [AssignTestsController::class, 'destroy'])->name('delete');
+        Route::get('/data/tests', [AssignTestsController::class, 'show_tests'])->name('show_tests')->middleware('permission:postertest_view');
+        Route::get('/data/{id}', [AssignTestsController::class, 'index'])->name('index')->middleware('permission:postertest_view');
+        Route::get('/add/{id}', [AssignTestsController::class, 'create'])->name('create')->middleware('permission:postertest_create_edit');
+        Route::post('/store/{id}', [AssignTestsController::class, 'store'])->name('store')->middleware('permission:postertest_create_edit');
+        Route::delete('/delete/{assign_tests}', [AssignTestsController::class, 'destroy'])->name('delete')->middleware('permission:postertest_delete');
     });
 
     Route::group(['as' => 'penilaian.', 'prefix' => '/penilaian'], function () {
-        Route::get('/pengumpulan-karya', [KaryasController::class, 'show_pengumpulan'])->name('pengumpulan_karya');
-        Route::put('/update-nilai/{karyas}', [KaryasController::class, 'update_nilai'])->name('update_nilai');
-        Route::get('/data/{id}', [KaryasController::class, 'index'])->name('index');
-        Route::delete('/delete/{karyas}', [KaryasController::class, 'destroy'])->name('delete');
+        Route::get('/pengumpulan-karya', [KaryasController::class, 'show_pengumpulan'])->name('pengumpulan_karya')->middleware('permission:posterpenilaian_view');
+        Route::put('/update-nilai/{karyas}', [KaryasController::class, 'update_nilai'])->name('update_nilai')->middleware('permission:posterpenilaian_create_edit');
+        Route::get('/data/{id}', [KaryasController::class, 'index'])->name('index')->middleware('permission:posterpenilaian_view');
+        Route::delete('/delete/{karyas}', [KaryasController::class, 'destroy'])->name('delete')->middleware('permission:posterpenilaian_delete');
     });
 
     Route::group(['as' => 'pengumuman.', 'prefix' => '/pengumuman'], function () {
-        Route::get('/data', [PengumumansController::class, 'index'])->name('index');
-        Route::get('/add', [PengumumansController::class, 'create'])->name('create');
-        Route::post('/store', [PengumumansController::class, 'store'])->name('store');
-        Route::get('/edit/{pengumumans}', [PengumumansController::class, 'edit'])->name('edit');
-        Route::put('/update/{pengumumans}', [PengumumansController::class, 'update'])->name('update');
-        Route::delete('/delete/{pengumumans}', [PengumumansController::class, 'destroy'])->name('delete');
+        Route::get('/data', [PengumumansController::class, 'index'])->name('index')->middleware('permission:posterpengumuman_view');
+        Route::get('/add', [PengumumansController::class, 'create'])->name('create')->middleware('permission:posterpengumuman_create_edit');
+        Route::post('/store', [PengumumansController::class, 'store'])->name('store')->middleware('permission:posterpengumuman_create_edit');
+        Route::get('/edit/{pengumumans}', [PengumumansController::class, 'edit'])->name('edit')->middleware('permission:posterpengumuman_create_edit');
+        Route::put('/update/{pengumumans}', [PengumumansController::class, 'update'])->name('update')->middleware('permission:posterpengumuman_create_edit');
+        Route::delete('/delete/{pengumumans}', [PengumumansController::class, 'destroy'])->name('delete')->middleware('permission:posterpengumuman_delete');
     });
 });
 
