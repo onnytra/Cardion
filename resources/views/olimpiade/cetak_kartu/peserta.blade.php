@@ -1,37 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    {{-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/> --}}
+    {{--
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> --}}
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Participant Card</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
         }
+
         .card {
             width: 768px;
             height: 1086px;
-            background-image: url('{{ asset('img/kartu_peserta.png') }}');
+            background-image: url('{{ asset(' img/kartu_peserta.png') }}');
             background-size: cover;
             position: relative;
         }
+
         .content {
             position: absolute;
-            top: 200px; /* Adjust as necessary */
-            left: 50px; /* Adjust as necessary */
+            top: 200px;
+            /* Adjust as necessary */
+            left: 50px;
+            /* Adjust as necessary */
             color: black;
         }
+
         .content p {
             margin: 5px 0;
         }
+
         .qr-code {
             position: absolute;
-            top: 150px; /* Adjust as necessary */
-            left: 50px; /* Adjust as necessary */
+            top: 150px;
+            /* Adjust as necessary */
+            left: 50px;
+            /* Adjust as necessary */
         }
     </style>
 </head>
+
 <body>
     <div class="card">
         <div class="content">
@@ -51,4 +62,5 @@
         </div>
     </div>
 </body>
+
 </html>

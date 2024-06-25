@@ -30,6 +30,7 @@ use App\Http\Controllers\user\olimpiade\PembayaranController;
 use App\Http\Controllers\user\olimpiade\PengumpulanController;
 use App\Http\Controllers\user\olimpiade\PengumumanController;
 use App\Http\Controllers\user\olimpiade\RegistrasiController;
+use App\Http\Controllers\user\olimpiade\SertifikatController;
 use App\Http\Controllers\user\olimpiade\UjianController;
 
 /*
@@ -63,6 +64,10 @@ Route::get('/olimpiade/sertifikat', function () {
     return view('olimpiade/sertifikat', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'sertifikat']);
 });
 
+Route::get('/olimpiade/sertifikat/view', function () {
+    return view('olimpiade/sertifikat-detail', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'sertifikat']);
+});
+
 Route::get('/olympiad/ujian', function () {
     return view('olimpiade/ujian/ujian', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'ujian']);
 });
@@ -93,6 +98,10 @@ Route::get('/public-poster/cetak-kartu', function () {
 
 Route::get('/public-poster/sertifikat', function () {
     return view('publicposter/sertifikat', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'sertifikat']);
+});
+
+Route::get('/public-poster/sertifikat/view', function () {
+    return view('publicposter/sertifikat-detail', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'sertifikat']);
 });
 
 Route::get('/public-poster/pengumpulan-karya', function () {
@@ -187,6 +196,10 @@ Route::group(['as' => 'user.', 'prefix' => '/user', 'event' => 'olimpiade'], fun
         Route::get('/cetak-kartu', [CetakKartuController::class, 'index'])->name('cetak_kartu');
         Route::get('/cetak-kartu/cetak', [CetakKartuController::class, 'cetak'])->name('cetak_kartu_process');
         Route::get('/kartu/peserta/{pesertas}', [CetakKartuController::class, 'show_peserta'])->name('kartu_peserta');
+        // Sertifikat
+        Route::get('/sertifikat', [SertifikatController::class, 'index'])->name('sertifikat');
+        Route::get('/sertifikat/cetak', [SertifikatController::class, 'cetak'])->name('sertifikat_process');
+        Route::get('/sertifikat/peserta/{pesertas}', [SertifikatController::class, 'show_peserta'])->name('sertifikat_peserta');
     });
 });
 
@@ -207,7 +220,7 @@ Route::group(['as' => 'auth.', 'prefix' => '/auth'], function () {
             Route::get('/login', [AuthController::class, 'admin_login_page'])->name('login');
             Route::post('/login', [AuthController::class, 'admin_login_process'])->name('login.process');
         });
-        
+
         Route::middleware(['admin'])->group(function () {
             Route::get('/edit-profile/{users}', [AuthController::class, 'edit_profile'])->name('edit-profile');
             Route::put('/update-profile/{users}', [AuthController::class, 'update_profile'])->name('update-profile');
@@ -244,7 +257,7 @@ Route::group(['as' => 'dashboard.', 'prefix' => '/admin/main'], function () {
 
 // Olimpiade Dashboard
 Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' => 'olimpiade'], function () {
-    
+
     Route::middleware(['admin'])->group(function () {
         Route::get('/olimpiade', [MainDashboardController::class, 'dashboard_olimpiade'])->name('dashboard');
     });
@@ -372,7 +385,7 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' => '
 
 // Poster Dashboard
 Route::group(['as' => 'poster.', 'prefix' => '/admin/poster', 'event' => 'poster'], function () {
-    
+
     Route::middleware(['admin'])->group(function () {
         Route::get('/poster', [MainDashboardController::class, 'dashboard_poster'])->name('dashboard');
     });

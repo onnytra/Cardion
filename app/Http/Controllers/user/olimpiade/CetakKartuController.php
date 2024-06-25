@@ -31,5 +31,6 @@ class CetakKartuController extends Controller
     public function show_peserta(pesertas $pesertas)
     {
         $peserta = Auth::guard('peserta')->user();
-        return view('olimpiade.cetak_kartu.peserta', compact('peserta'));}
+        return view('olimpiade.cetak_kartu.peserta', compact('peserta'));
+    }
 }
