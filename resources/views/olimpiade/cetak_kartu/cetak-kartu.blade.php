@@ -72,7 +72,7 @@
 
         <div class="card-footer">
             <button>
-                <a href="{{route('user.cetak_kartu_process')}}" class="btn-indigo">
+                <a href="{{route('user.cetak_kartu_process')}}" class="btn-indigo" target="_blank">
                     <i class="fad fa-download mr-2 leading-none"></i>
                     Download Kartu Peserta</a>
             </button>

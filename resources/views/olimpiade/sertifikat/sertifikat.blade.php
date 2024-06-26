@@ -9,7 +9,7 @@
                 Silahkan mengunduh sertifikat di bawah ini
             </h2>
             <button class="mt-5">
-                <a href="/olympiad/sertifikat/view" class="btn-indigo">
+                <a href="{{route('user.sertifikat_cetak')}}" class="btn-indigo" target="_blank">
                     <i class="fad fa-download mr-2 leading-none"></i>
                     Download E-Sertifikat
                 </a>

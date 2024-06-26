@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\pesertas;
 use Illuminate\Support\Facades\Auth;
 
+use function Ramsey\Uuid\v1;
+
 class CetakKartuController extends Controller
 {
     public function index()
@@ -15,18 +17,12 @@ class CetakKartuController extends Controller
         $peserta = Auth::guard('peserta')->user();
         return view('olimpiade.cetak_kartu.cetak-kartu', compact('title', 'slug', 'peserta'));
     }
-
-    public function cetak()
-    {
-        ini_set('max_execution_time', 300); // 300 seconds = 5 minutes
-        ini_set('memory_limit', '512M'); // Set memory limit to 512M
-
+    
+    public function cetak(){
         $peserta = Auth::guard('peserta')->user();
         $url = route('user.kartu_peserta', $peserta->id_peserta);
-        $pdf = \PDF::loadView('olimpiade.cetak_kartu.kartu', compact('peserta', 'url'));
-        return $pdf->stream('kartu-peserta.pdf');
+        return view('olimpiade.cetak_kartu.kartu', compact('peserta', 'url'));
     }
-
 
     public function show_peserta(pesertas $pesertas)
     {

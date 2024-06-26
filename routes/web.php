@@ -198,7 +198,7 @@ Route::group(['as' => 'user.', 'prefix' => '/user'], function () {
         Route::get('/kartu/peserta/{pesertas}', [CetakKartuController::class, 'show_peserta'])->name('kartu_peserta');
         // Sertifikat
         Route::get('/sertifikat', [SertifikatController::class, 'index'])->name('sertifikat');
-        Route::get('/sertifikat/cetak', [SertifikatController::class, 'cetak'])->name('sertifikat_process');
+        Route::get('/sertifikat/cetak', [SertifikatController::class, 'cetak'])->name('sertifikat_cetak');
         Route::get('/sertifikat/peserta/{pesertas}', [SertifikatController::class, 'show_peserta'])->name('sertifikat_peserta');
     });
 });

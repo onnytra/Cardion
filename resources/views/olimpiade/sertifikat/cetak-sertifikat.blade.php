@@ -11,7 +11,7 @@
 <body>
     <div class="w-[1367px] h-[960px] bg-sertifikat-peserta bg-cover relative font-andalus">
         <div class="absolute text-center w-full pl-64 pt-4 top-80 text-4xl ">
-            <p>Name</p>
+            <p>{{$peserta->nama}}</p>
         </div>
     </div>
 </body>

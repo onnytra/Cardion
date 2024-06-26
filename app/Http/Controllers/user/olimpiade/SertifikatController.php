@@ -18,15 +18,9 @@ class SertifikatController extends Controller
 
     public function cetak()
     {
-        ini_set('max_execution_time', 300); // 300 seconds = 5 minutes
-        ini_set('memory_limit', '512M'); // Set memory limit to 512M
-
         $peserta = Auth::guard('peserta')->user();
-        $url = route('user.sertifikat_peserta', $peserta->id_peserta);
-        $pdf = \PDF::loadView('olimpiade.sertifikat.cetak-sertifikat', compact('peserta', 'url'));
-        return $pdf->stream('sertifikat-peserta.pdf');
+        return view('olimpiade.sertifikat.cetak-sertifikat', compact('peserta'));
     }
-
 
     public function show_peserta(pesertas $pesertas)
     {
