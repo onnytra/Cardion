@@ -64,6 +64,11 @@
         }
 
         @media print {
+            @page{
+                size: A4;
+                margin: 0;
+            }
+            
             body {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;

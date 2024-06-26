@@ -14,7 +14,6 @@
 
         body {
             font-family: 'Andalus', sans-serif;
-            font-weight: bold;
         }
 
         .bg-sertifikat-peserta {
@@ -23,6 +22,11 @@
         }
 
         @media print {
+            @page{
+                size: A4 landscape;
+                margin: 0;
+            }
+
             body {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
@@ -39,7 +43,10 @@
 
 <body onload="window.print()">
     <div class="w-[1367px] h-[960px] bg-sertifikat-peserta bg-cover relative font-andalus">
-        <div class="absolute text-center w-full pl-64 pt-4 top-80 text-4xl ">
+        <div class="absolute text-center w-full pl-64 pt-4 top-60 text-2xl">
+            <p>No. {{ $peserta->sertifikat }}</p>
+        </div>
+        <div class="absolute text-center w-full pl-64 pt-4 top-80 text-4xl font-bold">
             <p>{{ $peserta->nama }}</p>
         </div>
     </div>
