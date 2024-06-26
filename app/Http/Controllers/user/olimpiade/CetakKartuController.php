@@ -15,11 +15,19 @@ class CetakKartuController extends Controller
         $title = 'Cardion UIN Malang';
         $slug = 'cetak kartu';
         $peserta = Auth::guard('peserta')->user();
+        if ($peserta->status_data == 'belum' || $peserta->status_pembayaran == 'belum') {
+            toast('Lengkapi Data Diri dan Lakukan Pembayaran Terlebih Dahulu', 'info');
+            return redirect()->route('user.dashboard');
+        }
         return view('olimpiade.cetak_kartu.cetak-kartu', compact('title', 'slug', 'peserta'));
     }
     
     public function cetak(){
         $peserta = Auth::guard('peserta')->user();
+        if ($peserta->status_data == 'belum' || $peserta->status_pembayaran == 'belum') {
+            toast('Lengkapi Data Diri dan Lakukan Pembayaran Terlebih Dahulu', 'info');
+            return redirect()->route('user.dashboard');
+        }
         $url = route('user.kartu_peserta', $peserta->id_peserta);
         return view('olimpiade.cetak_kartu.kartu', compact('peserta', 'url'));
     }

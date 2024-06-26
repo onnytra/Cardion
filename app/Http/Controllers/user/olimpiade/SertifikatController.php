@@ -13,12 +13,20 @@ class SertifikatController extends Controller
         $title = 'Cardion UIN Malang';
         $slug = 'sertifikat';
         $peserta = Auth::guard('peserta')->user();
+        if ($peserta->status_data == 'belum' || $peserta->status_pembayaran == 'belum') {
+            toast('Lengkapi Data Diri dan Lakukan Pembayaran Terlebih Dahulu', 'info');
+            return redirect()->route('user.dashboard');
+        }
         return view('olimpiade.sertifikat.sertifikat', compact('title', 'slug', 'peserta'));
     }
 
     public function cetak()
     {
         $peserta = Auth::guard('peserta')->user();
+        if ($peserta->status_data == 'belum' || $peserta->status_pembayaran == 'belum') {
+            toast('Lengkapi Data Diri dan Lakukan Pembayaran Terlebih Dahulu', 'info');
+            return redirect()->route('user.dashboard');
+        }
         return view('olimpiade.sertifikat.cetak-sertifikat', compact('peserta'));
     }
 
