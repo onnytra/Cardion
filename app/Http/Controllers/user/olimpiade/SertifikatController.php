@@ -17,6 +17,10 @@ class SertifikatController extends Controller
             toast('Lengkapi Data Diri dan Lakukan Pembayaran Terlebih Dahulu', 'info');
             return redirect()->route('user.dashboard');
         }
+        if($peserta->sertifikat == null){
+            toast('Sertifikat Belum Tersedia', 'info');
+            return redirect()->route('user.dashboard');
+        }
         return view('olimpiade.sertifikat.sertifikat', compact('title', 'slug', 'peserta'));
     }
 
@@ -25,6 +29,10 @@ class SertifikatController extends Controller
         $peserta = Auth::guard('peserta')->user();
         if ($peserta->status_data == 'belum' || $peserta->status_pembayaran == 'belum') {
             toast('Lengkapi Data Diri dan Lakukan Pembayaran Terlebih Dahulu', 'info');
+            return redirect()->route('user.dashboard');
+        }
+        if($peserta->sertifikat == null){
+            toast('Sertifikat Belum Tersedia', 'info');
             return redirect()->route('user.dashboard');
         }
         return view('olimpiade.sertifikat.cetak-sertifikat', compact('peserta'));
