@@ -176,7 +176,7 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/olimpiade', 'event' => 'olimpi
     });
 });
 // All User Side
-Route::group(['as' => 'user.', 'prefix' => '/user', 'event' => 'olimpiade'], function () {
+Route::group(['as' => 'user.', 'prefix' => '/user'], function () {
     Route::middleware(['peserta'])->group(function () {
         Route::get('/dashboard', [MainOlimpiadeController::class, 'index'])->name('dashboard');
         // Registrasi

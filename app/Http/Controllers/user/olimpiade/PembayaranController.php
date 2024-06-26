@@ -11,20 +11,6 @@ use Illuminate\Support\Facades\Validator;
 
 class PembayaranController extends Controller
 {
-    public $event;
-
-    public function __construct()
-    {
-        $route = request()->route();
-
-        if ($route) {
-            $action = $route->getAction();
-            $this->event = $action['event'] ?? null;
-        } else {
-            $this->event = null;
-        }
-    }
-
     public function index(){
         $title = 'Pembayaran Peserta';
         $slug = 'pembayaran';
@@ -44,7 +30,8 @@ class PembayaranController extends Controller
     public function create(){
         $title = 'Pembarayan Peserta';
         $slug = 'pembayaran';
-        $gelombangpembayaran =  gelombang_pembayarans::where('event', $this->event)
+        $event = Auth::guard('peserta')->user()->event;
+        $gelombangpembayaran =  gelombang_pembayarans::where('event', $event)
         ->where('status_gelombang_pembayaran', 1)
         ->where('mulai', '<=', date('Y-m-d'))
         ->where('selesai', '>=', date('Y-m-d'))

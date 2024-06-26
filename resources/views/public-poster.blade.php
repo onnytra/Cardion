@@ -93,7 +93,7 @@
         </div>
 
         <div id="about" class="bg-page-2 bg-center bg-cover xl:pr-40">
-            <div class="min-h-screen px-6 pt-20 lg:px-8 sm:bg-about-olimpiade bg-illustration-about bg-cover bg-right">
+            <div class="min-h-screen px-6 pt-20 lg:px-8 sm:bg-about-poster bg-illustration-about bg-cover bg-right">
                 <div class="w-full grid grid-cols-1 lg:grid-cols-2 py-36 pr-24 mx-auto lg:py-32 md:px-48 sm:hidden">
                     <div></div>
                     <div class="md:text-center pl-0 md:pl-20 lg:pl-0">
