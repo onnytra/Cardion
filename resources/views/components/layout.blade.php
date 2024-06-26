@@ -12,7 +12,8 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.0.1/dist/css/multi-select-tag.css">
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/4.19.1/standard-all/ckeditor.js"></script>
+    <script src="https://www.wiris.net/demo/plugins/app/WIRISplugins.js?viewer=image"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -59,62 +60,50 @@
     <script src="https://cdn.datatables.net/2.0.7/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.0.7/js/dataTables.tailwindcss.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/habibmhamadi/multi-select-tag@3.0.1/dist/js/multi-select-tag.js"></script>
+    <script src="https://www.wiris.net/demo/plugins/app/WIRISplugins.js?viewer=image"></script>
     <script>
-        ClassicEditor
-            .create(document.querySelector('#classic-editor')
-                , {
-                    ckfinder: {
-                        uploadUrl: "{{route('ckeditor.upload',['_token'=>csrf_token()])}}"
-                    , }
-                })
-            .catch(error => {
-                console.error(error);
-            });
-        ClassicEditor
-            .create(document.querySelector('#classic-editor2'), {
-                ckfinder: {
-                    uploadUrl: "{{route('ckeditor.upload',['_token'=>csrf_token()])}}"
-                , }
-            })
-            .catch(error => {
-                console.error(error);
-            });
-        ClassicEditor
-            .create(document.querySelector('#classic-editor3'), {
-                ckfinder: {
-                    uploadUrl: "{{route('ckeditor.upload',['_token'=>csrf_token()])}}"
-                , }
-            })
-            .catch(error => {
-                console.error(error);
-            });
-        ClassicEditor
-            .create(document.querySelector('#classic-editor4'), {
-                ckfinder: {
-                    uploadUrl: "{{route('ckeditor.upload',['_token'=>csrf_token()])}}"
-                , }
-            })
-            .catch(error => {
-                console.error(error);
-            });
-        ClassicEditor
-            .create(document.querySelector('#classic-editor5'), {
-                ckfinder: {
-                    uploadUrl: "{{route('ckeditor.upload',['_token'=>csrf_token()])}}"
-                , }
-            })
-            .catch(error => {
-                console.error(error);
-            });
-        ClassicEditor
-            .create(document.querySelector('#classic-editor6'), {
-                ckfinder: {
-                    uploadUrl: "{{route('ckeditor.upload',['_token'=>csrf_token()])}}"
-                , }
-            })
-            .catch(error => {
-                console.error(error);
-            });
+        CKEDITOR.replace('classic-editor', {
+            extraPlugins: 'mathjax,uploadimage'
+            , mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML'
+            , height: 240
+            , filebrowserUploadUrl: "{{route('ckeditor.upload',['_token'=>csrf_token()])}}"
+            , filebrowserUploadMethod: 'form'
+        });
+        CKEDITOR.replace('classic-editor2', {
+            extraPlugins: 'mathjax,uploadimage'
+            , mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML'
+            , height: 240
+            , filebrowserUploadUrl: "{{route('ckeditor.upload',['_token'=>csrf_token()])}}"
+            , filebrowserUploadMethod: 'form'
+        });
+        CKEDITOR.replace('classic-editor3', {
+            extraPlugins: 'mathjax,uploadimage'
+            , mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML'
+            , height: 240
+            , filebrowserUploadUrl: "{{route('ckeditor.upload',['_token'=>csrf_token()])}}"
+            , filebrowserUploadMethod: 'form'
+        });
+        CKEDITOR.replace('classic-editor4', {
+            extraPlugins: 'mathjax,uploadimage'
+            , mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML'
+            , height: 240
+            , filebrowserUploadUrl: "{{route('ckeditor.upload',['_token'=>csrf_token()])}}"
+            , filebrowserUploadMethod: 'form'
+        });
+        CKEDITOR.replace('classic-editor5', {
+            extraPlugins: 'mathjax,uploadimage'
+            , mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML'
+            , height: 240
+            , filebrowserUploadUrl: "{{route('ckeditor.upload',['_token'=>csrf_token()])}}"
+            , filebrowserUploadMethod: 'form'
+        });
+        CKEDITOR.replace('classic-editor6', {
+            extraPlugins: 'mathjax,uploadimage'
+            , mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML'
+            , height: 240
+            , filebrowserUploadUrl: "{{route('ckeditor.upload',['_token'=>csrf_token()])}}"
+            , filebrowserUploadMethod: 'form'
+        });
         new DataTable('#datatable');
         new DataTable('#datatable2');
         new DataTable('#datatable3');
