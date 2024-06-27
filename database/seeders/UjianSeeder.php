@@ -21,8 +21,8 @@ class UjianSeeder extends Seeder
             'durasi' => 60,
             'total_soal' => 10,
             'soal_acak' => 1,
-            'tampilkan_jawaban' => 'tidak',
-            'tampilkan_nilai' => 'tidak',
+            'tampilkan_jawaban' => 1,
+            'tampilkan_nilai' => 1,
             'status_ujian' => 1
         ]);
     }

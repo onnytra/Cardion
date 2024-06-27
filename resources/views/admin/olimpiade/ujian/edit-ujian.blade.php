@@ -7,7 +7,7 @@
             <h1 class="h6">Form Edit Ujian Olimpiade ({{$ujians->judul}})</h1>
         </div>
 
-        <form action="{{route('olimpiade.ujian.update', $ujians->id_ujian)}}" method="POST">
+        <form action="{{route('olimpiade.ujian.update', $ujians->id_ujian)}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="card-body relative overflow-x-auto sm:rounded-lg">
@@ -62,19 +62,6 @@
                         <input type="number" name="total_soal" id="total_soal" value="{{$ujians->total_soal}}"
                             class="p-2 border border-gray w-full lg:w-full shadow-sm text-sm rounded-md" required>
                     </div>
-                    {{-- <div class="flex items-center gap-4">
-                        <div class="w-56 ">
-                            <label for="tipe_ujian" class="block text-sm font-medium text-gray-600">Tipe
-                                Ujian*</label>
-                        </div>
-                        <select id="tipe_ujian" name="tipe_ujian"
-                            class="btn-gray w-full lg:w-full shadow-sm text-sm text-left focus:outline-none focus:shadow-outline"
-                            required>
-                            <option class="font-medium text-sm" value="#" {{ old('tipe_ujian') == '#' ? 'selected' : '' }}>...</option>
-                            <option class="font-medium text-sm" value="periodik" {{ old('tipe_ujian') == 'periodik' ? 'selected' : '' }}>Periodik</option>
-                            <option class="font-medium text-sm" value="satu_waktu" {{ old('tipe_ujian') == 'satu_waktu' ? 'selected' : '' }}>Satu Waktu</option>
-                        </select>
-                    </div> --}}
                     <div class="flex items-center gap-4">
                         <div class="w-56 ">
                             <label for="nilai_benar" class="block text-sm font-medium text-gray-600">Nilai Benar</label>
@@ -112,28 +99,34 @@
                         </div>
                     </div>
                     <div class="flex items-center gap-4">
-                        <div class="w-56 ">
-                            <label for="tampilkan_jawaban" class="block text-sm font-medium text-gray-600">Tampilkan
+                        <div class="w-56">
+                            <label for="toggle" class="block text-sm font-medium text-gray-600">Tampilkan
                                 Jawaban</label>
                         </div>
-                        <select id="tampilkan_jawaban" name="tampilkan_jawaban"
-                            class="btn-gray w-full lg:w-full shadow-sm text-sm text-left focus:outline-none focus:shadow-outline">
-                            <option class="font-medium text-sm" value="tidak" {{ $ujians->tampilkan_jawaban == 'tidak' ? 'selected' : '' }}>Tidak</option>
-                            <option class="font-medium text-sm" value="ya" {{ $ujians->tampilkan_jawaban == 'ya' ? 'selected' : '' }}>Ya</option>
-                            <option class="font-medium text-sm" value="setelah_ujian" {{ $ujians->tampilkan_jawaban == 'setelah_ujian' ? 'selected' : '' }}>Setelah Ujian</option>
-                        </select>
+                        <div class="w-full">
+                            <div
+                                class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                                <input type="checkbox" name="tampilkan_jawaban" id="toggle" value="1" {{ $ujians->tampilkan_jawaban ? 'checked' : '' }}
+                                    class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer transition-colors duration-500" />
+                                <label for="toggle"
+                                    class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer transition-colors duration-500"></label>
+                            </div>
+                        </div>
                     </div>
                     <div class="flex items-center gap-4">
-                        <div class="w-56 ">
-                            <label for="tampilkan_nilai" class="block text-sm font-medium text-gray-600">Tampilkan
+                        <div class="w-56">
+                            <label for="toggle" class="block text-sm font-medium text-gray-600">Tampilkan
                                 Nilai/Poin</label>
                         </div>
-                        <select id="tampilkan_nilai" name="tampilkan_nilai"
-                            class="btn-gray w-full lg:w-full shadow-sm text-sm text-left focus:outline-none focus:shadow-outline">
-                            <option class="font-medium text-sm" value="tidak" {{ $ujians->tampilkan_nilai == 'tidak' ? 'selected' : '' }}>Tidak</option>
-                            <option class="font-medium text-sm" value="ya" {{ $ujians->tampilkan_nilai == 'ya' ? 'selected' : '' }}>Ya</option>
-                            <option class="font-medium text-sm" value="setelah_ujian" {{ $ujians->tampilkan_nilai == 'setelah_ujian' ? 'selected' : '' }}>Setelah Ujian</option>
-                        </select>
+                        <div class="w-full">
+                            <div
+                                class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                                <input type="checkbox" name="tampilkan_nilai" id="toggle" value="1" {{ $ujians->tampilkan_nilai ? 'checked' : '' }}
+                                    class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer transition-colors duration-500" />
+                                <label for="toggle"
+                                    class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer transition-colors duration-500"></label>
+                            </div>
+                        </div>
                     </div>
                     <hr>
                     <div class="flex items-center gap-4">
@@ -150,21 +143,6 @@
                             </div>
                         </div>
                     </div>
-                    {{-- <h1 class="font-medium">Gelombang 1</h1>
-                    <div class="flex items-center gap-4">
-                        <div class="w-56 ">
-                            <label for="mulai" class="block text-sm font-medium text-gray-600">Mulai*</label>
-                        </div>
-                        <input type="date" name="mulai" id="mulai"
-                            class="p-2 border border-gray w-full lg:w-full shadow-sm text-sm rounded-md" required>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <div class="w-56 ">
-                            <label for="berakhir" class="block text-sm font-medium text-gray-600">Berakhir</label>
-                        </div>
-                        <input type="date" name="berakhir" id="berakhir"
-                            class="p-2 border border-gray w-full lg:w-full shadow-sm text-sm rounded-md">
-                    </div> --}}
                 </div>
             </div>
             <div class="card-footer flex justify">

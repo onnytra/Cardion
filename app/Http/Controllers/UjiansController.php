@@ -88,8 +88,8 @@ class UjiansController extends Controller
         $ujians->kosong = $request->kosong;
         $ujians->soal_acak = $request->soal_acak ? 1 : 0;
         $ujians->status_ujian = $request->status_ujian ? 1 : 0;
-        $ujians->tampilkan_jawaban = $request->tampilkan_jawaban;
-        $ujians->tampilkan_nilai = $request->tampilkan_nilai;
+        $ujians->tampilkan_jawaban = $request->tampilkan_jawaban ? 1 : 0;
+        $ujians->tampilkan_nilai = $request->tampilkan_nilai ? 1 : 0;
         $ujians->save();
 
         toast('Ujian Berhasil Ditambahkan','success');
@@ -148,8 +148,8 @@ class UjiansController extends Controller
         $ujians->kosong = $request->kosong;
         $ujians->soal_acak = $request->soal_acak ? 1 : 0;
         $ujians->status_ujian = $request->status_ujian ? 1 : 0;
-        $ujians->tampilkan_jawaban = $request->tampilkan_jawaban;
-        $ujians->tampilkan_nilai = $request->tampilkan_nilai;
+        $ujians->tampilkan_jawaban = $request->tampilkan_jawaban ? 1 : 0;
+        $ujians->tampilkan_nilai = $request->tampilkan_nilai ? 1 : 0;
         $ujians->save();
         toast('Ujian Berhasil Diperbarui','success');
         return redirect()->route($this->event.'.ujian.index');
