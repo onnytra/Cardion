@@ -36,5 +36,54 @@ class RayonSeeder extends Seeder
             'contact_person' => '1234567890',
             'id_cabang' => 2,
         ]);
+        rayons::create([
+            'rayon' => 'Kediri',
+            'kuota' => 100,
+            'status_rayon' => 1,
+            'contact_person' => '1234567890',
+            'id_cabang' => 2,
+        ]);
+        rayons::create([
+            'rayon' => 'Jember',
+            'kuota' => 100,
+            'status_rayon' => 1,
+            'contact_person' => '1234567890',
+            'id_cabang' => 2,
+        ]);
+        rayons::create([
+            'rayon' => 'Jombang',
+            'kuota' => 100,
+            'status_rayon' => 1,
+            'contact_person' => '1234567890',
+            'id_cabang' => 2,
+        ]);
+        rayons::create([
+            'rayon' => 'Madura',
+            'kuota' => 100,
+            'status_rayon' => 1,
+            'contact_person' => '1234567890',
+            'id_cabang' => 2,
+        ]);
+        rayons::create([
+            'rayon' => 'Semarang',
+            'kuota' => 100,
+            'status_rayon' => 1,
+            'contact_person' => '1234567890',
+            'id_cabang' => 2,
+        ]);
+        rayons::create([
+            'rayon' => 'Online',
+            'kuota' => 100,
+            'status_rayon' => 1,
+            'contact_person' => '1234567890',
+            'id_cabang' => 3,
+        ]);
+        rayons::create([
+            'rayon' => 'Malang',
+            'kuota' => 100,
+            'status_rayon' => 1,
+            'contact_person' => '1234567890',
+            'id_cabang' => 4,
+        ]);
     }
 }
