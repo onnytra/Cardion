@@ -106,6 +106,7 @@ class AuthPesertaController extends Controller
         $peserta->event = $this->event == 'olimpiade' ? 'olimpiade' : 'poster';
         $peserta->status_pembayaran = 'belum';
         $peserta->status_data = 'belum';
+        $peserta->keterangan = 'Data Belum Dilengkapi';
         $peserta->save();
 
         return redirect()->route($this->event.'.login')->with('success', 'Registrasi Berhasil');

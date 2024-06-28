@@ -95,7 +95,8 @@ class PembayaransController extends Controller
     {
         $peserta = pesertas::find($pembayarans->id_peserta);
         $peserta->update([
-            'status_pembayaran' => 'sudah'
+            'status_pembayaran' => 'sudah',
+            'keterangan' => 'Peserta Aktif'
         ]);
         $pembayarans->update([
             'status_pembayaran' => 'lunas'

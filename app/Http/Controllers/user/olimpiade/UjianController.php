@@ -54,69 +54,161 @@ class UjianController extends Controller
     }
 
     public function detail_start(ujians $ujians, sesis $sesis, $soal_id)
-{
-    $title = 'Ujian | Cardion UIN Malang';
-    $slug = 'ujian';
-    
-    // Muat data ujian dengan relasi soal menggunakan Eager Loading
-    $ujian = ujians::with('soal')->find($ujians->id_ujian);
-    
-    if (!$ujian) {
-        toast('Ujian tidak ditemukan.', 'error');
-        return redirect()->back();
+    {
+        $title = 'Ujian | Cardion UIN Malang';
+        $slug = 'ujian';
+        
+        // Muat data ujian dengan relasi soal menggunakan Eager Loading
+        $ujian = ujians::with('soal')->find($ujians->id_ujian);
+        
+        if (!$ujian) {
+            toast('Ujian tidak ditemukan.', 'error');
+            return redirect()->back();
+        }
+        
+        // Periksa apakah soal harus diacak
+        $soal_acak = $ujian->soal_acak;
+        
+        // Ambil soal
+        $soals = $ujian->soal;
+
+        if (!$soals || $soals->isEmpty()) {
+            toast('Soal tidak ditemukan.', 'error');
+            return redirect()->back();
+        }
+
+        // Nama kunci sesi untuk menyimpan urutan soal
+        $sessionKey = 'soal_order_' . $ujians->id_ujian . '_' . Auth::guard('peserta')->user()->id_peserta;
+
+        if ($soal_acak) {
+            // Periksa apakah urutan soal sudah ada di sesi
+            if (session()->has($sessionKey)) {
+                // Ambil urutan soal dari sesi
+                $orderedSoals = collect(session()->get($sessionKey));
+                // Urutkan soal sesuai urutan yang ada di sesi
+                $soals = $soals->whereIn('id_soal', $orderedSoals->toArray())->sortBy(function ($item) use ($orderedSoals) {
+                    return $orderedSoals->search($item->id_soal);
+                });
+            } else {
+                // Acak soal dan simpan urutannya dalam sesi
+                $soals = $soals->shuffle();
+                session()->put($sessionKey, $soals->pluck('id_soal')->toArray());
+            }
+        } else {
+            // Urutkan soal berdasarkan urutan_soal
+            $soals = $soals->sortBy('urutan_soal');
+        }
+
+        $soal = $soals->where('id_soal', $soal_id)->first();
+        
+        if (!$soal) {
+            toast('Soal tidak ditemukan.', 'error');
+            return redirect()->back();
+        }
+
+        // Cari nomor urutan soal saat ini
+        $current_question_index = $soals->pluck('id_soal')->search($soal_id);
+
+        if ($current_question_index === false) {
+            toast('Soal tidak ditemukan dalam ujian ini.', 'error');
+            return redirect()->back();
+        }
+
+        $current_question_number = $current_question_index + 1;
+
+        // Tentukan previous_soal_id dan next_soal_id dengan validasi
+        $previous_soal_id = $current_question_number > 1 ? $soals[$current_question_index - 1]->id_soal : $soals->last()->id_soal;
+        $next_soal_id = $current_question_number < $soals->count() ? $soals[$current_question_index + 1]->id_soal : $soals->first()->id_soal;
+
+        // Muat jawaban yang sudah dipilih oleh pengguna untuk soal ini
+        $id_peserta = Auth::guard('peserta')->user()->id_peserta;
+        $jawaban_user = jawaban_users::where('id_soal', $soal_id)
+                                    ->where('id_ujian', $ujians->id_ujian)
+                                    ->where('id_peserta', $id_peserta)
+                                    ->first();
+
+        $selected_jawaban_id = $jawaban_user ? $jawaban_user->id_jawaban : null;
+        return view('olimpiade.ujian.start-ujian', [
+            'ujian' => $ujian,
+            'soals' => $soals,
+            'soal' => $soal,
+            'current_question_number' => $current_question_number,
+            'previous_soal_id' => $previous_soal_id,
+            'next_soal_id' => $next_soal_id,
+            'selected_jawaban_id' => $selected_jawaban_id,
+            'sesi' => $sesis, // Tambahkan sesi ke dalam data yang dikirimkan ke view
+            'title' => $title,
+            'slug' => $slug
+        ]);
     }
-    
-    $soals = $ujian->soal;
 
-    if (!$soals || $soals->isEmpty()) {
-        toast('Soal tidak ditemukan.', 'error');
-        return redirect()->back();
-    }
 
-    $soal = $soals->where('id_soal', $soal_id)->first();
-    
-    if (!$soal) {
-        toast('Soal tidak ditemukan.', 'error');
-        return redirect()->back();
-    }
 
-    // Cari nomor urutan soal saat ini
-    $current_question_index = $soals->search(function ($item) use ($soal_id) {
-        return $item->id_soal == $soal_id;
-    });
 
-    if ($current_question_index === false) {
-        toast('Soal tidak ditemukan dalam ujian ini.', 'error');
-        return redirect()->back();
-    }
+    // public function detail_start(ujians $ujians, sesis $sesis, $soal_id)
+    // {
+    //     $title = 'Ujian | Cardion UIN Malang';
+    //     $slug = 'ujian';
+        
+    //     // Muat data ujian dengan relasi soal menggunakan Eager Loading
+    //     $ujian = ujians::with('soal')->find($ujians->id_ujian);
+        
+    //     if (!$ujian) {
+    //         toast('Ujian tidak ditemukan.', 'error');
+    //         return redirect()->back();
+    //     }
+        
+    //     $soals = $ujian->soal;
 
-    $current_question_number = $current_question_index + 1;
+    //     if (!$soals || $soals->isEmpty()) {
+    //         toast('Soal tidak ditemukan.', 'error');
+    //         return redirect()->back();
+    //     }
 
-    // Tentukan previous_soal_id dan next_soal_id dengan validasi
-    $previous_soal_id = $current_question_number > 1 ? $soals[$current_question_index - 1]->id_soal : $soals->last()->id_soal;
-    $next_soal_id = $current_question_number < $soals->count() ? $soals[$current_question_index + 1]->id_soal : $soals->first()->id_soal;
+    //     $soal = $soals->where('id_soal', $soal_id)->first();
+        
+    //     if (!$soal) {
+    //         toast('Soal tidak ditemukan.', 'error');
+    //         return redirect()->back();
+    //     }
 
-    // Muat jawaban yang sudah dipilih oleh pengguna untuk soal ini
-    $id_peserta = Auth::guard('peserta')->user()->id_peserta;
-    $jawaban_user = jawaban_users::where('id_soal', $soal_id)
-                                ->where('id_ujian', $ujians->id_ujian)
-                                ->where('id_peserta', $id_peserta)
-                                ->first();
+    //     // Cari nomor urutan soal saat ini
+    //     $current_question_index = $soals->search(function ($item) use ($soal_id) {
+    //         return $item->id_soal == $soal_id;
+    //     });
 
-    $selected_jawaban_id = $jawaban_user ? $jawaban_user->id_jawaban : null;
-    return view('olimpiade.ujian.start-ujian', [
-        'ujian' => $ujian,
-        'soals' => $soals,
-        'soal' => $soal,
-        'current_question_number' => $current_question_number,
-        'previous_soal_id' => $previous_soal_id,
-        'next_soal_id' => $next_soal_id,
-        'selected_jawaban_id' => $selected_jawaban_id,
-        'sesi' => $sesis, // Tambahkan sesi ke dalam data yang dikirimkan ke view
-        'title' => $title,
-        'slug' => $slug
-    ]);
-}
+    //     if ($current_question_index === false) {
+    //         toast('Soal tidak ditemukan dalam ujian ini.', 'error');
+    //         return redirect()->back();
+    //     }
+
+    //     $current_question_number = $current_question_index + 1;
+
+    //     // Tentukan previous_soal_id dan next_soal_id dengan validasi
+    //     $previous_soal_id = $current_question_number > 1 ? $soals[$current_question_index - 1]->id_soal : $soals->last()->id_soal;
+    //     $next_soal_id = $current_question_number < $soals->count() ? $soals[$current_question_index + 1]->id_soal : $soals->first()->id_soal;
+
+    //     // Muat jawaban yang sudah dipilih oleh pengguna untuk soal ini
+    //     $id_peserta = Auth::guard('peserta')->user()->id_peserta;
+    //     $jawaban_user = jawaban_users::where('id_soal', $soal_id)
+    //                                 ->where('id_ujian', $ujians->id_ujian)
+    //                                 ->where('id_peserta', $id_peserta)
+    //                                 ->first();
+
+    //     $selected_jawaban_id = $jawaban_user ? $jawaban_user->id_jawaban : null;
+    //     return view('olimpiade.ujian.start-ujian', [
+    //         'ujian' => $ujian,
+    //         'soals' => $soals,
+    //         'soal' => $soal,
+    //         'current_question_number' => $current_question_number,
+    //         'previous_soal_id' => $previous_soal_id,
+    //         'next_soal_id' => $next_soal_id,
+    //         'selected_jawaban_id' => $selected_jawaban_id,
+    //         'sesi' => $sesis, // Tambahkan sesi ke dalam data yang dikirimkan ke view
+    //         'title' => $title,
+    //         'slug' => $slug
+    //     ]);
+    // }
 
     public function simpan_jawaban(Request $request){
         jawaban_users::updateOrCreate(
