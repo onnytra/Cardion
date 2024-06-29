@@ -126,10 +126,10 @@
                         </p>
                         <p class="pb-2 text-gray-900">
                             Poin: 
-                            @if ($data->jawaban_status == 'false')
+                            @if ($data->jawaban_status == 'salah')
                             <span class="font-bold">{{$data->result}}</span> <span
                                 class="bg-red-500 text-white text-center text-sm px-2 py-1 rounded">Salah</span>
-                            @elseif ($data->jawaban_status == 'true')
+                            @elseif ($data->jawaban_status == 'benar')
                             <span class="font-bold">{{$data->result}}</span> <span
                                 class="bg-green-500 text-white text-center text-sm px-2 py-1 rounded">Benar</span>
                             @else

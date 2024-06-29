@@ -5,12 +5,15 @@ namespace App\Http\Controllers\user\olimpiade;
 use App\Http\Controllers\Controller;
 use App\Models\assign_tests;
 use App\Models\jawaban_users;
+use App\Models\jawabans;
 use App\Models\sesis;
 use App\Models\soals;
 use App\Models\ujians;
+use App\Models\view_nilai_ujian_pesertas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
 
 class UjianController extends Controller
 {
@@ -33,7 +36,7 @@ class UjianController extends Controller
         ->get();
         if ($assign_test->isEmpty()) {
             $sesis = null;
-            toast('Anda Belum Terdaftar Pada Ujian', 'info');
+            toast('Tidak Ada Ujian Yang Tersedia', 'info');
             return view('olimpiade.ujian.ujian', compact('title', 'slug', 'sesis'));
         }
         foreach ($assign_test as $key => $value) {
@@ -50,8 +53,16 @@ class UjianController extends Controller
         $title = 'Detail Ujian | Cardion UIN Malang';
         $slug = 'ujian';
         $sesi = $sesis;
+        
+        // Nama kunci sesi untuk menyimpan urutan soal
+        $sessionKey = 'soal_order_' . $ujians->id_ujian . '_' . Auth::guard('peserta')->user()->id_peserta;
+        
+        // Hapus sesi yang terkait
+        session()->forget($sessionKey);
+
         return view('olimpiade.ujian.detail-ujian', compact('title', 'slug', 'ujians', 'sesi'));
     }
+
 
     public function detail_start(ujians $ujians, sesis $sesis, $soal_id)
     {
@@ -211,6 +222,14 @@ class UjianController extends Controller
     // }
 
     public function simpan_jawaban(Request $request){
+        $validate = Validator::make($request->all(), [
+            'id_jawaban' => 'required',
+        ],[
+            'id_jawaban.required' => 'Pilih jawaban terlebih dahulu.'
+        ]);
+        if ($validate->fails()) {
+            return redirect()->back()->withErrors($validate);
+        }
         jawaban_users::updateOrCreate(
             [
                 'id_soal' => $request->id_soal,
@@ -274,7 +293,16 @@ class UjianController extends Controller
             ->first();
             $jawaban = $jawaban_user== null ? 'Tidak Ada Jawaban' : $jawaban_user->jawaban->jawaban;
             $value->jawaban = $jawaban;
+
+            // $jawaban_benar = jawabans::where('id_soal', $value->id_soal)
+            // ->where('status_jawaban', 1)
+            // ->first();
+            // $value->jawaban_benar = $jawaban_benar->jawaban;
         }
+        $nilai_user = view_nilai_ujian_pesertas::where('id_peserta', $user->id_peserta)
+        ->where('id_ujian', $ujians->id_ujian)
+        ->first();
+        $ujians->nilai = $nilai_user->total_score;
         return view('olimpiade.ujian.hasil-ujian', compact('title', 'slug', 'soals', 'ujians'));
     }
 
