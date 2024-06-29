@@ -44,6 +44,19 @@
                             @if ($ujians->tampilkan_jawaban == 1)
                             <p class="pb-2 text-gray-900">
                                 Jawaban Anda: {!! $soal->jawaban !!}
+                                @if ($soal->jawaban_status == 'benar')
+                                    <i class="fas fa-check text-green-500">
+                                        Benar
+                                    </i>
+                                @elseif($soal->jawaban_status == 'salah')
+                                    <i class="fas fa-times text-red-500">
+                                        Salah
+                                    </i>
+                                @else
+                                    <i class="fas fa-question text-black-500">
+                                        Kosong
+                                    </i>
+                                @endif
                             </p>
                             @endif
                             {{-- <p class="pb-2 text-gray-900">

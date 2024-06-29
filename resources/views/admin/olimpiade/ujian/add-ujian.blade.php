@@ -97,10 +97,11 @@
                             </div>
                         </div>
                     </div>
+                    <hr>
                     <div class="flex items-center gap-4">
                         <div class="w-56">
                             <label for="toggle" class="block text-sm font-medium text-gray-600">Tampilkan
-                                Jawaban</label>
+                                Jawaban (Histoy Ujian)</label>
                         </div>
                         <div class="w-full">
                             <div
@@ -115,7 +116,7 @@
                     <div class="flex items-center gap-4">
                         <div class="w-56">
                             <label for="toggle" class="block text-sm font-medium text-gray-600">Tampilkan
-                                Nilai/Poin</label>
+                                Nilai/Poin (Histoy Ujian)</label>
                         </div>
                         <div class="w-full">
                             <div

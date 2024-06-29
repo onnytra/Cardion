@@ -10,6 +10,7 @@ use App\Models\sesis;
 use App\Models\soals;
 use App\Models\ujians;
 use App\Models\view_nilai_ujian_pesertas;
+use App\Models\view_status_jawaban_pesertas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -287,13 +288,20 @@ class UjianController extends Controller
         // take soal and user jawaban
         $soals = soals::where('id_ujian', $ujians->id_ujian)->get();
         foreach ($soals as $key => $value) {
-            $jawaban_user = jawaban_users::where('id_soal', $value->id_soal)
+            // $jawaban_user = jawaban_users::where('id_soal', $value->id_soal)
+            // ->where('id_peserta', $user->id_peserta)
+            // ->where('id_ujian', $ujians->id_ujian)
+            // ->first();
+            // $jawaban = $jawaban_user== null ? 'Tidak Ada Jawaban' : $jawaban_user->jawaban->jawaban;
+            // $value->jawaban = $jawaban;
+            $jawaban_user = view_status_jawaban_pesertas::where('id_soal', $value->id_soal)
             ->where('id_peserta', $user->id_peserta)
             ->where('id_ujian', $ujians->id_ujian)
             ->first();
-            $jawaban = $jawaban_user== null ? 'Tidak Ada Jawaban' : $jawaban_user->jawaban->jawaban;
+            $jawaban = $jawaban_user == null ? 'Tidak Ada Jawaban' : $jawaban_user->jawaban;
             $value->jawaban = $jawaban;
-
+            $jawaban_status = $jawaban_user == null ? 'kosong' : $jawaban_user->jawaban_status;
+            $value->jawaban_status = $jawaban_status;
             // $jawaban_benar = jawabans::where('id_soal', $value->id_soal)
             // ->where('status_jawaban', 1)
             // ->first();
@@ -319,7 +327,7 @@ class UjianController extends Controller
         ->get();
         if ($assign_test->isEmpty()) {
             $assign_test = null;
-            toast('Anda Belum Terdaftar Pada Ujian', 'info');
+            toast('Anda Belum Menyelesaikan Ujian', 'info');
         }
 
         return view('olimpiade.ujian.history-ujian', compact('title', 'slug', 'today', 'assign_test'));
