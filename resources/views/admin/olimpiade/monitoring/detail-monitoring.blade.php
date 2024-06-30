@@ -136,7 +136,9 @@
                             <td class="px-6 py-4">
                                 <a href="{{route('olimpiade.monitoring_ujian.detail_peserta_monitoring', $data->id_assign_test)}}"
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
-                                <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline">Reset</a>
+                                <a class="font-medium text-red-600 dark:text-red-500 hover:underline"
+                                    onclick="return confirmfResetMonitoring('{{route( 'olimpiade.monitoring_ujian.reset_peserta_monitoring', $data->id_assign_test)}}')"
+                                    >Reset</a>
                             </td>
                         </tr>
                         @endforeach

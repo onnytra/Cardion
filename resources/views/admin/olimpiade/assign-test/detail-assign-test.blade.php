@@ -108,9 +108,6 @@
                             Nomor Telepon
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Gelombang Pendaftaran
-                        </th>
-                        <th scope="col" class="px-6 py-3">
                             Aksi
                         </th>
                     </tr>
@@ -133,9 +130,6 @@
                         </td>
                         <td class="px-6 py-4">
                             {{ $peserta->peserta->telepon }}
-                        </td>
-                        <td class="px-6 py-4">
-                            Gelombang 1
                         </td>
                         <td class="px-6 py-4">
                             <a href="{{route('olimpiade.assign_test.delete', $peserta->id_assign_test)}}" class="font-medium text-red-600 dark:text-red-500 hover:underline" data-confirm-delete="true">Hapus</a>

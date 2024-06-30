@@ -26,4 +26,9 @@ class assign_tests extends Model
     {
         return $this->belongsTo(pengumpulan_karyas::class, 'id_pengumpulan', 'id_pengumpulan');   
     }
+
+    public function sesi()
+    {
+        return $this->belongsTo(sesis::class, 'id_sesi', 'id_sesi');
+    }
 }
