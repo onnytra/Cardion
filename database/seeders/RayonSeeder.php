@@ -37,14 +37,14 @@ class RayonSeeder extends Seeder
             'id_cabang' => 2,
         ]);
         rayons::create([
-            'rayon' => 'Kediri',
+            'rayon' => 'Probolinggo',
             'kuota' => 100,
             'status_rayon' => 1,
             'contact_person' => '1234567890',
             'id_cabang' => 2,
         ]);
         rayons::create([
-            'rayon' => 'Jember',
+            'rayon' => 'Tulungagung',
             'kuota' => 100,
             'status_rayon' => 1,
             'contact_person' => '1234567890',
