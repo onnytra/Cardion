@@ -61,14 +61,28 @@
                 </div>
             </div>
             <div class="card-footer flex justify-end">
+                {{-- @if ($item->mulai < $today && $item->berakhir > $today) --}}
+                @if ($today->between($item->mulai, $item->berakhir))
+                <button type="button" class="btn-indigo" onclick="confirmIkutUjian('{{ route('olimpiade.detail-ujian', ['ujians' => $item->ujian->id_ujian, 'sesis' => $item->id_sesi]) }}')">
+                    <i class="fad fa-clock mr-2 leading-none"></i>
+                    Ikuti Ujian
+                </button>
+                @elseif ($item->berakhir < $today && $item->id_sesi_peserta == $item->id_sesi)
+                <button type="button" class="btn-danger" onclick="confirmKumpulkanUjian('{{ route('olimpiade.kumpulkan_ujian', ['ujians' => $item->ujian->id_ujian]) }}')">
+                    <i class="fad fa-clock mr-2 leading-none"></i>
+                    Kumpulkan Ujian
+                </button>
+                @endif
+            </div>
+            {{-- <div class="card-footer flex justify-end">
                 @if ($item->mulai < $today && $item->berakhir > $today)
                 <button>
-                    <a href="{{route('olimpiade.detail-ujian', ['ujians'=>$item->ujian->id_ujian, 'sesis'=>$item->id_sesi])}}" class="btn-indigo">
+                    <a href="{{route('olimpiade.detail-ujian', ['ujians'=>$item->ujian->id_ujian, 'sesis'=>$item->id_sesi])}}" class="btn-indigo" onclick="confirmIkutUjian('')">
                         <i class="fad fa-clock mr-2 leading-none"></i>
                         Ikuti Ujian</a>
                 </button>
                 @endif
-            </div>
+            </div> --}}
         </div>
         @endforeach
         @endif

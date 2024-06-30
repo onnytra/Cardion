@@ -56,70 +56,6 @@ Route::get('/public-poster', function () {
     return view('public-poster', ['title' => 'Science & Primary Medical Olimpiad - Cardion UIN Malang', 'slug' => 'Public Poster']);
 });
 
-Route::get('/olimpiade/cetak-kartu', function () {
-    return view('olimpiade/cetak-kartu', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'cetak-kartu']);
-});
-
-Route::get('/olimpiade/sertifikat', function () {
-    return view('olimpiade/sertifikat', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'sertifikat']);
-});
-
-Route::get('/olimpiade/sertifikat/view', function () {
-    return view('olimpiade/sertifikat-detail', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'sertifikat']);
-});
-
-Route::get('/olympiad/ujian', function () {
-    return view('olimpiade/ujian/ujian', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'ujian']);
-});
-
-Route::get('/olympiad/ujian/detail', function () {
-    return view('olimpiade/ujian/detail-ujian', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'detail']);
-});
-
-Route::get('/olympiad/ujian/detail/start', function () {
-    return view('olimpiade/ujian/start-ujian', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'start']);
-});
-
-Route::get('/olympiad/ujian/detail/finish', function () {
-    return view('olimpiade/ujian/finish-ujian', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'finish']);
-});
-
-Route::get('/olympiad/ujian/history', function () {
-    return view('olimpiade/ujian/history-ujian', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'history']);
-});
-
-Route::get('/olympiad/ujian/history/hasil', function () {
-    return view('olimpiade/ujian/hasil-ujian', ['title' => 'Olimpiade | Cardion UIN Malang', 'slug' => 'hasil']);
-});
-
-Route::get('/public-poster/cetak-kartu', function () {
-    return view('publicposter/cetak-kartu', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'cetak-kartu']);
-});
-
-Route::get('/public-poster/sertifikat', function () {
-    return view('publicposter/sertifikat', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'sertifikat']);
-});
-
-Route::get('/public-poster/sertifikat/view', function () {
-    return view('publicposter/sertifikat-detail', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'sertifikat']);
-});
-
-Route::get('/public-poster/pengumpulan-karya', function () {
-    return view('publicposter/pengumpulan-karya/pengumpulan-karya', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'pengumpulan-karya']);
-});
-
-Route::get('/public-poster/pengumpulan-karya/add', function () {
-    return view('publicposter/pengumpulan-karya/add-pengumpulan-karya', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'add']);
-});
-
-Route::get('/public-poster/pengumpulan-karya/edit', function () {
-    return view('publicposter/pengumpulan-karya/edit-pengumpulan-karya', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'edit']);
-});
-
-Route::get('/cetak/temp', function () {
-    return view('olimpiade/cetak_kartu/temp', ['title' => 'Temp', 'slug' => 'temp']);
-});
-Route::get('sendmail', [MailsController::class, 'index']);
 // User Poster Side
 Route::group(['as' => 'poster.', 'prefix' => '/poster', 'event' => 'poster'], function () {
     Route::middleware(['guest:peserta'])->group(function () {
@@ -173,6 +109,7 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/olimpiade', 'event' => 'olimpi
         Route::post('/ujian/finish', [UjianController::class, 'finish_ujian'])->name('finish_ujian');
         Route::get('/ujian/history', [UjianController::class, 'history'])->name('history_ujian');
         Route::get('/ujian/history/{ujians}', [UjianController::class, 'hasil'])->name('hasil_ujian');
+        Route::get('/ujian/assing-test/{ujians}', [UjianController::class, 'kumpulkan_ujian'])->name('kumpulkan_ujian');
     });
 });
 // All User Side
@@ -371,6 +308,7 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' => '
         Route::get('/data/tests', [MonitoringUjianController::class, 'show_tests_monitoring'])->name('show_tests_monitoring')->middleware('permission:olimmonitor_view');
         Route::get('/data/ujian/{id}', [MonitoringUjianController::class, 'monitoring_detail'])->name('detail_monitoring')->middleware('permission:olimmonitor_view');
         Route::get('/data/peserta/{assign_tests}', [MonitoringUjianController::class, 'detail_peserta_monitoring'])->name('detail_peserta_monitoring')->middleware('permission:olimmonitor_view');
+        Route::get('/reset/{assign_tests}', [MonitoringUjianController::class, 'reset'])->name('reset_peserta_monitoring')->middleware('permission:olimmonitor_create_edit');
     });
 
     Route::group(['as' => 'pengumuman.', 'prefix' => '/pengumuman'], function () {

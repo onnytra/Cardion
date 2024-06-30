@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\assign_tests;
+use App\Models\jawaban_users;
+use App\Models\jawabans;
 use App\Models\pengumpulan_karyas;
 use App\Models\pesertas;
 use App\Models\ujians;
@@ -89,11 +91,6 @@ class AssignTestsController extends Controller
         }
     }
 
-    public function create()
-    {
-        //
-    }
-
     public function store(Request $request, $id_ujian)
     {
         if ($request->peserta[0] == 'all'){
@@ -125,25 +122,11 @@ class AssignTestsController extends Controller
         return redirect()->route($this->event.'.assign_test.index', $id_ujian);
     }
 
-    public function show(assign_tests $assign_tests)
-    {
-        //
-    }
-
-    public function edit(assign_tests $assign_tests)
-    {
-        //
-    }
-
-    public function update(Request $request, assign_tests $assign_tests)
-    {
-        //
-    }
-
     public function destroy(assign_tests $assign_tests)
     {
         $assign_tests->delete();
         toast('Data Berhasil Dihapus', 'success');
         return redirect()->back();
     }
+
 }
