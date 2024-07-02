@@ -15,6 +15,10 @@ class PengumumanController extends Controller
         $title = 'Pengumuman | Cardion UIN Malang';
         $slug = 'pengumuman';
         $user = Auth::guard('peserta')->user();
+        if ($user->status_data == 'belum' || $user->status_pembayaran == 'belum') {
+            toast('Lengkapi Data Diri dan Lakukan Pembayaran Terlebih Dahulu', 'info');
+            return redirect()->route('user.dashboard');
+        }
         $id_gelombang = pembayarans::where('id_peserta', $user->id_peserta)->first();
         $pengumuman_broadcast = pengumumans::where('event', $user->event)
         ->where('tipe_pengumuman', 'broadcast')

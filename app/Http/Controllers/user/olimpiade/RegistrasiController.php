@@ -12,34 +12,20 @@ use Illuminate\Support\Facades\Validator;
 
 class RegistrasiController extends Controller
 {
-    public $event;
-
-    public function __construct()
-    {
-        $route = request()->route();
-
-        if ($route) {
-            $action = $route->getAction();
-            $this->event = $action['event'] ?? null;
-        } else {
-            $this->event = null;
-        }
-    }
-
     public function index(){
         $title = 'Registrasi Peserta';
         $slug = 'registrasi';
-
         $data = Auth::guard('peserta')->user();
+        $event = $data->event;
         if($data->status_data == 'sudah'){
             toast('Data Sudah Disimpan', 'info');
             return redirect()->route('user.dashboard');
         }
         if ($data->id_cabang != null) {
-            $cabangs = cabangs::where('event', $this->event)->get();
+            $cabangs = cabangs::where('event', $event)->get();
             $rayons = rayons::where('id_rayon', $data->id_rayon)->get();
         }else{
-            $cabangs = cabangs::where('event', $this->event)->get();
+            $cabangs = cabangs::where('event', $event)->get();
             $rayons = [];
         }
         return view('olimpiade.registrasi', compact('title', 'slug', 'data', 'cabangs', 'rayons'));
@@ -108,7 +94,7 @@ class RegistrasiController extends Controller
         $peserta->zona_waktu = $request->zona_waktu;
         $peserta->status_data = 'sudah';
         $peserta->password = $request->password ? bcrypt($request->password) : $peserta->password;
-        $peserta->keterangan = 'Peserta Aktif';
+        $peserta->keterangan = 'Peserta Belum Melakukan Pembayaran';
         $peserta->save();
 
         toast('Data Berhasil Disimpan', 'success');

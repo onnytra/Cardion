@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\assign_tests;
+use App\Models\jawaban_users;
 use App\Models\jawabans;
 use App\Models\pesertas;
 use Illuminate\Http\Request;
@@ -58,5 +59,23 @@ class MonitoringUjianController extends Controller
         }
         $detail_ujian = $detail_ujian->sortBy('urutan_soal');
         return view('admin.olimpiade.monitoring.detail-peserta', compact('title', 'slug', 'assign_tests', 'ujian', 'nilai_ujian', 'detail_ujian'));
+    }
+
+    public function reset(assign_tests $assign_tests)
+    {
+        $assign_tests->status_test = 'belum';
+        $assign_tests->id_sesi = null;
+        $assign_tests->save();
+
+        $peserta = $assign_tests->id_peserta;
+        $ujian = $assign_tests->id_ujian;
+
+        $jawabans_peserta = jawaban_users::where('id_peserta', $peserta)->where('id_ujian', $ujian)->get();
+        foreach ($jawabans_peserta as $jawaban_peserta) {
+            $jawaban = jawaban_users::find($jawaban_peserta->id_jawaban_user);
+            $jawaban->delete();
+        }
+        toast('Data Berhasil Direset', 'success');
+        return redirect()->back();
     }
 }

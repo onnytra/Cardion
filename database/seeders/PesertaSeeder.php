@@ -15,7 +15,6 @@ class PesertaSeeder extends Seeder
      */
     public function run()
     {
-        // pesertas::factory()->count(10)->create();
         pesertas::create([
             'nomor' => '1233-5311-2315',
             'nama_team' => 'Team A',
@@ -24,7 +23,7 @@ class PesertaSeeder extends Seeder
             'telepon' => '1234567890',
             'event' => 'olimpiade',
             'password' => bcrypt('pass'),
-            'status_pembayaran' => 'sudah',
+            'status_pembayaran' => 'belum',
             'status_data' => 'sudah',
             'sekolah' => 'SMA N 1',
             'alamat_sekolah' => 'Jl. Jendral Sudirman',

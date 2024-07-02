@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             PesertaSeeder::class,
             RolePermissionSeeder::class,
             UjianSeeder::class,
+            GelombangPembayaranSeeder::class,
         ]);
     }
 }

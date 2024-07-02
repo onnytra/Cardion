@@ -9,9 +9,9 @@
                 Silahkan mengunduh sertifikat di bawah ini
             </h2>
             <button class="mt-5">
-                <a href="/public-poster/sertifikat/pdf" class="btn-indigo">
+                <a href="/public-poster/sertifikat/view" class="btn-indigo">
                     <i class="fad fa-download mr-2 leading-none"></i>
-                    Download E-Sertifikat Test1
+                    Download E-Sertifikat
                 </a>
             </button>
         </div>

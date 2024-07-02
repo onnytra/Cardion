@@ -70,6 +70,9 @@ module.exports = {
                     "url('../../public/img/prize-4-olimpiade.png')",
                 "prize-5-olimpiade":
                     "url('../../public/img/prize-5-olimpiade.png')",
+                "kartu-peserta": "url('../../public/img/kartu-peserta.png')",
+                "sertifikat-peserta":
+                    "url('../../public/img/sertifikat-peserta.png')",
             },
             fontFamily: {
                 andalus: ["Andalus", "sans-serif"],

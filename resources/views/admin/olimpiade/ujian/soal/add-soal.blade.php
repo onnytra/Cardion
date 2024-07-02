@@ -7,7 +7,7 @@
             <h1 class="h6">Form Tambah Soal</h1>
         </div>
 
-        <form action="{{route('olimpiade.soal.store', $ujians->id_ujian)}}" method="POST">
+        <form action="{{route('olimpiade.soal.store', $ujians->id_ujian)}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card-body relative overflow-x-auto sm:rounded-lg">
                 <div class="grid gap-6">

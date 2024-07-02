@@ -7,7 +7,7 @@
             <h1 class="h6">Form Edit Soal</h1>
         </div>
 
-        <form action="{{route('olimpiade.soal.update', $soals->id_soal)}}" method="POST">
+        <form action="{{route('olimpiade.soal.update', $soals->id_soal)}}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="card-body relative overflow-x-auto sm:rounded-lg">

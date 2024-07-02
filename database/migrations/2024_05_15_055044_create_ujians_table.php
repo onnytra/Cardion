@@ -26,8 +26,8 @@ return new class extends Migration
             $table->integer('salah')->nullable()->default(0);
             $table->integer('kosong')->nullable()->default(0);
             $table->boolean('soal_acak');
-            $table->string('tampilkan_jawaban',15);
-            $table->string('tampilkan_nilai',15);
+            $table->boolean('tampilkan_jawaban');
+            $table->boolean('tampilkan_nilai');
             $table->boolean('status_ujian');
             $table->timestamps();
         });

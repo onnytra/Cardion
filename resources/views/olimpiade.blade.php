@@ -93,7 +93,7 @@
         </div>
 
         <div id="about" class="bg-page-2 bg-center bg-cover xl:pr-40">
-            <div class="min-h-screen px-6 pt-20 lg:px-8 sm:bg-about-poster bg-illustration-about bg-cover bg-right">
+            <div class="min-h-screen px-6 pt-20 lg:px-8 sm:bg-about-olimpiade bg-illustration-about bg-cover bg-right">
                 <div class="w-full grid grid-cols-1 lg:grid-cols-2 py-36 pr-24 mx-auto lg:py-32 md:px-48 sm:hidden">
                     <div></div>
                     <div class="md:text-center pl-0 md:pl-20 lg:pl-0">
@@ -143,7 +143,8 @@
                                     Sunday, 26 January 2025
                                 </p>
                                 <p class="font-abhaya text-lg">
-                                    * Offline at Malang, Surabaya, Kediri, Jember, Jombang, Madura, Semarang and Online by
+                                    * Offline at Malang, Probolinggo, Surabaya, Madura, Jombang, Tulungagung,
+                                    Jateng (Semarang) and Online by
                                     website
                                 </p>
                             </div>
@@ -181,7 +182,7 @@
                             </div>
                             <p class="text-lg font-abhaya mt-2">
                                 Free 6x Scheduled TO : 2 Basic, 2 Intermediet, 2 Advanced ; 12 Scheduled Primary Medical
-                                Subject.
+                                Subject. Free Webinar.
                             </p>
                         </div>
                         <div class="bg-[#F7EEDD] text-left p-8 rounded-tr-[60px] rounded-bl-[60px]">
@@ -192,7 +193,7 @@
                             </div>
                             <p class="text-lg font-abhaya mt-2">
                                 Free 5x Scheduled TO : 1 Basic, 2 Intermediet, 2 Advanced ; 10 Scheduled Primary Medical
-                                Subject.
+                                Subject. Free Webinar.
                             </p>
                         </div>
                         <div class="bg-[#F7EEDD] text-left p-8 rounded-bl-[60px] rounded-tr-[60px]">
@@ -203,6 +204,7 @@
                             </div>
                             <p class="text-lg font-abhaya mt-2">
                                 Free 4x Scheduled TO : 2 Intermediate, 2 Advanced ; 8 Scheduled Primary Medical Subject.
+                                Free Webinar.
                             </p>
                         </div>
                         <div class="bg-[#F7EEDD] text-left p-8 rounded-br-[60px] rounded-tl-[60px]">
@@ -213,6 +215,7 @@
                             </div>
                             <p class="text-lg font-abhaya mt-2">
                                 Free 3x Scheduled TO : 1 Intermediet, 2 Advanced ; 6 Scheduled Primary Medical Subject.
+                                Free Webinar.
                             </p>
                         </div>
                     </div>
