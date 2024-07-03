@@ -23,17 +23,22 @@ class PengumpulanController extends Controller
             toast('Lengkapi Data Diri dan Lakukan Pembayaran Terlebih Dahulu', 'info');
             return redirect()->route('user.dashboard');
         }
-        $closest_pengumpulan_karya = pengumpulan_karyas::join('assign_tests', 'pengumpulan_karyas.id_pengumpulan', '=', 'assign_tests.id_pengumpulan')
-            ->where('assign_tests.id_peserta', $user->id_peserta)
-            ->where('pengumpulan_karyas.status_pengumpulan', 1)
-            // ->where('pengumpulan_karyas.berakhir', '>=', $today)
-            ->with('assign_tests')
-            ->orderBy('pengumpulan_karyas.mulai', 'asc')
-            ->get(['pengumpulan_karyas.*']);
-            // check closest pengumpulan
+        $closest_pengumpulan_karya = assign_tests::where('id_peserta', $user->id_peserta)->with('pengumpulan_karya')->get();
+        // $closest_pengumpulan_karya = pengumpulan_karyas::join('assign_tests', 'pengumpulan_karyas.id_pengumpulan', '=', 'assign_tests.id_pengumpulan')
+        //     ->where('assign_tests.id_peserta', $user->id_peserta)
+        //     ->where('pengumpulan_karyas.status_pengumpulan', 1)
+        //     // ->where('pengumpulan_karyas.berakhir', '>=', $today)
+        //     ->with('assign_tests')
+        //     ->orderBy('pengumpulan_karyas.mulai', 'asc')
+        //     ->get(['pengumpulan_karyas.*']);
+        //     // check closest pengumpulan
+        //     if($closest_pengumpulan_karya->isEmpty()){
+        //         $closest_pengumpulan_karya = null;
+        //     }
             if($closest_pengumpulan_karya->isEmpty()){
                 $closest_pengumpulan_karya = null;
             }
+            // dd($closest_pengumpulan_karya);
         return view('publicposter.pengumpulan-karya.pengumpulan-karya', compact('title', 'slug', 'closest_pengumpulan_karya', 'today'));
     }
 
