@@ -137,8 +137,7 @@
                                     Science & Primary Medical Olimpiad
                                 </h3>
                                 <p class="lg:text-lg text-sm font-abhaya mt-5">
-                                    About Science & Primary Medical Olympiad, The Cardion Olympiad 2025 theme is Sensory
-                                    System. Cardion Olympiad consist of three rounds, there are preliminary, semifinal,
+                                    About Science & Primary Medical Olympiad, The Cardion Olympiad 2025 theme is Muskuloskletal. Cardion Olympiad consist of three rounds, there are preliminary, semifinal,
                                     and final. The preliminary round will be held in 6 cities in Indonesia by offline
                                     and centered by online. The semifinal and final round will be held in Malang.
                                 </p>
@@ -157,7 +156,7 @@
                                 </h3>
                                 <p class="lg:text-lg text-sm font-abhaya mt-5">
                                     About New Branch of Competition in Cardion 2023, The Cardion Public Poster 2025
-                                    theme is Sensory System. Cardion Public Poster consist of two rounds, there are
+                                    theme is Muskuloskletal. Cardion Public Poster consist of two rounds, there are
                                     preliminary and final. The preliminary round will be held on Official Account
                                     Instagram @cardion.2025 by online voting. The final round will be held by offline in
                                     Malang.

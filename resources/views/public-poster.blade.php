@@ -102,7 +102,7 @@
                         </h1>
                         <p
                             class="text-[1.1rem] leading-8 font-abhaya mt-5 text-gray-900 sm:leading-9 sm:text-[1.25rem]">
-                            The Cardion Public Poster 2025 theme is Sensory System. Cardion Public Poster consist of two
+                            The Cardion Public Poster 2025 theme is Muskuloskletal. Cardion Public Poster consist of two
                             rounds, there are preliminary and final. The preliminary round will be held on Official
                             Acount Instagram @cardion.2025 by online voting. The final round will be held by offline in
                             Malang.

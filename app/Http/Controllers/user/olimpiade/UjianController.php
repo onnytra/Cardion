@@ -185,7 +185,7 @@ class UjianController extends Controller
             [
                 'id_soal' => $request->id_soal,
                 'id_ujian' => $request->id_ujian,
-                'id_peserta' => $request->id_peserta
+                'id_peserta' => Auth::guard('peserta')->user()->id_peserta
             ],
             [
                 'id_jawaban' => $request->id_jawaban

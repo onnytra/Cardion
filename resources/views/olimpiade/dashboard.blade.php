@@ -24,6 +24,16 @@
                 <p class="px-6 py-3 text-gray-600">Setelah memilih cabang lomba, peserta membayar biaya registrasi ke
                     rekening bank yang muncul di laman pembayaran dan melakukan konfirmasi pembayaran sesuai dengan
                     tahapan yang ada.</p>
+                {{-- <p>
+                    Shopee Pay 085282008215 atas nama Zafira Azalia Falahi
+                    BNI 0599509139 atas nama Zafira Azalia Falahi
+                    OVO 085282008215 atas nama Zafira Azalia Falahi
+                </p> --}}
+                <ul>
+                    <li class="px-6 py-3 text-gray-600">Shopee Pay 085282008215 atas nama Zafira Azalia Falahi</li>
+                    <li class="px-6 py-3 text-gray-600">BNI 0599509139 atas nama Zafira Azalia Falahi</li>
+                    <li class="px-6 py-3 text-gray-600">OVO 085282008215 atas nama Zafira Azalia Falahi</li>
+                </ul>
             </div>
             <hr class="my-5">
             <div class="w-full text-left rtl:text-right">

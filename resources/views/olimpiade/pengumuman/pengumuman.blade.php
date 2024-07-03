@@ -10,7 +10,7 @@
 
         <div class="card-body relative overflow-x-auto sm:rounded-lg">
             <p class="text-gray-900">
-                {!! strip_tags($broadcast->deskripsi) !!}
+                {!! $broadcast->deskripsi !!}
             </p>
         </div>
 
@@ -30,7 +30,7 @@
 
         <div class="card-body relative overflow-x-auto sm:rounded-lg">
             <p class="text-gray-900">
-                {!! strip_tags($pengumuman->deskripsi) !!}
+                {!! $pengumuman->deskripsi !!}
             </p>
         </div>
 

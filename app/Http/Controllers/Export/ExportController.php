@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Export;
 
+use App\Exports\PenilaianKaryaExport;
 use App\Http\Controllers\Controller;
 use App\Exports\SheetFormatPeserta;
 use App\Exports\SheetFormatPesertaBelumLunas;
 use App\Exports\SheetFormatUjian;
 use App\Models\cabangs;
+use App\Models\karyas;
+use App\Models\pengumpulan_karyas;
 use App\Models\rayons;
 use App\Models\subyeks;
 use App\Models\ujians;
@@ -72,5 +75,12 @@ class ExportController extends Controller
     {
         $subyek = subyeks::where('id_ujian', $ujians->id_ujian)->get();
         return Excel::download(new SheetFormatUjian([$subyek]), 'ujian-'.$ujians->judul.'.xlsx');
+    }
+
+    public function penilaian_karya(pengumpulan_karyas $pengumpulan_karyas)
+    {
+        $karyas = karyas::where('id_pengumpulan', $pengumpulan_karyas->id_pengumpulan)->get();
+        return Excel::download(new PenilaianKaryaExport($karyas), 'penilaian-karya-'.$pengumpulan_karyas->judul.'.xlsx');
+
     }
 }

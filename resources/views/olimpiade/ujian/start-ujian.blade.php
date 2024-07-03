@@ -25,7 +25,7 @@
                 @csrf
                 <input type="hidden" name="id_soal" value="{{ $soal->id_soal }}">
                 <input type="hidden" name="id_ujian" value="{{ $ujian->id_ujian }}">
-                <input type="hidden" name="id_peserta" value="{{ Auth::guard('peserta')->user()->id_peserta }}">
+                {{-- <input type="hidden" name="id_peserta" value="{{ Auth::guard('peserta')->user()->id_peserta }}"> --}}
             
                 <div class="card-body relative overflow-x-auto sm:rounded-lg">
                     <span class="bg-orange-400 text-center text-sm px-2 py-1 rounded">{{ $soal->subyek->nama }}</span>
@@ -73,7 +73,7 @@
                             @csrf
                             <input type="hidden" name="id_soal" value="{{ $soal->id_soal }}">
                             <input type="hidden" name="id_ujian" value="{{ $ujian->id_ujian }}">
-                            <input type="hidden" name="id_peserta" value="{{ Auth::guard('peserta')->user()->id_peserta }}">
+                            {{-- <input type="hidden" name="id_peserta" value="{{ Auth::guard('peserta')->user()->id_peserta }}"> --}}
                             <button type="submit" class="btn btn-danger ml-2">
                                 <i class="fad fa-trash mr-2 leading-none"></i>
                                 Hapus Jawaban
@@ -179,5 +179,9 @@
 
         // Panggil updateCountdown setiap detik
         setInterval(updateCountdown, 1000);
+
+    </script>
+    <script type="text/javascript">
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
     </script>
 </x-layout-u>

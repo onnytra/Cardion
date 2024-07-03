@@ -102,7 +102,7 @@
                         </h1>
                         <p
                             class="text-[1.1rem] leading-8 font-abhaya mt-5 text-gray-900 sm:leading-9 sm:text-[1.25rem]">
-                            The Cardion Olympiad 2025 theme is Sensory System. Cardion Olympiad consist of three rounds,
+                            The Cardion Olympiad 2025 theme is Muskuloskletal. Cardion Olympiad consist of three rounds,
                             there are preliminary, semifinal, and final. The preliminary round will be held in 6 cities
                             in Indonesia by offline and centered by online. The semifinal and final round will be held
                             in Malang.

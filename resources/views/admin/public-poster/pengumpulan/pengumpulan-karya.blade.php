@@ -90,6 +90,12 @@
                                                             <i class="fad fa-trash mr-2 leading-none"></i>
                                                             Hapus Pengumpulan Karya</a>
                                                     </button>
+                                                    {{-- make button for export excel --}}
+                                                    <button class="w-full mt-2">
+                                                        <a href="{{route('poster.exportexcel.penilaian-karya', $data->id_pengumpulan)}}" class="btn-bs-info">
+                                                            <i class="fad fa-file-excel mr-2 leading-none"></i>
+                                                            Export Excel</a>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>

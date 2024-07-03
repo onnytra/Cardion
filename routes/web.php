@@ -331,6 +331,7 @@ Route::group(['as' => 'poster.', 'prefix' => '/admin/poster', 'event' => 'poster
         Route::get('/peserta-lunas', [ExportController::class, 'pesertalunas'])->name('peserta-lunas')->middleware('permission:posterpeserta_view');
         Route::get('/peserta-lunas/{cabangs}', [ExportController::class, 'pesertalunas_bycabang'])->name('peserta-lunas-cabang')->middleware('permission:posterpeserta_view');
         Route::get('/peserta-belum-lunas', [ExportController::class, 'pesertabelumlunas'])->name('peserta-belum-lunas')->middleware('permission:posterpeserta_view');
+        Route::get('/penilaian-karya/{pengumpulan_karyas}', [ExportController::class, 'penilaian_karya'])->name('penilaian-karya')->middleware('permission:posterpeserta_view');
     });
 
     Route::group(['as' => 'importexcel.', 'prefix' => '/excel'], function () {
