@@ -291,7 +291,7 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' => '
         Route::post('/store', [PembayaransController::class, 'store'])->name('store')->middleware('permission:olimpembayaran_create_edit');
         Route::get('/edit/{pembayarans}', [PembayaransController::class, 'edit'])->name('edit')->middleware('permission:olimpembayaran_create_edit');
         Route::put('/update/{pembayarans}', [PembayaransController::class, 'update'])->name('update')->middleware('permission:olimpembayaran_create_edit');
-        Route::get('/delete/{pembayarans}', [PembayaransController::class, 'destroy'])->name('delete')->middleware('permission:olimpembayaran_delete');
+        Route::delete('/delete/{pembayarans}', [PembayaransController::class, 'destroy'])->name('delete')->middleware('permission:olimpembayaran_delete');
         Route::get('/tolak/{pembayarans}', [PembayaransController::class, 'tolak'])->name('tolak')->middleware('permission:olimpembayaran_create_edit');
         Route::get('/terima/{pembayarans}', [PembayaransController::class, 'terima'])->name('terima')->middleware('permission:olimpembayaran_create_edit');
     });
@@ -393,7 +393,7 @@ Route::group(['as' => 'poster.', 'prefix' => '/admin/poster', 'event' => 'poster
         Route::post('/store', [PembayaransController::class, 'store'])->name('store')->middleware('permission:posterpembayaran_create_edit');
         Route::get('/edit/{pembayarans}', [PembayaransController::class, 'edit'])->name('edit')->middleware('permission:posterpembayaran_create_edit');
         Route::put('/update/{pembayarans}', [PembayaransController::class, 'update'])->name('update')->middleware('permission:posterpembayaran_create_edit');
-        Route::get('/delete/{pembayarans}', [PembayaransController::class, 'destroy'])->name('delete')->middleware('permission:posterpembayaran_delete');
+        Route::delete('/delete/{pembayarans}', [PembayaransController::class, 'destroy'])->name('delete')->middleware('permission:posterpembayaran_delete');
         Route::get('/tolak/{pembayarans}', [PembayaransController::class, 'tolak'])->name('tolak')->middleware('permission:posterpembayaran_create_edit');
         Route::get('/terima/{pembayarans}', [PembayaransController::class, 'terima'])->name('terima')->middleware('permission:posterpembayaran_create_edit');
     });
