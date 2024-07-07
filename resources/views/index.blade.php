@@ -4,6 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Cardion (Science and Primary Medical Competition) is the science and primary medical Olympiad and Public poster held by Student Association of Medical Education UIN Maulana Malik Ibrahim Malang. Cardion has been held since 2018.">
+    <meta name="keywords" content="cardion, cardionfkuin, fk uin">
+    <meta name="google-site-verification" content="H5jB7wDRPQnlBzO9EC-10NSzHWCArU850mp4elEkfOg" />
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
     @vite('resources/css/app.css')
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>

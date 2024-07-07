@@ -4,6 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="The Cardion Public Poster 2025 theme is Muskuloskletal. Cardion Public Poster consist of two rounds, there are preliminary and final. The preliminary round will be held on Official Acount Instagram @cardion.2025 by online voting. The final round will be held by offline in Malang.">
+    <meta name="keywords" content="cardion, cardionfkuin, fk uin">
     <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
     @vite('resources/css/app.css')
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>

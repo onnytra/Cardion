@@ -45,15 +45,15 @@ use App\Http\Controllers\user\olimpiade\UjianController;
 */
 
 Route::get('/', function () {
-    return view('index', ['title' => 'Cardion - Universitas Islam Negeri Maulana Malik ibrahim Malang', 'slug' => '/']);
+    return view('index', ['title' => 'Cardion | Fakultas Kedokteran UIN Maulana Malik ibrahim Malang', 'slug' => '/']);
 });
 
 Route::get('/olimpiade', function () {
-    return view('olimpiade', ['title' => 'Science & Primary Medical Olimpiad - Cardion UIN Malang', 'slug' => 'olympiade']);
+    return view('olimpiade', ['title' => 'Science & Primary Medical Olimpiad | Cardion UIN Malang', 'slug' => 'olympiade']);
 });
 
 Route::get('/public-poster', function () {
-    return view('public-poster', ['title' => 'Science & Primary Medical Olimpiad - Cardion UIN Malang', 'slug' => 'Public Poster']);
+    return view('public-poster', ['title' => 'Public Poster | Cardion UIN Malang', 'slug' => 'Public Poster']);
 });
 
 // User Poster Side
