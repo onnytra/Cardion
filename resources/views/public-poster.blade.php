@@ -286,7 +286,7 @@
                     </h1>
                     <div class="h-96 md:h-[30rem] mt-10">
                         <iframe class="w-full h-96 md:h-[30rem] rounded-3xl"
-                            src="https://www.youtube.com/embed/9SAWNooGW_w?si=uNihJSp0Lqi1f0J1"
+                            src="https://www.youtube.com/embed/MSSsVTRK6UU?si=WL_dGsKH0DJB_0xe"
                             title="Tutorial Mendaftar Cadion" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
