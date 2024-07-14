@@ -41,7 +41,7 @@
                 <div class="flex items
                 -center gap-5">
                     <i class="fad fa-calendar mr-2 leading-none"></i>
-                    <p class="text-gray-900 hover:text-blue-500">{{$item->mulai}} - {{$item->berakhir}}</p>
+                    <p class="text-gray-900 hover:text-blue-500">{{$item->mulai}} - {{$item->berakhir}} ({{Auth::guard('peserta')->user()->zona_waktu}})</p>
                 </div>
                 <div class="flex items
                 -center gap-5">

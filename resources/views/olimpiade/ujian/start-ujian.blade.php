@@ -1,4 +1,4 @@
-<x-layout-u>
+<x-layout-ujian>
     <x-slot:title>{{ $title }}</x-slot:title>
     <x-slot:slug>{{ $slug }}</x-slot:slug>
 
@@ -25,7 +25,6 @@
                 @csrf
                 <input type="hidden" name="id_soal" value="{{ $soal->id_soal }}">
                 <input type="hidden" name="id_ujian" value="{{ $ujian->id_ujian }}">
-                {{-- <input type="hidden" name="id_peserta" value="{{ Auth::guard('peserta')->user()->id_peserta }}"> --}}
             
                 <div class="card-body relative overflow-x-auto sm:rounded-lg">
                     <span class="bg-orange-400 text-center text-sm px-2 py-1 rounded">{{ $soal->subyek->nama }}</span>
@@ -73,7 +72,6 @@
                             @csrf
                             <input type="hidden" name="id_soal" value="{{ $soal->id_soal }}">
                             <input type="hidden" name="id_ujian" value="{{ $ujian->id_ujian }}">
-                            {{-- <input type="hidden" name="id_peserta" value="{{ Auth::guard('peserta')->user()->id_peserta }}"> --}}
                             <button type="submit" class="btn btn-danger ml-2">
                                 <i class="fad fa-trash mr-2 leading-none"></i>
                                 Hapus Jawaban
@@ -140,48 +138,8 @@
         <input type="hidden" name="id_sesi" value="{{ $sesi->id_sesi }}">
     </form>
     <script>
-        window.addEventListener('keydown', function(event) {
-            if (event.ctrlKey || event.altKey || event.keyCode === 9) {
-                event.preventDefault();
-            }
-        });
-
-        window.addEventListener('contextmenu', function(event) {
-            event.preventDefault();
-        });
-        // Ambil waktu mulai dan berakhir dari PHP dan konversi menjadi JavaScript Date
-        const waktuMulai = new Date("{{ $sesi->mulai }}");
-        const waktuBerakhir = new Date("{{ $sesi->berakhir }}");
-
-        function finish_ujian() {
-        // Kirim form untuk menyelesaikan ujian
-        document.getElementById('finishForm').submit();
-        }
-
-        // Update countdown setiap detik
-        function updateCountdown() {
-            const sekarang = new Date();
-            const selisih = waktuBerakhir - sekarang;
-
-            if (selisih <= 0) {
-                document.getElementById('countdown').textContent = 'Waktu habis';
-                finish_ujian(); // Panggil fungsi finish_ujian saat waktu habis
-                return;
-            }
-
-            const hours = Math.floor(selisih / (1000 * 60 * 60));
-            const minutes = Math.floor((selisih % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((selisih % (1000 * 60)) / 1000);
-
-            document.getElementById('countdown').textContent = `${hours}:${minutes}:${seconds}`;
-            console.log(`${hours}:${minutes}:${seconds}`);
-        }
-
-        // Panggil updateCountdown setiap detik
-        setInterval(updateCountdown, 1000);
-
+    const waktuMulai = new Date("{{ $sesi->mulai }}");
+    const waktuBerakhir = new Date("{{ $sesi->berakhir }}");
     </script>
-    <script type="text/javascript">
-        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-    </script>
-</x-layout-u>
+    <script src="{{asset('js/ujian.js')}}"></script>
+</x-layout-ujian>

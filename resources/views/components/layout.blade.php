@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="../../../../../img/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="https://kit-pro.fontawesome.com/releases/v5.12.1/css/pro.min.css">
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     <link rel="stylesheet" type="text/css" href="/css/toggle.css">
@@ -21,7 +21,7 @@
     <script src="{{asset('js/alert.js')}}"></script>
     <script src="{{asset('js/custom.js')}}"></script>
 
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    {{-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> --}}
     <script type="text/javascript" id="MathJax-script" async
     src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 

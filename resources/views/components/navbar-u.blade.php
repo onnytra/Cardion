@@ -5,7 +5,7 @@
     <div>
         <div class="flex-none w-20 flex flex-row items-center">
             <a href="/olympiad/dashboard" class="flex-none flex flex-row items-center">
-                <img src="../../../img/logo.png" class="w-10 flex-none">
+                <img src="{{asset('img/logo.png')}}" class="w-10 flex-none">
             </a>
         </div>
     </div>
@@ -63,7 +63,7 @@
             <div class="dropdown relative md:static">
                 <button class="menu-btn focus:outline-none focus:shadow-outline flex flex-wrap items-center">
                     <div class="w-8 h-8 overflow-hidden rounded-full">
-                        <img class="w-full h-full object-cover" src="../../../img/user.svg">
+                        <img class="w-full h-full object-cover" src="{{asset('img/user.svg')}}">
                     </div>
                     <div class="ml-2 capitalize flex ">
                         <h1 class="text-sm text-gray-800 font-semibold m-0 p-0 leading-none">

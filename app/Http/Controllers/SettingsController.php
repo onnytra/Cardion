@@ -2,84 +2,55 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\settings;
 use Illuminate\Http\Request;
 
 class SettingsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function index (){
+        $title = 'Settings';
+        $slug = 'settings';
+
+        return view('admin.main.settings', compact('title', 'slug'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function update(Request $request)
+{
+    $request->validate([
+        'login' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+        'register' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+    ]);
+
+    if ($request->hasFile('login')) {
+        $file = $request->file('login');
+        $tempPath = $file->storeAs('temp', $file->getClientOriginalName()); // Simpan file di direktori sementara
+        
+        $filename_build = 'bg-login-1152a7b5.png';
+        copy(storage_path('app/' . $tempPath), public_path('build/assets/' . $filename_build));
+        
+        $filename_img = 'bg-login.png';
+        copy(storage_path('app/' . $tempPath), public_path('img/' . $filename_img));
+        
+        // Hapus file sementara
+        unlink(storage_path('app/' . $tempPath));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    if ($request->hasFile('register')) {
+        $file = $request->file('register');
+        $tempPath = $file->storeAs('temp', $file->getClientOriginalName()); // Simpan file di direktori sementara
+        
+        $filename_build = 'bg-register-da4c61b1.png';
+        copy(storage_path('app/' . $tempPath), public_path('build/assets/' . $filename_build));
+        
+        $filename_img = 'bg-register.png';
+        copy(storage_path('app/' . $tempPath), public_path('img/' . $filename_img));
+        
+        // Hapus file sementara
+        unlink(storage_path('app/' . $tempPath));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\settings  $settings
-     * @return \Illuminate\Http\Response
-     */
-    public function show(settings $settings)
-    {
-        //
-    }
+    toast('Settings berhasil diperbarui!', 'success');
+    return redirect()->route('dashboard.setting.index');
+}
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\settings  $settings
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(settings $settings)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\settings  $settings
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, settings $settings)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\settings  $settings
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(settings $settings)
-    {
-        //
-    }
 }

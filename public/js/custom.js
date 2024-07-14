@@ -23,27 +23,4 @@ $(document).ready(function() {
             });
         }
     });
-    // function showTab(tabIndex) {
-    //     // Hide all tab contents
-    //     document.querySelectorAll('.tab-content').forEach(function (tabContent) {
-    //         tabContent.classList.add('hidden');
-    //     });
-
-    //     // Remove active class from all tab buttons
-    //     document.querySelectorAll('.card-header a').forEach(function (tabButton) {
-    //         tabButton.classList.remove('text-blue-600', 'border-blue-600', 'active');
-    //     });
-
-    //     // Show the selected tab content
-    //     document.getElementById('tab-' + tabIndex + '-content').classList.remove('hidden');
-
-    //     // Add active class to the selected tab button
-    //     document.getElementById('btn-tab-' + tabIndex).classList.add('text-blue-600', 'border-blue-600', 'active');
-    // }
-
-    // function goBack() {
-    //     window.history.back();
-    // }
-    // // Set default tab
-    // showTab(1);
 });

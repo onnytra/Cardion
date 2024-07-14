@@ -31,7 +31,7 @@
             <div class="card-body relative overflow-x-auto sm:rounded-lg">
                 <div class="flex items-center gap-5">
                     <i class="fad fa-calendar mr-2 leading-none"></i>
-                    <p class="text-gray-900 hover:text-blue-500">{{$sesi->mulai}} - {{$sesi->berakhir}}</p>
+                    <p class="text-gray-900 hover:text-blue-500">{{$sesi->mulai}} - {{$sesi->berakhir}} ({{Auth::guard('peserta')->user()->zona_waktu}})</p>
                 </div>
                 <div class="flex items-center gap-5">
                     <i class="fad fa-clock mr-2 leading-none"></i>
@@ -44,7 +44,6 @@
             </div>
 
             <div class="card-footer flex justify-end">
-                {{-- <button onclick="startUjian($ujians->id_ujian, 0)"> --}}
                 <button>
                     <a href="{{route('olimpiade.start-ujian', ['ujians'=>$ujians->id_ujian, 'sesis'=>$sesi->id_sesi, 'soals'=>1])}}" class="btn">
                         <i class="fad fa-clock mr-2 leading-none"></i>
@@ -65,10 +64,4 @@
             </div>
         </div>
     </div>
-
-    <script>
-        function startUjian(id_ujian, soal) {
-            window.open("start/" + id_ujian +"/" +soal, "_blank", "top=0, left=0, width=" + screen.width + ", height=" + screen.height);
-        }
-    </script>
 </x-layout-u>

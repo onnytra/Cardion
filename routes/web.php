@@ -24,6 +24,8 @@ use App\Http\Controllers\mail\MailsController;
 use App\Http\Controllers\MonitoringUjianController;
 use App\Http\Controllers\PengumumansController;
 use App\Http\Controllers\PengumpulanKaryasController;
+use App\Http\Controllers\SertifikatsController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\user\olimpiade\CetakKartuController;
 use App\Http\Controllers\user\olimpiade\MainOlimpiadeController;
 use App\Http\Controllers\user\olimpiade\PembayaranController;
@@ -110,6 +112,7 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/olimpiade', 'event' => 'olimpi
         Route::get('/ujian/history', [UjianController::class, 'history'])->name('history_ujian');
         Route::get('/ujian/history/{ujians}', [UjianController::class, 'hasil'])->name('hasil_ujian');
         Route::get('/ujian/assing-test/{ujians}', [UjianController::class, 'kumpulkan_ujian'])->name('kumpulkan_ujian');
+        Route::get('/ujian/cheat-detected', [UjianController::class, 'cheat_detected'])->name('cheat_detected');
     });
 });
 // All User Side
@@ -189,6 +192,16 @@ Route::group(['as' => 'dashboard.', 'prefix' => '/admin/main'], function () {
         Route::get('/edit/{role}', [UserTypesController::class, 'edit'])->name('edit')->middleware('permission:mainusertype_create_edit');
         Route::put('/update/{role}', [UserTypesController::class, 'update'])->name('update')->middleware('permission:mainusertype_create_edit');
         Route::delete('/delete/{role}', [UserTypesController::class, 'destroy'])->name('delete')->middleware('permission:mainusertype_delete');
+    });
+    
+    Route::group(['as' => 'sertifikat.', 'prefix' => '/sertifikat'], function () {
+        Route::get('/data', [SertifikatsController::class, 'index'])->name('index')->middleware('permission:mainsertifikat_view');
+        Route::put('/update', [SertifikatsController::class, 'update'])->name('update')->middleware('permission:mainsertifikat_edit');
+    });
+
+    Route::group(['as' => 'setting.', 'prefix' => '/setting'], function () {
+        Route::get('/data', [SettingsController::class, 'index'])->name('index')->middleware('permission:mainsettings_view');
+        Route::put('/update', [SettingsController::class, 'update'])->name('update')->middleware('permission:mainsettings_edit');
     });
 });
 

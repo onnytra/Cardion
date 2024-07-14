@@ -26,12 +26,12 @@
             <i class="fad fa-user-tag text-xs mr-2"></i>
             user type
         </a>
-        <a href="/admin/main/sertifikat"
+        <a href="{{route('dashboard.sertifikat.index')}}"
             class="{{ request()->is('admin/main/sertifikat') | Str::of(url()->current())->contains('sertifikat/') ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-file text-xs mr-2"></i>
             sertifikat
         </a>
-        <a href="/admin/main/settings"
+        <a href="{{route('dashboard.setting.index')}}"
             class="{{ request()->is('admin/main/settings') | Str::of(url()->current())->contains('settings/') ? 'text-teal-600' :  'hover:text-teal-600'}} mb-3 capitalize font-medium text-sm hover:text-teal-600 transition ease-in-out duration-500">
             <i class="fad fa-cog text-xs mr-2"></i>
             settings

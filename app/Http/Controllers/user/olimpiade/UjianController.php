@@ -18,6 +18,20 @@ use Illuminate\Support\Facades\Validator;
 
 class UjianController extends Controller
 {
+    private function getTimeZone($zona_waktu)
+    {
+        switch ($zona_waktu) {
+            case 'WIB':
+                return 'Asia/Jakarta';
+            case 'WITA':
+                return 'Asia/Makassar';
+            case 'WIT':
+                return 'Asia/Jayapura';
+            default:
+                return 'Asia/Jakarta'; // Default to WIB if no match
+        }
+    }
+
     public function index()
     {
         $title = 'Ujian | Cardion UIN Malang';
@@ -25,30 +39,35 @@ class UjianController extends Controller
 
         $user = Auth::guard('peserta')->user();
         $today = Carbon::now();
-        
+
         if ($user->status_data == 'belum' || $user->status_pembayaran == 'belum') {
             toast('Lengkapi Data Diri dan Lakukan Pembayaran Terlebih Dahulu', 'info');
             return redirect()->route('user.dashboard');
         }
-        
+
         $assign_test = assign_tests::where('id_peserta', $user->id_peserta)
-        ->where('status_test', 'belum')
-        ->with('ujian')
-        ->get();
+            ->where('status_test', 'belum')
+            ->with('ujian')
+            ->get();
         if ($assign_test->isEmpty()) {
             $sesis = null;
             toast('Tidak Ada Ujian Yang Tersedia', 'info');
             return view('olimpiade.ujian.ujian', compact('title', 'slug', 'sesis'));
         }
+
+        $userTimeZone = $this->getTimeZone($user->zona_waktu); // Convert user's zona_waktu to a valid timezone string
+
         foreach ($assign_test as $key => $value) {
             $id_ujian = $value->id_ujian;
             $sesi_peserta = $value->id_sesi;
             $sesis = sesis::where('id_ujian', $id_ujian)->orderBy('mulai', 'asc')
-            ->with('ujian')
-            ->get();
+                ->with('ujian')
+                ->get();
             foreach ($sesis as $key => $value) {
                 $id_sesi_peserta = $sesi_peserta;
                 $value->id_sesi_peserta = $id_sesi_peserta;
+                $value->mulai = Carbon::createFromFormat('Y-m-d H:i:s', $value->mulai, 'Asia/Jakarta')->setTimezone($userTimeZone);
+                $value->berakhir = Carbon::createFromFormat('Y-m-d H:i:s', $value->berakhir, 'Asia/Jakarta')->setTimezone($userTimeZone);
             }
         }
         return view('olimpiade.ujian.ujian', compact('title', 'slug', 'sesis', 'today'));
@@ -60,25 +79,32 @@ class UjianController extends Controller
         $slug = 'ujian';
         $sesi = $sesis;
 
+        $user = Auth::guard('peserta')->user();
         $assign_test = assign_tests::where('id_ujian', $ujians->id_ujian)
-        ->where('id_peserta', Auth::guard('peserta')->user()->id_peserta)
-        ->first();
+            ->where('id_peserta', $user->id_peserta)
+            ->first();
 
         if ($assign_test->id_sesi == null) {
             $id_sesi = $sesi->id_sesi;
             $assign_test->id_sesi = $id_sesi;
             $assign_test->save();
-        }elseif ($assign_test->id_sesi != $sesi->id_sesi) {
+        } elseif ($assign_test->id_sesi != $sesi->id_sesi) {
             toast('Anda Mengikuti Ujian Ini Pada Sesi Yang Lain', 'info');
             return redirect()->route('olimpiade.ujian');
-        }else{   
-            $sessionKey = 'soal_order_' . $ujians->id_ujian . '_' . Auth::guard('peserta')->user()->id_peserta;
-            
+        } else {
+            $sessionKey = 'soal_order_' . $ujians->id_ujian . '_' . $user->id_peserta;
+
             // Hapus sesi yang terkait
             session()->forget($sessionKey);
-    
+
+            // Convert session times to user's time zone
+            $userTimeZone = $this->getTimeZone($user->zona_waktu);
+            $sesi->mulai = Carbon::createFromFormat('Y-m-d H:i:s', $sesi->mulai, 'Asia/Jakarta')->setTimezone($userTimeZone);
+            $sesi->berakhir = Carbon::createFromFormat('Y-m-d H:i:s', $sesi->berakhir, 'Asia/Jakarta')->setTimezone($userTimeZone);
+
             return view('olimpiade.ujian.detail-ujian', compact('title', 'slug', 'ujians', 'sesi'));
         }
+
         return abort(404);
     }
 
@@ -87,18 +113,18 @@ class UjianController extends Controller
     {
         $title = 'Ujian | Cardion UIN Malang';
         $slug = 'ujian';
-        
+
         // Muat data ujian dengan relasi soal menggunakan Eager Loading
         $ujian = ujians::with('soal')->find($ujians->id_ujian);
-        
+
         if (!$ujian) {
             toast('Ujian tidak ditemukan.', 'error');
             return redirect()->back();
         }
-        
+
         // Periksa apakah soal harus diacak
         $soal_acak = $ujian->soal_acak;
-        
+
         // Ambil soal
         $soals = $ujian->soal;
 
@@ -130,7 +156,7 @@ class UjianController extends Controller
         }
 
         $soal = $soals->where('id_soal', $soal_id)->first();
-        
+
         if (!$soal) {
             toast('Soal tidak ditemukan.', 'error');
             return redirect()->back();
@@ -153,9 +179,9 @@ class UjianController extends Controller
         // Muat jawaban yang sudah dipilih oleh pengguna untuk soal ini
         $id_peserta = Auth::guard('peserta')->user()->id_peserta;
         $jawaban_user = jawaban_users::where('id_soal', $soal_id)
-                                    ->where('id_ujian', $ujians->id_ujian)
-                                    ->where('id_peserta', $id_peserta)
-                                    ->first();
+            ->where('id_ujian', $ujians->id_ujian)
+            ->where('id_peserta', $id_peserta)
+            ->first();
 
         $selected_jawaban_id = $jawaban_user ? $jawaban_user->id_jawaban : null;
         return view('olimpiade.ujian.start-ujian', [
@@ -172,10 +198,11 @@ class UjianController extends Controller
         ]);
     }
 
-    public function simpan_jawaban(Request $request){
+    public function simpan_jawaban(Request $request)
+    {
         $validate = Validator::make($request->all(), [
             'id_jawaban' => 'required',
-        ],[
+        ], [
             'id_jawaban.required' => 'Pilih jawaban terlebih dahulu.'
         ]);
         if ($validate->fails()) {
@@ -191,7 +218,7 @@ class UjianController extends Controller
                 'id_jawaban' => $request->id_jawaban
             ]
         );
-    
+
         return redirect()->back()->with('success', 'Jawaban berhasil disimpan.');
     }
 
@@ -203,9 +230,9 @@ class UjianController extends Controller
 
         // Cari jawaban yang sudah ada untuk dihapus
         $jawabanUser = jawaban_users::where('id_soal', $id_soal)
-                                    ->where('id_ujian', $id_ujian)
-                                    ->where('id_peserta', $id_peserta)
-                                    ->first();
+            ->where('id_ujian', $id_ujian)
+            ->where('id_peserta', $id_peserta)
+            ->first();
 
         if ($jawabanUser) {
             $jawabanUser->delete();
@@ -214,13 +241,14 @@ class UjianController extends Controller
         return redirect()->back()->with('success', 'Jawaban berhasil dihapus.');
     }
 
-    public function finish_ujian(Request $request){
+    public function finish_ujian(Request $request)
+    {
         $id_ujian = $request->id_ujian;
         $id_peserta = Auth::guard('peserta')->user()->id_peserta;
 
         $assign_test = assign_tests::where('id_ujian', $id_ujian)
-                                    ->where('id_peserta', $id_peserta)
-                                    ->first();
+            ->where('id_peserta', $id_peserta)
+            ->first();
 
         $assign_test->status_test = 'sudah';
         $assign_test->save();
@@ -245,9 +273,9 @@ class UjianController extends Controller
             // $jawaban = $jawaban_user== null ? 'Tidak Ada Jawaban' : $jawaban_user->jawaban->jawaban;
             // $value->jawaban = $jawaban;
             $jawaban_user = view_status_jawaban_pesertas::where('id_soal', $value->id_soal)
-            ->where('id_peserta', $user->id_peserta)
-            ->where('id_ujian', $ujians->id_ujian)
-            ->first();
+                ->where('id_peserta', $user->id_peserta)
+                ->where('id_ujian', $ujians->id_ujian)
+                ->first();
             $jawaban = $jawaban_user == null ? 'Tidak Ada Jawaban' : $jawaban_user->jawaban;
             $value->jawaban = $jawaban;
             $jawaban_status = $jawaban_user == null ? 'kosong' : $jawaban_user->jawaban_status;
@@ -258,13 +286,14 @@ class UjianController extends Controller
             // $value->jawaban_benar = $jawaban_benar->jawaban;
         }
         $nilai_user = view_nilai_ujian_pesertas::where('id_peserta', $user->id_peserta)
-        ->where('id_ujian', $ujians->id_ujian)
-        ->first();
+            ->where('id_ujian', $ujians->id_ujian)
+            ->first();
         $ujians->nilai = $nilai_user->total_score;
         return view('olimpiade.ujian.hasil-ujian', compact('title', 'slug', 'soals', 'ujians'));
     }
 
-    public function history(){
+    public function history()
+    {
         $title = 'History Ujian | Cardion UIN Malang';
         $slug = 'ujian';
 
@@ -272,9 +301,9 @@ class UjianController extends Controller
         $today = Carbon::now();
 
         $assign_test = assign_tests::where('id_peserta', $user->id_peserta)
-        ->where('status_test', 'sudah')
-        ->with('ujian')
-        ->get();
+            ->where('status_test', 'sudah')
+            ->with('ujian')
+            ->get();
         if ($assign_test->isEmpty()) {
             $assign_test = null;
             toast('Anda Belum Menyelesaikan Ujian', 'info');
@@ -292,20 +321,28 @@ class UjianController extends Controller
         $today = Carbon::now();
 
         $assign_test = assign_tests::where('id_peserta', $user->id_peserta)
-        ->where('id_ujian', $ujians->id_ujian)
-        ->where('status_test', 'belum')
-        ->where('id_sesi', !null)
-        ->first();
+            ->where('id_ujian', $ujians->id_ujian)
+            ->where('status_test', 'belum')
+            ->where('id_sesi', !null)
+            ->first();
 
         if ($assign_test == null) {
             toast('Sesi Ujian Anda Tidak Ditemukan', 'info');
             return redirect()->route('olimpiade.ujian');
         }
 
-        $assign_test -> status_test = 'sudah';
-        $assign_test -> save();
-        
+        $assign_test->status_test = 'sudah';
+        $assign_test->save();
+
         toast('Ujian Berhasil Dikumpulkan', 'success');
         return redirect()->route('olimpiade.ujian');
+    }
+
+    public function cheat_detected()
+    {
+        $title = 'Cheat Detected | Cardion UIN Malang';
+        $slug = 'ujian';
+
+        return view('olimpiade.ujian.cheat', compact('title', 'slug'));
     }
 }
