@@ -1,40 +1,32 @@
-// Cheat Detection
+// // Cheat Detection
+// window.addEventListener('blur', function () {
+//     const currentPath = window.location.pathname;
+    
+//     // Regex untuk mencocokkan dan menghapus parameter dinamis
+//     const cleanedPath = currentPath.replace(/\/\d+/g, '');
 
-// Allowed URLs
-const allowedUrls = [
-    '/olimpiade/ujian/detail',
-    '/olimpiade/ujian/finish'
-];
+//     // Array dari rute yang dikecualikan
+//     const excludedRoutes = [
+//         '/olimpiade/ujian/detail/start',
+//         '/ujian/finish'
+//     ];
 
-// Helper function to check if the current URL is allowed
-function isUrlAllowed() {
-    const currentUrl = window.location.pathname;
-    return allowedUrls.some(url => currentUrl.startsWith(url));
-}
+//     // Fungsi untuk memeriksa apakah path saat ini termasuk dalam rute yang dikecualikan
+//     function isExcludedRoute(path) {
+//         return excludedRoutes.includes(path);
+//     }
 
-// Event listener for keydown
-document.addEventListener('keydown', function (event) {
-    // Optionally specify which keys to detect as cheating
-    // e.g., F12 (Dev Tools), Ctrl, Alt, etc.
-    const forbiddenKeys = ['F12', 'Control', 'Alt'];
-    if (forbiddenKeys.includes(event.key) || !isUrlAllowed()) {
-        window.location.href = '/olimpiade/ujian/cheat-detected';
-        console.log('Key pressed:', event.key);
-    }
-});
+//     if (!isExcludedRoute(cleanedPath)) {
+//         console.log('BLUR');
+//         window.location.href = '/olimpiade/ujian/cheat-detected';
+//     }
+// });
 
-// Event listener for tab switch or window blur
-window.addEventListener('blur', function() {
-    if (!isUrlAllowed()) {
-        window.location.href = '/olimpiade/ujian/cheat-detected';
-        console.log('Tab is not focused');
-    }
-});
-
+// document.addEventListener('keydown', function (event) {
+//         // window.location.href = '/olimpiade/ujian/cheat-detected';
+//         console.log('Key pressed:', event.key);
+// });
 // // Ujian Timer
-
-// const waktuMulai = new Date("{{ $sesi->mulai }}");
-// const waktuBerakhir = new Date("{{ $sesi->berakhir }}");
 
 function finish_ujian() {
     document.getElementById('finishForm').submit();

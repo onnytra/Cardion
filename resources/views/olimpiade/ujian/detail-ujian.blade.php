@@ -45,7 +45,7 @@
 
             <div class="card-footer flex justify-end">
                 <button>
-                    <a href="{{route('olimpiade.start-ujian', ['ujians'=>$ujians->id_ujian, 'sesis'=>$sesi->id_sesi, 'soals'=>1])}}" class="btn">
+                    <a href="{{route('olimpiade.start-ujian', ['ujians'=>$ujians->id_ujian, 'sesis'=>$sesi->id_sesi, 'soals'=>$soal->id_soal])}}" class="btn">
                         <i class="fad fa-clock mr-2 leading-none"></i>
                         Start Ujian
                     </a>

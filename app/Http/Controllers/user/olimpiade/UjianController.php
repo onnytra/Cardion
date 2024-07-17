@@ -5,7 +5,6 @@ namespace App\Http\Controllers\user\olimpiade;
 use App\Http\Controllers\Controller;
 use App\Models\assign_tests;
 use App\Models\jawaban_users;
-use App\Models\jawabans;
 use App\Models\sesis;
 use App\Models\soals;
 use App\Models\ujians;
@@ -28,7 +27,7 @@ class UjianController extends Controller
             case 'WIT':
                 return 'Asia/Jayapura';
             default:
-                return 'Asia/Jakarta'; // Default to WIB if no match
+                return 'Asia/Jakarta';
         }
     }
 
@@ -55,7 +54,7 @@ class UjianController extends Controller
             return view('olimpiade.ujian.ujian', compact('title', 'slug', 'sesis'));
         }
 
-        $userTimeZone = $this->getTimeZone($user->zona_waktu); // Convert user's zona_waktu to a valid timezone string
+        $userTimeZone = $this->getTimeZone($user->zona_waktu);
 
         foreach ($assign_test as $key => $value) {
             $id_ujian = $value->id_ujian;
@@ -83,6 +82,11 @@ class UjianController extends Controller
         $assign_test = assign_tests::where('id_ujian', $ujians->id_ujian)
             ->where('id_peserta', $user->id_peserta)
             ->first();
+        $soal = soals::where('id_ujian', $ujians->id_ujian)->first();
+        if ($soal == null) {
+            toast('Soal Tidak Ditemukan', 'info');
+            return redirect()->route('olimpiade.ujian');
+        }
 
         if ($assign_test->id_sesi == null) {
             $id_sesi = $sesi->id_sesi;
@@ -94,15 +98,13 @@ class UjianController extends Controller
         } else {
             $sessionKey = 'soal_order_' . $ujians->id_ujian . '_' . $user->id_peserta;
 
-            // Hapus sesi yang terkait
             session()->forget($sessionKey);
 
-            // Convert session times to user's time zone
             $userTimeZone = $this->getTimeZone($user->zona_waktu);
             $sesi->mulai = Carbon::createFromFormat('Y-m-d H:i:s', $sesi->mulai, 'Asia/Jakarta')->setTimezone($userTimeZone);
             $sesi->berakhir = Carbon::createFromFormat('Y-m-d H:i:s', $sesi->berakhir, 'Asia/Jakarta')->setTimezone($userTimeZone);
 
-            return view('olimpiade.ujian.detail-ujian', compact('title', 'slug', 'ujians', 'sesi'));
+            return view('olimpiade.ujian.detail-ujian', compact('title', 'slug', 'ujians', 'sesi', 'soal'));
         }
 
         return abort(404);
@@ -113,8 +115,15 @@ class UjianController extends Controller
     {
         $title = 'Ujian | Cardion UIN Malang';
         $slug = 'ujian';
+        $peserta = Auth::guard('peserta')->user();
+        
+        $assign_test = assign_tests::where('id_ujian', $ujians->id_ujian)
+            ->where('id_peserta', $peserta->id_peserta)
+            ->first();
+        if ($assign_test->status_kecurangan == 1) {
+            return redirect()->route('olimpiade.ujian.cheat_detected');
+        }
 
-        // Muat data ujian dengan relasi soal menggunakan Eager Loading
         $ujian = ujians::with('soal')->find($ujians->id_ujian);
 
         if (!$ujian) {
@@ -122,10 +131,8 @@ class UjianController extends Controller
             return redirect()->back();
         }
 
-        // Periksa apakah soal harus diacak
         $soal_acak = $ujian->soal_acak;
 
-        // Ambil soal
         $soals = $ujian->soal;
 
         if (!$soals || $soals->isEmpty()) {
@@ -133,25 +140,19 @@ class UjianController extends Controller
             return redirect()->back();
         }
 
-        // Nama kunci sesi untuk menyimpan urutan soal
         $sessionKey = 'soal_order_' . $ujians->id_ujian . '_' . Auth::guard('peserta')->user()->id_peserta;
 
         if ($soal_acak) {
-            // Periksa apakah urutan soal sudah ada di sesi
             if (session()->has($sessionKey)) {
-                // Ambil urutan soal dari sesi
                 $orderedSoals = collect(session()->get($sessionKey));
-                // Urutkan soal sesuai urutan yang ada di sesi
                 $soals = $soals->whereIn('id_soal', $orderedSoals->toArray())->sortBy(function ($item) use ($orderedSoals) {
                     return $orderedSoals->search($item->id_soal);
                 });
             } else {
-                // Acak soal dan simpan urutannya dalam sesi
                 $soals = $soals->shuffle();
                 session()->put($sessionKey, $soals->pluck('id_soal')->toArray());
             }
         } else {
-            // Urutkan soal berdasarkan urutan_soal
             $soals = $soals->sortBy('urutan_soal');
         }
 
@@ -162,7 +163,6 @@ class UjianController extends Controller
             return redirect()->back();
         }
 
-        // Cari nomor urutan soal saat ini
         $current_question_index = $soals->pluck('id_soal')->search($soal_id);
 
         if ($current_question_index === false) {
@@ -171,13 +171,10 @@ class UjianController extends Controller
         }
 
         $current_question_number = $current_question_index + 1;
-
-        // Tentukan previous_soal_id dan next_soal_id dengan validasi
         $previous_soal_id = $current_question_number > 1 ? $soals[$current_question_index - 1]->id_soal : $soals->last()->id_soal;
         $next_soal_id = $current_question_number < $soals->count() ? $soals[$current_question_index + 1]->id_soal : $soals->first()->id_soal;
 
-        // Muat jawaban yang sudah dipilih oleh pengguna untuk soal ini
-        $id_peserta = Auth::guard('peserta')->user()->id_peserta;
+        $id_peserta = $peserta->id_peserta;
         $jawaban_user = jawaban_users::where('id_soal', $soal_id)
             ->where('id_ujian', $ujians->id_ujian)
             ->where('id_peserta', $id_peserta)
@@ -192,7 +189,7 @@ class UjianController extends Controller
             'previous_soal_id' => $previous_soal_id,
             'next_soal_id' => $next_soal_id,
             'selected_jawaban_id' => $selected_jawaban_id,
-            'sesi' => $sesis, // Tambahkan sesi ke dalam data yang dikirimkan ke view
+            'sesi' => $sesis,
             'title' => $title,
             'slug' => $slug
         ]);
@@ -228,7 +225,6 @@ class UjianController extends Controller
         $id_ujian = $request->id_ujian;
         $id_peserta = Auth::guard('peserta')->user()->id_peserta;
 
-        // Cari jawaban yang sudah ada untuk dihapus
         $jawabanUser = jawaban_users::where('id_soal', $id_soal)
             ->where('id_ujian', $id_ujian)
             ->where('id_peserta', $id_peserta)
@@ -263,15 +259,8 @@ class UjianController extends Controller
         $slug = 'ujian';
 
         $user = Auth::guard('peserta')->user();
-        // take soal and user jawaban
         $soals = soals::where('id_ujian', $ujians->id_ujian)->get();
         foreach ($soals as $key => $value) {
-            // $jawaban_user = jawaban_users::where('id_soal', $value->id_soal)
-            // ->where('id_peserta', $user->id_peserta)
-            // ->where('id_ujian', $ujians->id_ujian)
-            // ->first();
-            // $jawaban = $jawaban_user== null ? 'Tidak Ada Jawaban' : $jawaban_user->jawaban->jawaban;
-            // $value->jawaban = $jawaban;
             $jawaban_user = view_status_jawaban_pesertas::where('id_soal', $value->id_soal)
                 ->where('id_peserta', $user->id_peserta)
                 ->where('id_ujian', $ujians->id_ujian)
@@ -280,10 +269,6 @@ class UjianController extends Controller
             $value->jawaban = $jawaban;
             $jawaban_status = $jawaban_user == null ? 'kosong' : $jawaban_user->jawaban_status;
             $value->jawaban_status = $jawaban_status;
-            // $jawaban_benar = jawabans::where('id_soal', $value->id_soal)
-            // ->where('status_jawaban', 1)
-            // ->first();
-            // $value->jawaban_benar = $jawaban_benar->jawaban;
         }
         $nilai_user = view_nilai_ujian_pesertas::where('id_peserta', $user->id_peserta)
             ->where('id_ujian', $ujians->id_ujian)

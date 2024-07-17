@@ -43,7 +43,6 @@
         <div>
             <p>Hubungi Admin Untuk Melakukan Pembebasan Pelanggaran</p>
             {{-- <p>Hubungi Admin Jika Anda Sudah Melakukan Aktivasi Sebelumnya <br><a href="/logout">Back to Login</a></p> --}}
-            <p><a href="mailto:kopma.pb.uin.maliki.malang@gmail.com">Contact Us </a>&mdash; Admin Kopma PB</p>
 
         </div>
     </article>

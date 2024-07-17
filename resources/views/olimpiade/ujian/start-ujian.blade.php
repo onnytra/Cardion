@@ -140,6 +140,7 @@
     <script>
     const waktuMulai = new Date("{{ $sesi->mulai }}");
     const waktuBerakhir = new Date("{{ $sesi->berakhir }}");
+    const id_ujian = "{{ $ujian->id_ujian }}";
     </script>
     <script src="{{asset('js/ujian.js')}}"></script>
 </x-layout-ujian>
