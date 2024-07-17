@@ -113,6 +113,8 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/olimpiade', 'event' => 'olimpi
         Route::get('/ujian/history/{ujians}', [UjianController::class, 'hasil'])->name('hasil_ujian');
         Route::get('/ujian/assing-test/{ujians}', [UjianController::class, 'kumpulkan_ujian'])->name('kumpulkan_ujian');
         Route::get('/ujian/cheat-detected', [UjianController::class, 'cheat_detected'])->name('cheat_detected');
+        Route::put('/ujian/assign-test/cheat', [UjianController::class, 'update_assign_test_cheat'])->name('update_assign_test_cheat');
+        Route::get('/ujian/assign-test/cheat/reset/{assign_tests}', [UjianController::class, 'update_assign_test_cheat_reset'])->name('update_assign_test_cheat_reset');
     });
 });
 // All User Side

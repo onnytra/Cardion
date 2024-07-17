@@ -12,10 +12,12 @@
             padding: 20px;
             font: 20px Helvetica, sans-serif;
             color: #efe8e8;
+            background-color: #2e2929;
         }
 
         h1 {
             font-size: 50px;
+            color: red; /* Ubah warna teks menjadi merah */
         }
 
         article {
@@ -34,16 +36,21 @@
             color: #efe8e8;
             text-decoration: none;
         }
+
+        .info {
+            margin-top: 20px;
+            font-size: 18px;
+        }
     </style>
 </head>
 
-<body bgcolor="2e2929">
+<body>
     <article>
-        <h1>Upss <br> Akun Terdeteksi Melakukan Pelanggaran</h1>
+        <h1>Perhatian <br> Akun Terdeteksi Melakukan Pelanggaran</h1>
         <div>
             <p>Hubungi Admin Untuk Melakukan Pembebasan Pelanggaran</p>
-            {{-- <p>Hubungi Admin Jika Anda Sudah Melakukan Aktivasi Sebelumnya <br><a href="/logout">Back to Login</a></p> --}}
-
+            <p class="info">Jika Anda merasa ini adalah kesalahan, jelaskan kepada admin rincian kesalahannya.</p>
+            <a href="{{route('olimpiade.ujian')}}">Kembali Ke Halaman Ujian</a>
         </div>
     </article>
 </body>

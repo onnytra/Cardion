@@ -39,7 +39,8 @@ class MonitoringUjianController extends Controller
             $value->nilai = view_nilai_ujian_pesertas::where('id_peserta', $value->id_peserta)->where('id_ujian', $value->id_ujian)->first();
         }
         $pesertas_belum = assign_tests::where('id_ujian', $id)->where('status_test', 'belum')->get();
-        return view('admin.olimpiade.monitoring.detail-monitoring', compact('title', 'slug', 'ujian', 'pesertas_sudah', 'pesertas_belum'));
+        $pesertas_cheat = assign_tests::where('id_ujian', $id)->where('status_kecurangan', 1)->get();
+        return view('admin.olimpiade.monitoring.detail-monitoring', compact('title', 'slug', 'ujian', 'pesertas_sudah', 'pesertas_belum', 'pesertas_cheat'));
     }
 
     public function detail_peserta_monitoring(assign_tests $assign_tests){

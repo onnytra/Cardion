@@ -119,16 +119,15 @@
                 </div>
 
                 <div class="card-footer flex justify-end">
-                    <form action="{{ route('olimpiade.finish_ujian') }}" method="POST">
+                    <form id="finish-ujian-form" action="{{ route('olimpiade.finish_ujian') }}" method="POST">
                         @csrf
                         <input type="hidden" name="id_ujian" value="{{ $ujian->id_ujian }}">
-                        <input type="hidden" name="id_peserta" value="{{ Auth::guard('peserta')->user()->id_peserta }}">
-                        <button type="submit" class="btn btn-indigo">
+                        <button type="button" class="btn btn-indigo" onclick="confirmKumpulkanUjian()">
                             <i class="fad fa-check mr-2 leading-none"></i>
                             Selesai Ujian
                         </button>
                     </form>
-                </div>
+                </div>                
             </div>
         </div>
     </div>
@@ -143,4 +142,5 @@
     const id_ujian = "{{ $ujian->id_ujian }}";
     </script>
     <script src="{{asset('js/ujian.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </x-layout-ujian>

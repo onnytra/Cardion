@@ -68,6 +68,13 @@
                             Belum Ujian
                         </a>
                     </li>
+                    <li class="me-2">
+                        <a href="#" id="btn-tab-3"
+                            class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300">
+                            <i class="fad fa-exclamation-triangle text-xs mr-2"></i>
+                            Pelanggaran Ujian
+                        </a>
+                    </li>
                 </ul>
             </div>
 
@@ -190,6 +197,63 @@
                             </td>
                             <td class="px-6 py-4">
                                 {{$data->peserta->telepon}}
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <div class="relative overflow-x-auto hidden sm:rounded-lg text-sm p-10" id="tab-3">
+                <table id="datatable" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                No
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Peserta
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Email
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Nomor Telepon
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Keterangan Pelanggaran
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Aksi
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($pesertas_cheat as $data)
+                        <tr
+                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <td class="px-6 py-4">
+                                {{$loop->iteration}}
+                            </td>
+                            <td scope="row" class="px-6 py-4">
+                                <p class="text-gray-900">
+                                    {{$data->peserta->nama}}
+                                </p>
+                                <p class="text-xs">
+                                    {{$data->peserta->nomor}}
+                                </p>
+                            </td>
+                            <td class="px-6 py-4">
+                                {{$data->peserta->email}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{$data->peserta->telepon}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{$data->alasan_kecurangan}}
+                            </td>
+                            <td class="px-6 py-4">
+                                <a href="{{route('olimpiade.update_assign_test_cheat_reset', $data->id_assign_test)}}"
+                                    class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus Pelanggaran</a>
                             </td>
                         </tr>
                         @endforeach

@@ -124,7 +124,7 @@ class UjianController extends Controller
             ->where('id_peserta', $peserta->id_peserta)
             ->first();
         if ($assign_test->status_kecurangan == 1) {
-            return redirect()->route('olimpiade.ujian.cheat_detected');
+            return redirect()->route('olimpiade.cheat_detected');
         }
 
         $ujian = ujians::with('soal')->find($ujians->id_ujian);
@@ -332,5 +332,29 @@ class UjianController extends Controller
         $slug = 'ujian';
 
         return view('olimpiade.ujian.cheat', compact('title', 'slug'));
+    }
+
+    public function update_assign_test_cheat(Request $request)
+    {
+        $id_ujian = $request->id_ujian;
+        $id_peserta = Auth::guard('peserta')->user()->id_peserta;
+
+        $assign_test = assign_tests::where('id_ujian', $id_ujian)
+            ->where('id_peserta', $id_peserta)
+            ->first();
+
+        $assign_test->status_kecurangan = 1;
+        $assign_test->alasan_kecurangan = $request->alasan_kecurangan;
+        $assign_test->save();
+    }
+
+    public function update_assign_test_cheat_reset(assign_tests $assign_tests)
+    {
+        $assign_tests->status_kecurangan = 0;
+        $assign_tests->alasan_kecurangan = null;
+        $assign_tests->save();
+
+        toast('Data Berhasil Direset', 'success');
+        return redirect()->back();
     }
 }
