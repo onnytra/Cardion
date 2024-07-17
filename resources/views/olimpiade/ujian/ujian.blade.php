@@ -22,7 +22,7 @@
         @foreach ($sesis as $item)
         <div class="card ml-1 mr-1">
             <div class="card-header  flex flex-row justify-between items-center">
-                <h1 class="h6">{{$item->ujian->judul}}</h1>
+                <h1 class="h6">{{$item->ujian->judul}} ({{$item->nama_sesi}})</h1>
                     @if ($item->mulai > $today )
                     <span class="bg-green-500 text-white text-center text-sm px-2 py-1 rounded">
                         Belum Dimulai

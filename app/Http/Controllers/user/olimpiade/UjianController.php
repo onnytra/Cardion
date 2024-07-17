@@ -55,22 +55,25 @@ class UjianController extends Controller
         }
 
         $userTimeZone = $this->getTimeZone($user->zona_waktu);
+        $sesis = [];
 
         foreach ($assign_test as $key => $value) {
             $id_ujian = $value->id_ujian;
             $sesi_peserta = $value->id_sesi;
-            $sesis = sesis::where('id_ujian', $id_ujian)->orderBy('mulai', 'asc')
+            $sesi_items = sesis::where('id_ujian', $id_ujian)->orderBy('mulai', 'asc')
                 ->with('ujian')
                 ->get();
-            foreach ($sesis as $key => $value) {
-                $id_sesi_peserta = $sesi_peserta;
-                $value->id_sesi_peserta = $id_sesi_peserta;
-                $value->mulai = Carbon::createFromFormat('Y-m-d H:i:s', $value->mulai, 'Asia/Jakarta')->setTimezone($userTimeZone);
-                $value->berakhir = Carbon::createFromFormat('Y-m-d H:i:s', $value->berakhir, 'Asia/Jakarta')->setTimezone($userTimeZone);
+            foreach ($sesi_items as $key => $sesi_value) {
+                $sesi_value->nama_sesi = 'Sesi ' . ($key + 1);
+                $sesi_value->id_sesi_peserta = $sesi_peserta;
+                $sesi_value->mulai = Carbon::createFromFormat('Y-m-d H:i:s', $sesi_value->mulai, 'Asia/Jakarta')->setTimezone($userTimeZone);
+                $sesi_value->berakhir = Carbon::createFromFormat('Y-m-d H:i:s', $sesi_value->berakhir, 'Asia/Jakarta')->setTimezone($userTimeZone);
+                $sesis[] = $sesi_value;
             }
         }
         return view('olimpiade.ujian.ujian', compact('title', 'slug', 'sesis', 'today'));
     }
+
 
     public function detail(ujians $ujians, sesis $sesis)
     {
