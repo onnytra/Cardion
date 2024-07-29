@@ -94,7 +94,11 @@ class RegistrasiController extends Controller
         $peserta->zona_waktu = $request->zona_waktu;
         $peserta->status_data = 'sudah';
         $peserta->password = $request->password ? bcrypt($request->password) : $peserta->password;
-        $peserta->keterangan = 'Peserta Belum Melakukan Pembayaran';
+        if ($peserta->status_pembayaran == 'belum') {
+            $peserta->keterangan = 'Peserta Belum Melakukan Pembayaran';
+        }else{
+            $peserta->keterangan = 'Peserta Aktif';
+        }
         $peserta->save();
 
         toast('Data Berhasil Disimpan', 'success');
