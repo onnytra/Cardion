@@ -141,6 +141,7 @@
     const waktuBerakhir = new Date("{{ $sesi->berakhir }}");
     const id_ujian = "{{ $ujian->id_ujian }}";
     </script>
-    <script src="{{asset('js/ujian.js')}}"></script>
+    <script src="{{asset('js/ujian.js')}}?v={{ time() }}"></script>
+    {{-- <script src="{{ asset('js/app.js') }}?v={{ time() }}"></script> --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </x-layout-ujian>

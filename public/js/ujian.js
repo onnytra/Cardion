@@ -1,5 +1,7 @@
 // // Cheat Detection
 let isReloading = false;
+let blurTimer;
+const blurDuration = 3000; // 3 detik
 
 function matchesUrlPattern(url, pattern) {
     const regex = new RegExp(pattern.replace(/x|y|z/g, '\\d+'));
@@ -18,7 +20,7 @@ window.addEventListener('beforeunload', function() {
 });
 
 window.addEventListener('blur', function() {
-    setTimeout(function() {
+    blurTimer = setTimeout(function() {
         if (!isReloading) {
             $.ajaxSetup({
                 headers: {
@@ -42,7 +44,11 @@ window.addEventListener('blur', function() {
         } else {
             isReloading = false;
         }
-    }, 0);
+    }, blurDuration);
+});
+
+window.addEventListener('focus', function() {
+    clearTimeout(blurTimer);
 });
 
 document.addEventListener('keydown', function (event) {

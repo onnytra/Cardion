@@ -42,7 +42,7 @@
 </head>
 
 <body onload="window.print()">
-    <div class="w-[1367px] h-[960px] bg-sertifikat-peserta bg-cover relative font-andalus">
+    <div class="w-[1367px] h-[966px] bg-sertifikat-peserta bg-cover relative font-andalus">
         <div class="absolute text-center w-full pl-64 pt-4 top-60 text-2xl">
             <p>No. {{ $peserta->sertifikat }}</p>
         </div>
@@ -50,6 +50,25 @@
             <p>{{ $peserta->nama }}</p>
         </div>
     </div>
+    @if($peserta->anggota_pertama != null)
+    <div class="w-[1367px] h-[966px] bg-sertifikat-peserta bg-cover relative font-andalus">
+        <div class="absolute text-center w-full pl-64 pt-4 top-60 text-2xl">
+            <p>No. {{ $peserta->sertifikat }}</p>
+        </div>
+        <div class="absolute text-center w-full pl-64 pt-4 top-80 text-4xl font-bold">
+            <p>{{ $peserta->anggota_pertama }}</p>
+        </div>
+    </div>
+    @endif
+    @if($peserta->anggota_kedua != null)
+    <div class="w-[1367px] h-[966px] bg-sertifikat-peserta bg-cover relative font-andalus">
+        <div class="absolute text-center w-full pl-64 pt-4 top-60 text-2xl">
+            <p>No. {{ $peserta->sertifikat }}</p>
+        </div>
+        <div class="absolute text-center w-full pl-64 pt-4 top-80 text-4xl font-bold">
+            <p>{{ $peserta->anggota_kedua }}</p>
+        </div>
+    </div>
+    @endif
 </body>
-
 </html>
