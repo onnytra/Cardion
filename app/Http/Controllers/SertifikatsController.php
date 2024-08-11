@@ -18,7 +18,7 @@ class SertifikatsController extends Controller
     public function update(Request $request)
     {
         $request->validate([
-            'file-upload' => 'required|image|mimes:jpeg,png,jpg,gif',
+            'file-upload' => 'required|image|mimes:png',
         ]);
 
         $file = $request->file('file-upload');

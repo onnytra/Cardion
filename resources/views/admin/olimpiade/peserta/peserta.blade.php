@@ -127,6 +127,9 @@
                             </td>
                             <td class="px-6 py-4">
                                 @if ($data->sertifikat)
+                                <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+                                    <i class="fad fa-check mr-2 leading-none"></i>
+                                </span>
                                 <span class="badge badge-success">
                                     <i class="fad fa-check mr-2 leading-none"></i>
                                 </span>

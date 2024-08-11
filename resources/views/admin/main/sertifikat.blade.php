@@ -15,7 +15,7 @@
                     <div class="mb-10">
                         <p class="mb-4 text-black font-semibold">Background Sertifikat</p>
                         <div class="mb-4 h-56 w-full bg-gray-300 flex justify-center">
-                            <img id="current-cert-preview" src="{{ asset('img/sertifikat-peserta.png') }}" alt="Background Certificate" class="h-full">
+                            <img id="current-cert-preview" src="{{ asset('img/sertifikat-peserta.png') }}?v={{ time() }}" alt="Background Certificate" class="h-full">
                         </div>
                         <div>
                             <label for="file-upload" class="bg-gray-500 hover:bg-gray-400 text-white px-5 py-3 cursor-pointer rounded-md">Ubah</label>

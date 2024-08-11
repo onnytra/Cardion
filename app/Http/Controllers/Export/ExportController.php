@@ -44,7 +44,7 @@ class ExportController extends Controller
                 return redirect()->back();
             }
         }
-        return Excel::download(new SheetFormatPeserta($rayon), date('Y-m-d').'peserta-sudah-bayar'.$this->event.'.xlsx');
+        return Excel::download(new SheetFormatPeserta($rayon), date('Y-m-d').' peserta-sudah-bayar-'.$this->event.'.xlsx');
     }
 
     public function pesertalunas_bycabang(cabangs $cabangs)
@@ -54,7 +54,7 @@ class ExportController extends Controller
             toast('Data Rayon Belum Ada', 'error');
             return redirect()->back();
         }
-        return Excel::download(new SheetFormatPeserta([$rayon]), date('Y-m-d').'peserta-sudah-bayar-'.$this->event.$cabangs->cabang.'.xlsx');
+        return Excel::download(new SheetFormatPeserta([$rayon]), date('Y-m-d').' peserta-sudah-bayar-'.$this->event.'-'.$cabangs->cabang.'.xlsx');
     }
 
     public function pesertabelumlunas()
@@ -68,19 +68,18 @@ class ExportController extends Controller
                 return redirect()->back();
             }
         }
-        return Excel::download(new SheetFormatPesertaBelumLunas($rayon), date('Y-m-d').'peserta-belum-bayar'.$this->event.'.xlsx');
+        return Excel::download(new SheetFormatPesertaBelumLunas($rayon), date('Y-m-d').' peserta-belum-bayar-'.$this->event.'.xlsx');
     }
 
     public function ujianpeserta(ujians $ujians)
     {
         $subyek = subyeks::where('id_ujian', $ujians->id_ujian)->get();
-        return Excel::download(new SheetFormatUjian([$subyek]), date('Y-m-d').'ujian-'.$ujians->judul.'.xlsx');
+        return Excel::download(new SheetFormatUjian([$subyek]), date('Y-m-d').' ujian-'.$ujians->judul.'.xlsx');
     }
 
     public function penilaian_karya(pengumpulan_karyas $pengumpulan_karyas)
     {
         $karyas = karyas::where('id_pengumpulan', $pengumpulan_karyas->id_pengumpulan)->get();
-        return Excel::download(new PenilaianKaryaExport($karyas), date('Y-m-d').'penilaian-karya-'.$pengumpulan_karyas->judul.'.xlsx');
-
+        return Excel::download(new PenilaianKaryaExport($karyas), date('Y-m-d').' penilaian-karya-'.$pengumpulan_karyas->judul.'.xlsx');
     }
 }
