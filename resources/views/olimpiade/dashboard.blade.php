@@ -6,7 +6,7 @@
         <div class="card-header text-center">
             <h1 class="h4">Selamat Datang</h1>
             <h2 class="h6 text-gray-600 font-light">
-                Selamat datang di halaman pendaftaran Cardion 2023
+                Selamat datang di halaman pendaftaran Cardion 2024
             </h2>
             <h2 class="h6 text-gray-600 font-light">
                 Tata Cara Pendaftaran Online

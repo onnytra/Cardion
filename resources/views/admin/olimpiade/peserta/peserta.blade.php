@@ -79,6 +79,9 @@
                             <th scope="col" class="px-6 py-3">
                                 Keterangan
                             </th>
+                            <th scope="col" class="px-6 py-3">
+                                Sertifikat
+                            </th>
                             {{-- <th scope="col" class="px-6 py-3">
                                 Gelombang Pendaftaran
                             </th> --}}
@@ -121,6 +124,17 @@
                             </td>
                             <td class="px-6 py-4">
                                 {{ $data->keterangan }}
+                            </td>
+                            <td class="px-6 py-4">
+                                @if ($data->sertifikat)
+                                <span class="badge badge-success">
+                                    <i class="fad fa-check mr-2 leading-none"></i>
+                                </span>
+                                @else
+                                <span class="badge badge-danger">
+                                    <i class="fad fa-times mr-2 leading-none"></i>
+                                </span>
+                                @endif
                             </td>
                             {{-- <td class="px-6 py-4">
                                 -

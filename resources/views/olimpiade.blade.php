@@ -275,7 +275,7 @@
                             class="rounded-xl font-andalus flex items-center justify-center bg-[#D9D9D9] px-12 py-4 text-xl shadow-sm hover:bg-red-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 focus-visible:text-white transition ease-in-out">
                             Download Guideline
                         </a>
-                        <a href="https://drive.google.com/drive/folders/1hMpSgn103aG8FamPe6k-2zn0dW0Si2ip"
+                        <a href="https://drive.google.com/drive/folders/1XUB7D-cV4JkmUX-JTz0xKgCt-UcpG7YL?usp=drive_link"
                             target="_blank"
                             class="rounded-xl font-andalus flex items-center justify-center bg-[#D9D9D9] px-12 py-4 text-xl shadow-sm hover:bg-red-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 focus-visible:text-white transition ease-in-out">
                             Download Syllabus

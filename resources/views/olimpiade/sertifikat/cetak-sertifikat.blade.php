@@ -17,7 +17,7 @@
         }
 
         .bg-sertifikat-peserta {
-            background-image: url('{{ asset('img/sertifikat-peserta.png') }}');
+            background-image: url('{{ asset('img/sertifikat-peserta.png')}}?v={{ time() }}');
             background-size: cover;
         }
 
@@ -33,7 +33,7 @@
             }
 
             .bg-sertifikat-peserta {
-                background-image: url('{{ asset('img/sertifikat-peserta.png') }}') !important;
+                background-image: url('{{ asset('img/sertifikat-peserta.png') }}?v={{ time() }}') !important;
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
