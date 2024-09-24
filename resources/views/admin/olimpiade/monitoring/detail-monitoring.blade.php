@@ -252,7 +252,7 @@
                                 {{$data->alasan_kecurangan}}
                             </td>
                             <td class="px-6 py-4">
-                                <a href="{{route('olimpiade.update_assign_test_cheat_reset', $data->id_assign_test)}}"
+                                <a href="{{route('olimpiade.monitoring_ujian.update_assign_test_cheat_reset', $data->id_assign_test)}}"
                                     class="font-medium text-red-600 dark:text-red-500 hover:underline">Hapus Pelanggaran</a>
                             </td>
                         </tr>

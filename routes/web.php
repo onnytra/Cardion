@@ -114,7 +114,6 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/olimpiade', 'event' => 'olimpi
         Route::get('/ujian/assing-test/{ujians}', [UjianController::class, 'kumpulkan_ujian'])->name('kumpulkan_ujian');
         Route::get('/ujian/cheat-detected', [UjianController::class, 'cheat_detected'])->name('cheat_detected');
         Route::put('/ujian/assign-test/cheat', [UjianController::class, 'update_assign_test_cheat'])->name('update_assign_test_cheat');
-        Route::get('/ujian/assign-test/cheat/reset/{assign_tests}', [UjianController::class, 'update_assign_test_cheat_reset'])->name('update_assign_test_cheat_reset');
     });
 });
 // All User Side
@@ -324,6 +323,7 @@ Route::group(['as' => 'olimpiade.', 'prefix' => '/admin/olimpiade', 'event' => '
         Route::get('/data/ujian/{id}', [MonitoringUjianController::class, 'monitoring_detail'])->name('detail_monitoring')->middleware('permission:olimmonitor_view');
         Route::get('/data/peserta/{assign_tests}', [MonitoringUjianController::class, 'detail_peserta_monitoring'])->name('detail_peserta_monitoring')->middleware('permission:olimmonitor_view');
         Route::get('/reset/{assign_tests}', [MonitoringUjianController::class, 'reset'])->name('reset_peserta_monitoring')->middleware('permission:olimmonitor_create_edit');
+        Route::get('/ujian/assign-test/cheat/reset/{assign_tests}', [UjianController::class, 'update_assign_test_cheat_reset'])->name('update_assign_test_cheat_reset')->middleware('permission:olimmonitor_create_edit');
     });
 
     Route::group(['as' => 'pengumuman.', 'prefix' => '/pengumuman'], function () {
